@@ -38,7 +38,7 @@
         "email-form"
       ],
       "settings": {
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-1",
         "full_width": true,
         "padding_top": 20,
         "padding_bottom": 16
@@ -47,7 +47,7 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-1",
         "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": true,
