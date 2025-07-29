@@ -435,9 +435,13 @@
 
 .small-three-images-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   margin-top: 3rem;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 5%;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
 .extra-image-wrapper-text {
@@ -456,7 +460,7 @@
 
 .extra-image-wrapper-paragraph {
   display: flex;
-  font-size: 13px;
+  font-size: 1.3rem;
   color: white;
   flex-wrap: wrap;
   align-items: center;
