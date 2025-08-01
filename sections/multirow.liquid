@@ -44,6 +44,12 @@
 
 <div class="multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="multirow__inner page-width">
+    {%- if section.settings.section_title != blank -%}
+      <div class="section-title-wrapper page-width">
+        <div class="section-title">{{ section.settings.section_title }}</div>
+      </div>
+    {%- endif -%}
+
     {%- for block in section.blocks -%}
       <div
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -115,6 +121,14 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Discover Our Rituals"
+    },
+
+
     {
       "type": "header",
       "content": "t:sections.multirow.settings.header.content"

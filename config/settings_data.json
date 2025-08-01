@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/ChatGPT_Image_28._srp_2025._11_20_18.png",
-    "logo_width": 120,
+    "logo": "shopify://shop_images/LuvMechanics_Logo_Rectangle_Style1.png",
+    "logo_width": 210,
     "type_header_font": "poppins_n5",
     "heading_scale": 120,
     "type_body_font": "poppins_n4",
@@ -145,7 +145,7 @@
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#fdfbf7",
+          "background": "#f8f0ee",
           "background_gradient": "#f8f0ee",
           "text": "#2e2a39",
           "button": "#9b046f",
@@ -195,6 +195,17 @@
           "button": "#fdfbf7",
           "button_label": "#5e3653",
           "secondary_button_label": "#fdfbf7",
+          "shadow": "#2e2a39"
+        }
+      },
+      "scheme-9c4b1816-9fac-451e-85c0-6ff2947bcc20": {
+        "settings": {
+          "background": "#5e584b",
+          "background_gradient": "#f8f0ee",
+          "text": "#2e2a39",
+          "button": "#a13a82",
+          "button_label": "#fdfbf7",
+          "secondary_button_label": "#2e2a39",
           "shadow": "#2e2a39"
         }
       }

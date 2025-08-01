@@ -39,7 +39,7 @@
         "extra_image_alt_2": "image1",
         "extra_image_3": "shopify://shop_images/letter-lm.png",
         "extra_image_alt_3": "image1",
-        "image": "shopify://shop_images/blackbox.png",
+        "image": "shopify://shop_images/ChatGPT_Image_30._srp_2025._09_58_46.png",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -70,7 +70,7 @@
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": true,
@@ -81,10 +81,126 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "multirow_EFD3LN": {
+      "type": "multirow",
+      "blocks": {
+        "row_jBa7Hk": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/ulje5.webp",
+            "caption": "",
+            "heading": "Oil 5",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Quick Buy",
+            "button_link": "shopify://products/oil-5"
+          }
+        },
+        "row_WKrTkt": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/ulje3.jpg",
+            "caption": "",
+            "heading": "Oil 3",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Quick Buy",
+            "button_link": "shopify://products/oil-3"
+          }
+        },
+        "row_AzL4fG": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/ulje1.jpg",
+            "caption": "",
+            "heading": "Oil 1",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Quick Buy",
+            "button_link": "shopify://products/oil-1"
+          }
+        }
+      },
+      "block_order": [
+        "row_jBa7Hk",
+        "row_WKrTkt",
+        "row_AzL4fG"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "section_title": "Best selling products",
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "row_color_scheme": "scheme-3",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_9krMJb": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_Jkb8hW": {
+          "type": "column",
+          "settings": {
+            "title": "Jenny M.",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_NGtDCY": {
+          "type": "column",
+          "settings": {
+            "title": "Linda & Bob H.",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_4nTxGm": {
+          "type": "column",
+          "settings": {
+            "title": "Mia A.",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Jkb8hW",
+        "column_NGtDCY",
+        "column_4nTxGm"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Reviews",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "image-with-text",
-    "featured-collection"
+    "featured-collection",
+    "multirow_EFD3LN",
+    "multicolumn_9krMJb"
   ]
 }

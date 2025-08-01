@@ -11,13 +11,20 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 0
       }
+    },
+    "about_us_m3q4qq": {
+      "type": "about-us",
+      "name": "About Us",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "about_us_m3q4qq"
   ]
 }

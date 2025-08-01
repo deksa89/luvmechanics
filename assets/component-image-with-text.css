@@ -467,3 +467,14 @@
   margin: 0;
   padding: 0;
 }
+
+
+.section-title-wrapper {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 5rem;
+  font-weight: 300;
+  color: black;
+}
