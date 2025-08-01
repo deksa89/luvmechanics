@@ -478,3 +478,11 @@
   font-weight: 300;
   color: black;
 }
+
+.image-with-text__heading {
+  color: #ecb13b;
+}
+
+.image-with-text__paragraph {
+  font-size: 25px;
+}
