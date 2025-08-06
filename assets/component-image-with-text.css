@@ -424,10 +424,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 30%;
 }
 
 .extra-image {
-  max-width: 100%;
+  max-width: 4.5rem;
   height: auto;
   border-radius: 0.5rem;
   display: inline-block;
@@ -439,7 +440,6 @@
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 5%;
   align-content: center;
   flex-wrap: wrap;
 }

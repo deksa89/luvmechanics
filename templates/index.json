@@ -33,11 +33,11 @@
         "button"
       ],
       "settings": {
-        "extra_image_1": "shopify://shop_images/box-lm.png",
+        "extra_image_1": "shopify://shop_images/icons8-box.svg",
         "extra_image_alt_1": "image1",
-        "extra_image_2": "shopify://shop_images/kvacica-lm.png",
+        "extra_image_2": "shopify://shop_images/security-on_1.svg",
         "extra_image_alt_2": "image1",
-        "extra_image_3": "shopify://shop_images/letter-lm.png",
+        "extra_image_3": "shopify://shop_images/task-list.svg",
         "extra_image_alt_3": "image1",
         "image": "shopify://shop_images/ChatGPT_Image_1._kol_2025._10_57_36.png",
         "height": "adapt",
@@ -50,8 +50,8 @@
         "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-3",
         "color_scheme": "scheme-3",
-        "padding_top": 20,
-        "padding_bottom": 36
+        "padding_top": 40,
+        "padding_bottom": 60
       }
     },
     "featured-collection": {
@@ -199,7 +199,7 @@
         "color_scheme": "scheme-3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 36,
+        "padding_top": 60,
         "padding_bottom": 36
       }
     }
