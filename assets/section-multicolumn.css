@@ -30,6 +30,19 @@
   }
 }
 
+.multicolumn-card__image-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.multicolumn-card__image {
+  padding: 0.5rem;
+  width: 14%;
+}
+
 .multicolumn-card__image-wrapper--third-width {
   width: 33%;
 }
@@ -147,7 +160,7 @@
 }
 
 .multicolumn-card__info {
-  padding: 2.5rem;
+  padding: 0.5rem 2.5rem 2.5rem 2.5rem;
 }
 
 .background-none .multicolumn-card__info {

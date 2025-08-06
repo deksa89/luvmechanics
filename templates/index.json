@@ -149,6 +149,8 @@
         "column_Jkb8hW": {
           "type": "column",
           "settings": {
+            "image_repeat_count": 3,
+            "image": "shopify://shop_images/star-symbol-icon.svg",
             "title": "Jenny M.",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -158,6 +160,8 @@
         "column_NGtDCY": {
           "type": "column",
           "settings": {
+            "image_repeat_count": 5,
+            "image": "shopify://shop_images/star-symbol-icon.svg",
             "title": "Linda & Bob H.",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -167,6 +171,8 @@
         "column_4nTxGm": {
           "type": "column",
           "settings": {
+            "image_repeat_count": 4,
+            "image": "shopify://shop_images/star-symbol-icon.svg",
             "title": "Mia A.",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
