@@ -62,7 +62,7 @@
         <div class="image-with-text__text-item grid__item">
           <div
             id="ImageWithText--{{ section.id }}"
-            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
+            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
             {%- for block in section.blocks -%}
               {% case block.type %}
@@ -119,13 +119,7 @@
               alt="{{ section.settings.extra_image_alt | escape }}"
               loading="lazy"
               class="extra-image"
-            />
-            
-            <div class="extra-image-wrapper-text">
-              <p class="extra-image-wrapper-title">Discreet Shipping</p>
-              <p class="extra-image-wrapper-paragraph">Your secret is safe with us</p>
-            </div>
-            
+            />           
           {% endif %}    
         </div>
   
@@ -144,11 +138,6 @@
               class="extra-image"
             />
           {% endif %}
-  
-            <div class="extra-image-wrapper-text">
-              <p class="extra-image-wrapper-title">Secure Checkout</p>
-              <p class="extra-image-wrapper-paragraph">Your data is protected with high-level encryption</p>
-            </div>
         </div>
   
         <div class="extra-image-wrapper">
@@ -166,11 +155,6 @@
               class="extra-image"
             />
           {% endif %}
-  
-            <div class="extra-image-wrapper-text">
-              <p class="extra-image-wrapper-title">Body‑Safe Materials</p>
-              <p class="extra-image-wrapper-paragraph">Only top‑grade materials because your health comes first</p>
-            </div>
         </div>
       </div>
 
@@ -185,50 +169,7 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [
-    {
-      "type": "header",
-      "content": "Additional Image - 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "extra_image_1",
-      "label": "Extra image"
-    },
-    {
-      "type": "text",
-      "id": "extra_image_alt_1",
-      "label": "Alt text for extra image 1"
-    },
-        {
-      "type": "header",
-      "content": "Additional Image - 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "extra_image_2",
-      "label": "Extra image"
-    },
-    {
-      "type": "text",
-      "id": "extra_image_alt_2",
-      "label": "Alt text for extra image 2"
-    },
-        {
-      "type": "header",
-      "content": "Additional Image - 3"
-    },
-    {
-      "type": "image_picker",
-      "id": "extra_image_3",
-      "label": "Extra image"
-    },
-    {
-      "type": "text",
-      "id": "extra_image_alt_3",
-      "label": "Alt text for extra image 3"
-    },
-    
+  "settings": [   
     {
       "type": "image_picker",
       "id": "image",

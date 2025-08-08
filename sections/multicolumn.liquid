@@ -75,43 +75,74 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            <div class="multicolumn-card content-container">
-              {%- if block.settings.image != blank -%}
-                {%- capture single_image -%}
-                  <div class="multicolumn-card__image">
-                    {{ block.settings.image | img_tag: '60x60', class: 'multicolumn-card__image' }}
-                  </div>
-                {%- endcapture -%}
-
-                <div class="multicolumn-card__image-wrapper">
-                    {%- for i in (1..block.settings.image_repeat_count) -%}
-                      {{ single_image }}
-                    {%- endfor -%}
-                </div>
-              {%- endif -%}
-              <div class="multicolumn-card__info">
-                {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
-                {%- endif -%}
-                {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
-                {%- endif -%}
-                {%- if block.settings.link_label != blank -%}
-                  <a
-                    class="link animate-arrow"
-                    {% if block.settings.link == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.link }}"
+            <div class="multicolumn-card content-container multicolumn-card--layout-{{ block.settings.image_position }}">
+              {% if block.settings.image_position == 'beside' %}
+                <div class="multicolumn-card__image-side-by-side">
+                  {% if block.settings.image != blank %}
+                    <div class="multicolumn-card__image">
+                      {{ block.settings.image | img_tag: '60x60', class: 'multicolumn-card__image' }}
+                    </div>
+                  {% endif %}
+                  <div class="multicolumn-card__info">
+                    {% if block.settings.title_position == 'top' and block.settings.title != blank %}
+                      <h3 class="inline-richtext">{{ block.settings.title }}</h3>
                     {% endif %}
-                  >
-                    {{- block.settings.link_label | escape -}}
-                    <span class="svg-wrapper"
-                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
+                    {% if block.settings.text != blank %}
+                      <div class="rte">{{ block.settings.text }}</div>
+                    {% endif %}
+                    {% if block.settings.title_position == 'bottom' and block.settings.title != blank %}
+                      <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.link_label != blank %}
+                      <a
+                        class="link animate-arrow"
+                        {% if block.settings.link == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.link }}"
+                        {% endif %}
+                      >
+                        {{- block.settings.link_label | escape -}}
+                        <span class="svg-wrapper"><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span>
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              {% else %}
+                {% if block.settings.image != blank %}
+                  <div class="multicolumn-card__image-wrapper">
+                    {% for i in (1..block.settings.image_repeat_count) %}
+                      <div class="multicolumn-card__image">
+                        {{ block.settings.image | img_tag: '60x60', class: 'multicolumn-card__image' }}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <div class="multicolumn-card__info">
+                  {% if block.settings.title_position == 'top' and block.settings.title != blank %}
+                    <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                  {% endif %}
+                  {% if block.settings.text != blank %}
+                    <div class="rte">{{ block.settings.text }}</div>
+                  {% endif %}
+                  {% if block.settings.title_position == 'bottom' and block.settings.title != blank %}
+                    <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                  {% endif %}
+                  {% if block.settings.link_label != blank %}
+                    <a
+                      class="link animate-arrow"
+                      {% if block.settings.link == blank %}
+                        role="link" aria-disabled="true"
+                      {% else %}
+                        href="{{ block.settings.link }}"
+                      {% endif %}
                     >
-                  </a>
-                {%- endif -%}
-              </div>
+                      {{- block.settings.link_label | escape -}}
+                      <span class="svg-wrapper"><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span>
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
             </div>
           </li>
         {%- endfor -%}
@@ -375,6 +406,26 @@
       "type": "column",
       "name": "t:sections.multicolumn.blocks.column.name",
       "settings": [
+        {
+          "type": "select",
+          "id": "title_position",
+          "label": "Title position",
+          "default": "top",
+          "options": [
+            { "value": "top", "label": "Above text" },
+            { "value": "bottom", "label": "Below text" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "default": "above",
+          "options": [
+            { "value": "above", "label": "Above text" },
+            { "value": "beside", "label": "Beside text (left)" }
+          ]
+        },
         {
           "type": "range",
           "id": "image_repeat_count",

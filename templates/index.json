@@ -33,15 +33,9 @@
         "button"
       ],
       "settings": {
-        "extra_image_1": "shopify://shop_images/icons8-box.svg",
-        "extra_image_alt_1": "image1",
-        "extra_image_2": "shopify://shop_images/security-on_1.svg",
-        "extra_image_alt_2": "image1",
-        "extra_image_3": "shopify://shop_images/task-list.svg",
-        "extra_image_alt_3": "image1",
-        "image": "shopify://shop_images/ChatGPT_Image_1._kol_2025._10_57_36.png",
+        "image": "shopify://shop_images/20250807_1448_Silk_Serenity_Scene_simple_compose_01k229736he1xt4stphw000mwp.gif",
         "height": "adapt",
-        "desktop_image_width": "medium",
+        "desktop_image_width": "large",
         "layout": "text_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
@@ -54,160 +48,225 @@
         "padding_bottom": 60
       }
     },
-    "featured-collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 3,
-        "title": "Customer favorites",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": true,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-3",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": true,
-        "show_rating": true,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "multirow_EFD3LN": {
-      "type": "multirow",
-      "blocks": {
-        "row_jBa7Hk": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/ulje5.webp",
-            "caption": "",
-            "heading": "Oil 5",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Add to Cart",
-            "button_link": "shopify://products/oil-5"
-          }
-        },
-        "row_WKrTkt": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/ulje3.jpg",
-            "caption": "",
-            "heading": "Oil 3",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Add to Cart",
-            "button_link": "shopify://products/oil-3"
-          }
-        },
-        "row_AzL4fG": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/ulje1.jpg",
-            "caption": "",
-            "heading": "Oil 1",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Add to Cart",
-            "button_link": "shopify://products/oil-1"
-          }
-        }
-      },
-      "block_order": [
-        "row_jBa7Hk",
-        "row_WKrTkt",
-        "row_AzL4fG"
-      ],
-      "disabled": true,
-      "name": "t:sections.multirow.presets.name",
-      "settings": {
-        "section_title": "Customer Favorites",
-        "image_height": "medium",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-3",
-        "row_color_scheme": "scheme-3",
-        "padding_top": 0,
-        "padding_bottom": 20
-      }
-    },
-    "multicolumn_9krMJb": {
+    "multicolumn_WHDRmn": {
       "type": "multicolumn",
       "blocks": {
-        "column_Jkb8hW": {
+        "column_ccyqe9": {
           "type": "column",
           "settings": {
-            "image_repeat_count": 3,
-            "image": "shopify://shop_images/star-symbol-icon.svg",
-            "title": "Jenny M.",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/delivery_936bd6b8-4fc4-48ee-8471-188f785c0756.svg",
+            "title": "Product advising",
+            "text": "<p>We are here to help you choose the product that best suits your needs.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "column_NGtDCY": {
+        "column_Kp6raD": {
           "type": "column",
           "settings": {
-            "image_repeat_count": 5,
-            "image": "shopify://shop_images/star-symbol-icon.svg",
-            "title": "Linda & Bob H.",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/questiobox_1_74a431c3-d3d3-4034-ad35-9f6dc82125e9.svg",
+            "title": "Discreet delivery",
+            "text": "<p>Products are delivered in discreet packages to your address.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "column_4nTxGm": {
+        "column_hcVpNc": {
           "type": "column",
           "settings": {
-            "image_repeat_count": 4,
-            "image": "shopify://shop_images/star-symbol-icon.svg",
-            "title": "Mia A.",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/shopping_1_2.svg",
+            "title": "Safe shopping",
+            "text": "<p>Your purchases are safe with us.</p><p></p>",
             "link_label": "",
             "link": ""
           }
         }
       },
       "block_order": [
-        "column_Jkb8hW",
-        "column_NGtDCY",
-        "column_4nTxGm"
+        "column_ccyqe9",
+        "column_Kp6raD",
+        "column_hcVpNc"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "What Women are saying",
+        "title": "",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
-        "column_alignment": "center",
+        "column_alignment": "left",
         "background_style": "primary",
-        "color_scheme": "scheme-3",
+        "color_scheme": "",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 60,
+        "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "collection_list_iPidGz": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_Kj74Wk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bondage"
+          }
+        },
+        "featured_collection_p7VaPn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bullets"
+          }
+        },
+        "featured_collection_67mXf4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "couples"
+          }
+        },
+        "featured_collection_NcGqFM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dildos"
+          }
+        },
+        "featured_collection_46zcn8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "lubricants"
+          }
+        },
+        "featured_collection_AN34PY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oils"
+          }
+        },
+        "featured_collection_DYYax8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "vibrators"
+          }
+        },
+        "featured_collection_CUUHVb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "wands"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_Kj74Wk",
+        "featured_collection_p7VaPn",
+        "featured_collection_67mXf4",
+        "featured_collection_NcGqFM",
+        "featured_collection_46zcn8",
+        "featured_collection_AN34PY",
+        "featured_collection_DYYax8",
+        "featured_collection_CUUHVb"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Explore products by category",
+        "heading_size": "h2",
+        "image_ratio": "portrait",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-3",
+        "show_view_all": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_xLhTVD": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_YPiEgJ": {
+          "type": "column",
+          "settings": {
+            "title_position": "bottom",
+            "image_position": "above",
+            "image_repeat_count": 4,
+            "image": "shopify://shop_images/star-symbol-icon_655658f8-dfa0-4577-87ca-81176223956a.svg",
+            "title": "Rachel, 28",
+            "text": "<p></p><p>Product is as advertised and delivery was quick. Recommend it!</p><p></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_UBYBxG": {
+          "type": "column",
+          "settings": {
+            "title_position": "bottom",
+            "image_position": "above",
+            "image_repeat_count": 4,
+            "image": "shopify://shop_images/star-symbol-icon_655658f8-dfa0-4577-87ca-81176223956a.svg",
+            "title": "Jenny, 35",
+            "text": "<p>Battery easily lasts a full day of use. Great value for the price!<br/><br/></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Fjcc6b": {
+          "type": "column",
+          "settings": {
+            "title_position": "bottom",
+            "image_position": "above",
+            "image_repeat_count": 5,
+            "image": "shopify://shop_images/star-symbol-icon_1.svg",
+            "title": "Mia, 43",
+            "text": "<p>Compact, stylish, and easy to pair. Perfect for rainy days hanging out at home.<br/><br/></p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_YPiEgJ",
+        "column_UBYBxG",
+        "column_Fjcc6b"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Reviews",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "about_us_hFyb99": {
+      "type": "about-us",
+      "name": "About Us",
+      "settings": {}
     }
   },
   "order": [
     "image-with-text",
-    "featured-collection",
-    "multirow_EFD3LN",
-    "multicolumn_9krMJb"
+    "multicolumn_WHDRmn",
+    "collection_list_iPidGz",
+    "multicolumn_xLhTVD",
+    "about_us_hFyb99"
   ]
 }
