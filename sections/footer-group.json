@@ -14,17 +14,23 @@
     "newsletter_qrGnPN": {
       "type": "newsletter",
       "blocks": {
+        "judge_me_reviews_featured_carousel_NV7P8D": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
+        },
         "heading_NNWdCA": {
           "type": "heading",
           "settings": {
             "heading": "Subscribe to our emails",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "paragraph_x7mtry": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>Be the first to know about new collections and exclusive offers.</p>"
+            "text": ""
           }
         },
         "email_form_R9pq36": {
@@ -33,6 +39,7 @@
         }
       },
       "block_order": [
+        "judge_me_reviews_featured_carousel_NV7P8D",
         "heading_NNWdCA",
         "paragraph_x7mtry",
         "email_form_R9pq36"

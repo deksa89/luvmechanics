@@ -107,7 +107,7 @@
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "primary",
-        "color_scheme": "",
+        "color_scheme": "scheme-3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -190,6 +190,47 @@
         "padding_bottom": 36
       }
     },
+    "collection_list_UKmyE4": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_Lwdh6D": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "lelo"
+          }
+        },
+        "featured_collection_bDdaXj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "teazens"
+          }
+        },
+        "featured_collection_W7aQF7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fleshlight"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_Lwdh6D",
+        "featured_collection_bDdaXj",
+        "featured_collection_W7aQF7"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Our most popular brands",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-3",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "multicolumn_xLhTVD": {
       "type": "multicolumn",
       "blocks": {
@@ -231,12 +272,40 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_PLyzNE": {
+          "type": "column",
+          "settings": {
+            "title_position": "bottom",
+            "image_position": "above",
+            "image_repeat_count": 5,
+            "image": "shopify://shop_images/star-symbol-icon_1.svg",
+            "title": "Jasmin, 37",
+            "text": "<p>Good-looking and very convenient product for when lonely :D <br/></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_FX6U6m": {
+          "type": "column",
+          "settings": {
+            "title_position": "bottom",
+            "image_position": "above",
+            "image_repeat_count": 5,
+            "image": "shopify://shop_images/star-symbol-icon_1.svg",
+            "title": "Kate, 29",
+            "text": "<p>My second order and everything came as expected. Go for it!<br/></p>",
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "column_YPiEgJ",
         "column_UBYBxG",
-        "column_Fjcc6b"
+        "column_Fjcc6b",
+        "column_PLyzNE",
+        "column_FX6U6m"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
@@ -246,10 +315,10 @@
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 3,
+        "columns_desktop": 5,
         "column_alignment": "left",
         "background_style": "primary",
-        "color_scheme": "",
+        "color_scheme": "scheme-3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -259,14 +328,45 @@
     "about_us_hFyb99": {
       "type": "about-us",
       "name": "About Us",
-      "settings": {}
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 28,
+        "padding_bottom": 32
+      }
+    },
+    "featured_blog_fidJpL": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "news",
+        "post_limit": 3,
+        "heading": "Let's talk about health",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 60
+      }
+    },
+    "1754987580f76014b3": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "image-with-text",
     "multicolumn_WHDRmn",
     "collection_list_iPidGz",
+    "collection_list_UKmyE4",
     "multicolumn_xLhTVD",
-    "about_us_hFyb99"
+    "about_us_hFyb99",
+    "featured_blog_fidJpL",
+    "1754987580f76014b3"
   ]
 }

@@ -302,7 +302,6 @@
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
@@ -314,6 +313,42 @@
                 </li>
               {%- endif -%}
             {%- endfor -%}
+
+            {%- assign payment_terms_page = pages['payment-terms'] -%}
+            {%- if payment_terms_page != blank -%}
+              <li>
+                <small class="copyright__content">
+                  <a href="{{ payment_terms_page.url }}">{{ payment_terms_page.title }}</a>
+                </small>
+              </li>
+            {%- endif -%}
+
+            {%- assign delivery_page = pages['delivery'] -%}
+            {%- if delivery_page != blank -%}
+              <li>
+                <small class="copyright__content">
+                  <a href="{{ delivery_page.url }}">{{ delivery_page.title }}</a>
+                </small>
+              </li>
+            {%- endif -%}
+
+            {%- assign returns_page = pages['return-and-replacement'] -%}
+            {%- if returns_page != blank -%}
+              <li>
+                <small class="copyright__content">
+                  <a href="{{ returns_page.url }}">{{ returns_page.title }}</a>
+                </small>
+              </li>
+            {%- endif -%}
+
+            {%- assign terms_page = pages['terms-and-conditions'] -%}
+            {%- if terms_page != blank -%}
+              <li>
+                <small class="copyright__content">
+                  <a href="{{ terms_page.url }}">{{ terms_page.title }}</a>
+                </small>
+              </li>
+            {%- endif -%}
           </ul>
         {%- endif -%}
       </div>

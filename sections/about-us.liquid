@@ -1,9 +1,50 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
 {% schema %}
 {
   "name": "About Us",
   "tag": "section",
   "class": "section-about-us",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
   "presets": [
     {
       "name": "About Us",
@@ -13,7 +54,7 @@
 }
 {% endschema %}
 
-<section class="about-us-wrapper">
+<section class="about-us-wrapper color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width about-us-content">
     <h2>Our Mission</h2>
 
@@ -23,20 +64,57 @@
 
     <p>We understand that buying intimate products can feel uncomfortable or embarrassing. That’s why shopping at LuvMechanics is discreet, secure, and 100% private. Our online store lets you explore thousands of products from the comfort of your home, and all items are shipped in plain packaging — fast, confidential, and hassle-free.</p>
 
-    <p>We’re more than just a sex shop — we’re a resource for sexual wellness. Our growing collection of blog articles, guides, and newsletters provide honest and useful tips, new product updates, and inspiration to enhance your personal or shared experiences. And for our loyal customers, we offer special deals and early access to limited editions and new arrivals.</p>
+    <span id="more-text" style="display:none;">
 
-    <h2>Exclusive Products</h2>
+      <p>We’re more than just a sex shop — we’re a resource for sexual wellness. Our growing collection of blog articles, guides, and newsletters provide honest and useful tips, new product updates, and inspiration to enhance your personal or shared experiences. And for our loyal customers, we offer special deals and early access to limited editions and new arrivals.</p>
+  
+      <h2>Exclusive Products</h2>
+  
+      <p>To bring you even closer to what you love, we’ve launched our own product lines — including our <strong>Delicate Drops</strong> intimate essentials (water-based lubricant, anal lube, and toy cleaner) and our <strong>Pleasure Games</strong> series of adult games, starting with “Never Have I Ever – Adult Edition”.</p>
+  
+      <h2>For Everyone</h2>
+  
+      <p>We offer over 10,000 carefully categorized products for men, women, and couples — from penis rings and prostate stimulators to clitoral vibrators and anal plugs. No matter your level of experience, there’s something for you here. New to toys? Our beginner kits and advent calendars are the perfect way to discover what brings you pleasure, at your own pace.</p>
+  
+      <p>Need help choosing? Our team is here for personal consultations and advice — or browse our blog and social channels for trusted tips and real-world recommendations. With LuvMechanics, you get a safe, supportive, and pleasurable shopping experience — always private, always empowering.</p>
 
-    <p>To bring you even closer to what you love, we’ve launched our own product lines — including our <strong>Delicate Drops</strong> intimate essentials (water-based lubricant, anal lube, and toy cleaner) and our <strong>Pleasure Games</strong> series of adult games, starting with “Never Have I Ever – Adult Edition”.</p>
+      <p><strong>Because life is too short for bad sex.</strong></p>
+    </span>
 
-    <h2>For Everyone</h2>
-
-    <p>We offer over 10,000 carefully categorized products for men, women, and couples — from penis rings and prostate stimulators to clitoral vibrators and anal plugs. No matter your level of experience, there’s something for you here. New to toys? Our beginner kits and advent calendars are the perfect way to discover what brings you pleasure, at your own pace.</p>
-
-    <p>Need help choosing? Our team is here for personal consultations and advice — or browse our blog and social channels for trusted tips and real-world recommendations. With LuvMechanics, you get a safe, supportive, and pleasurable shopping experience — always private, always empowering.</p>
-
-    <p><strong>Because life is too short for bad sex.</strong></p>
-
-    <p><em>Welcome to LuvMechanics — explore boldly, love freely.</em></p>
+    <button id="read-more-btn" class="read-more-button">Read more</button>
   </div>
 </section>
+
+<style>
+  .read-more-button {
+    background: #d63384; /* pink/purple tone */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  .read-more-button:hover {
+    background: #b3276b;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var btn = document.getElementById("read-more-btn");
+    var moreText = document.getElementById("more-text");
+
+    btn.addEventListener("click", function() {
+      if (moreText.style.display === "none") {
+        moreText.style.display = "inline";
+        btn.textContent = "Read less";
+      } else {
+        moreText.style.display = "none";
+        btn.textContent = "Read more";
+      }
+    });
+  });
+</script>
