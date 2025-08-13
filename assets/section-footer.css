@@ -506,3 +506,33 @@
     }
   }
 }
+
+.footer-block--newsletter.scroll-trigger.animate--slide-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-block__social_media_heading.inline-richtext {
+  margin-bottom: 0
+}
+
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5vw;
+}
+
+.footer-contact__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-contact__item {
+  margin: 0;
+}
+
+
+

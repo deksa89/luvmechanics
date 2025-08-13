@@ -242,9 +242,52 @@
             </div>
           {%- endif -%}
 
+
+          {%- comment -%} Contact block {%- endcomment -%}
+          {%- assign email_val = section.settings.contact_email | default: shop.email -%}
+          {%- assign phone_val = section.settings.contact_phone | default: shop.phone -%}
+
+          {%- if email_val != blank or phone_val != blank -%}
+            <div class="footer__contact">
+              {%- if section.settings.contact_heading != blank -%}
+                <h2 class="footer-block__heading inline-richtext" id="FooterContactHeading">
+                  {{ section.settings.contact_heading }}
+                </h2>
+              {%- endif -%}
+
+              <address class="footer-contact__list" aria-labelledby="FooterContactHeading">
+                {%- if email_val != blank -%}
+                  <p class="footer-contact__item">
+                    <a href="mailto:{{ email_val | strip }}" class="link link--text">{{ email_val | escape }}</a>
+                  </p>
+                {%- endif -%}
+                {%- if phone_val != blank -%}
+                  {%- assign tel_clean = phone_val
+                    | remove: ' '
+                    | remove: '('
+                    | remove: ')'
+                    | remove: '-'
+                  -%}
+                  <p class="footer-contact__item">
+                    <a href="tel:{{ tel_clean }}" class="link link--text">{{ phone_val | escape }}</a>
+                  </p>
+                {%- endif -%}
+              </address>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Social heading (optional) {%- endcomment -%}
+          {%- if section.settings.social_media_heading != blank -%}
+            <h2 class="footer-block__heading inline-richtext">{{ section.settings.social_media_heading }}</h2>
+          {%- endif -%}
+
+          {%- comment -%} Social icons {%- endcomment -%}
           {%- if section.settings.show_social and has_social_icons -%}
             {%- render 'social-icons', class: 'footer__list-social' -%}
           {%- endif -%}
+
+
+          
         </div>
       </div>
     {%- endunless -%}
@@ -483,6 +526,12 @@
       "label": "t:sections.footer.settings.newsletter_heading.label"
     },
     {
+      "type": "inline_richtext",
+      "id": "social_media_heading",
+      "default": "Follow Us:",
+      "label": "Follow Us:"
+    },
+    {
       "type": "header",
       "content": "t:sections.footer.settings.header__9.content"
     },
@@ -564,6 +613,28 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Contact"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "contact_heading",
+      "default": "Contact",
+      "label": "Contact heading"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Email address",
+      "default": "-"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Phone number",
+      "default": "-"
     }
   ],
   "default": {
