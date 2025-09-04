@@ -1,3 +1,5 @@
+{{ 'about-us.css' | asset_url | stylesheet_tag }}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -84,23 +86,6 @@
     <button id="read-more-btn" class="read-more-button">Read more</button>
   </div>
 </section>
-
-<style>
-  .read-more-button {
-    background: #d63384; /* pink/purple tone */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-  }
-  .read-more-button:hover {
-    background: #b3276b;
-  }
-</style>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {

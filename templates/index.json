@@ -45,7 +45,7 @@
         "section_color_scheme": "scheme-3",
         "color_scheme": "scheme-3",
         "padding_top": 40,
-        "padding_bottom": 60
+        "padding_bottom": 0
       }
     },
     "multicolumn_WHDRmn": {
@@ -307,6 +307,7 @@
         "column_PLyzNE",
         "column_FX6U6m"
       ],
+      "disabled": true,
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "Reviews",

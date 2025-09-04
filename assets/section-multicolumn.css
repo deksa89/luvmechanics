@@ -273,3 +273,37 @@
   height: auto;
   object-fit: contain;
 }
+
+@media screen and (max-width: 990px) {
+  .multicolumn-card__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .inline-richtext {
+    font-size: 1.9rem;
+  }
+
+  .rte {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .multicolumn-card__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .inline-richtext {
+    font-size: 1.6rem;
+  }
+
+  .rte {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}

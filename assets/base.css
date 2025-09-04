@@ -795,6 +795,15 @@ summary::-webkit-details-marker {
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 990px) {
+  .title-wrapper-with-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+}
+
 .title--primary {
   margin: 4rem 0;
 }
@@ -1074,7 +1083,7 @@ summary::-webkit-details-marker {
 
   .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item,
   .slider--mobile.grid--peek.grid--1-col-tablet-down .grid__item {
-    width: calc(100% - var(--grid-mobile-horizontal-spacing) - 3rem);
+    width: calc(100% - var(--grid-mobile-horizontal-spacing) - 1rem);
   }
 }
 

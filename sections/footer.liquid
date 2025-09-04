@@ -8,6 +8,7 @@
 {%- style -%}
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    border-top: 1px solid #ddd;
   }
 
   .section-{{ section.id }}-padding {
@@ -18,6 +19,7 @@
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
+      border-top: 1px solid #ddd;
     }
 
     .section-{{ section.id }}-padding {
@@ -277,14 +279,17 @@
           {%- endif -%}
 
           {%- comment -%} Social heading (optional) {%- endcomment -%}
-          {%- if section.settings.social_media_heading != blank -%}
-            <h2 class="footer-block__heading inline-richtext">{{ section.settings.social_media_heading }}</h2>
-          {%- endif -%}
 
-          {%- comment -%} Social icons {%- endcomment -%}
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
-          {%- endif -%}
+          <div class="footer__social-media">
+            {%- if section.settings.social_media_heading != blank -%}   
+              <h2 class="footer-block__heading inline-richtext">{{ section.settings.social_media_heading }}</h2>
+            {%- endif -%}
+  
+            {%- comment -%} Social icons {%- endcomment -%}
+            {%- if section.settings.show_social and has_social_icons -%}
+              {%- render 'social-icons', class: 'footer__list-social' -%}
+            {%- endif -%}   
+          </div>
 
 
           
