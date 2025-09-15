@@ -22,3 +22,9 @@
 .about-us-content p {
     text-align: center;
 }
+
+@media screen and (max-width: 425px) {
+    .about-us-wrapper {
+        padding: 0 4vw;
+    }
+}

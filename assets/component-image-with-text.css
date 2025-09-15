@@ -499,6 +499,12 @@
   overflow: hidden;
 }
 
+@media screen and (max-width: 450px) {
+  .image-with-text__media.image-with-text__media--adapt.global-media-settings.background-transparent.media {
+    padding-bottom: 100% !important;
+  }
+}
+
 .image-with-text__video,
 .video-wrapper iframe,
 .video-wrapper video {
@@ -691,7 +697,7 @@
   .image-with-text__text-item.grid__item {
     z-index: 100;
     position: fixed;
-    top: 26%;
+    top: 55%;
   }
 
   .image-with-text__heading.inline-richtext {

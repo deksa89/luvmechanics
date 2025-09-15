@@ -773,7 +773,7 @@ class SliderComponent extends HTMLElement {
 
     if (this.currentPageElement && this.pageTotalElement) {
       this.currentPageElement.textContent = this.currentPage;
-      this.pageTotalElement.textContent = this.totalPages;
+      this.pageTotalElement.textContent = this.totalPages - 1; // ovaj -1 sam dodao da smanjim broj ukupnih collections jer mi je prikazivalo jednu vise od ukupnog broja
     }
 
     if (this.currentPage != previousPage) {

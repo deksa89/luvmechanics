@@ -16,12 +16,14 @@
       "blocks": {
         "judge_me_reviews_featured_carousel_NV7P8D": {
           "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {
             "maxwidth": 3000
           }
         },
         "heading_NNWdCA": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "",
             "heading_size": "h2"
@@ -29,6 +31,7 @@
         },
         "paragraph_x7mtry": {
           "type": "paragraph",
+          "disabled": true,
           "settings": {
             "text": ""
           }
