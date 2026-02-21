@@ -1,0 +1,24 @@
+.related-products {
+  display: block;
+}
+
+.related-products__heading {
+  margin: 0 0 3rem;
+}
+
+.related-products .card__inner .card__media img {
+  transform: scale(0.65);
+  transition: transform 0.3s ease;
+}
+
+.related-products .card:hover .card__media .media img {
+  transform: scale(0.65) !important;
+}
+
+.related-products .card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: white;
+}

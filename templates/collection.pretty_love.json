@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "image_with_text_custom_bDtdpP": {
+      "type": "image-with-text-custom",
+      "disabled": true,
+      "name": "Image with text (custom)",
+      "settings": {
+        "image_border_radius": 12,
+        "heading": "PRETTY LOVE",
+        "text": "<p><strong>Pretty Love</strong> is all about bringing fun, color, and a touch of flirtiness into the world of pleasure. Their toys mix stylish design with wallet-friendly prices, making them a favorite for beginners and anyone who loves exploring without overthinking it. Pretty Love products are soft, smooth, and packed with features you’d never expect at their price point—proof that good vibes don’t have to be expensive.</p><p>In short: Pretty Love is for people who want reliable pleasure, cute designs, and a brand that never takes itself <em>too</em> seriously.</p>",
+        "text_alignment": "center",
+        "background_color": "#f8f0ee",
+        "text_color": "#000000",
+        "heading_size": 32,
+        "text_size": 16,
+        "heading_spacing": 16,
+        "spacing": 24,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_horizontal": 20
+      }
+    },
+    "rich_text_dMMTcq": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_DAA3Cf": {
+          "type": "heading",
+          "settings": {
+            "heading": "Pretty Love",
+            "heading_size": "h0"
+          }
+        },
+        "text_PqBz3y": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "button_YExB6a": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_DAA3Cf",
+        "text_PqBz3y",
+        "button_YExB6a"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main-collection-product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 20,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 32,
+        "padding_bottom": 100
+      }
+    },
+    "newsletter_tPNegD": {
+      "type": "newsletter",
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main-collection-banner",
+    "image_with_text_custom_bDtdpP",
+    "rich_text_dMMTcq",
+    "main-collection-product-grid",
+    "newsletter_tPNegD"
+  ]
+}

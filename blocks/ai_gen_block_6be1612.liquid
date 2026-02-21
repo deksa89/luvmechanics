@@ -1,0 +1,726 @@
+{% doc %}
+  @prompt
+    generate me a block where i can write about my shop in two columns. add the "Read more" button if the text is too long
+    Make is highly customizable
+{% enddoc %}
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-about-shop-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding_top }}px {{ block.settings.section_padding_horizontal }}px {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  /* ONE collapsible wrapper for both columns */
+  .ai-about-shop-content-{{ ai_gen_id }} {
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .ai-about-shop-content-{{ ai_gen_id }}.collapsed {
+    max-height: {{ block.settings.collapsed_height }}px;
+    position: relative;
+  }
+
+  .ai-about-shop-content-{{ ai_gen_id }}.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: {{ block.settings.fade_height }}px;
+    background: linear-gradient(to bottom, transparent, {{ block.settings.background_color }});
+    pointer-events: none;
+  }
+
+  /* The grid is INSIDE the single collapsible wrapper */
+  .ai-about-shop-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: {{ block.settings.column_gap }}px;
+    max-width: {{ block.settings.max_content_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-about-shop-column-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .ai-about-shop-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_margin_bottom }}px;
+    text-align: {{ block.settings.text_alignment }};
+    line-height: {{ block.settings.heading_line_height }};
+  }
+
+  .ai-about-shop-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    font-weight: {{ block.settings.text_weight }};
+    color: {{ block.settings.text_color }};
+    line-height: {{ block.settings.text_line_height }};
+    text-align: {{ block.settings.text_alignment }};
+    margin: 0;
+  }
+
+  .ai-about-shop-text-{{ ai_gen_id }} p {
+    margin: 0 0 {{ block.settings.paragraph_spacing }}px;
+  }
+
+  .ai-about-shop-text-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-about-shop-button-wrapper-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.button_margin_top }}px;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-about-shop-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-about-shop-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_bg_hover_color }};
+    color: {{ block.settings.button_text_hover_color }};
+    border-color: {{ block.settings.button_border_hover_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-about-shop-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 0px;
+    }
+
+    .ai-about-shop-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top_mobile }}px {{ block.settings.section_padding_horizontal_mobile }}px {{ block.settings.section_padding_bottom_mobile }}px;
+    }
+
+    .ai-about-shop-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size_mobile }}px;
+    }
+
+    .ai-about-shop-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<about-shop-{{ ai_gen_id }} class="ai-about-shop-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div
+    class="ai-about-shop-content-{{ ai_gen_id }} {% if block.settings.enable_read_more %}collapsed{% endif %}"
+    data-collapsed-height="{{ block.settings.collapsed_height }}"
+  >
+    <div class="ai-about-shop-container-{{ ai_gen_id }}">
+      <div class="ai-about-shop-column-{{ ai_gen_id }}">
+        {% if block.settings.heading_column_1 != blank %}
+          <h2 class="ai-about-shop-heading-{{ ai_gen_id }}">{{ block.settings.heading_column_1 }}</h2>
+        {% endif %}
+
+        {% if block.settings.text_column_1 != blank %}
+          <div class="ai-about-shop-text-{{ ai_gen_id }}">{{ block.settings.text_column_1 }}</div>
+        {% else %}
+          <div class="ai-about-shop-text-{{ ai_gen_id }}">
+            <p>Add your shop story here. Tell customers about your brand, values, and what makes your products special.</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-about-shop-column-{{ ai_gen_id }}">
+        {% if block.settings.heading_column_2 != blank %}
+          <h2 class="ai-about-shop-heading-{{ ai_gen_id }}">{{ block.settings.heading_column_2 }}</h2>
+        {% endif %}
+
+        {% if block.settings.text_column_2 != blank %}
+          <div class="ai-about-shop-text-{{ ai_gen_id }}">{{ block.settings.text_column_2 }}</div>
+        {% else %}
+          <div class="ai-about-shop-text-{{ ai_gen_id }}">
+            <p>Share more details about your mission, craftsmanship, or the inspiration behind your products.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if block.settings.enable_read_more %}
+    <div class="ai-about-shop-button-wrapper-{{ ai_gen_id }}">
+      <button class="ai-about-shop-button-{{ ai_gen_id }}" type="button" aria-expanded="false">
+        <span class="ai-about-shop-button-text-more-{{ ai_gen_id }}">{{ block.settings.read_more_text }}</span>
+        <span class="ai-about-shop-button-text-less-{{ ai_gen_id }}" style="display: none;">{{ block.settings.read_less_text }}</span>
+      </button>
+    </div>
+  {% endif %}
+</about-shop-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AboutShop{{ ai_gen_id }} extends HTMLElement {
+      connectedCallback() {
+        this.content = this.querySelector('.ai-about-shop-content-{{ ai_gen_id }}');
+        this.button = this.querySelector('.ai-about-shop-button-{{ ai_gen_id }}');
+
+        if (!this.content || !this.button) return;
+
+        this.moreText = this.button.querySelector('.ai-about-shop-button-text-more-{{ ai_gen_id }}');
+        this.lessText = this.button.querySelector('.ai-about-shop-button-text-less-{{ ai_gen_id }}');
+
+        // Initial check + set correct maxHeight when collapsed
+        this.updateButtonVisibility();
+        this.setCollapsedMaxHeight();
+
+        this.button.addEventListener('click', () => this.toggle());
+
+        // Recalculate on resize (responsive grid changes height)
+        window.addEventListener('resize', () => {
+          this.updateButtonVisibility();
+          if (this.content.classList.contains('collapsed')) {
+            this.setCollapsedMaxHeight();
+          } else {
+            this.setExpandedMaxHeight();
+          }
+        });
+      }
+
+      setCollapsedMaxHeight() {
+        const collapsedHeight = parseInt(this.content.dataset.collapsedHeight, 10);
+        this.content.style.maxHeight = collapsedHeight + 'px';
+      }
+
+      setExpandedMaxHeight() {
+        this.content.style.maxHeight = this.content.scrollHeight + 'px';
+      }
+
+      toggle() {
+        const isCollapsed = this.content.classList.contains('collapsed');
+
+        if (isCollapsed) {
+          this.content.classList.remove('collapsed');
+          this.setExpandedMaxHeight();
+          this.moreText.style.display = 'none';
+          this.lessText.style.display = 'inline';
+          this.button.setAttribute('aria-expanded', 'true');
+        } else {
+          this.content.classList.add('collapsed');
+          this.setCollapsedMaxHeight();
+          this.moreText.style.display = 'inline';
+          this.lessText.style.display = 'none';
+          this.button.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      updateButtonVisibility() {
+        const collapsedHeight = parseInt(this.content.dataset.collapsedHeight, 10);
+
+        // Temporarily remove maxHeight so we can measure full scrollHeight accurately
+        const prevMaxHeight = this.content.style.maxHeight;
+        this.content.style.maxHeight = 'none';
+
+        const needsToggle = this.content.scrollHeight > collapsedHeight;
+
+        this.content.style.maxHeight = prevMaxHeight;
+
+        if (!needsToggle) {
+          this.button.parentElement.style.display = 'none';
+          this.content.classList.remove('collapsed');
+          this.content.style.maxHeight = 'none';
+        } else {
+          this.button.parentElement.style.display = '';
+          // Keep collapsed if setting says so
+          if (this.content.classList.contains('collapsed')) {
+            this.setCollapsedMaxHeight();
+          }
+        }
+      }
+    }
+
+    customElements.define('about-shop-{{ ai_gen_id }}', AboutShop{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About shop two columns",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_column_1",
+      "label": "Heading",
+      "default": "Our story"
+    },
+    {
+      "type": "richtext",
+      "id": "text_column_1",
+      "label": "Text",
+      "default": "<p>Welcome to our shop! We're passionate about creating high-quality products that bring joy to your everyday life. Our journey began with a simple idea: to craft items that combine functionality with beautiful design. Every product in our collection is carefully selected and tested to ensure it meets our high standards.</p><p>We believe in sustainable practices and ethical sourcing. Our commitment to the environment drives us to work with suppliers who share our values. When you shop with us, you're not just buying a product – you're supporting a movement towards more conscious consumption.</p>"
+    },
+
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_column_2",
+      "label": "Heading",
+      "default": "Our values"
+    },
+    {
+      "type": "richtext",
+      "id": "text_column_2",
+      "label": "Text",
+      "default": "<p>Quality is at the heart of everything we do. We work with skilled artisans and manufacturers who take pride in their craft. Each item is made with attention to detail and built to last, reducing waste and promoting a more sustainable lifestyle.</p><p>Customer satisfaction is our top priority. We're here to help you find exactly what you need and ensure your shopping experience is smooth and enjoyable. Our dedicated support team is always ready to answer your questions and address any concerns. Thank you for choosing us!</p>"
+    },
+
+    {
+      "type": "header",
+      "content": "Read more"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_read_more",
+      "label": "Enable read more button",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "collapsed_height",
+      "label": "Collapsed height",
+      "min": 100,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "fade_height",
+      "label": "Fade effect height",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "inline_richtext",
+      "id": "read_more_text",
+      "label": "Read more text",
+      "default": "Read more"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "read_less_text",
+      "label": "Read less text",
+      "default": "Read less"
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "label": "Max content width",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap (desktop)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "label": "Column gap (mobile)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_horizontal",
+      "label": "Padding horizontal (desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "section_padding_horizontal_mobile",
+      "label": "Padding horizontal (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "paragraph_spacing",
+      "label": "Paragraph spacing",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+
+    {
+      "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Heading line height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "label": "Heading margin bottom",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2e2a39"
+    },
+
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size (desktop)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "text_line_height",
+      "label": "Text line height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#2e2a39"
+    },
+
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_margin_top",
+      "label": "Button margin top",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button padding vertical",
+      "min": 5,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button padding horizontal",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Button border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#9b046f"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#fdfbf7"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border",
+      "default": "#9b046f"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_hover_color",
+      "label": "Button hover background",
+      "default": "#5e3653"
+    },
+    {
+      "type": "color",
+      "id": "button_text_hover_color",
+      "label": "Button hover text",
+      "default": "#fdfbf7"
+    },
+    {
+      "type": "color",
+      "id": "button_border_hover_color",
+      "label": "Button hover border",
+      "default": "#5e3653"
+    },
+
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fdfbf7"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "About shop two columns"
+    }
+  ]
+}
+{% endschema %}

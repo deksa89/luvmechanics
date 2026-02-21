@@ -1,0 +1,211 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "Maximum pleasure with minimal effort",
+            "text_style": "body"
+          }
+        },
+        "judge_me_reviews_preview_badge_mNkYYC": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What can the LELO – TOR 3 Vibrator Ring offer?",
+            "icon": "none",
+            "content": "<p>The LELO TOR 3 is an app-connected vibrating ring for couples, designed to enhance shared pleasure by delivering stimulating vibrations to both partners at the same time. Its flexible design allows vibrations to be transmitted efficiently, helping intensify intimacy and deepen connection during partnered play.<br/><br/>With more pleasure modes and intensities than previous generations, TOR 3 offers a customizable experience that adapts to different preferences. Whether used manually or controlled via the LELO app, it provides a modern, interactive way to explore pleasure together.</p>{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<p>TOR 3 is made from extra-soft, body-safe silicone combined with ABS plastic, creating a smooth, hygienic surface that feels warm and comfortable against the skin. Its compact size and elastic form allow it to adapt naturally to different shapes and sizes.<br/><br/>The ring features 8 powerful vibration modes with varying intensities, operated through a two-button interface or via Bluetooth connection to the LELO app. It is rechargeable, offers up to 1.5 hours of use, operates quietly at up to 60 dB, and includes automatic shut-off options when configured through the app.</p><p>CHARACTERISTICS:<br/>Materials: Body-safe silicone and ABS plastic<br/>Finish: smooth<br/>Size: 46.7 x 22.2 x 60mm<br/>Diameter: 29mm<br/>Battery: Li-Ion 70 mAh 3.7 V<br/>Charging: Up to 2 h at 5.0 V 70 mA<br/>Rated power:<br/>- Input: 5V 0.35W<br/>- Output: 3.7V 0.24W<br/>Use time: up to 1.5 hours<br/>Standby: up to 90 days<br/>Frequency: 130Hz<br/>Max level noise: 60 dB<br/>Interface: 2 buttons<br/>Operating mode: continuous operation<br/><br/>INSTRUCTIONS FOR USE:<br/><br/>HOW TO USE YOUR PRODUCT WITHOUT THE LELO™ APP<br/><br/>Before first use, charge your TORTM 3 for 2 hours.<br/>Press the + button to turn on the device.<br/>Once turned on, press the + button once to increase the intensity of the motor (there are 12 levels in total).<br/>Press the + button twice to change the engine operating pattern (Mode).<br/>Press the - button once for a long time to decrease the motor level to 0; the device will turn off.<br/>To turn it off, you can also press the - and + buttons while the device is on.<br/><br/>HOW TO USE YOUR PRODUCT WITH THE LELO™ APP<br/><br/>Before first use, charge your TORTM 3 for 2 hours.<br/>DOWNLOAD THE VERSION FOR IOS OR ANDROID.<br/>Press the + button to turn it on while activating Bluetooth.<br/>All LED lights flash simultaneously to show that it is pairing via Bluetooth.<br/>Open the LELOTM app and locate the toy icon at the bottom of the screen.<br/>Find your TORTM 3 and select “Connect”. Press and hold the + button on your device.<br/>To confirm the connection, press the + button on your device again.<br/>Go to “MY LELO TOYS” and select “PLAY”.<br/>Choose from three different control modes.<br/>Select “SETTINGS” to configure additional modes.<br/>If you want to save your settings for offline use, tap “SAVE” at the bottom of the screen.<br/>Use the drop-down menu to set the default auto shut-off time of 10-20 minutes. You can check the battery level in the upper left corner.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What other advantages does the LELO – TOR 3 Vibrator Ring have?",
+            "icon": "none",
+            "content": "<p>One of the key advantages of TOR 3 is its LELO app compatibility, which unlocks additional pleasure modes and allows precise control over intensity, patterns, and settings. The app also serves as a broader sexual wellness platform, offering educational content, erotic literature, and relationship insights.<br/><br/>Its soft silicone construction ensures comfort even during extended use, while the compact, discreet design makes it easy to integrate into intimate moments. Combining flexibility, intelligent control, and shared stimulation, the LELO TOR 3 Vibrator Ring is a refined choice for couples looking to elevate their connection through modern pleasure technology.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "judge_me_reviews_preview_badge_mNkYYC",
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "delivery_info_HrhB9H",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1767137667e20edf31": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yt4nYz": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yt4nYz"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1767137667e20edf31",
+    "1765483876d335107c",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

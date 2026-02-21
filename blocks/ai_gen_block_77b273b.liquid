@@ -1,0 +1,444 @@
+{% doc %}
+  @prompt
+    generate me a block where i can write about my shop in two columns. add the "Read more" button if the text is too long
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-two-column-text-{{ ai_gen_id }} {
+    display: block;
+    width: 1440px;
+    max-width: 100%;
+    padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-two-column-text__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.column_gap }}px;
+  }
+
+  .ai-two-column-text__column-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.6;
+  }
+
+  .ai-two-column-text__column-{{ ai_gen_id }} h2 {
+    margin: 0 0 16px;
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+  }
+
+  .ai-two-column-text__column-{{ ai_gen_id }} p {
+    margin: 0 0 12px;
+  }
+
+  .ai-two-column-text__column-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-two-column-text__content-{{ ai_gen_id }} {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .ai-two-column-text__content-{{ ai_gen_id }}.collapsed {
+    max-height: {{ block.settings.collapsed_height }}px;
+    position: relative;
+  }
+
+  .ai-two-column-text__content-{{ ai_gen_id }}.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, {{ block.settings.background_color }});
+    pointer-events: none;
+  }
+
+  .ai-two-column-text__button-wrapper-{{ ai_gen_id }} {
+    margin-top: 20px;
+    text-align: {{ block.settings.button_alignment }};
+  }
+
+  .ai-two-column-text__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: {{ block.settings.button_font_size }}px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-two-column-text__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-two-column-text__button-{{ ai_gen_id }}.hidden {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-two-column-text__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.column_gap | times: 0.5 }}px;
+    }
+  }
+{% endstyle %}
+
+<two-column-text-{{ ai_gen_id }} class="ai-two-column-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-two-column-text__container-{{ ai_gen_id }}">
+    <div class="ai-two-column-text__column-{{ ai_gen_id }}">
+      {% if block.settings.column_1_heading != blank %}
+        <h2>{{ block.settings.column_1_heading }}</h2>
+      {% endif %}
+      <div class="ai-two-column-text__content-{{ ai_gen_id }} {% if block.settings.enable_read_more %}collapsed{% endif %}" data-column="1">
+        {% if block.settings.column_1_text != blank %}
+          {{ block.settings.column_1_text }}
+        {% else %}
+          <p>Add your shop description here. Tell your customers about your story, values, and what makes your products special.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-two-column-text__column-{{ ai_gen_id }}">
+      {% if block.settings.column_2_heading != blank %}
+        <h2>{{ block.settings.column_2_heading }}</h2>
+      {% endif %}
+      <div class="ai-two-column-text__content-{{ ai_gen_id }} {% if block.settings.enable_read_more %}collapsed{% endif %}" data-column="2">
+        {% if block.settings.column_2_text != blank %}
+          {{ block.settings.column_2_text }}
+        {% else %}
+          <p>Continue your story in the second column. Share more details about your mission, craftsmanship, or customer commitment.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if block.settings.enable_read_more %}
+    <div class="ai-two-column-text__button-wrapper-{{ ai_gen_id }}">
+      <button class="ai-two-column-text__button-{{ ai_gen_id }}" data-read-more-button>
+        <span data-read-more-text>{{ block.settings.read_more_text }}</span>
+        <span data-read-less-text style="display: none;">{{ block.settings.read_less_text }}</span>
+      </button>
+    </div>
+  {% endif %}
+</two-column-text-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TwoColumnText{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.button = this.querySelector('[data-read-more-button]');
+        this.contents = this.querySelectorAll('.ai-two-column-text__content-{{ ai_gen_id }}');
+        this.readMoreText = this.querySelector('[data-read-more-text]');
+        this.readLessText = this.querySelector('[data-read-less-text]');
+        this.isExpanded = false;
+      }
+
+      connectedCallback() {
+        if (this.button) {
+          this.checkIfButtonNeeded();
+          this.button.addEventListener('click', () => this.toggleContent());
+          window.addEventListener('resize', () => this.checkIfButtonNeeded());
+        }
+      }
+
+      checkIfButtonNeeded() {
+        let needsButton = false;
+        this.contents.forEach((content) => {
+          if (content.scrollHeight > {{ block.settings.collapsed_height }}) {
+            needsButton = true;
+          }
+        });
+
+        if (!needsButton && this.button) {
+          this.button.classList.add('hidden');
+        } else if (this.button) {
+          this.button.classList.remove('hidden');
+        }
+      }
+
+      toggleContent() {
+        this.isExpanded = !this.isExpanded;
+
+        this.contents.forEach((content) => {
+          if (this.isExpanded) {
+            content.classList.remove('collapsed');
+            content.style.maxHeight = content.scrollHeight + 'px';
+          } else {
+            content.classList.add('collapsed');
+            content.style.maxHeight = '';
+          }
+        });
+
+        if (this.isExpanded) {
+          this.readMoreText.style.display = 'none';
+          this.readLessText.style.display = 'inline';
+        } else {
+          this.readMoreText.style.display = 'inline';
+          this.readLessText.style.display = 'none';
+        }
+      }
+    }
+
+    customElements.define('two-column-text-{{ ai_gen_id }}', TwoColumnText{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Two column text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_1_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "column_1_text",
+      "label": "Text",
+      "default": "<p>Share your shop's story here. Tell customers about your journey, what inspired you to start, and the passion behind your products.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "column_2_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "column_2_text",
+      "label": "Text",
+      "default": "<p>Continue your story. Highlight your values, commitment to quality, or what makes your shop unique in the marketplace.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Read more button"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_read_more",
+      "label": "Enable read more button",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "collapsed_height",
+      "label": "Collapsed height",
+      "min": 100,
+      "max": 500,
+      "step": 20,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "label": "Read more text",
+      "default": "Read more"
+    },
+    {
+      "type": "text",
+      "id": "read_less_text",
+      "label": "Read less text",
+      "default": "Read less"
+    },
+    {
+      "type": "select",
+      "id": "button_alignment",
+      "label": "Button alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#fdfbf7"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#2e2a39"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#2e2a39"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Background",
+      "default": "#9b046f"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover background",
+      "default": "#5e3653"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#fdfbf7"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two column text"
+    }
+  ]
+}
+{% endschema %}

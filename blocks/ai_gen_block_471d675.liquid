@@ -1,0 +1,428 @@
+{% doc %}
+  @prompt
+    generate me a block where i can write about my shop. add the "Read more" button if the text is too long
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-about-shop-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-about-shop-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-about-shop-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-about-shop-content-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-about-shop-content-{{ ai_gen_id }} p {
+    margin: 0 0 16px;
+  }
+
+  .ai-about-shop-content-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-about-shop-text-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .ai-about-shop-text-wrapper-{{ ai_gen_id }}.collapsed {
+    max-height: {{ block.settings.collapsed_height }}px;
+  }
+
+  .ai-about-shop-text-wrapper-{{ ai_gen_id }}.expanded {
+    max-height: none;
+  }
+
+  .ai-about-shop-fade-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, {{ block.settings.background_color }});
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-about-shop-fade-{{ ai_gen_id }}.hidden {
+    opacity: 0;
+  }
+
+  .ai-about-shop-button-wrapper-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-top: {{ block.settings.button_spacing }}px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ai-about-shop-button-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    padding: 12px 24px;
+    font-size: {{ block.settings.button_text_size }}px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-about-shop-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+  }
+
+  .ai-about-shop-button-{{ ai_gen_id }}.hidden {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-about-shop-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_top | times: 0.7 }}px {{ block.settings.padding_horizontal | times: 0.7 }}px {{ block.settings.padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-about-shop-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-about-shop-content-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<about-shop-{{ ai_gen_id }} class="ai-about-shop-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-about-shop-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-about-shop-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="ai-about-shop-text-wrapper-{{ ai_gen_id }} collapsed" data-wrapper>
+      <div class="ai-about-shop-content-{{ ai_gen_id }}" data-content>
+        {{ block.settings.about_text }}
+      </div>
+      <div class="ai-about-shop-fade-{{ ai_gen_id }}" data-fade></div>
+    </div>
+
+    <div class="ai-about-shop-button-wrapper-{{ ai_gen_id }}">
+      <button class="ai-about-shop-button-{{ ai_gen_id }}" data-toggle>
+        <span data-read-more>{{ block.settings.read_more_text }}</span>
+        <span data-read-less style="display: none;">{{ block.settings.read_less_text }}</span>
+      </button>
+    </div>
+  </div>
+</about-shop-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AboutShop{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.wrapper = this.querySelector('[data-wrapper]');
+        this.content = this.querySelector('[data-content]');
+        this.fade = this.querySelector('[data-fade]');
+        this.button = this.querySelector('[data-toggle]');
+        this.readMoreText = this.querySelector('[data-read-more]');
+        this.readLessText = this.querySelector('[data-read-less]');
+        this.isExpanded = false;
+        this.collapsedHeight = {{ block.settings.collapsed_height }};
+      }
+
+      connectedCallback() {
+        this.checkContentHeight();
+        this.button.addEventListener('click', () => this.toggleContent());
+        window.addEventListener('resize', () => this.checkContentHeight());
+      }
+
+      checkContentHeight() {
+        const contentHeight = this.content.scrollHeight;
+        
+        if (contentHeight <= this.collapsedHeight) {
+          this.button.classList.add('hidden');
+          this.fade.classList.add('hidden');
+          this.wrapper.classList.remove('collapsed');
+          this.wrapper.classList.add('expanded');
+        } else {
+          this.button.classList.remove('hidden');
+          if (!this.isExpanded) {
+            this.fade.classList.remove('hidden');
+          }
+        }
+      }
+
+      toggleContent() {
+        this.isExpanded = !this.isExpanded;
+
+        if (this.isExpanded) {
+          this.wrapper.classList.remove('collapsed');
+          this.wrapper.classList.add('expanded');
+          this.fade.classList.add('hidden');
+          this.readMoreText.style.display = 'none';
+          this.readLessText.style.display = 'inline';
+        } else {
+          this.wrapper.classList.remove('expanded');
+          this.wrapper.classList.add('collapsed');
+          this.fade.classList.remove('hidden');
+          this.readMoreText.style.display = 'inline';
+          this.readLessText.style.display = 'none';
+        }
+      }
+    }
+
+    customElements.define('about-shop-{{ ai_gen_id }}', AboutShop{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About shop",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "About our shop"
+    },
+    {
+      "type": "richtext",
+      "id": "about_text",
+      "label": "About text",
+      "default": "<p>Welcome to our shop! We are passionate about providing high-quality products and exceptional customer service. Our journey began with a simple idea: to create a shopping experience that combines quality, affordability, and convenience. Every product we offer is carefully selected to meet our high standards, and we're committed to ensuring your complete satisfaction. Thank you for choosing us as your trusted shopping destination.</p>"
+    },
+    {
+      "type": "range",
+      "id": "collapsed_height",
+      "min": 100,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "label": "Collapsed height",
+      "default": 200
+    },
+    {
+      "type": "inline_richtext",
+      "id": "read_more_text",
+      "label": "Read more button text",
+      "default": "Read more"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "read_less_text",
+      "label": "Read less button text",
+      "default": "Read less"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 800
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f8f0ee"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#2e2a39"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#2e2a39"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Heading spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "range",
+      "id": "button_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Button spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#9b046f"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#5e3653"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#fdfbf7"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About shop"
+    }
+  ]
+}
+{% endschema %}

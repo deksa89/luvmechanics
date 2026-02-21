@@ -1,0 +1,218 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "Maximum pleasure with minimal effort",
+            "text_style": "body"
+          }
+        },
+        "judge_me_reviews_preview_badge_jaTFAt": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What can the LELO – Soraya Wave Vibrator Rabbit offer?",
+            "icon": "none",
+            "content": "<p>The LELO Soraya Wave is a luxurious bunny vibrator designed to deliver intense simultaneous stimulation of the G-spot and clitoris. Powered by LELO’s patented WaveMotion™ technology, it provides a unique internal rocking movement that mimics natural finger-like caresses, guiding users toward deep, progressive pleasure.<br/><br/>This combination of internal motion and external vibration creates a layered sensation that builds gradually and powerfully. Designed for those seeking immersive, full-bodied stimulation, Soraya Wave offers a refined experience that blends precision, rhythm, and luxury.</p>{{ block.settings.page.content }}{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<p>Soraya Wave features a molded internal tip engineered to precisely massage the G-spot, enhanced by the signature WaveMotion™ rocking movement. The flexible external stimulator adapts easily to different body shapes, delivering powerful vibrations directly to the clitoris.<br/><br/>Crafted from extra-soft, biocompatible premium silicone, the surface feels smooth, hygienic, and comfortable against the skin. The vibrator is USB rechargeable, offers up to 2 hours of use, and is fully submersible, making it easy to clean and suitable for use in various environments.<br/><br/>Technical characteristics:</p><ul><li>Material: ABS and biocompatible silicone</li><li>Size: 220 x 75 x 44mm</li><li>Insertable length: 110mm</li><li>Weight: 186g</li><li>Battery: Li-Ion 850mAh 3.7V</li><li>Charging time: 2 hours at 5.0V 750mA</li><li>Use time: Up to 2 hours</li><li>Standby time: Up to 90 days</li><li>Frequency: 120HZ</li><li>Interface: 3 buttons</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What other advantages does the LELO – Soraya Wave Vibrator Rabbit have?",
+            "icon": "none",
+            "content": "<p>One of the key advantages of the Soraya Wave is its ability to combine rocking internal motion with high-powered external vibration, creating a more natural and deeply satisfying form of stimulation than traditional rabbit vibrators.<br/><br/>Its ergonomic design, premium materials, and intuitive three-button interface ensure ease of use and precise control. Quiet, powerful, and elegantly crafted, the LELO Soraya Wave Vibrator Rabbit is a sophisticated choice for those who want advanced technology, comfort, and indulgent pleasure in one beautifully designed device.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "judge_me_reviews_preview_badge_jaTFAt",
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "delivery_info_HrhB9H",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "176713757314e0d8b6": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_YErcRn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_YErcRn"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "1767137559cc2e24b8": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "176713757314e0d8b6",
+    "related-products",
+    "1767137559cc2e24b8",
+    "17549876309243b074"
+  ]
+}

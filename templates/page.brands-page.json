@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_Gz4iKj": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_rCkrLz": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "arcwave"
+          }
+        },
+        "featured_collection_g49FLb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathmate"
+          }
+        },
+        "featured_collection_ReD3zL": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "lelo"
+          }
+        },
+        "featured_collection_DfmfF6": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pretty-love"
+          }
+        },
+        "featured_collection_jz44PC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "satisfyer"
+          }
+        },
+        "featured_collection_bbbFFF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "we-vibe"
+          }
+        },
+        "featured_collection_TcabMg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "womanizer"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_rCkrLz",
+        "featured_collection_g49FLb",
+        "featured_collection_ReD3zL",
+        "featured_collection_DfmfF6",
+        "featured_collection_jz44PC",
+        "featured_collection_bbbFFF",
+        "featured_collection_TcabMg"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Search All Our Brands",
+        "palette": "pastel",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 72,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collection_list_Gz4iKj"
+  ]
+}

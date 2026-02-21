@@ -1,0 +1,162 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "❤️ Customer Favorite ❤️",
+            "text_style": "body"
+          }
+        },
+        "judge_me_reviews_preview_badge_tXkLyH": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What can the LELO – Elise 2 Lilac Vibrator offer?",
+            "icon": "none",
+            "content": "<p>The LELO Elise 2 Lilac Vibrator offers a sophisticated pleasure experience inspired by Scandinavian design and luxury aesthetics. Its harmonious shape and exclusive black finish reflect LELO’s globally recognized style, combining elegance with advanced functionality.</p><p>Designed to stimulate all erogenous zones, the Elise 2 features an anatomically curved body with delicately rounded contours that adapt naturally to the body. Its versatility and multiple vibration options allow for a wide range of sensations, making it suitable for those who value both refinement and performance in a luxury vibrator.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<p>The Elise 2 is made from <strong>medical-grade silicone</strong>, a non-porous, hygienic material known for its durability and silky-soft touch. This ensures easy cleaning, long-lasting quality, and maximum comfort during use.</p><p>It features <strong>two independent vibrating motors</strong>, positioned at the base and the tip, which can be used separately or combined. Users can adjust vibration intensity and choose from <strong>five pre-programmed vibration patterns</strong>, all while enjoying minimal noise. The ergonomic design provides a comfortable grip and intuitive access to the control buttons.</p><p>The vibrator is rechargeable, offering up to <strong>4 hours of continuous use</strong>, and includes a charge indicator. Dimensions are <strong>22 cm in length</strong> and <strong>4.5 cm in diameter</strong>.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What other advantages does the LELO – Elise 2 Lilac Vibrator have?",
+            "icon": "none",
+            "content": "<p>One of the key advantages of the Elise 2 is its balance between power and discretion. The dual-motor system delivers strong yet quiet vibrations, allowing for deeply pleasurable experiences without unnecessary noise.</p><p>Presented in a <strong>luxurious gift box</strong>, the Elise 2 includes its own charger, user instructions, warranty, and a storage pouch—making it ideal both as a personal indulgence and a premium gift. With its elegant design, high-quality materials, and thoughtful engineering, the LELO Elise 2 Black Vibrator stands out as a refined choice for those seeking timeless luxury and reliable performance.<br/></p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "judge_me_reviews_preview_badge_tXkLyH",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "delivery_info_HrhB9H",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "17671362966712bc90": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_izz3aQ": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_izz3aQ"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    }
+  },
+  "order": [
+    "main",
+    "17671362966712bc90",
+    "related-products"
+  ]
+}

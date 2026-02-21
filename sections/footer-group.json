@@ -1,0 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "newsletter_qrGnPN": {
+      "type": "newsletter",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_NV7P8D": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "maxwidth": 3000
+          }
+        },
+        "heading_NNWdCA": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph_x7mtry": {
+          "type": "paragraph",
+          "disabled": true,
+          "settings": {
+            "text": ""
+          }
+        },
+        "email_form_R9pq36": {
+          "type": "email_form",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_NV7P8D",
+        "heading_NNWdCA",
+        "paragraph_x7mtry",
+        "email_form_R9pq36"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "color_scheme": "scheme-9c4b1816-9fac-451e-85c0-6ff2947bcc20",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "social_media_heading": "Follow Us",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 20,
+        "padding_bottom": 32,
+        "contact_heading": "Contact",
+        "contact_email": "info@luvmechanics.com",
+        "contact_phone": ""
+      }
+    }
+  },
+  "order": [
+    "newsletter_qrGnPN",
+    "footer"
+  ]
+}

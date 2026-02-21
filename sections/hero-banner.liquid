@@ -1,0 +1,64 @@
+{% comment %}
+  Hero Section - LuvMechanics
+  Displays a bold headline, playful subtext, and two call-to-action buttons
+{% endcomment %}
+
+<section class="hero-section bg-gradient-to-br from-pink-100 to-rose-200 py-16 px-6 text-center rounded-2xl shadow-lg">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">
+      {{ section.settings.heading }}
+    </h1>
+    <p class="text-lg md:text-xl text-gray-700 mb-8">
+      {{ section.settings.subtext }}
+    </p>
+    <div class="flex justify-center gap-4 flex-wrap">
+      <a href="{{ section.settings.primary_link }}" class="bg-rose-600 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-rose-500 transition">
+        {{ section.settings.primary_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Mechanics of Pleasure, Engineered for You"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subheading",
+      "default": "Explore toys that spark joy (and other sensations)."
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Start Shopping"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "I'm Curious 👀"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

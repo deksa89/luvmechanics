@@ -1,0 +1,211 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "Maximum pleasure with minimal effort",
+            "text_style": "body"
+          }
+        },
+        "judge_me_reviews_preview_badge_XmATH7": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What can the LELO – F1S V3 Male Masturbator Red offer?",
+            "icon": "none",
+            "content": "<p>The LELO F1S V3 Red is an advanced, app-connected pleasure console designed to transform solo pleasure through intelligent technology and refined materials. Enhanced with newly developed features, including an interactive AI-driven mode, it delivers a highly responsive experience that adapts to touch and movement.<br/><br/>Equipped with eight vibration modes, the F1S V3 allows users to explore a wide range of sensations, including a highly sensitive interactive mode accessible through the LELO app. Its synchronized dual-motor system stimulates the penis and nerve endings simultaneously, enabling immersive pleasure that can be enjoyed even hands-free.</p>{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<p>The F1S V3 is crafted from premium liquid silicone with self-adjusting internal grooves that flex naturally to enhance sensation.</p><p>Powered by a rechargeable 850 mAh lithium-ion battery, the device provides up to 2 hours of use on a full charge. It features a three-button interface, operates at controlled frequencies for suction and vibration, and maintains noise levels below 75 dB. The combination of biocompatible silicone, aluminum alloy, and LEXAN™ ensures durability, comfort, and a high-end finish.<br/><br/><span style=\"text-decoration:underline\"><strong>FEATURES:</strong></span></p><ul><li>Materials: biocompatible silicone, aluminum alloy, LEXAN™ 141R</li><li>Size: 144 x Φ 72mm</li><li>Insertable length: 110 mm</li><li>Diameter: 40 mm to 60 mm</li><li>Weight: 314 g</li><li>Battery: Lithium-ion 850 mAh 3.7 V</li><li>Charge: 2 h at 5 V 850 mA</li><li>Rated power: Input: 5 V 3.75 W</li><li>Output: 3.7V 1.5W</li><li>Use time: up to 2 hours</li><li>Standby: 90 days</li><li>Frequency: suction motor: 64 Hz</li><li>vibration motor: 93 Hz</li><li>Max. level Noise: &lt;75 dB</li><li>Interface: 3 buttons</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What other advantages does the LELO – F1S V3 Male Masturbator Red XL have?",
+            "icon": "none",
+            "content": "<p>One of the key advantages of the F1S V3 is its app integration, allowing users to unlock advanced modes and access interactive features powered by AI. This connectivity adds a new dimension of personalization and responsiveness, setting it apart from traditional masturbators.<br/><br/>Its dual synchronized motors create layered stimulation, while the flexible internal design adapts automatically to movement and pressure. With premium materials, intelligent functionality, and hands-free capability, the LELO F1S V3 Red XL is a sophisticated choice for users seeking innovation, comfort, and total control over their pleasure experience.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "judge_me_reviews_preview_badge_XmATH7",
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "delivery_info_HrhB9H",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1767137226d032ac4f": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_AQih37": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_AQih37"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "1767137226d032ac4f",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

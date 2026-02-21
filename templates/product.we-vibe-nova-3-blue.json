@@ -1,0 +1,211 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "❤️ Customer Favorite ❤️",
+            "text_style": "body"
+          }
+        },
+        "judge_me_reviews_preview_badge_xnQh7d": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What can the We-Vibe – Nova 3 Rabbit Vibrator offer?",
+            "icon": "none",
+            "content": "<p>The We-Vibe Nova 3 takes the classic rabbit vibrator to the next level with a modern, flexible design and <strong>dual stimulation</strong>. Equipped with two motors—one dedicated to <strong>internal G-spot stimulation</strong> and the other to <strong>external clitoral stimulation</strong>—it delivers synchronized sensations designed to work together seamlessly.</p><p>Thanks to its flexible construction, Nova 3 moves naturally with your body, maintaining consistent contact even as you change position. This adaptability creates a more immersive and satisfying experience, whether enjoyed solo or with a partner.</p>{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<p>Nova 3 features an improved ergonomic handle that makes it comfortable to hold and easier on the wrists during use. Its <strong>incremental speed control</strong> allows precise adjustment of intensity, putting you fully in control of your experience.</p><p>Crafted from <strong>premium, body-safe silicone</strong>, the seamless design feels silky smooth against the skin. The vibrator is <strong>IPX7 waterproof</strong>, making it suitable for use in the bath or shower, and is <strong>USB rechargeable</strong> with a convenient magnetic charging connection.<br/><br/><strong>Main features:</strong></p><ul><li>rabbit vibrator</li><li>Dual motor for internal G-spot and external clitoral stimulation</li><li>Flexes with your every movement</li><li>ergonomic handle</li><li>Incremental speed control</li><li>Premium silicone material</li><li>IPX7 waterproof</li><li>USB rechargeable magnetic charging</li><li>We-Connect App Connectivity</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What other advantages does the We-Vibe – Nova 3 Rabbit Vibrator Midnight Blue have?",
+            "icon": "none",
+            "content": "<p>One of Nova 3’s standout advantages is its <strong>We-Connect app compatibility</strong>, allowing partners to control the toy from nearby or from a distance. This adds a playful, interactive dimension to shared experiences and opens the door to long-distance control.</p><p>Its flexible shape, dual motors, and high-quality materials combine comfort with performance, while the elegant midnight blue finish adds a touch of sophistication. Designed for responsiveness, control, and connection, the We-Vibe Nova 3 is a modern rabbit vibrator built for personalized pleasure.<br/></p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "judge_me_reviews_preview_badge_xnQh7d",
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "delivery_info_HrhB9H",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "17671383639868a946": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_fp993f": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_fp993f"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "17671383639868a946",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

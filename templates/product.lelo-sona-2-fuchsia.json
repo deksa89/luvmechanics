@@ -1,0 +1,211 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "Maximum pleasure with minimal effort",
+            "text_style": "body"
+          }
+        },
+        "judge_me_reviews_preview_badge_agjQDJ": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What can the LELO – Clitoris Stimulator SONA 2 offer?",
+            "icon": "none",
+            "content": "<p>The LELO SONA 2 represents the next generation of clitoral stimulation, building on one of LELO’s most celebrated designs. Bigger and bolder than its predecessor, SONA 2 delivers refined pleasure through wave stimulation without direct contact, creating a sensation that feels both gentle and deeply intense.<br/><br/>Its sonic waves provide subtle yet powerful stimulation of the clitoris, offering a unique experience designed to redefine climax. With a larger surface area and deeper sensation, SONA 2 is crafted for those who want more depth, intensity, and immersion in their pleasure.</p>{{ block.settings.page.content }}{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<p>SONA 2 features a larger, softer mouthpiece that enhances both internal and external sensation while remaining comfortable and responsive. Made from ultra-soft, premium body-safe silicone, it offers a smooth, luxurious feel against the skin.<br/><br/>The device includes 12 vibration modes, allowing users to explore a wide range of intensities and rhythms. It is 100% waterproof and USB rechargeable, making it suitable for use in various settings and easy to maintain. Its compact yet powerful design balances performance with ergonomic comfort.</p><p>Characteristics:</p><ul><li>12 vibration modes</li><li>100% fully USB rechargeable submersible</li><li>Subtle, powerful and made with premium silicone</li><li>Dimensions: 99 x 87 x 56mm</li></ul><p> </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What other advantages does the LELO – Clitoris Stimulator SONA 2 have?",
+            "icon": "none",
+            "content": "<p>One of the key advantages of the SONA 2 is its ability to stimulate without direct contact, delivering deep sensations while remaining gentle on sensitive areas. This makes it ideal for users seeking intense pleasure without overstimulation.<br/><br/>The increased size and improved mouthpiece design allow for broader coverage and deeper resonance, enhancing overall satisfaction. Combined with premium materials, powerful yet subtle performance, and versatile functionality, the LELO SONA 2 stands out as a refined choice for those looking to elevate their pleasure experience.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "judge_me_reviews_preview_badge_agjQDJ",
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "delivery_info_HrhB9H",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "17671374283bc86494": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_U6gczB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_U6gczB"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "17671374283bc86494",
+    "1765483876d335107c",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "image_with_text_custom_bDtdpP": {
+      "type": "image-with-text-custom",
+      "disabled": true,
+      "name": "Image with text (custom)",
+      "settings": {
+        "image_border_radius": 12,
+        "heading": "SATISFYER",
+        "text": "<p><strong>Satisfyer</strong> is the brand that took the world by storm by asking a simple question: <em>“What if pleasure had an air-pressure engine?”</em> Their famous Air Pulse technology became an instant classic, delivering sensations so good they’ve basically achieved cult status. Satisfyer products are stylish, affordable, and packed with features you usually find only in premium toys—so you get luxury vibes without the luxury price tag.</p><p>In short: Satisfyer is for anyone who wants big sensations, small prices, and absolutely zero chill about enjoying life.</p>",
+        "text_alignment": "center",
+        "background_color": "#f8f0ee",
+        "text_color": "#000000",
+        "heading_size": 32,
+        "text_size": 16,
+        "heading_spacing": 16,
+        "spacing": 24,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_horizontal": 20
+      }
+    },
+    "rich_text_4W4W7P": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_qbtmrV": {
+          "type": "heading",
+          "settings": {
+            "heading": "Satisfyer",
+            "heading_size": "h0"
+          }
+        },
+        "text_GbNYrk": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "button_RM8Fky": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qbtmrV",
+        "text_GbNYrk",
+        "button_RM8Fky"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 100
+      }
+    },
+    "main-collection-product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 20,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 32,
+        "padding_bottom": 68
+      }
+    },
+    "newsletter_tPNegD": {
+      "type": "newsletter",
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main-collection-banner",
+    "image_with_text_custom_bDtdpP",
+    "rich_text_4W4W7P",
+    "main-collection-product-grid",
+    "newsletter_tPNegD"
+  ]
+}

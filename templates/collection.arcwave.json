@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "image_with_text_custom_bDtdpP": {
+      "type": "image-with-text-custom",
+      "disabled": true,
+      "name": "Image with text (custom)",
+      "settings": {
+        "image_border_radius": 12,
+        "heading": "ARCWAVE",
+        "text": "<p><strong>Arcwave</strong> is what happens when high-end engineering meets men’s pleasure—with zero compromise. Designed by the same innovators behind Womanizer, Arcwave creates premium toys that look like futuristic gadgets and perform even better. Their Pleasure Air™ technology brings a completely new kind of stimulation, and the build quality feels like something straight out of a luxury tech store.</p><p>In short: Arcwave is for men who want precision, power, and pleasure that feels like it was designed by NASA… but way more fun.</p>",
+        "text_alignment": "center",
+        "background_color": "#f8f0ee",
+        "text_color": "#000000",
+        "heading_size": 32,
+        "text_size": 16,
+        "heading_spacing": 16,
+        "spacing": 24,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_horizontal": 20
+      }
+    },
+    "rich_text_XX6ahq": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_8hJCYw": {
+          "type": "heading",
+          "settings": {
+            "heading": "ARCWAVE",
+            "heading_size": "h0"
+          }
+        },
+        "text_bt4bx7": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "button_HATDYA": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_8hJCYw",
+        "text_bt4bx7",
+        "button_HATDYA"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main-collection-product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 20,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 32,
+        "padding_bottom": 100
+      }
+    },
+    "newsletter_tPNegD": {
+      "type": "newsletter",
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main-collection-banner",
+    "image_with_text_custom_bDtdpP",
+    "rich_text_XX6ahq",
+    "main-collection-product-grid",
+    "newsletter_tPNegD"
+  ]
+}

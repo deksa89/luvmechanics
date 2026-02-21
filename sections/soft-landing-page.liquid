@@ -1,0 +1,58 @@
+{{ 'soft-landing-page.css' | asset_url | stylesheet_tag }}
+
+<section class="lm-agegate" aria-label="LuvMechanics Age Confirmation">
+  <div class="lm-agegate__inner">
+    <div class="lm-agegate__content fade-in">
+      {% if section.settings.logo != blank %}
+        <img class="lm-agegate__logo" src="{{ section.settings.logo | image_url: width: 160 }}" alt="LuvMechanics logo" loading="lazy">
+      {% endif %}
+
+      <h1 class="lm-agegate__title">{{ section.settings.heading }}</h1>
+      <p class="lm-agegate__subtitle">{{ section.settings.subheading }}</p>
+
+      <ul class="lm-agegate__points">
+        <li>✓ {{ section.settings.point_1 }}</li>
+        <li>✓ {{ section.settings.point_2 }}</li>
+        <li>✓ {{ section.settings.point_3 }}</li>
+      </ul>
+
+      <div class="lm-agegate__buttons">
+        <a id="enterButton" class="lm-btn lm-btn--primary">{{ section.settings.enter_label }}</a>
+        <a href="https://www.google.com" class="lm-btn lm-btn--ghost">{{ section.settings.leave_label }}</a>
+      </div>
+
+      <p class="lm-agegate__note">{{ section.settings.compliance_note }}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const enterBtn = document.getElementById("enterButton");
+    if (!enterBtn) return;
+    enterBtn.addEventListener("click", function() {
+      window.location.href = "{{ section.settings.primary_cta_link }}";
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Age Gate Landing Page",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Welcome to LuvMechanics" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "We promote intimacy, connection, and self-care through elegant, high-quality products — intended for adults 18+." },
+    { "type": "text", "id": "point_1", "label": "Point 1", "default": "Discreet packaging and billing" },
+    { "type": "text", "id": "point_2", "label": "Point 2", "default": "EU-based store with fast delivery" },
+    { "type": "text", "id": "point_3", "label": "Point 3", "default": "Trusted by couples and individuals" },
+    { "type": "url", "id": "primary_cta_link", "label": "Link to store", "default": "/" },
+    { "type": "text", "id": "enter_label", "label": "Enter button text", "default": "I am 18 or older" },
+    { "type": "text", "id": "leave_label", "label": "Leave button text", "default": "I am under 18" },
+    { "type": "textarea", "id": "compliance_note", "label": "Compliance note", "default": "By continuing, you confirm that you are of legal age in your country or region." }
+  ],
+  "presets": [
+    { "name": "Age Gate Landing Page" }
+  ]
+}
+{% endschema %}

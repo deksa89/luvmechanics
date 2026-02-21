@@ -1,0 +1,47 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "about_us_m3q4qq": {
+      "type": "about-us",
+      "name": "About Us",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "h1": "Meet LuvMechanics",
+        "p1": "<p>At LuvMechanics, we believe everyone deserves a fun, exciting, and fulfilling intimate life. Over time, things can start to feel routine — that’s where we come in. Whether you’re exploring something new with your partner or treating yourself to a moment of pleasure, our goal is to help you feel confident, curious, and completely comfortable.</p><p><strong>Why Shop With Us?</strong></p><p>We get it — shopping for adult products can feel awkward. That’s why we’ve made it simple, safe, and private. All orders from LuvMechanics are shipped discreetly, and your privacy is always our top priority. You can browse freely, explore what excites you, and shop without judgment — all from the comfort of your home.</p><p><strong>More Than Just a Shop</strong></p><p>LuvMechanics isn’t only about selling toys — we’re here to make intimacy more open, positive, and fun. Our guides, articles, and newsletters are full of real advice, product tips, and inspiration to help you explore your desires at your own pace.</p><p><strong>Our Products</strong></p><p>We’re proud to always bring you the most popular and best-loved adult toys from trusted brands worldwide. From vibrators and couples’ toys to lingerie and accessories, everything we offer is carefully selected for quality, safety, and satisfaction.</p><p><strong>For Everyone</strong></p><p>Whether you’re new to adult toys or already know what you like, LuvMechanics has something for you. Our collections are designed for all genders, preferences, and experiences — so you can discover what pleasure really means to you.Need a little guidance? Our team is always happy to help with friendly advice and personal recommendations — no awkwardness, no pressure.</p>",
+        "h2": "",
+        "p2": "",
+        "h3": "",
+        "p3": "",
+        "h4": "",
+        "p4": "",
+        "h5": "",
+        "p5": "",
+        "more_text": "",
+        "read_more_label": "",
+        "read_less_label": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_us_m3q4qq"
+  ]
+}

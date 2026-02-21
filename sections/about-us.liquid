@@ -1,0 +1,142 @@
+{{ 'about-us.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .about-us-wrapper {
+    text-align: center;
+  }
+
+  .about-us-wrapper h2 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-us-wrapper .rte {
+    margin-bottom: 1rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Hidden content wrapper */
+  .about-us__more[hidden] {
+    display: none;
+  }
+{%- endstyle -%}
+
+<section class="about-us-wrapper color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+  <div class="page-width about-us-content">
+
+    {% for i in (1..2) %}
+      {% assign heading_key = 'h' | append: i %}
+      {% assign paragraph_key = 'p' | append: i %}
+      {% assign heading = section.settings[heading_key] %}
+      {% assign paragraph = section.settings[paragraph_key] %}
+
+      {% if heading != blank %}
+        <h2>{{ heading }}</h2>
+      {% endif %}
+      {% if paragraph != blank %}
+        <div class="rte">{{ paragraph }}</div>
+      {% endif %}
+    {% endfor %}
+
+    <div id="more-text-{{ section.id }}" class="about-us__more" hidden>
+      {% for i in (3..5) %}
+        {% assign heading_key = 'h' | append: i %}
+        {% assign paragraph_key = 'p' | append: i %}
+        {% assign heading = section.settings[heading_key] %}
+        {% assign paragraph = section.settings[paragraph_key] %}
+
+        {% if heading != blank %}
+          <h2>{{ heading }}</h2>
+        {% endif %}
+        {% if paragraph != blank %}
+          <div class="rte">{{ paragraph }}</div>
+        {% endif %}
+      {% endfor %}
+
+      {% if section.settings.more_text != blank %}
+        <div class="rte">{{ section.settings.more_text }}</div>
+      {% endif %}
+    </div>
+
+    <button id="read-more-btn-{{ section.id }}"
+            class="read-more-button"
+            type="button"
+            aria-controls="more-text-{{ section.id }}"
+            aria-expanded="false">
+      {{ section.settings.read_more_label | default: 'Read more' }}
+    </button>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var btn = document.getElementById("read-more-btn-{{ section.id }}");
+    var more = document.getElementById("more-text-{{ section.id }}");
+    if (!btn || !more) return;
+
+    btn.addEventListener("click", function() {
+      var isHidden = more.hasAttribute("hidden");
+      if (isHidden) {
+        more.removeAttribute("hidden");
+        btn.setAttribute("aria-expanded", "true");
+        btn.textContent = "{{ section.settings.read_less_label | default: 'Read less' }}";
+      } else {
+        more.setAttribute("hidden", "");
+        btn.setAttribute("aria-expanded", "false");
+        btn.textContent = "{{ section.settings.read_more_label | default: 'Read more' }}";
+        more.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "About Us",
+  "tag": "section",
+  "class": "section-about-us",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 36 },
+
+    { "type": "text", "id": "h1", "label": "Heading 1", "default": "Our Mission" },
+    { "type": "richtext", "id": "p1", "label": "Paragraph 1", "default": "<p>At <strong>LuvMechanics</strong>, we believe that both men and women deserve a fulfilling intimate life...</p>" },
+
+    { "type": "text", "id": "h2", "label": "Heading 2", "default": "Why Shop With Us?" },
+    { "type": "richtext", "id": "p2", "label": "Paragraph 2", "default": "<p>We understand that buying intimate products can feel uncomfortable or embarrassing...</p>" },
+
+    { "type": "text", "id": "h3", "label": "Heading 3", "default": "Discreet Delivery" },
+    { "type": "richtext", "id": "p3", "label": "Paragraph 3", "default": "<p>All our packages are shipped in plain boxes with no logos or clues to their content...</p>" },
+
+    { "type": "text", "id": "h4", "label": "Heading 4", "default": "Premium Quality" },
+    { "type": "richtext", "id": "p4", "label": "Paragraph 4", "default": "<p>We carefully select each product to ensure safety, durability, and unmatched pleasure...</p>" },
+
+    { "type": "text", "id": "h5", "label": "Heading 5", "default": "Customer Care" },
+    { "type": "richtext", "id": "p5", "label": "Paragraph 5", "default": "<p>Our team is always here to answer your questions, guide your choices, and make your experience smooth...</p>" },
+
+    { "type": "richtext", "id": "more_text", "label": "Expandable content (Read more)", "default": "<p>We’re more than just a sex shop — we’re a resource for sexual wellness and self-discovery...</p><p><strong>Because life is too short for bad sex.</strong></p>" },
+
+    { "type": "text", "id": "read_more_label", "label": "Read more label", "default": "Read more" },
+    { "type": "text", "id": "read_less_label", "label": "Read less label", "default": "Read less" }
+  ],
+  "presets": [
+    { "name": "About Us", "category": "Text" }
+  ]
+}
+{% endschema %}

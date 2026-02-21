@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "image_with_text_custom_bDtdpP": {
+      "type": "image-with-text-custom",
+      "disabled": true,
+      "name": "Image with text (custom)",
+      "settings": {
+        "image_border_radius": 12,
+        "heading": "LELO",
+        "text": "<p><strong>LELO</strong> is what happens when Swedish design, luxury, and a little bit of playful mischief all decide to work together. Known as the <em>Ferrari of pleasure products</em>, LELO creates beautifully engineered toys that look like art pieces and feel even better than they look. Their products are sleek, powerful, whisper-quiet, and built with the same precision you’d expect from high-end tech.</p><p>In short: if James Bond ever needed a vibrator, it would definitely be a LELO.</p>",
+        "text_alignment": "center",
+        "background_color": "#f8f0ee",
+        "text_color": "#000000",
+        "heading_size": 32,
+        "text_size": 16,
+        "heading_spacing": 16,
+        "spacing": 24,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_horizontal": 20
+      }
+    },
+    "rich_text_hzQfK3": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_r6n7Ry": {
+          "type": "heading",
+          "settings": {
+            "heading": "LELO",
+            "heading_size": "h0"
+          }
+        },
+        "text_RENWtN": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "button_g9NcNB": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_r6n7Ry",
+        "text_RENWtN",
+        "button_g9NcNB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main-collection-product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 20,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 32,
+        "padding_bottom": 100
+      }
+    },
+    "newsletter_tPNegD": {
+      "type": "newsletter",
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main-collection-banner",
+    "image_with_text_custom_bDtdpP",
+    "rich_text_hzQfK3",
+    "main-collection-product-grid",
+    "newsletter_tPNegD"
+  ]
+}
