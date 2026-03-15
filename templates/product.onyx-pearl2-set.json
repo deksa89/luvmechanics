@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "text_WCrbfm": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for an interactive set that makes long-distance and app-connected play feel more real? Kiiroo Onyx+ and Pearl2+ are designed to work together in real time, combining responsive stroking sensations with targeted G-spot vibration for a more immersive shared experience. Whether you are connecting with a partner, syncing with interactive content, or exploring app-controlled pleasure, this duo offers comfort, technology, and plenty of variety. Modern, exciting, and built for connection, it is a great choice for anyone who wants intimacy with a more high-tech edge.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_dTMpJw": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Besplatna dostava i povrat",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Features & experience",
+            "icon": "none",
+            "content": "<p>KIIROO Onyx+ is a lightweight male masturbator designed to bring interactive, real-time touch into online experiences. It is described as quiet, discreet, and suitable as a travel companion.</p><p>The third-generation Onyx features a different rotary motor and can reach up to 140 beats per minute while remaining quieter than its predecessors. Inside the device, 10 rings work together to simulate intercourse and create real-time up-and-down stroking sensations.</p><p>Onyx+ can connect with compatible KIIROO devices, selected OhMiBod devices, and other FeelTechnology-compatible products, allowing users to send and receive data in real time. It can also be used with supported interactive content, including erotic videos, virtual reality, 3D games, webcams, and content from FeelMe.com and other partner sites.</p><p><strong>Pearl2+</strong> is a touch-sensitive G-spot vibrator with a slightly curved shape designed for G-spot stimulation and external pleasure. Its three raised bumps are intended to intensify stimulation when inserted, and the extended touch pads reach all the way to the tip for improved responsiveness.</p><p>With the FeelConnect app, users can connect their devices remotely, sync with compatible content, and interact in real time. The app also supports webcam integration for interactive control and compatibility with synced video and virtual reality experiences.</p>{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<ul><li>Male masturbator</li><li>Up to 140 beats per<br/>minute</li><li>10 internal rings</li><li>Different rotary<br/>motor</li><li>Compatible with<br/>KIIROO devices</li><li>Compatible with<br/>selected OhMiBod devices</li><li>Compatible with<br/>FeelTechnology devices</li></ul><p><strong>Technical details</strong></p><ul><li>Materials: ABS,<br/>silicone</li><li>Sleeve: SuperSkin<br/>sleeve</li><li>Finish: Smooth and<br/>shiny touch</li><li>Size: 8.9 x 7.9 x<br/>26.3 cm</li><li>Opening hole size:<br/>5 x 4.5 cm</li><li>Hole height: 16.5<br/>cm</li><li>Weight: 1.3 kg with<br/>box</li><li>Battery: 1000 mAh<br/>lithium-ion polymer</li><li>Charging time: 4<br/>hours</li><li>Use time: 1 hour</li></ul><p><strong>Box includes</strong></p><ul><li>KIIROO Onyx+</li><li>USB charging cable</li><li>Authenticity and<br/>warranty card</li><li>Quick Setup Manual</li><li>RealFeel Sleeve</li></ul><p> </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Why you'll love it",
+            "icon": "none",
+            "content": "<p>You’ll love it if you want a more interactive experience than a standard masturbator. The 10 internal rings, high movement speed, and quieter motor are designed to create a more immersive sensation.</p><p>Its compatibility with connected devices and interactive content also makes it suitable for both solo sessions and long-distance partner play.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "text_WCrbfm",
+        "delivery_info_dTMpJw",
+        "delivery_info_HrhB9H",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

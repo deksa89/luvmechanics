@@ -81,6 +81,7 @@
   },
   "products": {
     "product": {
+      "more_info": "Više informacija",
       "xr_button": "Pogledajte u svojem prostoru",
       "media": {
         "load_image": "Učitaj sliku {{ index }} za prikaz u galeriji",
@@ -90,7 +91,7 @@
         "image_available": "Slika {{ index }} sada je dostupna u prikazu galerije",
         "open_media": "Otvori medij {{ index }} u modalnom prozoru",
         "play_model": "Reproduciraj 3D preglednik",
-        "play_video": "Reproduciraj videozapis"
+        "play_video": "Reproduciraj videozapis",
       },
       "variant_sold_out_or_unavailable": "Model je prodan ili nedostupan",
       "add_to_cart": "Dodaj u košaricu",
@@ -245,8 +246,12 @@
   "sections": {
     "header": {
       "cart_count": {
-        "few": "Broj artikala: {{ count }}"
-      }
+        "few": "Broj artikala: {{ count }}",
+        "one": "{{ count }} proizvod",
+        "other": "{{ count }} proizvoda"
+      },
+      "announcement": "Obavijest",
+      "menu": "Izbornik"
     },
     "cart": {
       "update": "Ažuriraj",
@@ -276,7 +281,8 @@
         "image": "Slika proizvoda"
       },
       "login": {
-        "title": "Imate li račun?"
+        "title": "Imate li račun?",
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> kako biste brže dovršili kupnju"
       }
     },
     "featured_blog": {
@@ -285,10 +291,17 @@
       "onboarding_content": "Dajte svojim klijentima sažetak vaše objave na blogu"
     },
     "slideshow": {
-      "next_slideshow": "Sljedeći slajd"
+      "next_slideshow": "Sljedeći slajd",
+      "load_slide": "Učitaj slajd",
+      "previous_slideshow": "Prethodni slajd",
+      "pause_slideshow": "Pauziraj"
     },
     "announcements": {
-      "next_announcement": "Sljedeća objava"
+      "next_announcement": "Sljedeća objava",
+      "previous_announcement": "Prethodna obavijest",
+      "carousel": "Carousel",
+      "announcement": "Obavijest",
+      "announcement_bar": "Traka s obavijestima"
     },
     "quick_order_list": {
       "items_added": {
@@ -299,10 +312,22 @@
       }
     },
     "featured_collection": {
-      "view_all": "Prikaži sve"
+      "view_all": "Prikaži sve",
+      "view_all_label": "Pogledajte sve proizvode u kolekciji {{ collection_name }}"
     },
     "footer": {
       "payment": "Metode plaćanja"
+    },
+    "collection_list": {
+      "view_all": "Pogledaj sve"
+    },
+    "collection_template": {
+      "empty": "Nema pronađenih proizvoda",
+      "title": "Koleckija",
+      "use_fewer_filters_html": "Koristite manje filtera ili <a class=\"{{ class }}\" href=\"{{ link }}\">uklonite sve</a>"
+    },
+    "video": {
+      "load_video": "Učitava video: {{ description }}"
     }
   },
   "customer": {

@@ -18,14 +18,14 @@
 
   .ai-did-you-know-header-{{ ai_gen_id }} {
     text-align: {{ block.settings.heading_alignment }};
-    margin-bottom: {{ block.settings.heading_spacing }}px;
+    margin-bottom: 30px;
   }
 
   .ai-did-you-know-heading-{{ ai_gen_id }} {
     font-size: {{ block.settings.heading_size }}px;
     color: {{ block.settings.heading_color }};
     margin: 0;
-    font-weight: {{ block.settings.heading_weight }};
+    font-weight: 200 !important;
   }
 
   .ai-did-you-know-carousel-wrapper-{{ ai_gen_id }} {
@@ -82,6 +82,7 @@
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease;
+    display: none;
   }
 
   .ai-did-you-know-nav-button-{{ ai_gen_id }}:hover {
@@ -125,6 +126,17 @@
     font-weight: {{ block.settings.counter_weight }};
   }
 
+  .ai-did-you-know-divider-{{ ai_gen_id }} {
+    height: 1px;
+    background: #d9d9d9;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .ai-did-you-know-divider-{{ ai_gen_id }}:empty {
+    display: block !important;
+  }
+
   @media screen and (max-width: 749px) {
     .ai-did-you-know-carousel-{{ ai_gen_id }} {
       width: 100%;
@@ -147,6 +159,8 @@
   {% if block.settings.heading != blank %}
     <div class="ai-did-you-know-header-{{ ai_gen_id }}">
       <h2 class="ai-did-you-know-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+
+      <div class="ai-did-you-know-divider-{{ ai_gen_id }}"></div>
     </div>
   {% endif %}
 

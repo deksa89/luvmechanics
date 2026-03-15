@@ -191,6 +191,9 @@ product-info {
 
 .product-form__submit {
   margin-bottom: 1rem;
+  min-height: 5.7rem;
+  font-size: 2.5rem;
+  border-radius: 10px;
 }
 
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
@@ -365,7 +368,7 @@ a.product__text {
 }
 
 .product-form__buttons {
-  max-width: 44rem;
+  max-width: 50rem;
 }
 
 .product--no-media .product__info-container > modal-opener {

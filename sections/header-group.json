@@ -20,16 +20,25 @@
             "text": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
             "link": ""
           }
+        },
+        "announcement_pA9Kcg": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "SAMO U OŽUJKU ISKORISTI 20 EURA POPUSTA NA LELO ELISE 2",
+            "link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator"
+          }
         }
       },
       "block_order": [
-        "announcement_jebYgX"
+        "announcement_jebYgX",
+        "announcement_pA9Kcg"
       ],
       "name": "t:sections.announcement-bar.presets.name",
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
-        "color_scheme": "scheme-4",
+        "color_scheme": "scheme-3",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,

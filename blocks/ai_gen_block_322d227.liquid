@@ -1,0 +1,773 @@
+{% doc %}
+  @prompt
+    generate me a highly customizable carousel block where i can put my brands. carousel must be moved by arrows on both sides
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-brand-carousel-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 1440px;
+    position: relative;
+    padding: {{ block.settings.section_padding }}px 0;
+    background-color: {{ block.settings.background_color }};
+    margin: 0 auto;
+  }
+
+  .ai-brand-carousel-viewport-{{ ai_gen_id }} {
+    overflow: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+
+  .ai-brand-carousel-viewport-{{ ai_gen_id }}.is-dragging {
+    cursor: grabbing;
+  }
+
+  .ai-brand-carousel-container-{{ ai_gen_id }} {
+    position: relative;
+    padding: 0 60px;
+    box-sizing: border-box;
+  }
+
+  .ai-brand-carousel-track-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.item_spacing }}px;
+    transition: transform 0.25s ease;
+    will-change: transform;
+  }
+
+  .ai-brand-carousel-item-{{ ai_gen_id }} {
+    flex: 0 0 calc((100% - ({{ block.settings.items_per_view | minus: 1 }} * {{ block.settings.item_spacing }}px)) / {{ block.settings.items_per_view }});
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ block.settings.item_padding }}px;
+    background-color: {{ block.settings.item_background_color }};
+    border-radius: {{ block.settings.item_border_radius }}px;
+    border: {{ block.settings.item_border_width }}px solid {{ block.settings.item_border_color }};
+    min-height: {{ block.settings.item_height }}px;
+  }
+
+  .ai-brand-carousel-item-{{ ai_gen_id }} img {
+    max-width: 100%;
+    max-height: {{ block.settings.logo_max_height }}px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale({{ block.settings.logo_grayscale }}%);
+    opacity: {{ block.settings.logo_opacity }};
+    transition: all 0.3s ease;
+  }
+
+  .ai-brand-carousel-item-{{ ai_gen_id }}:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  .ai-brand-carousel-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.item_border_radius }}px;
+  }
+
+  .ai-brand-carousel-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    background-color: {{ block.settings.arrow_background_color }};
+    border: none;
+    border-radius: {{ block.settings.arrow_border_radius }}px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.arrow_hover_background_color }};
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }}:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    stroke: {{ block.settings.arrow_color }};
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover svg {
+    stroke: {{ block.settings.arrow_hover_color }};
+  }
+
+  .ai-brand-carousel-arrow-prev-{{ ai_gen_id }} {
+    left: 0;
+  }
+
+  .ai-brand-carousel-arrow-next-{{ ai_gen_id }} {
+    right: 0;
+  }
+
+  .ai-brand-carousel-empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .ai-brand-heading-wrapper-{{ ai_gen_id }} {
+    margin-bottom: 30px
+  }
+
+  .ai-brand-carousel-heading-{{ ai_gen_id }} {
+    margin: 0 0 16px;
+    text-align: center;
+    font-size: 34px;
+    color: #2e2a39;
+    font-weight: 200 !important;
+  }
+
+  .ai-brand-carousel-divider-{{ ai_gen_id }} {
+    height: 1px;
+    background-color: #d9d9d9;
+    width: 100%;
+  }
+
+  .ai-brand-carousel-divider-{{ ai_gen_id }}:empty {
+    display: block !important;
+  }
+
+  .ai-brand-carousel-viewport-{{ ai_gen_id }} {
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-brand-carousel-container-{{ ai_gen_id }} {
+      padding: 0 50px;
+    }
+
+    .ai-brand-carousel-heading-{{ ai_gen_id }} {
+      font-size: calc(34px * 0.8);
+    }
+
+    .ai-brand-carousel-item-{{ ai_gen_id }} {
+      flex: 0 0 calc((100% - ({{ block.settings.items_per_view_mobile | minus: 1 }} * {{ block.settings.item_spacing }}px)) / {{ block.settings.items_per_view_mobile }});
+    }
+
+    .ai-brand-carousel-arrow-{{ ai_gen_id }} {
+      width: {{ block.settings.arrow_size | times: 0.8 }}px;
+      height: {{ block.settings.arrow_size | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<brand-carousel-{{ ai_gen_id }} class="ai-brand-carousel-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% assign has_brands = false %}
+  {% for i in (1..10) %}
+    {% assign brand_key = 'brand_' | append: i %}
+    {% if block.settings[brand_key] != blank %}
+      {% assign has_brands = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% if block.settings.heading != blank %}
+    <div class="ai-brand-heading-wrapper-{{ ai_gen_id }}">
+      <h2 class="ai-brand-carousel-heading-{{ ai_gen_id }}">
+        {{ block.settings.heading }}
+      </h2>
+  
+      <div class="ai-brand-carousel-divider-{{ ai_gen_id }}"></div>
+    </div>
+
+  {% endif %}
+
+  {% if has_brands %}
+    <div class="ai-brand-carousel-container-{{ ai_gen_id }}">
+      <button
+        class="ai-brand-carousel-arrow-{{ ai_gen_id }} ai-brand-carousel-arrow-prev-{{ ai_gen_id }}"
+        aria-label="Previous brands"
+        data-direction="prev"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="ai-brand-carousel-viewport-{{ ai_gen_id }}">
+        <div class="ai-brand-carousel-track-{{ ai_gen_id }}">
+          {% for i in (1..10) %}
+            {% assign brand_key = 'brand_' | append: i %}
+            {% assign brand_url_key = 'brand_' | append: i | append: '_url' %}
+            {% assign brand_image = block.settings[brand_key] %}
+            {% assign brand_url = block.settings[brand_url_key] %}
+
+            {% if brand_image != blank %}
+              <div class="ai-brand-carousel-item-{{ ai_gen_id }}">
+                {% if brand_url != blank %}
+                  <a href="{{ brand_url }}" aria-label="Visit brand {{ i }}">
+                    <img
+                      src="{{ brand_image | image_url: width: 400 }}"
+                      alt="{{ brand_image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ brand_image.width }}"
+                      height="{{ brand_image.height }}"
+                    >
+                  </a>
+                {% else %}
+                  <img
+                    src="{{ brand_image | image_url: width: 400 }}"
+                    alt="{{ brand_image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ brand_image.width }}"
+                    height="{{ brand_image.height }}"
+                  >
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <button
+        class="ai-brand-carousel-arrow-{{ ai_gen_id }} ai-brand-carousel-arrow-next-{{ ai_gen_id }}"
+        aria-label="Next brands"
+        data-direction="next"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  {% else %}
+    <div class="ai-brand-carousel-empty-state-{{ ai_gen_id }}">
+      Next, add brand logos to display in the carousel
+    </div>
+  {% endif %}
+</brand-carousel-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class BrandCarousel{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentIndex = 0;
+        this.itemsPerView = {{ block.settings.items_per_view }};
+        this.itemsPerViewMobile = {{ block.settings.items_per_view_mobile }};
+
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+        this.isDragging = false;
+        this.swipeThreshold = 10;
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('.ai-brand-carousel-track-{{ ai_gen_id }}');
+        this.viewport = this.querySelector('.ai-brand-carousel-viewport-{{ ai_gen_id }}');
+        this.items = this.querySelectorAll('.ai-brand-carousel-item-{{ ai_gen_id }}');
+        this.prevButton = this.querySelector('.ai-brand-carousel-arrow-prev-{{ ai_gen_id }}');
+        this.nextButton = this.querySelector('.ai-brand-carousel-arrow-next-{{ ai_gen_id }}');
+
+        if (!this.track || this.items.length === 0) return;
+
+        this.setupEventListeners();
+        this.updateCarousel();
+        this.updateButtons();
+
+        window.addEventListener('resize', () => {
+          this.updateCarousel();
+          this.updateButtons();
+        });
+      }
+
+      setupEventListeners() {
+        this.prevButton.addEventListener('click', () => this.navigate('prev'));
+        this.nextButton.addEventListener('click', () => this.navigate('next'));
+
+        if (this.viewport) {
+          this.viewport.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
+          this.viewport.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: true });
+          this.viewport.addEventListener('touchend', this.handleTouchEnd.bind(this));
+
+          this.viewport.addEventListener('mousedown', this.handleMouseDown.bind(this));
+          this.viewport.addEventListener('mouseup', this.handleMouseUp.bind(this));
+          this.viewport.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+        }
+      }
+
+      getItemsPerView() {
+        return window.innerWidth <= 749 ? this.itemsPerViewMobile : this.itemsPerView;
+      }
+
+      navigate(direction) {
+        const itemsPerView = this.getItemsPerView();
+        const maxIndex = Math.max(0, this.items.length - itemsPerView);
+
+        if (direction === 'next') {
+          this.currentIndex = Math.min(this.currentIndex + 1, maxIndex);
+        } else {
+          this.currentIndex = Math.max(this.currentIndex - 1, 0);
+        }
+
+        this.updateCarousel();
+        this.updateButtons();
+      }
+
+      updateCarousel() {
+        if (!this.track || this.items.length === 0) return;
+
+        const firstItem = this.items[0];
+        const itemWidth = firstItem.offsetWidth;
+        const gap = {{ block.settings.item_spacing }};
+        const offset = -(this.currentIndex * (itemWidth + gap));
+
+        this.track.style.transform = `translateX(${offset}px)`;
+      }
+
+      updateButtons() {
+        const itemsPerView = this.getItemsPerView();
+        const maxIndex = Math.max(0, this.items.length - itemsPerView);
+
+        this.prevButton.disabled = this.currentIndex === 0;
+        this.nextButton.disabled = this.currentIndex >= maxIndex;
+      }
+
+      handleTouchStart(event) {
+        this.touchStartX = event.changedTouches[0].clientX;
+      }
+
+      handleTouchMove(event) {
+        this.touchEndX = event.changedTouches[0].clientX;
+      }
+
+      handleTouchEnd() {
+        const swipeDistance = this.touchEndX - this.touchStartX;
+
+        if (Math.abs(swipeDistance) < this.swipeThreshold) return;
+
+        if (swipeDistance < 0) {
+          this.navigate('next');
+        } else {
+          this.navigate('prev');
+        }
+
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+      }
+
+      handleMouseDown(event) {
+        this.isDragging = true;
+        this.touchStartX = event.clientX;
+        if (this.viewport) {
+          this.viewport.classList.add('is-dragging');
+        }
+      }
+
+      handleMouseUp(event) {
+        if (!this.isDragging) return;
+
+        this.touchEndX = event.clientX;
+        const swipeDistance = this.touchEndX - this.touchStartX;
+
+        if (Math.abs(swipeDistance) >= this.swipeThreshold) {
+          if (swipeDistance < 0) {
+            this.navigate('next');
+          } else {
+            this.navigate('prev');
+          }
+        }
+
+        this.isDragging = false;
+        if (this.viewport) {
+          this.viewport.classList.remove('is-dragging');
+        }
+      }
+
+      handleMouseLeave() {
+        this.isDragging = false;
+        if (this.viewport) {
+          this.viewport.classList.remove('is-dragging');
+        }
+      }
+    }
+
+    customElements.define('brand-carousel-{{ ai_gen_id }}', BrandCarousel{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Brand carousel",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "items_per_view",
+      "label": "Brands per view (desktop)",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "items_per_view_mobile",
+      "label": "Brands per view (mobile)",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "Space between brands",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Brand item style"
+    },
+    {
+      "type": "range",
+      "id": "item_height",
+      "label": "Item height",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "label": "Item padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "item_background_color",
+      "label": "Item background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "item_border_width",
+      "label": "Item border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "item_border_color",
+      "label": "Item border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "label": "Item border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Logo style"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_height",
+      "label": "Logo max height",
+      "min": 30,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "logo_grayscale",
+      "label": "Logo grayscale",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "logo_opacity",
+      "label": "Logo opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Arrow style"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow size",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "color",
+      "id": "arrow_background_color",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background_color",
+      "label": "Arrow hover background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_color",
+      "label": "Arrow hover icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "arrow_border_radius",
+      "label": "Arrow border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#fdfbf7"
+    },
+    {
+      "type": "header",
+      "content": "Brand 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_1",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_1_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_2",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_2_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_3",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_3_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_4",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_4_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_5",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_5_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_6",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_6_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_7",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_7_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_8",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_8_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_9",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_9_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Brand 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_10",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "brand_10_url",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand carousel"
+    }
+  ]
+}
+{% endschema %}

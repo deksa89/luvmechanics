@@ -32,6 +32,27 @@
     padding-bottom: 18rem;
   }
 
+  .template-search .card__media {
+    overflow: hidden;
+  }
+
+  .template-search .card__media .media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .template-search .card__media img {
+    object-fit: contain !important;
+    transform: scale(0.70);
+    transform-origin: center center;
+  }
+
+  .template-search .card-wrapper:hover .card__media img,
+  .template-search .card__media:hover img {
+    transform: scale(0.78) !important;
+  }
+
   @media screen and (min-width: 750px) {
     .template-search__header {
       margin-bottom: 5rem;

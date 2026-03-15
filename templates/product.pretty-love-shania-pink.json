@@ -12,25 +12,38 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "Maximum pleasure with minimal effort",
-            "text_style": "body"
-          }
-        },
-        "judge_me_reviews_preview_badge_p7PGc4": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "title": {
           "type": "title",
           "settings": {}
         },
         "judge_me_reviews_preview_badge_XajXT4": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
           "settings": {}
+        },
+        "text_EdwNgy": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for a rabbit vibrator with extra texture and stronger blended stimulation? Pretty Love BW-500041-2 combines internal thumping, powerful vibrations, and an added tongue-style stimulator to create a more intense and playful experience. With multiple settings to explore, it gives you plenty of ways to adjust the sensation and find what feels best for you. Made from soft velvet-touch silicone and designed for full internal and external pleasure, it’s a great choice for anyone who wants something bold, exciting, and satisfying.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_f7HFLK": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
         },
         "price": {
           "type": "price",
@@ -52,15 +65,6 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
-          }
-        },
-        "delivery_info_HrhB9H": {
-          "type": "delivery_info",
-          "settings": {
-            "icon": "shopify://shop_images/express-delivery.png",
-            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
-            "subtitle": "",
-            "delivery_time": "Delivery time: 4–7 days"
           }
         },
         "collapsible_tab_UFJziw": {
@@ -104,15 +108,15 @@
         }
       },
       "block_order": [
-        "vendor",
-        "judge_me_reviews_preview_badge_p7PGc4",
         "title",
         "judge_me_reviews_preview_badge_XajXT4",
+        "text_EdwNgy",
+        "delivery_info_f7HFLK",
+        "delivery_info_HrhB9H",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "delivery_info_HrhB9H",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
         "collapsible_tab_CDVNV9",

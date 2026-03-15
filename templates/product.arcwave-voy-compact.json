@@ -12,25 +12,44 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
           "settings": {
-            "text": "Maximum pleasure with minimal effort",
-            "text_style": "body"
+            "custom_liquid": "<div class=\"custom-text\">Maximum pleasure with minimal effort</div>"
           }
-        },
-        "judge_me_reviews_preview_badge_crrceR": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
         },
         "title": {
           "type": "title",
           "settings": {}
         },
-        "judge_me_reviews_preview_badge_XajXT4": {
+        "judge_me_reviews_preview_badge_crrceR": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
           "settings": {}
+        },
+        "text_VLfxR9": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for a compact stroker that delivers strong sensations without taking up much space? Arcwave Voy is designed for discreet, customized pleasure, with a handy size that fits easily in your hand or travel bag. Its Tightness Adjustment System lets you find the fit that feels best for you, while 8 different settings give you plenty of ways to explore and enjoy the experience. Made from smooth, hygienic CleanTech silicone and finished with two ventilated lids for easier care, Voy is a practical and pleasure-focused companion for solo moments.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_hpEeX9": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
         },
         "price": {
           "type": "price",
@@ -52,15 +71,6 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
-          }
-        },
-        "delivery_info_HrhB9H": {
-          "type": "delivery_info",
-          "settings": {
-            "icon": "shopify://shop_images/express-delivery.png",
-            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
-            "subtitle": "",
-            "delivery_time": "Delivery time: 4–7 days"
           }
         },
         "collapsible_tab_UFJziw": {
@@ -90,13 +100,6 @@
             "page": ""
           }
         },
-        "custom_liquid_FWTDLt": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
-          }
-        },
         "description": {
           "type": "description",
           "disabled": true,
@@ -104,19 +107,19 @@
         }
       },
       "block_order": [
-        "vendor",
-        "judge_me_reviews_preview_badge_crrceR",
+        "custom_liquid_FWTDLt",
         "title",
-        "judge_me_reviews_preview_badge_XajXT4",
+        "judge_me_reviews_preview_badge_crrceR",
+        "text_VLfxR9",
+        "delivery_info_hpEeX9",
+        "delivery_info_HrhB9H",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "delivery_info_HrhB9H",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
         "collapsible_tab_CDVNV9",
-        "custom_liquid_FWTDLt",
         "description"
       ],
       "settings": {

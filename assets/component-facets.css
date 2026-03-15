@@ -178,6 +178,18 @@
   flex-wrap: wrap;
 }
 
+.facets-container .facets__heading,
+.facets-container .facets__summary,
+.facets-container .facets__summary-label,
+.facets-container .facet-filters__label,
+.facets-container .facet-filters__label label,
+.facets-container .facet-filters__sort,
+.facets-container .select__select,
+.facets-container .product-count__text {
+  font-size: 2rem !important;
+  line-height: 1.4;
+}
+
 .facets__heading {
   display: block;
   color: rgba(var(--color-foreground), 0.85);

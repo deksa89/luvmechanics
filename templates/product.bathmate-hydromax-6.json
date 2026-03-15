@@ -12,11 +12,11 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "custom_liquid_VVh9wE": {
+          "type": "custom_liquid",
+          "disabled": true,
           "settings": {
-            "text": "Maximum pleasure with minimal effort",
-            "text_style": "body"
+            "custom_liquid": "<div class=\"custom-text\">Maximum pleasure with minimal effort</div>"
           }
         },
         "title": {
@@ -27,10 +27,30 @@
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
-        "judge_me_reviews_preview_badge_XajXT4": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {}
+        "text_wj6TEW": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for a powerful bathmate with extra comfort and better control? Hydromax6 is designed for users with an erect size of around 4.6\" to 6\" and is made to be used in the bath or shower as part of a simple daily routine. Its upgraded bellows pump system delivers even stronger performance, while the soft comfort insert helps reduce pressure around the base for a more comfortable fit. With a one-handed fill system, improved grip texture, and a clear metric and imperial scale, Hydromax6 makes the experience easier, more controlled, and more comfortable from start to finish.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_gXwA48": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
         },
         "price": {
           "type": "price",
@@ -52,15 +72,6 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
-          }
-        },
-        "delivery_info_HrhB9H": {
-          "type": "delivery_info",
-          "settings": {
-            "icon": "shopify://shop_images/express-delivery.png",
-            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
-            "subtitle": "",
-            "delivery_time": "Delivery time: 4–7 days"
           }
         },
         "collapsible_tab_UFJziw": {
@@ -104,15 +115,16 @@
         }
       },
       "block_order": [
-        "vendor",
+        "custom_liquid_VVh9wE",
         "title",
         "judge_me_reviews_preview_badge_UX3HTH",
-        "judge_me_reviews_preview_badge_XajXT4",
+        "text_wj6TEW",
+        "delivery_info_gXwA48",
+        "delivery_info_HrhB9H",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "delivery_info_HrhB9H",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
         "collapsible_tab_CDVNV9",

@@ -130,8 +130,7 @@
   }
 
   .multicolumn-list:not(.slider) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 0;
   }
 }
 

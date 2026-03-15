@@ -55,9 +55,9 @@
 
   .ai-about-shop-heading-{{ ai_gen_id }} {
     font-size: {{ block.settings.heading_size }}px;
-    font-weight: {{ block.settings.heading_weight }};
+    font-weight: 200;
     color: {{ block.settings.heading_color }};
-    margin: 0 0 {{ block.settings.heading_margin_bottom }}px;
+    margin: 0 0 30px;
     text-align: {{ block.settings.text_alignment }};
     line-height: {{ block.settings.heading_line_height }};
   }
@@ -82,6 +82,8 @@
   .ai-about-shop-button-wrapper-{{ ai_gen_id }} {
     margin-top: {{ block.settings.button_margin_top }}px;
     text-align: {{ block.settings.text_alignment }};
+    min-width: calc(12rem + var(--buttons-border-width) * 2);
+    min-height: calc(4.5rem + var(--buttons-border-width) * 2);
   }
 
   .ai-about-shop-button-{{ ai_gen_id }} {

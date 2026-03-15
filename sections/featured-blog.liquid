@@ -9,6 +9,17 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .blog__divider {
+    height: 1px;
+    background: #d9d9d9;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .blog__divider:empty {
+    display: block !important;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -49,6 +60,8 @@
             {{ 'sections.featured_blog.view_all' | t }}
           </a>
         {%- endif -%}
+
+        <div class="blog__divider"></div>
       </div>
     {%- endunless -%}
 

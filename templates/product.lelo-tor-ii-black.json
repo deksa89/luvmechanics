@@ -12,25 +12,38 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "Maximum pleasure with minimal effort",
-            "text_style": "body"
-          }
-        },
-        "judge_me_reviews_preview_badge_znWKE9": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "title": {
           "type": "title",
           "settings": {}
         },
         "judge_me_reviews_preview_badge_XajXT4": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
           "settings": {}
+        },
+        "text_wMtrPi": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for a powerful couples ring with a more premium feel? TOR 2 is designed to enhance intimacy for both partners, with strong vibrations, a soft flexible fit, and a smooth silicone design that feels comfortable during use. Its waterproof, rechargeable build and easy controls make it simple to enjoy whether you want something playful, discreet, or more intense. Elegant, durable, and made for shared pleasure, TOR 2 is a great choice for couples who want stronger stimulation in a refined design.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_L9Edda": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
         },
         "price": {
           "type": "price",
@@ -52,15 +65,6 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
-          }
-        },
-        "delivery_info_HrhB9H": {
-          "type": "delivery_info",
-          "settings": {
-            "icon": "shopify://shop_images/express-delivery.png",
-            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
-            "subtitle": "",
-            "delivery_time": "Delivery time: 4–7 days"
           }
         },
         "collapsible_tab_UFJziw": {
@@ -104,15 +108,15 @@
         }
       },
       "block_order": [
-        "vendor",
-        "judge_me_reviews_preview_badge_znWKE9",
         "title",
         "judge_me_reviews_preview_badge_XajXT4",
+        "text_wMtrPi",
+        "delivery_info_L9Edda",
+        "delivery_info_HrhB9H",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "delivery_info_HrhB9H",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
         "collapsible_tab_CDVNV9",

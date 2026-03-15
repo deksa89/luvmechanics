@@ -12,20 +12,44 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "custom_liquid_9cWEaR": {
+          "type": "custom_liquid",
           "settings": {
-            "text": "❤️ Customer Favorite ❤️",
-            "text_style": "body"
+            "custom_liquid": "<div class=\"custom-text\"> Customer Favorite ❤️</div>"
           }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
         },
         "judge_me_reviews_preview_badge_tXkLyH": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
-        "title": {
-          "type": "title",
-          "settings": {}
+        "text_7HNXAA": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for a luxury vibrator with elegant design and powerful performance? LELO Elise combines a smooth curved shape with dual motors in the tip and base, creating deep, flexible stimulation with multiple ways to play. Its silky medical-grade silicone feels soft on the skin, while the ergonomic body makes it comfortable to hold and easy to control. Quiet, rechargeable, and beautifully finished, Elise is a refined choice for anyone who wants versatile pleasure with a more premium feel.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_hHyGaQ": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
         },
         "price": {
           "type": "price",
@@ -47,15 +71,6 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
-          }
-        },
-        "delivery_info_HrhB9H": {
-          "type": "delivery_info",
-          "settings": {
-            "icon": "shopify://shop_images/express-delivery.png",
-            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
-            "subtitle": "",
-            "delivery_time": "Delivery time: 4–7 days"
           }
         },
         "collapsible_tab_UFJziw": {
@@ -87,14 +102,16 @@
         }
       },
       "block_order": [
-        "vendor",
-        "judge_me_reviews_preview_badge_tXkLyH",
+        "custom_liquid_9cWEaR",
         "title",
+        "judge_me_reviews_preview_badge_tXkLyH",
+        "text_7HNXAA",
+        "delivery_info_hHyGaQ",
+        "delivery_info_HrhB9H",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "delivery_info_HrhB9H",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
         "collapsible_tab_CDVNV9"

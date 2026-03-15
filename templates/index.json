@@ -12,61 +12,46 @@
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
-        "carousel_image_desktop_krHr4c": {
+        "carousel_image_desktop_b7KNxR": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/4.png",
+            "image": "shopify://shop_images/o_1.png",
             "link": "shopify://pages/about-us-1"
           }
         },
-        "carousel_image_desktop_ULAN4j": {
+        "carousel_image_desktop_YEDEXi": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/Pokloni_joj_ono_sto_stvarno_zeli_1366768.png",
-            "link": "shopify://products/lelo-soraya-wave-vibrator-rabbit-black"
+            "image": "shopify://shop_images/5_09f9cefa-224e-45cf-95ae-3f60359bbdbf.png",
+            "link": "shopify://collections/bestsellers"
           }
         },
-        "carousel_image_desktop_7RGaT3": {
+        "carousel_image_desktop_MLJGQP": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/2.png",
-            "link": "shopify://products/lelo-f1s-v3-male-masturbator-red"
+            "image": "shopify://shop_images/7_854698e9-304e-4aa8-b8e1-a4008f2e74a9.png",
+            "link": "shopify://collections/new-arrivals"
           }
         },
-        "carousel_image_mobile_XEJTNY": {
+        "carousel_image_mobile_QXcPhe": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/2_e6c87b9b-2f44-476f-bd88-48005b4c33b2.png",
+            "image": "shopify://shop_images/3_bde9962f-7dad-4457-8553-6606288c15e6.png",
             "link": "shopify://pages/about-us-1"
           }
         },
-        "carousel_image_mobile_UcxrgD": {
+        "carousel_image_mobile_rKNRUd": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/Lumios_Typewriter_Used.png",
-            "link": "shopify://products/lelo-tor-3-black-vibrator-ring"
+            "image": "shopify://shop_images/10.png",
+            "link": "shopify://collections/bestsellers"
           }
         },
-        "carousel_image_mobile_t8QYmD": {
+        "carousel_image_mobile_mFbE3C": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/1_6814e23c-8f21-41da-86e0-413ce38b59a5.png",
-            "link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator"
-          }
-        },
-        "carousel_image_mobile_BQ7wUJ": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/3_5ec3dce1-f433-40b7-804e-9425587eae61.png",
-            "link": "shopify://products/lelo-f1s-v3-male-masturbator-red"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "heading": "Indulge in the ultimate pleasure...",
-            "heading_size": "h1"
+            "image": "shopify://shop_images/5_0b14fd15-e5f4-4347-9b4b-5569d0e3dafb.png",
+            "link": "shopify://collections/new-arrivals"
           }
         },
         "button": {
@@ -79,18 +64,15 @@
         }
       },
       "block_order": [
-        "carousel_image_desktop_krHr4c",
-        "carousel_image_desktop_ULAN4j",
-        "carousel_image_desktop_7RGaT3",
-        "carousel_image_mobile_XEJTNY",
-        "carousel_image_mobile_UcxrgD",
-        "carousel_image_mobile_t8QYmD",
-        "carousel_image_mobile_BQ7wUJ",
-        "heading",
+        "carousel_image_desktop_b7KNxR",
+        "carousel_image_desktop_YEDEXi",
+        "carousel_image_desktop_MLJGQP",
+        "carousel_image_mobile_QXcPhe",
+        "carousel_image_mobile_rKNRUd",
+        "carousel_image_mobile_mFbE3C",
         "button"
       ],
       "settings": {
-        "carousel_images": "shopify://shop_images/Pokloni_joj_ono_sto_stvarno_zeli_1.png",
         "height_desktop": "medium",
         "height_mobile": "large",
         "desktop_image_width": "medium",
@@ -340,19 +322,19 @@
             "heading_spacing": 30,
             "subheading_spacing": 0,
             "product_width": 220,
-            "mobile_product_width": 150,
-            "product_gap": 20,
+            "mobile_product_width": 180,
+            "product_gap": 6,
             "card_padding": 28,
             "card_border_radius": 2,
-            "card_border_width": 0,
+            "card_border_width": 2,
             "product_text_alignment": "left",
-            "show_vendor": false,
+            "show_vendor": true,
             "show_price": true,
             "show_sale_badge": true,
             "sale_badge_text": "Sale",
             "show_button": false,
             "button_text": "View product",
-            "button_border_radius": 4,
+            "button_border_radius": 0,
             "show_navigation": true,
             "show_nav_mobile": "none",
             "nav_button_size": 40,
@@ -364,25 +346,25 @@
             "hover_shadow_offset": 0,
             "hover_shadow_blur": 0,
             "hover_shadow_opacity": 0.3,
-            "background_color": "#fdfbf7",
+            "background_color": "#ffffff",
             "heading_color": "#2e2a39",
             "subheading_color": "#2e2a39",
             "card_background": "#ffffff",
-            "card_border_color": "#e0e0e0",
+            "card_border_color": "#ececec",
             "vendor_color": "#999999",
             "product_title_color": "#2e2a39",
             "price_color": "#2e2a39",
             "button_background": "#9b046f",
             "button_text_color": "#fdfbf7",
             "button_hover_background": "#5e3653",
-            "badge_background": "#9b046f",
+            "badge_background": "#ececec",
             "badge_text_color": "#ffffff",
             "badge_border_radius": 20,
             "nav_button_background": "#ffffff",
             "nav_button_color": "#2e2a39",
-            "nav_button_hover_background": "#9b046f",
+            "nav_button_hover_background": "#f98585",
             "dot_color": "#cccccc",
-            "dot_active_color": "#9b046f",
+            "dot_active_color": "#f98585",
             "heading_size": 34,
             "subheading_size": 16,
             "vendor_size": 11,
@@ -515,7 +497,7 @@
             "columns_desktop": 4,
             "columns_tablet": 3,
             "columns_mobile": "2",
-            "grid_gap": 20,
+            "grid_gap": 6,
             "heading_alignment": "center",
             "heading_size": 34,
             "heading_weight": 700,
@@ -561,7 +543,7 @@
             "section_padding_top": 36,
             "section_padding_bottom": 40,
             "section_padding_horizontal": 28,
-            "background_color": "#fdfbf7"
+            "background_color": "#ffffff"
           },
           "blocks": {}
         }
@@ -585,14 +567,14 @@
             "heading_alignment": "center",
             "heading_spacing": 24,
             "desktop_width_percent": 100,
-            "background_color": "#fdfbf7",
+            "background_color": "#ffffff",
             "container_padding": 20,
             "border_radius": 12,
             "card_background_color": "#ffffff",
             "card_padding": 40,
             "card_border_radius": 0,
-            "card_border_thickness": 1,
-            "card_border_color": "#e7dbc9",
+            "card_border_thickness": 0,
+            "card_border_color": "#fdfbf7",
             "text_size": 18,
             "text_color": "#2e2a39",
             "text_alignment": "center",
@@ -659,6 +641,63 @@
       "name": "Did you know?",
       "settings": {}
     },
+    "1772909820c436293e": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_322d227_MUYNaM": {
+          "type": "ai_gen_block_322d227",
+          "settings": {
+            "heading": "Brands",
+            "desktop_width_percent": 100,
+            "items_per_view": 6,
+            "items_per_view_mobile": 2,
+            "item_spacing": 10,
+            "section_padding": 35,
+            "item_height": 110,
+            "item_padding": 10,
+            "item_background_color": "#ffffff",
+            "item_border_width": 2,
+            "item_border_color": "#e0e0e0",
+            "item_border_radius": 0,
+            "logo_max_height": 150,
+            "logo_grayscale": 100,
+            "logo_opacity": 1,
+            "arrow_size": 45,
+            "arrow_background_color": "#ffffff",
+            "arrow_hover_background_color": "#f98585",
+            "arrow_color": "#000000",
+            "arrow_hover_color": "#000000",
+            "arrow_border_radius": 40,
+            "background_color": "#ffffff",
+            "brand_1": "shopify://shop_images/lelo.png",
+            "brand_1_url": "shopify://collections/lelo",
+            "brand_2": "shopify://shop_images/wevibe.png",
+            "brand_2_url": "shopify://collections/we-vibe",
+            "brand_3": "shopify://shop_images/womanizer.png",
+            "brand_3_url": "shopify://collections/womanizer",
+            "brand_4": "shopify://shop_images/satisfyer.jpg",
+            "brand_4_url": "shopify://collections/satisfyer",
+            "brand_5": "shopify://shop_images/bathmate.png",
+            "brand_5_url": "shopify://collections/bathmate",
+            "brand_6": "shopify://shop_images/pretty-love-kaufbei-logo.jpg",
+            "brand_6_url": "shopify://collections/pretty-love",
+            "brand_7": "shopify://shop_images/Untitled_design_25.png",
+            "brand_7_url": "shopify://collections/arcwave",
+            "brand_8": "shopify://shop_images/kiiro.webp",
+            "brand_8_url": "shopify://collections/kiiro",
+            "brand_9": "shopify://shop_images/FF_Logo_RGB.webp",
+            "brand_9_url": "shopify://collections/fun-factory",
+            "brand_10": "shopify://shop_images/yXeAuHtYxxSo7jg9f5eWPQ.jpg",
+            "brand_10_url": "shopify://collections/durex"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_322d227_MUYNaM"
+      ],
+      "settings": {}
+    },
     "collection_list_UKmyE4": {
       "type": "collection-list",
       "blocks": {
@@ -718,6 +757,7 @@
         "featured_collection_W8yrq8",
         "featured_collection_3YGFcY"
       ],
+      "disabled": true,
       "name": "Brand block",
       "settings": {
         "title": "Our Top Brands",
@@ -749,6 +789,24 @@
       ],
       "settings": {
         "include_margins": true
+      }
+    },
+    "featured_blog_fidJpL": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "news",
+        "post_limit": 4,
+        "heading": "The Intimacy Column",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "1769375150f62370c4": {
@@ -794,15 +852,15 @@
             "button_padding_horizontal": 24,
             "button_font_size": 14,
             "button_font_weight": "500",
-            "button_border_radius": 4,
+            "button_border_radius": 0,
             "button_border_width": 1,
-            "button_bg_color": "#9b046f",
+            "button_bg_color": "#f8275c",
             "button_text_color": "#fdfbf7",
-            "button_border_color": "#9b046f",
+            "button_border_color": "#f8275c",
             "button_bg_hover_color": "#5e3653",
             "button_text_hover_color": "#fdfbf7",
             "button_border_hover_color": "#5e3653",
-            "background_color": "#fdfbf7",
+            "background_color": "#ffffff",
             "border_radius": 0
           },
           "blocks": {}
@@ -877,24 +935,6 @@
       ],
       "name": "About Us",
       "settings": {}
-    },
-    "featured_blog_fidJpL": {
-      "type": "featured-blog",
-      "name": "t:sections.featured-blog.presets.name",
-      "settings": {
-        "blog": "news",
-        "post_limit": 4,
-        "heading": "The Intimacy Column",
-        "heading_size": "h1",
-        "columns_desktop": 4,
-        "show_view_all": true,
-        "show_image": true,
-        "show_date": false,
-        "show_author": false,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
@@ -905,9 +945,10 @@
     "17707594797709b57d",
     "177092359671149746",
     "1771180918dda3beb6",
+    "1772909820c436293e",
     "collection_list_UKmyE4",
     "1757424012f277d6cb",
-    "1769375150f62370c4",
-    "featured_blog_fidJpL"
+    "featured_blog_fidJpL",
+    "1769375150f62370c4"
   ]
 }

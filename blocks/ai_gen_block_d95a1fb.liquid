@@ -19,14 +19,20 @@
     padding: 0 2rem;
   }
 
+    @media screen and (max-width: 425px) {
+    .ai-collection-categories-container-{{ ai_gen_id }} {
+      padding: 0;
+    }
+  }
+
   .ai-collection-categories-header-{{ ai_gen_id }} {
     text-align: {{ block.settings.heading_alignment }};
-    margin-bottom: {{ block.settings.heading_spacing }}px;
+    margin-bottom: 30px;
   }
 
   .ai-collection-categories-heading-{{ ai_gen_id }} {
     font-size: {{ block.settings.heading_size }}px;
-    font-weight: {{ block.settings.heading_weight }};
+    font-weight: 200;
     color: {{ block.settings.heading_color }};
     margin: 0;
     line-height: 1.2;
@@ -168,6 +174,17 @@
     font-size: 16px;
   }
 
+  .ai-product-carousel-divider-{{ ai_gen_id }} {
+    height: 1px;
+    background: #d9d9d9;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .ai-product-carousel-divider-{{ ai_gen_id }}:empty {
+    display: block !important;
+  }
+
   @media screen and (max-width: 989px) {
     .ai-collection-categories-grid-{{ ai_gen_id }} {
       grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
@@ -203,6 +220,8 @@
         {% if block.settings.subheading != blank %}
           <div class="ai-collection-categories-subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</div>
         {% endif %}
+
+        <div class="ai-product-carousel-divider-{{ ai_gen_id }}"></div>
       </div>
     {% endif %}
 
@@ -353,7 +372,7 @@
       "label": "Grid gap",
       "min": 0,
       "max": 60,
-      "step": 4,
+      "step": 1,
       "unit": "px",
       "default": 20
     },

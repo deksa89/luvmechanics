@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "text_iFWkF8": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for a fully interactive stroker that moves with your content in real time? Keon WiFi with FeelStroker combines automatic stroking technology with a soft textured sleeve to create a more immersive and hands-free experience. With Wi-Fi and Bluetooth connectivity, it can sync with videos, cam sessions, and partner play, giving you smoother movement and more responsive stimulation. Designed for comfort, control, and deeper realism, this set is a strong choice for anyone who wants a more connected and advanced solo experience.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_qXWzCi": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Features & experience",
+            "icon": "none",
+            "content": "<p>Keon WiFi with FeelStroker is designed for fully synchronized interactive stimulation. Keon WiFi delivers automatic movements in real time, while the FeelStroker adds a soft tunnel with large stimulating nubs to intensify sensation.</p><p>Keon WiFi can sync with virtual reality, adult videos, webcam interactions, and connected partners. It works with 2D content on over 200 adult sites on FeelMe AI, can connect directly to interactive webcams, and can link with a partner through the FeelConnect app.</p><p>The device is Wi-Fi and Bluetooth enabled for more reliable synchronization and smoother performance in interactive videos, games, and live content. It also features an ergonomic shape, intuitive grip control, customizable settings and plugins, and controllable stroke length with up to 230 strokes per minute.</p><p>The FeelStroker is described as a realistic masturbator with a smooth, body-safe tunnel, large stimulating nubs, and a detailed entry.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<h3>Features</h3><ul><li>Controllable stroke<br/>length</li><li>Up to 230 strokes<br/>per minute</li><li>Compatible with<br/>various Keon accessories</li><li>Compatible with<br/>over 30 types of masturbator strokers</li><li>Connect with your<br/>partner using FeelConnect</li><li>Connect to adult<br/>content with AI FeelMe</li><li>Ergonomic shape</li><li>Intuitive grip<br/>control</li><li>Customizable<br/>settings and plugins</li><li>Connection to<br/>partner devices</li><li>Wi-Fi enabled</li><li>Bluetooth enabled</li></ul><h3>Keon</h3><ul><li>Materials: ABS, PC,<br/>silicone</li><li>Finish: Matte and<br/>glossy</li><li>Weight: 1.16 kg</li><li>Height: 230 mm</li><li>Width: 130 mm</li><li>Length: 146 mm</li><li>Battery:<br/>Lithium-ion 700 mAh</li><li>Water resistant: No</li></ul><h3>FeelStroker</h3><ul><li>Materials: ABS, PC,<br/>TPE</li><li>Weight: 585 g</li><li>Height: 235 mm</li><li>Width: 88 mm</li><li>Length: 88 mm</li><li>Water resistant:<br/>Yes</li><li><strong>Box contents</strong></li><li>1 x Keon by Kiiroo</li><li>1 x Feel Stroker<br/>generic pale color</li><li>1 x USB charging<br/>cable</li><li>1 x Code card</li></ul><p> </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Why you'll love it",
+            "icon": "none",
+            "content": "<p>You’ll love it if you want a more immersive interactive experience that syncs with videos, webcams, games, and partner play. The combination of automatic stroked motion and the FeelStroker’s textured tunnel is designed to create a more intense and responsive experience.</p><p>Its Wi-Fi and Bluetooth connectivity, high stroke speed, and compatibility with accessories, strokers, and partner features make it a strong option for connected solo use or long-distance interaction.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "text_iFWkF8",
+        "delivery_info_qXWzCi",
+        "delivery_info_HrhB9H",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

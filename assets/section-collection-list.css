@@ -5,6 +5,14 @@
 
 .collection-list-title {
   margin: 0;
+  font-size: 34px;
+  font-weight: 200;
+}
+
+@media screen and (max-width: 425px) {
+  .collection-list-title {
+    font-size: calc(34px * 0.8);
+  }
 }
 
 @media screen and (max-width: 749px) {
@@ -21,6 +29,12 @@
   .section-collection-list .collection-list:not(.slider) {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+    .section-collection-list .collection-list:not(.slider) {
+    padding: 0;
   }
 }
 

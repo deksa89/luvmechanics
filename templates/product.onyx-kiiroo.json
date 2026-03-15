@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "text_3J7cFc": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for an interactive male masturbator with a more connected and realistic feel? KIIROO Onyx+ combines a quiet rotary motor, a textured internal sleeve, and responsive stroking movement to create immersive stimulation you can enjoy solo or with a partner. It can sync with compatible devices and interactive content in real time, making long-distance play and app-connected experiences feel more engaging and personal. Compact, discreet, and designed for stronger sensations, Onyx+ is a great choice for anyone who wants modern pleasure with a high-tech edge.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_rTdXw3": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Features & experience",
+            "icon": "none",
+            "content": "<p>KIIROO Onyx+ brings a new level of interactive pleasure with real-time intimate touch. This lightweight male masturbator is quiet, discreet, and easy to take with you when traveling.</p><p>The third-generation Onyx+ features a redesigned rotary motor for a different and more refined sensation. It can reach up to 140 beats per minute while staying quieter than the previous two versions, making the experience more exciting and immersive.</p><p>Inside the device, 10 moving rings work together to simulate vaginal or anal intercourse with real-time up-and-down stroking motion.</p><p>Onyx+ can connect with compatible KIIROO and FeelTechnology devices, allowing you to send and receive touch data in real time. Compatible devices include KIIROO Pearl (1 or 2), KIIROO Onyx (1, 2, or +), OhMiBod Fuse, OhMiBod Esca (1 or 2), and other FeelTechnology-compatible devices.</p><p>For solo use, Onyx+ can also sync with interactive erotic content, including supported videos, virtual reality, 3D games, webcams, and content from FeelMe.com and other partner platforms.</p>{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<ul><li>Materials: ABS, silicone</li><li>Sleeve: SuperSkin sleeve</li><li>Finish: Smooth, shiny touch</li><li>Size: 8.9 x 7.9 x 26.3 cm</li><li>Opening hole size: 5 x 4.5 cm</li><li>Hole height: 16.5 cm</li><li>Weight: 1.3 kg with box</li><li>Battery: 1000 mAh lithium-ion polymer</li><li>Charging time: 4 hours</li><li>Use time: Up to 1 hour</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Why you'll love it",
+            "icon": "none",
+            "content": "<ul><li>Quiet, discreet, and travel-friendly design</li><li>New rotary motor<br/>for a more exciting sensation</li><li>Up to 140 beats per<br/>minute for intense stimulation</li><li>10 moving rings<br/>that create realistic stroking action</li><li>Real-time<br/>long-distance connection with compatible devices</li><li>Works with<br/>interactive videos, VR, games, and webcams</li><li>Compatible with<br/>FeelMe.com and other partner content</li></ul><h3>What’s in the box</h3><ul><li>KIIROO Onyx+</li><li>USB charging cable</li><li>Authenticity and<br/>warranty card</li><li>Quick setup manual</li><li>RealFeel sleeve</li></ul><p> </p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "text_3J7cFc",
+        "delivery_info_rTdXw3",
+        "delivery_info_HrhB9H",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

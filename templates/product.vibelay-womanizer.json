@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "text_6prQFX": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for deep, satisfying vibrations without too much intensity? This Womanizer vibrator uses UltraWave Vibration technology to deliver rich, low-frequency sensations that feel smooth, powerful, and more immersive. With multiple intensity levels, preset autopilot modes, and an ergonomic shape for both broad and more targeted stimulation, it adapts easily to your mood. Quiet, waterproof, and made from silky body-safe silicone, it is a beautiful choice for anyone who wants refined pleasure with a softer, more luxurious feel.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_qqqce8": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Features & experience",
+            "icon": "none",
+            "content": "<p>This silent vibrator by Womanizer uses UltraWave Vibration technology to deliver a new kind of sensation. It combines deep, low-frequency rumbles with 10 powerful harmonic resonances for a smooth, richer experience designed to intensify pleasure without overstimulation.</p><p>Its ergonomic shape with pleasure edges allows for a wider range of sensations, from broader stimulation to more targeted vibrations. The linear motor is designed to create gentle yet intense stimulation, while the silent operation helps keep the experience free from distractions.</p><p>It also features 3 autopilot modes inspired by musical rhythms, offering preset vibration sequences for more variety. With 10 intensity levels, you can easily adjust the strength to match your mood and preference.</p><p>The silky-soft body-safe silicone feels smooth on the skin, and the IPX7 waterproof design makes it suitable for use in the bath or shower. Magnetic charging pins make recharging quick and convenient.</p>{{ block.settings.page.content }}",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<ul><li>Silent vibrator</li><li>UltraWave Vibration<br/>technology</li><li>Deep, low-frequency<br/>vibrations</li><li>10 harmonic<br/>resonances</li><li>Linear motor</li><li>Pleasure edges</li><li>3 autopilot modes</li><li>10 intensity levels</li><li>IPX7 waterproof</li><li>Body-safe silicone</li><li>USB charging port</li><li>Magnetic charging<br/>pins</li></ul><p><strong>Technical details</strong></p><ul><li>Colors: Black, dark<br/>purple, sage</li><li>Run time: 240<br/>minutes</li><li>Charging time: 120<br/>minutes</li><li><strong>Materials:</strong><br/>Body-safe silicone</li><li>Weight: 480 g</li><li>Dimensions: 17.1 x<br/>5.4 x 5.7</li><li>Packaging<br/>dimensions: 19.3 x 11.2 x 6.8</li></ul><p><strong>Box includes</strong></p><ul><li>Womanizer Next</li><li>Cotton storage<br/>pouch</li><li>Additional<br/>stimulation head</li><li>Quick start guide</li><li>Compliance and<br/>safety information</li><li>#Memasturbo sticker</li><li>USB cable with<br/>magnetic charging pins</li><li>AC adapter not<br/>included</li></ul><p> </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Why you'll love it",
+            "icon": "none",
+            "content": "<p>You’ll love it if you want deep, low-frequency vibration with a smoother and more layered feel. The combination of UltraWave Vibration, 10 intensity levels, and 3 autopilot modes gives you different ways to explore sensation without overwhelming intensity.</p><p>Its silent operation, ergonomic shape, waterproof design, and soft body-safe silicone also make it a comfortable and versatile option for more relaxed, distraction-free use.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "text_6prQFX",
+        "delivery_info_qqqce8",
+        "delivery_info_HrhB9H",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "related-products",
+    "17549876309243b074"
+  ]
+}

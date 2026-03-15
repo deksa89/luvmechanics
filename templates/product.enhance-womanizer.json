@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "text_qVWAYN": {
+          "type": "text",
+          "settings": {
+            "text": "Looking for stronger clitoral stimulation with more variety? Womanizer Enhance combines Pleasure Air technology with deep, rumbly vibrations, giving you the option to enjoy both sensations together or separately. With separate controls, multiple intensity levels, and different vibration patterns, it’s easy to tailor the experience to exactly what feels best for you. Made from soft body-safe silicone and fully waterproof, Enhance is a stylish and versatile choice for anyone who wants more depth, more control, and more exciting pleasure.",
+            "text_style": "body"
+          }
+        },
+        "delivery_info_UAngnB": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
+            "title": "Discreet delivery",
+            "subtitle": "",
+            "delivery_time": ""
+          }
+        },
+        "delivery_info_HrhB9H": {
+          "type": "delivery_info",
+          "settings": {
+            "icon": "shopify://shop_images/express-delivery.png",
+            "title": "Free shipping in Croatia for orders over €80 · In the EU for orders over €100",
+            "subtitle": "",
+            "delivery_time": "Delivery time: 4–7 days"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "collapsible_tab_UFJziw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Features & experience",
+            "icon": "none",
+            "content": "<p>This 2-in-1 clitoral stimulator combines Womanizer’s Pleasure Air technology with deep, rumbly We-Vibe vibrations for enhanced clitoral stimulation. The two stimulation types can be used together or separately, giving you more variety and control over your experience.</p><p>Independent motors let you control Pleasure Air and vibrations separately, creating more than 1,000 ways to play. The wide stimulation head is designed to target a broader area and create contact with more erogenous zones for a more intense sensation.</p><p>With 10 intensity levels, 10 vibration intensity levels, and 10 vibration patterns, it offers a wide range of settings to suit different moods and preferences. The soft-touch silicone surface feels smooth on the skin, while the waterproof design makes it suitable for use in the bath or shower.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_PQya4J": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product information",
+            "icon": "none",
+            "content": "<ul><li>2-in-1 clitoral stimulator</li><li>Pleasure Air technology</li><li>We-Vibe vibrations</li><li>Separate controls</li><li>Wide stimulation head</li><li>10 intensity levels</li><li>10 vibration intensity levels</li><li>10 vibration patterns</li><li>IPX7 waterproof</li><li>Magnetic charging<br/></li></ul><p><strong>Technical details</strong></p><ul><li>Colors: Vibrant pink, black, lilac</li><li>Runtime: 120 minutes</li><li>Charging time: 120 minutes</li><li>Materials: ABS plastic, body-safe silicone</li><li>Weight: 148 g</li><li>Dimensions: 158 x 50 x 52 mm</li><li>Packaging dimensions: 184.5 x 107.75 x 67.5 mm<br/></li></ul><p><strong>Box includes</strong></p><ul><li>Womanizer Enhance</li><li>Cotton storage pouch</li><li>Quick start guide</li><li>Compliance and safety information</li><li>Memasturbo sticker</li><li>USB cable with magnetic charging pins</li><li>AC adapter not included</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CDVNV9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Why you'll love it",
+            "icon": "none",
+            "content": "<p>You’ll love it for the combination of Pleasure Air stimulation and deep vibrations, designed to offer more ways to explore clitoral pleasure. The separate controls make it easy to switch between sensations or combine them, while the wide stimulation head targets a broader area for a different feel.</p><p>Its soft-touch body-safe silicone feels silky on the skin, and the waterproof design adds more freedom to enjoy it wherever you feel most comfortable. Magnetic charging makes recharging simple and convenient.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_FWTDLt": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "text_qVWAYN",
+        "delivery_info_UAngnB",
+        "delivery_info_HrhB9H",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "collapsible_tab_UFJziw",
+        "collapsible_tab_PQya4J",
+        "collapsible_tab_CDVNV9",
+        "custom_liquid_FWTDLt",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": true,
+        "padding_top": 48,
+        "padding_bottom": 52
+      }
+    },
+    "1765483876d335107c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "17549876309243b074": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yK6Fzk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yK6Fzk"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1765483876d335107c",
+    "related-products",
+    "17549876309243b074"
+  ]
+}
