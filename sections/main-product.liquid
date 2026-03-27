@@ -100,6 +100,22 @@
       font-weight: bold;
     }
 
+    @media screen and (min-width: 990px) {
+      .product {
+        align-items: start;
+      }
+
+      .product__media-wrapper,
+      .product__info-wrapper {
+        align-self: start;
+      }
+
+      .product__media-wrapper {
+        position: sticky;
+        top: 20px;
+      }
+    }
+
   {%- endstyle -%}
 
   
@@ -561,7 +577,7 @@
       <div id="accordion-wrapper-{{ section.id }}" class="accordion-wrapper quick-add-hidden">
         {% for block in collapsible_blocks %}
           <div class="product__accordion accordion" {{ block.shopify_attributes }}>
-            <details id="Details-{{ block.id }}-{{ section.id }}">
+            <details id="Details-{{ block.id }}-{{ section.id }}" open>
               <summary class="svg_badge">
                 <div class="summary__title">
                   {% render 'icon-accordion', icon: block.settings.icon %}

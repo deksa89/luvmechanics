@@ -16,7 +16,7 @@
   .ai-product-carousel-container-{{ ai_gen_id }} {
     max-width: {{ block.settings.container_max_width }}px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0;
   }
 
   @media screen and (max-width: 425px) {
@@ -85,9 +85,6 @@
     width: 100%;
     padding-bottom: 100%;
     overflow: hidden;
-    background-color: #f4f4f4;
-
-    background-color: #ffffff;
     padding: 64px;
     box-sizing: border-box;
     margin: 45px 0 0 0;
@@ -219,6 +216,8 @@
     z-index: 2;
     transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    display: none;
   }
 
   .ai-product-carousel-nav-{{ ai_gen_id }}:hover {

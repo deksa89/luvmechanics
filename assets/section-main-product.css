@@ -371,6 +371,34 @@ a.product__text {
   max-width: 50rem;
 }
 
+@media screen and (max-width: 749px) {
+  .qty_and_button-container .product-form__buttons {
+    flex: 1 1 70%;
+  }
+
+  .product-form__buttons {
+    max-width: 28rem;
+  }
+
+  .qty_and_button-container {
+    gap: 1rem;
+  }
+
+  .product-form__submit {
+    margin-bottom: 0;
+    min-height: 5rem;
+    font-size: 2rem;
+    border-radius: 10px;
+  }
+
+  .lm-qty__input {
+    margin-bottom: 0;
+    min-height: 5rem;
+    font-size: 2rem;
+    border-radius: 10px;
+  }
+}
+
 .product--no-media .product__info-container > modal-opener {
   display: block;
   text-align: center;

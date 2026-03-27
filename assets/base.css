@@ -79,14 +79,16 @@
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0;
 }
 
-/* @media screen and (max-width: 425px) {
+
+
+@media screen and (max-width: 425px) {
   .page-width {
-    padding: 0;
+    padding: 1rem;
   }
-} */
+}
 
 /* Only Image-with-text: remove page-width padding + let it go full width */
 /* .section-template--28235575427409__image-with-text-padding .page-width {
@@ -150,7 +152,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
   .page-width-desktop {
     max-width: var(--page-width);
-    padding: 0 2rem;
+    padding: 0;
   }
 }
 

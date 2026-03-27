@@ -15,7 +15,12 @@
 
 @media screen and (max-width: 749px) {
     .blog__title {
-        font-size: calc(34px * 0.8);
+        font-size: 2.5rem;
+    }
+
+    .blog__button {
+      font-size: calc(24px * 0.8);
+      font-weight: 100;
     }
 }
 
@@ -49,7 +54,12 @@
 
 .blog__button {
   margin-top: 3rem;
-  color: white !important;
+  width: 14rem;
+  background-color: #ffffff;
+  color: #3a2a28 !important;
+  font-size: 14px;
+  letter-spacing: 0.1rem;
+  font-weight: 100;
 }
 
 @media screen and (min-width: 750px) {

@@ -1,0 +1,1113 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .bundle-promo-{{ section.id }} {
+    background: {{ section.settings.section_bg }};
+  }
+
+  .bundle-promo__inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding-left: {{ section.settings.side_padding_mobile }}px;
+    padding-right: {{ section.settings.side_padding_mobile }}px;
+  }
+
+  .bundle-promo__heading-wrap-{{ section.id }} {
+    margin-bottom: {{ section.settings.heading_spacing_mobile }}px;
+    text-align: {{ section.settings.heading_alignment_mobile }};
+  }
+
+  .bundle-promo__eyebrow-{{ section.id }} {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: {{ section.settings.eyebrow_color }};
+  }
+
+  .bundle-promo__heading-{{ section.id }} {
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+
+  .bundle-promo__viewport-{{ section.id }} {
+    overflow: hidden;
+    position: relative;
+    touch-action: pan-y;
+  }
+
+  .bundle-promo__track-{{ section.id }} {
+    display: flex;
+    transition: transform 0.45s ease;
+    will-change: transform;
+  }
+
+  .bundle-promo__slide-{{ section.id }} {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .bundle-promo__grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ section.settings.card_gap_mobile }}px;
+  }
+
+  .bundle-promo-card-{{ section.id }} {
+    background: transparent;
+    overflow: hidden;
+  }
+
+  .bundle-promo-card__image-wrap-{{ section.id }} {
+    position: relative;
+    background: {{ section.settings.image_bg }};
+    overflow: hidden;
+  }
+
+  .bundle-promo-card__image-wrap-{{ section.id }}::before {
+    content: '';
+    display: block;
+    padding-bottom: {{ section.settings.image_ratio_mobile }}%;
+  }
+
+  .bundle-promo-card__image-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .bundle-promo-card__content-{{ section.id }} {
+    background: {{ section.settings.content_bg }};
+    color: {{ section.settings.content_text }};
+    padding: {{ section.settings.content_padding_mobile }}px;
+    min-height: {{ section.settings.content_min_height_mobile }}px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .bundle-promo-card__title-{{ section.id }} {
+    margin: 0 0 12px;
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_mobile }}px;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .bundle-promo-card__text-{{ section.id }} {
+    margin: 0 0 18px;
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.text_size_mobile }}px;
+    line-height: 1.55;
+  }
+
+  .bundle-promo-card__price-row-{{ section.id }} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0 0 18px;
+  }
+
+  .bundle-promo-card__price-compare-{{ section.id }} {
+    color: {{ section.settings.compare_price_color }};
+    font-size: {{ section.settings.compare_price_size_mobile }}px;
+    text-decoration: line-through;
+    opacity: 0.8;
+    line-height: 1.2;
+  }
+
+  .bundle-promo-card__price-current-{{ section.id }} {
+    color: {{ section.settings.bundle_price_color }};
+    font-size: {{ section.settings.bundle_price_size_mobile }}px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .bundle-promo-card__button-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 11px 18px;
+    text-decoration: none;
+    border-radius: {{ section.settings.button_radius }}px;
+    background: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text }};
+    border: 1px solid {{ section.settings.button_border }};
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+  }
+
+  .bundle-promo-card__button-{{ section.id }}:hover {
+    background: {{ section.settings.button_bg_hover }};
+    color: {{ section.settings.button_text_hover }};
+    border-color: {{ section.settings.button_border_hover }};
+  }
+
+  .bundle-promo__controls-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .bundle-promo__arrow-{{ section.id }} {
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid {{ section.settings.arrow_border }};
+    background: {{ section.settings.arrow_bg }};
+    color: {{ section.settings.arrow_color }};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+
+    display: none;
+  }
+
+  .bundle-promo__arrow-{{ section.id }}:hover {
+    background: {{ section.settings.arrow_bg_hover }};
+    color: {{ section.settings.arrow_color_hover }};
+    border-color: {{ section.settings.arrow_border_hover }};
+  }
+
+  .bundle-promo__dots-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .bundle-promo__dot-{{ section.id }} {
+    width: 8px;
+    height: 8px;
+    border: none;
+    border-radius: 999px;
+    background: {{ section.settings.dot_color }};
+    opacity: 0.35;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.25s ease;
+  }
+
+  .bundle-promo__dot-{{ section.id }}.is-active {
+    width: 24px;
+    opacity: 1;
+    background: #f98585;
+  }
+
+  .bundle-promo__desktop-{{ section.id }} {
+    display: none;
+  }
+
+  .bundle-promo__mobile-{{ section.id }} {
+    display: block;
+  }
+
+  .bundle-promo-card__placeholder-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f3;
+    color: #777;
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+
+    .bundle-promo__inner-{{ section.id }} {
+      padding-left: {{ section.settings.side_padding_desktop }}px;
+      padding-right: {{ section.settings.side_padding_desktop }}px;
+    }
+
+    .bundle-promo__heading-wrap-{{ section.id }} {
+      margin-bottom: {{ section.settings.heading_spacing_desktop }}px;
+      text-align: {{ section.settings.heading_alignment_desktop }};
+    }
+
+    .bundle-promo__heading-{{ section.id }} {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+    }
+
+    .bundle-promo__mobile-{{ section.id }} {
+      display: none;
+    }
+
+    .bundle-promo__desktop-{{ section.id }} {
+      display: block;
+    }
+
+    .bundle-promo__grid-{{ section.id }} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: {{ section.settings.card_gap_desktop }}px;
+    }
+
+    .bundle-promo-card__image-wrap-{{ section.id }}::before {
+      padding-bottom: {{ section.settings.image_ratio_desktop }}%;
+    }
+
+    .bundle-promo-card__content-{{ section.id }} {
+      padding: {{ section.settings.content_padding_desktop }}px;
+      min-height: {{ section.settings.content_min_height_desktop }}px;
+    }
+
+    .bundle-promo-card__title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_desktop }}px;
+    }
+
+    .bundle-promo-card__text-{{ section.id }} {
+      font-size: {{ section.settings.text_size_desktop }}px;
+    }
+
+    .bundle-promo-card__price-compare-{{ section.id }} {
+      font-size: {{ section.settings.compare_price_size_desktop }}px;
+    }
+
+    .bundle-promo-card__price-current-{{ section.id }} {
+      font-size: {{ section.settings.bundle_price_size_desktop }}px;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .bundle-promo__heading-wrap-{{ section.id }} {
+      padding-left: 1.5rem;
+    }
+
+    .bundle-promo__heading-{{ section.id }} {
+      font-size: 2.5rem;
+    }
+
+    .bundle-promo__eyebrow-{{ section.id }} {
+      font-size: 1rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="bundle-promo-{{ section.id }} section-{{ section.id }}-padding">
+  <div class="bundle-promo__inner-{{ section.id }}">
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+      <div class="bundle-promo__heading-wrap-{{ section.id }}">
+        {% if section.settings.eyebrow != blank %}
+          <p class="bundle-promo__eyebrow-{{ section.id }}">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="bundle-promo__heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {%- capture bundle_cards -%}
+      {% for block in section.blocks limit: 2 %}
+        <article class="bundle-promo-card-{{ section.id }}" {{ block.shopify_attributes }}>
+          <div class="bundle-promo-card__image-wrap-{{ section.id }}">
+            {% if block.settings.image != blank %}
+              <img
+                class="bundle-promo-card__image-{{ section.id }}"
+                src="{{ block.settings.image | image_url: width: 1800 }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                loading="lazy"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+              >
+            {% else %}
+              <div class="bundle-promo-card__placeholder-{{ section.id }}">
+                Add bundle image
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="bundle-promo-card__content-{{ section.id }}">
+            {% if block.settings.title != blank %}
+              <h3 class="bundle-promo-card__title-{{ section.id }}">{{ block.settings.title }}</h3>
+            {% endif %}
+
+            {% if block.settings.text != blank %}
+              <div class="bundle-promo-card__text-{{ section.id }}">{{ block.settings.text }}</div>
+            {% endif %}
+
+            {% if block.settings.regular_price != blank or block.settings.bundle_price != blank %}
+              <div class="bundle-promo-card__price-row-{{ section.id }}">
+                {% if block.settings.regular_price != blank %}
+                  <span class="bundle-promo-card__price-compare-{{ section.id }}">
+                    {{ block.settings.regular_price }}
+                  </span>
+                {% endif %}
+
+                {% if block.settings.bundle_price != blank %}
+                  <span class="bundle-promo-card__price-current-{{ section.id }}">
+                    {{ block.settings.bundle_price }}
+                  </span>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if block.settings.button_label != blank %}
+              <a
+                class="bundle-promo-card__button-{{ section.id }}"
+                {% if block.settings.button_link != blank %}
+                  href="{{ block.settings.button_link }}"
+                {% else %}
+                  role="link" aria-disabled="true"
+                {% endif %}
+              >
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    {%- endcapture -%}
+
+    <div class="bundle-promo__desktop-{{ section.id }}">
+      <div class="bundle-promo__grid-{{ section.id }}">
+        {{ bundle_cards }}
+      </div>
+    </div>
+
+    <div class="bundle-promo__mobile-{{ section.id }}">
+      <div class="bundle-promo__viewport-{{ section.id }}" id="BundlePromoViewport-{{ section.id }}">
+        <div class="bundle-promo__track-{{ section.id }}" id="BundlePromoTrack-{{ section.id }}">
+          {% for block in section.blocks limit: 2 %}
+            <div class="bundle-promo__slide-{{ section.id }}">
+              <article class="bundle-promo-card-{{ section.id }}" {{ block.shopify_attributes }}>
+                <div class="bundle-promo-card__image-wrap-{{ section.id }}">
+                  {% if block.settings.image != blank %}
+                    <img
+                      class="bundle-promo-card__image-{{ section.id }}"
+                      src="{{ block.settings.image | image_url: width: 1200 }}"
+                      alt="{{ block.settings.image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ block.settings.image.width }}"
+                      height="{{ block.settings.image.height }}"
+                    >
+                  {% else %}
+                    <div class="bundle-promo-card__placeholder-{{ section.id }}">
+                      Add bundle image
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="bundle-promo-card__content-{{ section.id }}">
+                  {% if block.settings.title != blank %}
+                    <h3 class="bundle-promo-card__title-{{ section.id }}">{{ block.settings.title }}</h3>
+                  {% endif %}
+
+                  {% if block.settings.text != blank %}
+                    <div class="bundle-promo-card__text-{{ section.id }}">{{ block.settings.text }}</div>
+                  {% endif %}
+
+                  {% if block.settings.regular_price != blank or block.settings.bundle_price != blank %}
+                    <div class="bundle-promo-card__price-row-{{ section.id }}">
+                      {% if block.settings.regular_price != blank %}
+                        <span class="bundle-promo-card__price-compare-{{ section.id }}">
+                          {{ block.settings.regular_price }}
+                        </span>
+                      {% endif %}
+
+                      {% if block.settings.bundle_price != blank %}
+                        <span class="bundle-promo-card__price-current-{{ section.id }}">
+                          {{ block.settings.bundle_price }}
+                        </span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.button_label != blank %}
+                    <a
+                      class="bundle-promo-card__button-{{ section.id }}"
+                      {% if block.settings.button_link != blank %}
+                        href="{{ block.settings.button_link }}"
+                      {% else %}
+                        role="link" aria-disabled="true"
+                      {% endif %}
+                    >
+                      {{ block.settings.button_label }}
+                    </a>
+                  {% endif %}
+                </div>
+              </article>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% assign mobile_slide_count = section.blocks.size %}
+      {% if mobile_slide_count > 1 %}
+        <div class="bundle-promo__controls-{{ section.id }}">
+          <button class="bundle-promo__arrow-{{ section.id }}" id="BundlePromoPrev-{{ section.id }}" aria-label="Previous slide" type="button">
+            ‹
+          </button>
+
+          <div class="bundle-promo__dots-{{ section.id }}" id="BundlePromoDots-{{ section.id }}">
+            {% for block in section.blocks limit: 2 %}
+              <button
+                class="bundle-promo__dot-{{ section.id }}{% if forloop.first %} is-active{% endif %}"
+                type="button"
+                data-index="{{ forloop.index0 }}"
+                aria-label="Go to slide {{ forloop.index }}"
+              ></button>
+            {% endfor %}
+          </div>
+
+          <button class="bundle-promo__arrow-{{ section.id }}" id="BundlePromoNext-{{ section.id }}" aria-label="Next slide" type="button">
+            ›
+          </button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const viewport = document.getElementById('BundlePromoViewport-{{ section.id }}');
+    const track = document.getElementById('BundlePromoTrack-{{ section.id }}');
+    const prevBtn = document.getElementById('BundlePromoPrev-{{ section.id }}');
+    const nextBtn = document.getElementById('BundlePromoNext-{{ section.id }}');
+    const dotsWrap = document.getElementById('BundlePromoDots-{{ section.id }}');
+
+    if (!viewport || !track) return;
+
+    const slides = Array.from(track.children);
+    const totalSlides = slides.length;
+
+    if (totalSlides <= 1) return;
+
+    let currentIndex = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.bundle-promo__dot-{{ section.id }}')) : [];
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('is-active', index === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      if (index < 0) {
+        currentIndex = totalSlides - 1;
+      } else if (index >= totalSlides) {
+        currentIndex = 0;
+      } else {
+        currentIndex = index;
+      }
+      updateCarousel();
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', nextSlide);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', prevSlide);
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', function() {
+        const index = Number(this.dataset.index);
+        goToSlide(index);
+      });
+    });
+
+    viewport.addEventListener('touchstart', function(e) {
+      if (!e.touches.length) return;
+      startX = e.touches[0].clientX;
+      currentX = startX;
+      isDragging = true;
+    }, { passive: true });
+
+    viewport.addEventListener('touchmove', function(e) {
+      if (!isDragging || !e.touches.length) return;
+      currentX = e.touches[0].clientX;
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', function() {
+      if (!isDragging) return;
+
+      const diff = currentX - startX;
+      const threshold = 50;
+
+      if (Math.abs(diff) > threshold) {
+        if (diff < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+
+      isDragging = false;
+      startX = 0;
+      currentX = 0;
+    }, { passive: true });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Featured bundles promo",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Featured bundles"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Push your best bundle offers"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 900,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Max width",
+      "default": 1200
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment_desktop",
+      "label": "Heading alignment desktop",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment_mobile",
+      "label": "Heading alignment mobile",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size desktop",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size mobile",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing_desktop",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading bottom spacing desktop",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading bottom spacing mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_ratio_desktop",
+      "min": 40,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "label": "Image ratio desktop",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "image_ratio_mobile",
+      "min": 50,
+      "max": 150,
+      "step": 2,
+      "unit": "%",
+      "label": "Image ratio mobile",
+      "default": 78
+    },
+    {
+      "type": "range",
+      "id": "content_min_height_desktop",
+      "min": 120,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "label": "Content height desktop",
+      "default": 170
+    },
+    {
+      "type": "range",
+      "id": "content_min_height_mobile",
+      "min": 120,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Content height mobile",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "content_padding_desktop",
+      "min": 16,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Content padding desktop",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_padding_mobile",
+      "min": 14,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "label": "Content padding mobile",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_gap_desktop",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap desktop",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "card_gap_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap mobile",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "side_padding_desktop",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Side padding desktop",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "side_padding_mobile",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Side padding mobile",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 18,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size desktop",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size desktop",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "compare_price_size_desktop",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Regular price size desktop",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "compare_price_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Regular price size mobile",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "bundle_price_size_desktop",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Bundle price size desktop",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "bundle_price_size_mobile",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Bundle price size mobile",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button radius",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "image_bg",
+      "label": "Image background",
+      "default": "#dfe4ea"
+    },
+    {
+      "type": "color",
+      "id": "content_bg",
+      "label": "Content background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "content_text",
+      "label": "Content text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#777777"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "compare_price_color",
+      "label": "Regular price color",
+      "default": "#b8b8b8"
+    },
+    {
+      "type": "color",
+      "id": "bundle_price_color",
+      "label": "Bundle price color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border",
+      "label": "Button border",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_hover",
+      "label": "Button background hover",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_hover",
+      "label": "Button text hover",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_hover",
+      "label": "Button border hover",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "arrow_border",
+      "label": "Arrow border",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_hover",
+      "label": "Arrow background hover",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color_hover",
+      "label": "Arrow color hover",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_border_hover",
+      "label": "Arrow border hover",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding desktop",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding desktop",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding mobile",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle card",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Bundle image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Bundle title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Add a short description for the bundle you want to push.</p>"
+        },
+        {
+          "type": "text",
+          "id": "regular_price",
+          "label": "Regular price",
+          "default": "€199,90"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price",
+          "label": "Bundle price",
+          "default": "€149,90"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop bundle"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured bundles promo",
+      "blocks": [
+        {
+          "type": "bundle"
+        },
+        {
+          "type": "bundle"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

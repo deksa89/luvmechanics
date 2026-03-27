@@ -9,134 +9,15 @@
     display: flex;
     flex-direction: column;
     width: {{ block.settings.desktop_width_percent }}%;
-    max-width: 1440px;
+    max-width: 1400px;
     position: relative;
     padding: {{ block.settings.section_padding }}px 0;
     background-color: {{ block.settings.background_color }};
     margin: 0 auto;
   }
 
-  .ai-brand-carousel-viewport-{{ ai_gen_id }} {
-    overflow: hidden;
-    touch-action: pan-y;
-    cursor: grab;
-  }
-
-  .ai-brand-carousel-viewport-{{ ai_gen_id }}.is-dragging {
-    cursor: grabbing;
-  }
-
-  .ai-brand-carousel-container-{{ ai_gen_id }} {
-    position: relative;
-    padding: 0 60px;
-    box-sizing: border-box;
-  }
-
-  .ai-brand-carousel-track-{{ ai_gen_id }} {
-    display: flex;
-    gap: {{ block.settings.item_spacing }}px;
-    transition: transform 0.25s ease;
-    will-change: transform;
-  }
-
-  .ai-brand-carousel-item-{{ ai_gen_id }} {
-    flex: 0 0 calc((100% - ({{ block.settings.items_per_view | minus: 1 }} * {{ block.settings.item_spacing }}px)) / {{ block.settings.items_per_view }});
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: {{ block.settings.item_padding }}px;
-    background-color: {{ block.settings.item_background_color }};
-    border-radius: {{ block.settings.item_border_radius }}px;
-    border: {{ block.settings.item_border_width }}px solid {{ block.settings.item_border_color }};
-    min-height: {{ block.settings.item_height }}px;
-  }
-
-  .ai-brand-carousel-item-{{ ai_gen_id }} img {
-    max-width: 100%;
-    max-height: {{ block.settings.logo_max_height }}px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    filter: grayscale({{ block.settings.logo_grayscale }}%);
-    opacity: {{ block.settings.logo_opacity }};
-    transition: all 0.3s ease;
-  }
-
-  .ai-brand-carousel-item-{{ ai_gen_id }}:hover img {
-    filter: grayscale(0%);
-    opacity: 1;
-  }
-
-  .ai-brand-carousel-placeholder-{{ ai_gen_id }} {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f4f4f4;
-    border-radius: {{ block.settings.item_border_radius }}px;
-  }
-
-  .ai-brand-carousel-placeholder-{{ ai_gen_id }} svg {
-    width: 60%;
-    height: 60%;
-    opacity: 0.3;
-  }
-
-  .ai-brand-carousel-arrow-{{ ai_gen_id }} {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: {{ block.settings.arrow_size }}px;
-    height: {{ block.settings.arrow_size }}px;
-    background-color: {{ block.settings.arrow_background_color }};
-    border: none;
-    border-radius: {{ block.settings.arrow_border_radius }}px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.arrow_hover_background_color }};
-  }
-
-  .ai-brand-carousel-arrow-{{ ai_gen_id }}:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .ai-brand-carousel-arrow-{{ ai_gen_id }} svg {
-    width: 50%;
-    height: 50%;
-    stroke: {{ block.settings.arrow_color }};
-  }
-
-  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover svg {
-    stroke: {{ block.settings.arrow_hover_color }};
-  }
-
-  .ai-brand-carousel-arrow-prev-{{ ai_gen_id }} {
-    left: 0;
-  }
-
-  .ai-brand-carousel-arrow-next-{{ ai_gen_id }} {
-    right: 0;
-  }
-
-  .ai-brand-carousel-empty-state-{{ ai_gen_id }} {
-    text-align: center;
-    padding: 40px 20px;
-    color: #666;
-    font-size: 14px;
-  }
-
   .ai-brand-heading-wrapper-{{ ai_gen_id }} {
-    margin-bottom: 30px
+    margin-bottom: 30px;
   }
 
   .ai-brand-carousel-heading-{{ ai_gen_id }} {
@@ -157,13 +38,159 @@
     display: block !important;
   }
 
+  .ai-brand-carousel-container-{{ ai_gen_id }} {
+    position: relative;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   .ai-brand-carousel-viewport-{{ ai_gen_id }} {
     overflow: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .ai-brand-carousel-viewport-{{ ai_gen_id }}.is-dragging {
+    cursor: grabbing;
+  }
+
+  .ai-brand-carousel-track-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.item_spacing }}px;
+    will-change: transform;
+    transition: transform 0.45s ease;
+  }
+
+  .ai-brand-carousel-track-{{ ai_gen_id }}.no-transition {
+    transition: none;
+  }
+
+  .ai-brand-carousel-item-{{ ai_gen_id }} {
+    flex: 0 0 calc((100% - ({{ block.settings.items_per_view | minus: 1 }} * {{ block.settings.item_spacing }}px)) / {{ block.settings.items_per_view }});
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ block.settings.item_padding }}px;
+    background-color: {{ block.settings.item_background_color }};
+    border-radius: {{ block.settings.item_border_radius }}px;
+    border: {{ block.settings.item_border_width }}px solid {{ block.settings.item_border_color }};
+    min-height: {{ block.settings.item_height }}px;
+    box-sizing: border-box;
+  }
+
+  .ai-brand-carousel-item-{{ ai_gen_id }} a,
+  .ai-brand-carousel-item-{{ ai_gen_id }} img {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .ai-brand-carousel-item-{{ ai_gen_id }} img {
+    max-width: 100%;
+    max-height: {{ block.settings.logo_max_height }}px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale({{ block.settings.logo_grayscale }}%);
+    opacity: {{ block.settings.logo_opacity }};
+    transition: all 0.3s ease;
+  }
+
+  .ai-brand-carousel-item-{{ ai_gen_id }}:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    background-color: {{ block.settings.arrow_background_color }};
+    border: none;
+    border-radius: {{ block.settings.arrow_border_radius }}px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    display: none;
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.arrow_hover_background_color }};
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    stroke: {{ block.settings.arrow_color }};
+  }
+
+  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover svg {
+    stroke: {{ block.settings.arrow_hover_color }};
+  }
+
+  .ai-brand-carousel-arrow-prev-{{ ai_gen_id }} {
+    left: 0;
+  }
+
+  .ai-brand-carousel-arrow-next-{{ ai_gen_id }} {
+    right: 0;
+  }
+
+  .ai-brand-carousel-dots-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0;
+  }
+
+  .ai-brand-carousel-dot-{{ ai_gen_id }} {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+  }
+
+  .ai-brand-carousel-dot-{{ ai_gen_id }}:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .ai-brand-carousel-dot-{{ ai_gen_id }}.is-active {
+    background-color: #f98585;
+    transform: scale(1.15);
+  }
+
+  .ai-brand-carousel-empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 14px;
   }
 
   @media screen and (max-width: 749px) {
     .ai-brand-carousel-container-{{ ai_gen_id }} {
-      padding: 0 50px;
+      padding: 0;
+    }
+
+    .ai-brand-carousel-dots-{{ ai_gen_id }} {
+      gap: 8px;
+    }
+
+    .ai-brand-carousel-dot-{{ ai_gen_id }} {
+      width: 5px;
+      height: 5px;
     }
 
     .ai-brand-carousel-heading-{{ ai_gen_id }} {
@@ -183,22 +210,22 @@
 
 <brand-carousel-{{ ai_gen_id }} class="ai-brand-carousel-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   {% assign has_brands = false %}
+  {% assign brand_count = 0 %}
   {% for i in (1..10) %}
     {% assign brand_key = 'brand_' | append: i %}
     {% if block.settings[brand_key] != blank %}
       {% assign has_brands = true %}
-      {% break %}
+      {% assign brand_count = brand_count | plus: 1 %}
     {% endif %}
   {% endfor %}
+
   {% if block.settings.heading != blank %}
     <div class="ai-brand-heading-wrapper-{{ ai_gen_id }}">
       <h2 class="ai-brand-carousel-heading-{{ ai_gen_id }}">
         {{ block.settings.heading }}
       </h2>
-  
       <div class="ai-brand-carousel-divider-{{ ai_gen_id }}"></div>
     </div>
-
   {% endif %}
 
   {% if has_brands %}
@@ -206,7 +233,7 @@
       <button
         class="ai-brand-carousel-arrow-{{ ai_gen_id }} ai-brand-carousel-arrow-prev-{{ ai_gen_id }}"
         aria-label="Previous brands"
-        data-direction="prev"
+        type="button"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="15 18 9 12 15 6"></polyline>
@@ -222,7 +249,7 @@
             {% assign brand_url = block.settings[brand_url_key] %}
 
             {% if brand_image != blank %}
-              <div class="ai-brand-carousel-item-{{ ai_gen_id }}">
+              <div class="ai-brand-carousel-item-{{ ai_gen_id }}" data-real-slide="true">
                 {% if brand_url != blank %}
                   <a href="{{ brand_url }}" aria-label="Visit brand {{ i }}">
                     <img
@@ -251,13 +278,15 @@
       <button
         class="ai-brand-carousel-arrow-{{ ai_gen_id }} ai-brand-carousel-arrow-next-{{ ai_gen_id }}"
         aria-label="Next brands"
-        data-direction="next"
+        type="button"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </button>
     </div>
+
+    <div class="ai-brand-carousel-dots-{{ ai_gen_id }}" aria-label="Carousel pagination"></div>
   {% else %}
     <div class="ai-brand-carousel-empty-state-{{ ai_gen_id }}">
       Next, add brand logos to display in the carousel
@@ -271,125 +300,302 @@
       constructor() {
         super();
         this.currentIndex = 0;
-        this.itemsPerView = {{ block.settings.items_per_view }};
-        this.itemsPerViewMobile = {{ block.settings.items_per_view_mobile }};
-
-        this.touchStartX = 0;
-        this.touchEndX = 0;
+        this.startX = 0;
+        this.currentX = 0;
         this.isDragging = false;
-        this.swipeThreshold = 10;
+        this.swipeThreshold = 40;
+        this.autoPlayTimer = null;
+        this.resumeTimer = null;
+        this.realSlidesCount = 0;
+        this.cloneCount = 0;
       }
 
       connectedCallback() {
-        this.track = this.querySelector('.ai-brand-carousel-track-{{ ai_gen_id }}');
         this.viewport = this.querySelector('.ai-brand-carousel-viewport-{{ ai_gen_id }}');
-        this.items = this.querySelectorAll('.ai-brand-carousel-item-{{ ai_gen_id }}');
+        this.track = this.querySelector('.ai-brand-carousel-track-{{ ai_gen_id }}');
         this.prevButton = this.querySelector('.ai-brand-carousel-arrow-prev-{{ ai_gen_id }}');
         this.nextButton = this.querySelector('.ai-brand-carousel-arrow-next-{{ ai_gen_id }}');
+        this.dotsContainer = this.querySelector('.ai-brand-carousel-dots-{{ ai_gen_id }}');
 
-        if (!this.track || this.items.length === 0) return;
+        if (!this.viewport || !this.track) return;
 
+        this.realSlides = Array.from(this.track.querySelectorAll('[data-real-slide="true"]'));
+        this.realSlidesCount = this.realSlides.length;
+
+        if (!this.realSlidesCount) return;
+
+        this.handleResize = this.handleResize.bind(this);
+        this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+
+        this.setupInfiniteLoop();
         this.setupEventListeners();
-        this.updateCarousel();
-        this.updateButtons();
+        this.buildDots();
+        this.jumpToInitialPosition();
+        this.updateCarousel(false);
+        this.startAutoPlay();
 
-        window.addEventListener('resize', () => {
-          this.updateCarousel();
-          this.updateButtons();
-        });
+        window.addEventListener('resize', this.handleResize);
+        this.track.addEventListener('transitionend', this.handleTransitionEnd);
       }
 
-      setupEventListeners() {
-        this.prevButton.addEventListener('click', () => this.navigate('prev'));
-        this.nextButton.addEventListener('click', () => this.navigate('next'));
-
-        if (this.viewport) {
-          this.viewport.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
-          this.viewport.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: true });
-          this.viewport.addEventListener('touchend', this.handleTouchEnd.bind(this));
-
-          this.viewport.addEventListener('mousedown', this.handleMouseDown.bind(this));
-          this.viewport.addEventListener('mouseup', this.handleMouseUp.bind(this));
-          this.viewport.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+      disconnectedCallback() {
+        window.removeEventListener('resize', this.handleResize);
+        if (this.track) {
+          this.track.removeEventListener('transitionend', this.handleTransitionEnd);
         }
+        this.stopAutoPlay();
+        clearTimeout(this.resumeTimer);
       }
 
       getItemsPerView() {
-        return window.innerWidth <= 749 ? this.itemsPerViewMobile : this.itemsPerView;
+        return window.innerWidth <= 749
+          ? {{ block.settings.items_per_view_mobile }}
+          : {{ block.settings.items_per_view }};
+      }
+
+      getMaxRealIndex() {
+        return Math.max(0, this.realSlidesCount - 1);
+      }
+
+      getVisiblePageCount() {
+        return Math.max(1, this.realSlidesCount);
+      }
+
+      getGap() {
+        return {{ block.settings.item_spacing }};
+      }
+
+      getStepSize() {
+        const firstVisibleItem = this.track.querySelector('.ai-brand-carousel-item-{{ ai_gen_id }}');
+        if (!firstVisibleItem) return 0;
+        return firstVisibleItem.offsetWidth + this.getGap();
+      }
+
+      setupInfiniteLoop() {
+        this.cloneCount = this.getItemsPerView();
+
+        this.track.querySelectorAll('[data-clone="true"]').forEach((el) => el.remove());
+
+        const realSlides = Array.from(this.track.querySelectorAll('[data-real-slide="true"]'));
+        if (!realSlides.length) return;
+
+        const prependClones = realSlides.slice(-this.cloneCount).map((slide) => {
+          const clone = slide.cloneNode(true);
+          clone.setAttribute('data-clone', 'true');
+          return clone;
+        });
+
+        const appendClones = realSlides.slice(0, this.cloneCount).map((slide) => {
+          const clone = slide.cloneNode(true);
+          clone.setAttribute('data-clone', 'true');
+          return clone;
+        });
+
+        prependClones.forEach((clone) => {
+          this.track.insertBefore(clone, this.track.firstChild);
+        });
+
+        appendClones.forEach((clone) => {
+          this.track.appendChild(clone);
+        });
+
+        this.allSlides = Array.from(this.track.children);
+      }
+
+      setupEventListeners() {
+        if (this.prevButton) {
+          this.prevButton.addEventListener('click', () => {
+            this.pauseAndResumeAutoPlay();
+            this.navigate('prev');
+          });
+        }
+
+        if (this.nextButton) {
+          this.nextButton.addEventListener('click', () => {
+            this.pauseAndResumeAutoPlay();
+            this.navigate('next');
+          });
+        }
+
+        this.viewport.addEventListener('mouseenter', () => this.stopAutoPlay());
+        this.viewport.addEventListener('mouseleave', () => this.startAutoPlay());
+
+        this.viewport.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
+        this.viewport.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: true });
+        this.viewport.addEventListener('touchend', this.handleTouchEnd.bind(this));
+
+        this.viewport.addEventListener('mousedown', this.handleMouseDown.bind(this));
+        this.viewport.addEventListener('mousemove', this.handleMouseMove.bind(this));
+        this.viewport.addEventListener('mouseup', this.handleMouseUp.bind(this));
+        this.viewport.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+      }
+
+      handleResize() {
+        const oldRealIndex = this.getNormalizedIndex();
+        this.stopAutoPlay();
+        this.setupInfiniteLoop();
+        this.buildDots();
+        this.currentIndex = oldRealIndex + this.cloneCount;
+        this.updateCarousel(false);
+        this.startAutoPlay();
+      }
+
+      buildDots() {
+        if (!this.dotsContainer) return;
+
+        this.dotsContainer.innerHTML = '';
+
+        for (let i = 0; i < this.realSlidesCount; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'ai-brand-carousel-dot-{{ ai_gen_id }}';
+          dot.setAttribute('aria-label', `Go to brand page ${i + 1}`);
+          dot.addEventListener('click', () => {
+            this.pauseAndResumeAutoPlay();
+            this.goToRealIndex(i);
+          });
+          this.dotsContainer.appendChild(dot);
+        }
+
+        this.updateDots();
+      }
+
+      jumpToInitialPosition() {
+        this.currentIndex = this.cloneCount;
+      }
+
+      getNormalizedIndex() {
+        let normalized = (this.currentIndex - this.cloneCount) % this.realSlidesCount;
+        if (normalized < 0) normalized += this.realSlidesCount;
+        return normalized;
+      }
+
+      updateCarousel(animate = true) {
+        const step = this.getStepSize();
+        if (!step) return;
+
+        if (animate) {
+          this.track.classList.remove('no-transition');
+        } else {
+          this.track.classList.add('no-transition');
+        }
+
+        const offset = this.currentIndex * step;
+        this.track.style.transform = `translateX(-${offset}px)`;
+
+        this.updateDots();
+      }
+
+      updateDots() {
+        if (!this.dotsContainer) return;
+
+        const activeIndex = this.getNormalizedIndex();
+        const dots = this.dotsContainer.querySelectorAll('.ai-brand-carousel-dot-{{ ai_gen_id }}');
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('is-active', index === activeIndex);
+          dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+        });
       }
 
       navigate(direction) {
-        const itemsPerView = this.getItemsPerView();
-        const maxIndex = Math.max(0, this.items.length - itemsPerView);
-
         if (direction === 'next') {
-          this.currentIndex = Math.min(this.currentIndex + 1, maxIndex);
+          this.currentIndex += 1;
         } else {
-          this.currentIndex = Math.max(this.currentIndex - 1, 0);
+          this.currentIndex -= 1;
         }
 
-        this.updateCarousel();
-        this.updateButtons();
+        this.updateCarousel(true);
       }
 
-      updateCarousel() {
-        if (!this.track || this.items.length === 0) return;
-
-        const firstItem = this.items[0];
-        const itemWidth = firstItem.offsetWidth;
-        const gap = {{ block.settings.item_spacing }};
-        const offset = -(this.currentIndex * (itemWidth + gap));
-
-        this.track.style.transform = `translateX(${offset}px)`;
+      goToRealIndex(realIndex) {
+        this.currentIndex = realIndex + this.cloneCount;
+        this.updateCarousel(true);
       }
 
-      updateButtons() {
-        const itemsPerView = this.getItemsPerView();
-        const maxIndex = Math.max(0, this.items.length - itemsPerView);
+      handleTransitionEnd() {
+        if (this.currentIndex >= this.realSlidesCount + this.cloneCount) {
+          this.currentIndex = this.cloneCount;
+          this.updateCarousel(false);
+        }
 
-        this.prevButton.disabled = this.currentIndex === 0;
-        this.nextButton.disabled = this.currentIndex >= maxIndex;
+        if (this.currentIndex < this.cloneCount) {
+          this.currentIndex = this.realSlidesCount + this.cloneCount - 1;
+          this.updateCarousel(false);
+        }
+      }
+
+      startAutoPlay() {
+        this.stopAutoPlay();
+
+        if (this.realSlidesCount <= 1) return;
+
+        this.autoPlayTimer = setInterval(() => {
+          this.navigate('next');
+        }, {{ block.settings.auto_scroll_speed | times: 1000 }});
+      }
+
+      stopAutoPlay() {
+        if (this.autoPlayTimer) {
+          clearInterval(this.autoPlayTimer);
+          this.autoPlayTimer = null;
+        }
+      }
+
+      pauseAndResumeAutoPlay() {
+        this.stopAutoPlay();
+        clearTimeout(this.resumeTimer);
+        this.resumeTimer = setTimeout(() => {
+          this.startAutoPlay();
+        }, 3500);
       }
 
       handleTouchStart(event) {
-        this.touchStartX = event.changedTouches[0].clientX;
+        this.stopAutoPlay();
+        this.startX = event.changedTouches[0].clientX;
+        this.currentX = this.startX;
       }
 
       handleTouchMove(event) {
-        this.touchEndX = event.changedTouches[0].clientX;
+        this.currentX = event.changedTouches[0].clientX;
       }
 
       handleTouchEnd() {
-        const swipeDistance = this.touchEndX - this.touchStartX;
+        const distance = this.currentX - this.startX;
 
-        if (Math.abs(swipeDistance) < this.swipeThreshold) return;
-
-        if (swipeDistance < 0) {
-          this.navigate('next');
-        } else {
-          this.navigate('prev');
+        if (Math.abs(distance) >= this.swipeThreshold) {
+          if (distance < 0) {
+            this.navigate('next');
+          } else {
+            this.navigate('prev');
+          }
         }
 
-        this.touchStartX = 0;
-        this.touchEndX = 0;
+        this.startX = 0;
+        this.currentX = 0;
+        this.pauseAndResumeAutoPlay();
       }
 
       handleMouseDown(event) {
         this.isDragging = true;
-        this.touchStartX = event.clientX;
-        if (this.viewport) {
-          this.viewport.classList.add('is-dragging');
-        }
+        this.stopAutoPlay();
+        this.startX = event.clientX;
+        this.currentX = event.clientX;
+        this.viewport.classList.add('is-dragging');
       }
 
-      handleMouseUp(event) {
+      handleMouseMove(event) {
+        if (!this.isDragging) return;
+        this.currentX = event.clientX;
+      }
+
+      handleMouseUp() {
         if (!this.isDragging) return;
 
-        this.touchEndX = event.clientX;
-        const swipeDistance = this.touchEndX - this.touchStartX;
+        const distance = this.currentX - this.startX;
 
-        if (Math.abs(swipeDistance) >= this.swipeThreshold) {
-          if (swipeDistance < 0) {
+        if (Math.abs(distance) >= this.swipeThreshold) {
+          if (distance < 0) {
             this.navigate('next');
           } else {
             this.navigate('prev');
@@ -397,20 +603,29 @@
         }
 
         this.isDragging = false;
-        if (this.viewport) {
-          this.viewport.classList.remove('is-dragging');
-        }
+        this.viewport.classList.remove('is-dragging');
+        this.startX = 0;
+        this.currentX = 0;
+        this.pauseAndResumeAutoPlay();
       }
 
       handleMouseLeave() {
-        this.isDragging = false;
-        if (this.viewport) {
-          this.viewport.classList.remove('is-dragging');
+        if (!this.isDragging) {
+          this.startAutoPlay();
+          return;
         }
+
+        this.isDragging = false;
+        this.viewport.classList.remove('is-dragging');
+        this.startX = 0;
+        this.currentX = 0;
+        this.pauseAndResumeAutoPlay();
       }
     }
 
-    customElements.define('brand-carousel-{{ ai_gen_id }}', BrandCarousel{{ ai_gen_id }});
+    if (!customElements.get('brand-carousel-{{ ai_gen_id }}')) {
+      customElements.define('brand-carousel-{{ ai_gen_id }}', BrandCarousel{{ ai_gen_id }});
+    }
   })();
 </script>
 
@@ -475,6 +690,16 @@
       "step": 5,
       "unit": "px",
       "default": 40
+    },
+    {
+      "type": "range",
+      "id": "auto_scroll_speed",
+      "label": "Auto scroll interval",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 4
     },
     {
       "type": "header",

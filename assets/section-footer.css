@@ -542,11 +542,6 @@
   margin: 0;
 }
 
-
-.footer-contact__list .footer-contact__item:nth-of-type(2) {  /* ZAKOMENTIRAO SAM BROJ TELEFONA */
-  display: none;
-}
-
 .footer__social-media {
   display: flex;
   flex-direction: column;

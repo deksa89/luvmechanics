@@ -6,124 +6,139 @@
     padding-bottom: {{ section.settings.padding_bottom_mobile | times: 0.75 | round: 0 }}px;
   }
 
-  .carousel-wrapper {
+  .carousel-shell {
     position: relative;
     width: 100%;
-    height: 100% !important;
-    overflow: hidden;
+    height: 100%;
   }
 
-/* stack all slides in same grid cell */
-.carousel-wrapper img {
-  grid-area: 1 / 1;
-  position: relative !important; /* IMPORTANT: not absolute */
-  width: 100%;
-  height: auto !important;       /* IMPORTANT */
-  object-fit: contain !important; /* IMPORTANT: no crop */
-  object-position: center;
-  opacity: 0;
-  transition: opacity .7s ease-in-out;
-}
+  .carousel-viewport {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
 
-/* link overlay stays absolute */
-.carousel-wrapper a {
-  position: absolute;
-  inset: 0;
-  display: block;
-  z-index: 3;
-}
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+    transition: transform 0.55s ease;
+  }
 
+  .carousel-track.no-transition {
+    transition: none;
+  }
 
-/* active slide */
-.carousel-wrapper img.active {
-  opacity: 1;
-}
+  .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .carousel-slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    object-position: center;
+  }
 
   .carousel-controls {
     position: absolute;
-    top: 50% !important;
+    top: 50%;
+    left: 0;
     width: 100%;
-    display: flex !important;
+    display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
     pointer-events: none;
-    height: 16% !important;
-    opacity: 0.1;
-    z-index: 4;
+    z-index: 5;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .carousel-prev, .carousel-next {
+    display: none;
   }
 
   .carousel-controls button {
     pointer-events: all;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.35);
     border: none;
     color: white;
     font-size: 28px;
-    padding: 8px 14px;
+    line-height: 1;
+    padding: 10px 14px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px;
+    transition: background 0.25s ease, opacity 0.25s ease;
+  }
+
+  .carousel-controls button:hover {
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .carousel-dots {
     position: absolute;
-    top: 12px !important;
-    left: 50% !important;
+    left: 50%;
+    bottom: 14px;
     transform: translateX(-50%);
-    display: flex !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
-    margin: 0;
-    z-index: 2;
-    width: 168px !important;
+    z-index: 6;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
   .carousel-dot {
-    width: 100px;
-    height: 12px;
-    border-radius: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
     border: none;
-    background: #ccc;
+    background: rgba(0, 0, 0, 0.22);
     cursor: pointer;
+    padding: 0;
+    transition: transform 0.25s ease, background 0.25s ease, width 0.25s ease;
   }
 
   .carousel-dot.active {
-    background: #000;
+    width: 24px;
+    background: #f98585;
   }
 
-/*  */
-.carousel-wrapper {
-  position: relative;
-  width: 100%;
-  height: auto !important;   /* IMPORTANT: no fixed height */
-  display: grid;             /* lets slides stack without absolute positioning */
-  overflow: hidden;          /* keep rounded corners clean */
-}
+  .desktop-carousel {
+    display: block;
+  }
 
-.carousel-link {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  display: none;
-}
-/*  */
-
-  .desktop-slide { display: none; }
-  .mobile-slide { display: none; }
-
-  @media (min-width: 769px) {
-    .desktop-slide { 
-      display: block; 
-    }
+  .mobile-carousel {
+    display: none;
   }
 
   @media screen and (max-width: 768px) {
-    .carousel-dots {
-      display: none !important;
+    .desktop-carousel {
+      display: none;
     }
 
-    .mobile-slide { 
-      display: block; 
+    .mobile-carousel {
+      display: block;
     }
 
     .section-{{ section.id }}-padding > .page-width {
@@ -133,7 +148,27 @@
     }
 
     .section-{{ section.id }}-padding {
-      padding-top: 0px;
+      padding-top: 0;
+    }
+
+    .carousel-controls button {
+      font-size: 22px;
+      padding: 8px 12px;
+    }
+
+    .carousel-dots {
+      bottom: 10px;
+      gap: 7px;
+      padding: 5px 8px;
+    }
+
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+    }
+
+    .carousel-dot.active {
+      width: 20px;
     }
   }
 
@@ -144,6 +179,10 @@
     }
   }
 {%- endstyle -%}
+
+{%- liquid
+  assign current_lang = request.locale.iso_code | downcase
+-%}
 
 {%- liquid
   assign fetch_priority = 'auto'
@@ -165,48 +204,127 @@
               style="padding-bottom: {{ 1 | divided_by: section.settings.carousel_images.aspect_ratio | times: 100 }}%;"
             {% endif %}>
 
-            <div class="carousel-wrapper" id="carousel-{{ section.id }}">
-              {% for block in section.blocks %}
+            <div class="carousel-shell" id="carousel-shell-{{ section.id }}">
+              {%- assign desktop_count = 0 -%}
+              {%- assign mobile_count = 0 -%}
 
-                {% if block.type == 'carousel_image_desktop' and block.settings.image != blank %}
-                  <a href="{{ block.settings.link }}" class="carousel-link desktop-link" data-index="{{ forloop.index0 }}"></a>
-                  <img
-                    src="{{ block.settings.image | image_url: width: 1600 }}"
-                    class="carousel-slide desktop-slide"
-                    alt="Desktop slide {{ forloop.index }}"
-                  >
-                {% endif %}
+              {%- capture desktop_slides -%}
+                {%- for block in section.blocks -%}
+                  {%- assign block_lang = block.settings.language | default: 'all' | downcase -%}
+                  {%- assign show_block = false -%}
 
-                {% if block.type == 'carousel_image_mobile' and block.settings.image != blank %}
-                  <a href="{{ block.settings.link }}" class="carousel-link mobile-link" data-index="{{ forloop.index0 }}"></a>
-                  <img
-                    src="{{ block.settings.image | image_url: width: 900 }}"
-                    class="carousel-slide mobile-slide"
-                    alt="Mobile slide {{ forloop.index }}"
-                  >
-                {% endif %}
+                  {%- if block_lang == 'all' or block_lang == current_lang -%}
+                    {%- assign show_block = true -%}
+                  {%- endif -%}
 
-              {% endfor %}
-            </div>
+                  {%- if show_block and block.type == 'carousel_image_desktop' and block.settings.image != blank -%}
+                    {%- assign desktop_count = desktop_count | plus: 1 -%}
+                    <div class="carousel-slide">
+                      {%- if block.settings.link != blank -%}
+                        <a href="{{ block.settings.link }}" class="carousel-slide-link" aria-label="Desktop slide {{ desktop_count }}">
+                          <img
+                            src="{{ block.settings.image | image_url: width: 1600 }}"
+                            alt="{{ block.settings.image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                          >
+                        </a>
+                      {%- else -%}
+                        <img
+                          src="{{ block.settings.image | image_url: width: 1600 }}"
+                          alt="{{ block.settings.image.alt | escape }}"
+                          loading="lazy"
+                          width="{{ block.settings.image.width }}"
+                          height="{{ block.settings.image.height }}"
+                        >
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endcapture -%}
 
+              {%- capture mobile_slides -%}
+                {%- for block in section.blocks -%}
+                  {%- assign block_lang = block.settings.language | default: 'all' | downcase -%}
+                  {%- assign show_block = false -%}
 
-            <div class="carousel-controls">
-              <button class="carousel-prev" aria-label="Previous slide">‹</button>
-              <button class="carousel-next" aria-label="Next slide">›</button>
-            </div>
+                  {%- if block_lang == 'all' or block_lang == current_lang -%}
+                    {%- assign show_block = true -%}
+                  {%- endif -%}
 
-            <div class="carousel-dots" id="carousel-dots-{{ section.id }}">
-              {% assign total_desktop = 0 %}
+                  {%- if show_block and block.type == 'carousel_image_mobile' and block.settings.image != blank -%}
+                    {%- assign mobile_count = mobile_count | plus: 1 -%}
+                    <div class="carousel-slide">
+                      {%- if block.settings.link != blank -%}
+                        <a href="{{ block.settings.link }}" class="carousel-slide-link" aria-label="Mobile slide {{ mobile_count }}">
+                          <img
+                            src="{{ block.settings.image | image_url: width: 900 }}"
+                            alt="{{ block.settings.image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                          >
+                        </a>
+                      {%- else -%}
+                        <img
+                          src="{{ block.settings.image | image_url: width: 900 }}"
+                          alt="{{ block.settings.image.alt | escape }}"
+                          loading="lazy"
+                          width="{{ block.settings.image.width }}"
+                          height="{{ block.settings.image.height }}"
+                        >
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endcapture -%}
 
-              {% for block in section.blocks %}
-                {% if block.type == 'carousel_image_desktop' and block.settings.image != blank %}
-                  {% assign total_desktop = total_desktop | plus: 1 %}
-                {% endif %}
-              {% endfor %}
+              <div
+                class="carousel-instance desktop-carousel"
+                id="desktop-carousel-{{ section.id }}"
+                data-count="{{ desktop_count }}"
+                data-autoplay="true"
+                data-interval="5000"
+              >
+                <div class="carousel-viewport">
+                  <div class="carousel-track">
+                    {{ desktop_slides }}
+                  </div>
+                </div>
 
-              {% for i in (1..total_desktop) %}
-                <button class="carousel-dot" data-index="{{ forloop.index0 }}"></button>
-              {% endfor %}
+                {%- if desktop_count > 1 -%}
+                  <div class="carousel-controls">
+                    <button class="carousel-prev" aria-label="Previous slide" type="button">‹</button>
+                    <button class="carousel-next" aria-label="Next slide" type="button">›</button>
+                  </div>
+
+                  <div class="carousel-dots"></div>
+                {%- endif -%}
+              </div>
+
+              <div
+                class="carousel-instance mobile-carousel"
+                id="mobile-carousel-{{ section.id }}"
+                data-count="{{ mobile_count }}"
+                data-autoplay="true"
+                data-interval="5000"
+              >
+                <div class="carousel-viewport">
+                  <div class="carousel-track">
+                    {{ mobile_slides }}
+                  </div>
+                </div>
+
+                {%- if mobile_count > 1 -%}
+                  <div class="carousel-controls">
+                    <button class="carousel-prev" aria-label="Previous slide" type="button">‹</button>
+                    <button class="carousel-next" aria-label="Next slide" type="button">›</button>
+                  </div>
+
+                  <div class="carousel-dots"></div>
+                {%- endif -%}
+              </div>
             </div>
 
           </div>
@@ -315,148 +433,270 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector("#carousel-{{ section.id }}");
-    if (!carousel) return;
+  document.addEventListener('DOMContentLoaded', function () {
+    class InfinitePageCarousel {
+      constructor(root) {
+        this.root = root;
+        this.viewport = root.querySelector('.carousel-viewport');
+        this.track = root.querySelector('.carousel-track');
+        this.prevBtn = root.querySelector('.carousel-prev');
+        this.nextBtn = root.querySelector('.carousel-next');
+        this.dotsWrap = root.querySelector('.carousel-dots');
 
-    function getSlides() {
-      if (window.innerWidth <= 768) {
-        return carousel.querySelectorAll(".carousel-slide.mobile-slide");
-      } else {
-        return carousel.querySelectorAll(".carousel-slide.desktop-slide");
+        this.originalSlides = Array.from(this.track.children);
+        this.originalCount = this.originalSlides.length;
+
+        if (!this.track || this.originalCount === 0) return;
+
+        this.currentIndex = 0;
+        this.startX = 0;
+        this.currentX = 0;
+        this.isDragging = false;
+        this.swipeThreshold = 50;
+        this.intervalMs = parseInt(root.dataset.interval || '5000', 10);
+        this.autoplay = root.dataset.autoplay === 'true';
+        this.timer = null;
+        this.resumeTimer = null;
+
+        this.setup();
       }
-    }
 
-    let slides = getSlides();
-    window.addEventListener("resize", () => {
-      const oldLength = slides.length;
-      slides = getSlides();
-
-      if (slides.length !== oldLength) {
-        index = 0;
-        showSlide(0);
-      }
-    });
-
-    const dots    = document.querySelectorAll("#carousel-dots-{{ section.id }} .carousel-dot");
-    const prevBtn = document.querySelector(".carousel-prev");
-    const nextBtn = document.querySelector(".carousel-next");
-
-    if (!slides.length) return;
-
-    let index    = 0;
-    let interval = null;
-    let startX   = 0;
-    let isTouching = false;
-
-    const links = carousel.querySelectorAll(".carousel-link");
-
-    function updateLinks() {
-      links.forEach(link => (link.style.display = "none"));
-
-      if (window.innerWidth <= 768) {
-        const mobileLinks = carousel.querySelectorAll(".mobile-link");
-        if (mobileLinks[index]) mobileLinks[index].style.display = "block";
-      } else {
-        const desktopLinks = carousel.querySelectorAll(".desktop-link");
-        if (desktopLinks[index]) desktopLinks[index].style.display = "block";
-      }
-    }
-
-    function updateHeight() {
-      const active = slides[index];
-      if (active) carousel.style.height = active.offsetHeight + "px";
-    }
-
-    function showSlide(newIndex) {
-      slides[index].classList.remove("active");
-      dots[index]?.classList.remove("active");
-
-      index = newIndex;
-
-      slides[index].classList.add("active");
-      dots[index]?.classList.add("active");
-
-      updateHeight();
-      updateLinks();   // 👈 keep links in sync with active slide
-    }
-
-    function nextSlide() {
-      showSlide((index + 1) % slides.length);
-    }
-
-    function prevSlide() {
-      showSlide((index - 1 + slides.length) % slides.length);
-    }
-
-    function startAutoRotate() {
-      interval = setInterval(nextSlide, 5000);
-    }
-
-    function restartAutoRotate() {
-      clearInterval(interval);
-      startAutoRotate();
-    }
-
-    // Init
-    slides[0].classList.add("active");
-    dots[0]?.classList.add("active");
-    updateHeight();
-    slides.forEach(img => img.addEventListener("load", updateHeight));
-    startAutoRotate();
-    updateLinks(); // 👈 show correct link for first slide
-
-    // Manual controls
-    nextBtn?.addEventListener("click", () => {
-      nextSlide();
-      restartAutoRotate();
-    });
-
-    prevBtn?.addEventListener("click", () => {
-      prevSlide();
-      restartAutoRotate();
-    });
-
-    dots.forEach(dot => {
-      dot.addEventListener("click", () => {
-        const target = parseInt(dot.dataset.index);
-        showSlide(target);
-        restartAutoRotate();
-      });
-    });
-
-    carousel.addEventListener(
-      "touchstart",
-      function (e) {
-        if (!e.touches || !e.touches.length) return;
-        startX = e.touches[0].clientX;
-        isTouching = true;
-      },
-      { passive: true }
-    );
-
-    carousel.addEventListener(
-      "touchend",
-      function (e) {
-        if (!isTouching || !e.changedTouches || !e.changedTouches.length) return;
-        const endX = e.changedTouches[0].clientX;
-        const diffX = endX - startX;
-        const threshold = 50; // px swipe distance
-
-        if (Math.abs(diffX) > threshold) {
-          if (diffX < 0) {
-            nextSlide();
-          } else {
-            prevSlide();
-          }
-          restartAutoRotate();
+      setup() {
+        if (this.originalCount > 1) {
+          this.cloneSlidesForLoop();
+          this.buildDots();
+          this.bindEvents();
+          this.jumpToRealIndex(0, false);
+          this.startAuto();
+        } else {
+          this.updateTrackHeight();
         }
-        isTouching = false;
-      },
-      { passive: true }
-    );
-  });
 
+        window.addEventListener('resize', () => {
+          this.jumpToRealIndex(this.getRealIndex(), false);
+          this.updateTrackHeight();
+        });
+
+        this.track.querySelectorAll('img').forEach((img) => {
+          img.addEventListener('load', () => this.updateTrackHeight());
+        });
+
+        this.updateTrackHeight();
+      }
+
+      cloneSlidesForLoop() {
+        const firstClone = this.originalSlides[0].cloneNode(true);
+        const lastClone = this.originalSlides[this.originalCount - 1].cloneNode(true);
+
+        firstClone.setAttribute('data-clone', 'true');
+        lastClone.setAttribute('data-clone', 'true');
+
+        this.track.insertBefore(lastClone, this.track.firstChild);
+        this.track.appendChild(firstClone);
+
+        this.slides = Array.from(this.track.children);
+        this.currentIndex = 1;
+      }
+
+      buildDots() {
+        if (!this.dotsWrap) return;
+
+        this.dotsWrap.innerHTML = '';
+
+        for (let i = 0; i < this.originalCount; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel-dot';
+          dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+          dot.dataset.index = i;
+          dot.addEventListener('click', () => {
+            this.goToPage(i);
+            this.restartAuto();
+          });
+          this.dotsWrap.appendChild(dot);
+        }
+
+        this.updateDots();
+      }
+
+      bindEvents() {
+        this.nextBtn?.addEventListener('click', () => {
+          this.next();
+          this.restartAuto();
+        });
+
+        this.prevBtn?.addEventListener('click', () => {
+          this.prev();
+          this.restartAuto();
+        });
+
+        this.track.addEventListener('transitionend', () => {
+          if (this.currentIndex === 0) {
+            this.currentIndex = this.originalCount;
+            this.applyTransform(false);
+          }
+
+          if (this.currentIndex === this.originalCount + 1) {
+            this.currentIndex = 1;
+            this.applyTransform(false);
+          }
+
+          this.updateDots();
+          this.updateTrackHeight();
+        });
+
+        this.viewport.addEventListener(
+          'touchstart',
+          (e) => {
+            if (!e.touches.length) return;
+            this.stopAuto();
+            this.startX = e.touches[0].clientX;
+            this.currentX = this.startX;
+          },
+          { passive: true }
+        );
+
+        this.viewport.addEventListener(
+          'touchmove',
+          (e) => {
+            if (!e.touches.length) return;
+            this.currentX = e.touches[0].clientX;
+          },
+          { passive: true }
+        );
+
+        this.viewport.addEventListener(
+          'touchend',
+          () => {
+            const diffX = this.currentX - this.startX;
+
+            if (Math.abs(diffX) > this.swipeThreshold) {
+              if (diffX < 0) {
+                this.next();
+              } else {
+                this.prev();
+              }
+            }
+
+            this.restartAuto();
+            this.startX = 0;
+            this.currentX = 0;
+          },
+          { passive: true }
+        );
+
+        this.viewport.addEventListener('mouseenter', () => this.stopAuto());
+        this.viewport.addEventListener('mouseleave', () => this.startAuto());
+      }
+
+      getSlideWidth() {
+        return this.viewport.offsetWidth;
+      }
+
+      applyTransform(animate = true) {
+        if (!animate) {
+          this.track.classList.add('no-transition');
+        } else {
+          this.track.classList.remove('no-transition');
+        }
+
+        const offset = this.currentIndex * this.getSlideWidth();
+        this.track.style.transform = `translateX(-${offset}px)`;
+      }
+
+      updateTrackHeight() {
+        const activeSlide = this.slides?.[this.currentIndex];
+        if (!activeSlide) return;
+
+        const img = activeSlide.querySelector('img');
+        if (!img) return;
+
+        const setHeight = () => {
+          this.viewport.style.height = `${img.offsetHeight}px`;
+        };
+
+        if (img.complete) {
+          setHeight();
+        } else {
+          img.addEventListener('load', setHeight, { once: true });
+        }
+      }
+
+      getRealIndex() {
+        let realIndex = this.currentIndex - 1;
+
+        if (realIndex < 0) realIndex = this.originalCount - 1;
+        if (realIndex >= this.originalCount) realIndex = 0;
+
+        return realIndex;
+      }
+
+      updateDots() {
+        if (!this.dotsWrap) return;
+
+        const realIndex = this.getRealIndex();
+        const dots = this.dotsWrap.querySelectorAll('.carousel-dot');
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === realIndex);
+        });
+      }
+
+      jumpToRealIndex(realIndex, animate = true) {
+        this.currentIndex = realIndex + 1;
+        this.applyTransform(animate);
+        this.updateDots();
+      }
+
+      goToPage(realIndex) {
+        this.jumpToRealIndex(realIndex, true);
+      }
+
+      next() {
+        this.currentIndex += 1;
+        this.applyTransform(true);
+      }
+
+      prev() {
+        this.currentIndex -= 1;
+        this.applyTransform(true);
+      }
+
+      startAuto() {
+        if (!this.autoplay || this.originalCount <= 1) return;
+        this.stopAuto();
+        this.timer = setInterval(() => {
+          this.next();
+        }, this.intervalMs);
+      }
+
+      stopAuto() {
+        if (this.timer) {
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+        if (this.resumeTimer) {
+          clearTimeout(this.resumeTimer);
+          this.resumeTimer = null;
+        }
+      }
+
+      restartAuto() {
+        this.stopAuto();
+        this.resumeTimer = setTimeout(() => {
+          this.startAuto();
+        }, 4000);
+      }
+    }
+
+    document
+      .querySelectorAll('#desktop-carousel-{{ section.id }}, #mobile-carousel-{{ section.id }}')
+      .forEach((carousel) => {
+        if (parseInt(carousel.dataset.count || '0', 10) > 0) {
+          new InfinitePageCarousel(carousel);
+        }
+      });
+  });
 </script>
 
 
@@ -468,12 +708,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [   
-    {
-      "type": "image_picker",
-      "id": "carousel_images",
-      "label": "Carousel images",
-      "info": "Upload multiple images for the carousel"
-    },
+    // {
+    //   "type": "image_picker",
+    //   "id": "carousel_images",
+    //   "label": "Carousel images",
+    //   "info": "Upload multiple images for the carousel"
+    // },
     // {
     //   "type": "select",
     //   "id": "height",
@@ -723,7 +963,18 @@
       "name": "Desktop carousel image",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Upload desktop image" },
-        { "type": "url", "id": "link", "label": "Slide link (optional)" }
+        { "type": "url", "id": "link", "label": "Slide link (optional)" },
+        {
+          "type": "select",
+          "id": "language",
+          "label": "Language",
+          "default": "all",
+          "options": [
+            { "value": "all", "label": "All languages" },
+            { "value": "en", "label": "English" },
+            { "value": "hr", "label": "Croatian" }
+          ]
+        }
       ]
     },
     {
@@ -731,7 +982,18 @@
       "name": "Mobile carousel image",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Upload mobile image" },
-        { "type": "url", "id": "link", "label": "Slide link (optional)" }
+        { "type": "url", "id": "link", "label": "Slide link (optional)" },
+        {
+          "type": "select",
+          "id": "language",
+          "label": "Language",
+          "default": "all",
+          "options": [
+            { "value": "all", "label": "All languages" },
+            { "value": "en", "label": "English" },
+            { "value": "hr", "label": "Croatian" }
+          ]
+        }
       ]
     },
     {

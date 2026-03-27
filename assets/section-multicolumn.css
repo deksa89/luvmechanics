@@ -269,8 +269,23 @@
 
 .multicolumn-card__image-wrapper .multicolumn-card__image {
   flex: 1 1 auto;
-  max-width: 20%; /* each star will shrink to fit more in the same row */
+  max-width: 30%; /* each star will shrink to fit more in the same row */
 }
+
+@media screen and (max-width: 530px) {
+  .multicolumn-card__image-wrapper .multicolumn-card__image {
+    flex: 1 1 auto;
+    max-width: 40%; /* each star will shrink to fit more in the same row */
+  }
+
+  .grid {
+    justify-content: space-between;
+    column-gap: 3px;
+    row-gap: 3px;
+  }
+}
+
+
 
 .multicolumn-card__image-wrapper img {
   width: 100%;
@@ -317,7 +332,7 @@
   }
 
   .rte {
-    text-align: center;
+    text-align: left !important;
     font-size: 1.2rem;
   }
 }

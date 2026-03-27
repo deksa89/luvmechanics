@@ -64,8 +64,8 @@
     "main-collection-product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
-        "products_per_page": 20,
-        "columns_desktop": 4,
+        "products_per_page": 24,
+        "columns_desktop": 5,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
@@ -73,7 +73,7 @@
         "show_secondary_image": true,
         "show_vendor": true,
         "show_rating": true,
-        "quick_add": "standard",
+        "quick_add": "none",
         "enable_filtering": true,
         "filter_type": "horizontal",
         "enable_sorting": true,

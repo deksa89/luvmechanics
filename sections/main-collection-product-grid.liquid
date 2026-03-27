@@ -48,6 +48,29 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  #product-grid .grid__item {
+    max-width: 100% !important;
+  }
+
+  #product-grid {
+    column-gap: 1rem !important;
+    row-gap: 1rem !important;
+  }
+
+  @media screen and (min-width: 990px) {
+    #product-grid .grid__item {
+      width: calc(25% - 0.9rem) !important;
+      max-width: calc(25% - 0.9rem) !important;
+      flex-grow: 0 !important;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .page-width {
+      padding: 0.5rem;
+    }
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">

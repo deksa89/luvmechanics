@@ -12,46 +12,84 @@
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
-        "carousel_image_desktop_b7KNxR": {
+        "carousel_image_desktop_Cb9Jwi": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/o_1.png",
-            "link": "shopify://pages/about-us-1"
-          }
-        },
-        "carousel_image_desktop_YEDEXi": {
-          "type": "carousel_image_desktop",
-          "settings": {
-            "image": "shopify://shop_images/5_09f9cefa-224e-45cf-95ae-3f60359bbdbf.png",
-            "link": "shopify://collections/bestsellers"
+            "image": "shopify://shop_images/6_b62ca726-b3d3-401d-add6-feaea4c202b8.png",
+            "link": "shopify://collections/new-arrivals",
+            "language": "en"
           }
         },
         "carousel_image_desktop_MLJGQP": {
           "type": "carousel_image_desktop",
           "settings": {
             "image": "shopify://shop_images/7_854698e9-304e-4aa8-b8e1-a4008f2e74a9.png",
-            "link": "shopify://collections/new-arrivals"
+            "link": "shopify://collections/new-arrivals",
+            "language": "hr"
           }
         },
-        "carousel_image_mobile_QXcPhe": {
-          "type": "carousel_image_mobile",
+        "carousel_image_desktop_yGc8UF": {
+          "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/3_bde9962f-7dad-4457-8553-6606288c15e6.png",
-            "link": "shopify://pages/about-us-1"
+            "image": "shopify://shop_images/3_b7456579-c46c-4f10-b8bd-5e694e2e6905.png",
+            "link": "shopify://collections/bestsellers",
+            "language": "en"
           }
         },
-        "carousel_image_mobile_rKNRUd": {
+        "carousel_image_desktop_YEDEXi": {
+          "type": "carousel_image_desktop",
+          "settings": {
+            "image": "shopify://shop_images/5_09f9cefa-224e-45cf-95ae-3f60359bbdbf.png",
+            "link": "shopify://collections/bestsellers",
+            "language": "hr"
+          }
+        },
+        "carousel_image_desktop_b7KNxR": {
+          "type": "carousel_image_desktop",
+          "settings": {
+            "image": "shopify://shop_images/o_1.png",
+            "link": "shopify://pages/about-us-1",
+            "language": "all"
+          }
+        },
+        "carousel_image_mobile_CV4N7Q": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/10.png",
-            "link": "shopify://collections/bestsellers"
+            "image": "shopify://shop_images/val_1.png",
+            "link": "shopify://collections/new-arrivals",
+            "language": "en"
           }
         },
         "carousel_image_mobile_mFbE3C": {
           "type": "carousel_image_mobile",
           "settings": {
             "image": "shopify://shop_images/5_0b14fd15-e5f4-4347-9b4b-5569d0e3dafb.png",
-            "link": "shopify://collections/new-arrivals"
+            "link": "shopify://collections/new-arrivals",
+            "language": "hr"
+          }
+        },
+        "carousel_image_mobile_MWe3h3": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/9.png",
+            "link": "shopify://collections/bestsellers",
+            "language": "en"
+          }
+        },
+        "carousel_image_mobile_rKNRUd": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/10.png",
+            "link": "shopify://collections/bestsellers",
+            "language": "hr"
+          }
+        },
+        "carousel_image_mobile_QXcPhe": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/3_bde9962f-7dad-4457-8553-6606288c15e6.png",
+            "link": "shopify://pages/about-us-1",
+            "language": "all"
           }
         },
         "button": {
@@ -64,12 +102,16 @@
         }
       },
       "block_order": [
-        "carousel_image_desktop_b7KNxR",
-        "carousel_image_desktop_YEDEXi",
+        "carousel_image_desktop_Cb9Jwi",
         "carousel_image_desktop_MLJGQP",
-        "carousel_image_mobile_QXcPhe",
-        "carousel_image_mobile_rKNRUd",
+        "carousel_image_desktop_yGc8UF",
+        "carousel_image_desktop_YEDEXi",
+        "carousel_image_desktop_b7KNxR",
+        "carousel_image_mobile_CV4N7Q",
         "carousel_image_mobile_mFbE3C",
+        "carousel_image_mobile_MWe3h3",
+        "carousel_image_mobile_rKNRUd",
+        "carousel_image_mobile_QXcPhe",
         "button"
       ],
       "settings": {
@@ -84,10 +126,10 @@
         "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-1",
         "color_scheme": "scheme-1",
-        "padding_top_desktop": 24,
-        "padding_top_mobile": 12,
-        "padding_bottom_desktop": 20,
-        "padding_bottom_mobile": 8
+        "padding_top_desktop": 12,
+        "padding_top_mobile": 0,
+        "padding_bottom_desktop": 12,
+        "padding_bottom_mobile": 0
       }
     },
     "multicolumn_WHDRmn": {
@@ -101,7 +143,7 @@
             "image_repeat_count": 1,
             "image": "shopify://shop_images/Untitled_design__19_-removebg-preview.png",
             "title": "Product advising",
-            "text": "<p>We are here to help you choose the product that best suits your needs.</p>",
+            "text": "<p>Help you choose the product that best suits your needs.</p>",
             "link_label": "",
             "link": ""
           }
@@ -131,12 +173,26 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_Pj3fep": {
+          "type": "column",
+          "settings": {
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/111134343-removebg-preview.png",
+            "title": "Reliable support",
+            "text": "<p>We handle returns and complaints quickly and fairly.</p>",
+            "link_label": "",
+            "link": "shopify://policies/contact-information"
+          }
         }
       },
       "block_order": [
         "column_ccyqe9",
         "column_Kp6raD",
-        "column_hcVpNc"
+        "column_hcVpNc",
+        "column_Pj3fep"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
@@ -146,161 +202,127 @@
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "scheme-1",
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 20,
-        "padding_bottom": 36
+        "padding_bottom": 32
       }
     },
-    "1771014829a89cf146": {
+    "1772909820c436293e": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_70f26db_AAtMxL": {
-          "type": "ai_gen_block_70f26db",
-          "name": "POPRAVITI BUNDLE BLOCK",
-          "disabled": true,
+        "ai_gen_block_322d227_MUYNaM": {
+          "type": "ai_gen_block_322d227",
           "settings": {
-            "heading": "Shop our bundles",
-            "subheading": "Save more when you bundle",
-            "heading_alignment": "center",
-            "heading_size": 32,
-            "subheading_size": 16,
-            "heading_spacing": 40,
-            "subheading_spacing": 8,
-            "heading_color": "#2e2a39",
-            "subheading_color": "#2e2a39",
-            "cards_per_view": 3,
-            "cards_per_view_tablet": 2,
-            "card_gap": 20,
-            "loop": true,
-            "autoplay": false,
-            "autoplay_speed": 5000,
-            "show_dots": true,
-            "container_width": 1400,
-            "section_padding_top": 50,
-            "section_padding_bottom": 50,
-            "background_color": "#f8f0ee",
-            "card_background": "#ffffff",
-            "card_padding": 20,
-            "card_border_radius": 12,
-            "card_border_width": 0,
-            "card_border_color": "#e0e0e0",
-            "card_shadow_horizontal": 0,
-            "card_shadow_vertical": 4,
-            "card_shadow_blur": 15,
-            "card_shadow_opacity": 0.1,
-            "bundle_title_size": 20,
-            "bundle_title_color": "#2e2a39",
-            "bundle_title_spacing": 20,
-            "bundle_description_size": 14,
-            "bundle_description_color": "#666666",
-            "product_spacing": 15,
-            "products_bottom_spacing": 20,
-            "product_image_size": 80,
-            "product_image_radius": 8,
-            "product_image_spacing": 15,
-            "product_title_size": 14,
-            "product_title_color": "#2e2a39",
-            "product_price_size": 14,
-            "product_price_color": "#9b046f",
-            "footer_spacing": 20,
-            "divider_color": "#e0e0e0",
-            "total_label": "Total",
-            "total_spacing": 15,
-            "total_label_size": 16,
-            "total_label_color": "#2e2a39",
-            "total_price_size": 20,
-            "total_price_color": "#9b046f",
-            "button_padding_vertical": 14,
-            "button_padding_horizontal": 20,
-            "button_border_radius": 4,
-            "button_font_size": 16,
-            "button_background": "#9b046f",
-            "button_hover_background": "#5e3653",
-            "button_text_color": "#ffffff",
-            "arrow_size": 50,
-            "arrow_icon_size": 24,
-            "arrow_offset": 50,
-            "arrow_background": "#ffffff",
-            "arrow_hover_background": "#f0f0f0",
-            "arrow_color": "#2e2a39",
-            "dots_spacing": 30,
-            "dot_size": 10,
-            "dot_active_color": "#9b046f",
-            "dot_inactive_color": "#d0d0d0",
-            "bundle_1_enabled": true,
-            "bundle_1_title": "Starter bundle",
-            "bundle_1_description": "Perfect for getting started",
-            "bundle_1_image": "shopify://shop_images/img_210625_8915b818b47ee84848dc235a57ea8c63_1.png",
-            "bundle_1_product_1": "lelo-elise-2-black-vibrator",
-            "bundle_1_product_2": "pjur-med-vegan-glide-water-based-lubricant-100-ml",
-            "bundle_1_product_3": "",
-            "bundle_1_product_4": "",
-            "bundle_1_button_text": "Shop bundle",
-            "bundle_1_button_link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator",
-            "bundle_2_enabled": true,
-            "bundle_2_title": "Pro bundle",
-            "bundle_2_description": "Everything you need",
-            "bundle_2_product_1": "",
-            "bundle_2_product_2": "",
-            "bundle_2_product_3": "",
-            "bundle_2_product_4": "",
-            "bundle_2_button_text": "Shop bundle",
-            "bundle_2_button_link": "",
-            "bundle_3_enabled": true,
-            "bundle_3_title": "Ultimate bundle",
-            "bundle_3_description": "The complete collection",
-            "bundle_3_product_1": "",
-            "bundle_3_product_2": "",
-            "bundle_3_product_3": "",
-            "bundle_3_product_4": "",
-            "bundle_3_button_text": "Shop bundle",
-            "bundle_3_button_link": "",
-            "bundle_4_enabled": false,
-            "bundle_4_title": "Bundle 4",
-            "bundle_4_description": "",
-            "bundle_4_product_1": "",
-            "bundle_4_product_2": "",
-            "bundle_4_product_3": "",
-            "bundle_4_product_4": "",
-            "bundle_4_button_text": "Shop bundle",
-            "bundle_4_button_link": "",
-            "bundle_5_enabled": false,
-            "bundle_5_title": "Bundle 5",
-            "bundle_5_description": "",
-            "bundle_5_product_1": "",
-            "bundle_5_product_2": "",
-            "bundle_5_product_3": "",
-            "bundle_5_product_4": "",
-            "bundle_5_button_text": "Shop bundle",
-            "bundle_5_button_link": "",
-            "bundle_6_enabled": false,
-            "bundle_6_title": "Bundle 6",
-            "bundle_6_description": "",
-            "bundle_6_product_1": "",
-            "bundle_6_product_2": "",
-            "bundle_6_product_3": "",
-            "bundle_6_product_4": "",
-            "bundle_6_button_text": "Shop bundle",
-            "bundle_6_button_link": ""
+            "heading": "",
+            "desktop_width_percent": 100,
+            "items_per_view": 8,
+            "items_per_view_mobile": 3,
+            "item_spacing": 0,
+            "section_padding": 0,
+            "auto_scroll_speed": 4,
+            "item_height": 60,
+            "item_padding": 0,
+            "item_background_color": "#ffffff",
+            "item_border_width": 0,
+            "item_border_color": "#e0e0e0",
+            "item_border_radius": 0,
+            "logo_max_height": 90,
+            "logo_grayscale": 100,
+            "logo_opacity": 1,
+            "arrow_size": 40,
+            "arrow_background_color": "#ffffff",
+            "arrow_hover_background_color": "#f98585",
+            "arrow_color": "#000000",
+            "arrow_hover_color": "#000000",
+            "arrow_border_radius": 40,
+            "background_color": "#ffffff",
+            "brand_1": "shopify://shop_images/LELO_logo_png_480x480-removebg-preview.png",
+            "brand_1_url": "shopify://collections/lelo",
+            "brand_2": "shopify://shop_images/wevibe.png",
+            "brand_2_url": "shopify://collections/we-vibe",
+            "brand_3": "shopify://shop_images/womanizer.png",
+            "brand_3_url": "shopify://collections/womanizer",
+            "brand_4": "shopify://shop_images/Satisfyer_Logo-removebg-preview.png",
+            "brand_4_url": "shopify://collections/satisfyer",
+            "brand_5": "shopify://shop_images/bathmate.png",
+            "brand_5_url": "shopify://collections/bathmate",
+            "brand_6": "shopify://shop_images/pretty-love-kaufbei-logo.jpg",
+            "brand_6_url": "shopify://collections/pretty-love",
+            "brand_7": "shopify://shop_images/Untitled_design_25.png",
+            "brand_7_url": "shopify://collections/arcwave",
+            "brand_8": "shopify://shop_images/kiiro.webp",
+            "brand_8_url": "shopify://collections/kiiro",
+            "brand_9": "shopify://shop_images/FF_Logo_RGB.webp",
+            "brand_9_url": "shopify://collections/fun-factory",
+            "brand_10": "shopify://shop_images/durx-removebg-preview.png",
+            "brand_10_url": "shopify://collections/durex"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_70f26db_AAtMxL"
+        "ai_gen_block_322d227_MUYNaM"
       ],
-      "name": "USP block",
+      "name": "Brands",
       "settings": {}
     },
-    "1770922792c79ccaf2": {
+    "featured_promo_trio_ch9Fxi": {
+      "type": "featured-promo-trio",
+      "blocks": {
+        "promo_card_DE43UH": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_u2mxi9u2mxi9u2mx.jpg",
+            "title": "LELO Elise 2",
+            "description": "<p>Smooth, refined, and quietly powerful, Elise 2 pairs sensual curves with sophisticated precision. Its silky finish, graceful silhouette, and deep, resonant energy create an experience that feels both intimate and indulgent.<br/><br/></p>",
+            "link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator",
+            "button_label": ""
+          }
+        },
+        "promo_card_qe7fCE": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/wmremove-transformed_b4d6819b-7869-4899-b5ed-3b690bf4b6fa.png",
+            "title": "LELO IDA WAVE MASSAGER ",
+            "description": "<p>Sculpted for connection and designed with refined precision, IDA Wave blends graceful form with deeply sensual performance. Its fluid silhouette, soft finish, and signature WaveMotion™ create an experience that feels both intuitive and indulgent. <br/><br/></p>",
+            "link": "shopify://products/lelo-ida-wave-coral-couples-massager",
+            "button_label": ""
+          }
+        },
+        "promo_card_UgyiqR": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_gkjsuugkjsuugkjs.jpg",
+            "title": "HYDROMAX 9 TRANSPARENT PENIS PUMP",
+            "description": "<p>Clear design, advanced performance, and confident control come together in Hydromax 9. Powerful, refined, and built for a more elevated experience, it is a modern essential for those who expect more.<br/><br/></p>",
+            "link": "shopify://products/bathmate-hydromax-9-transparent-penis-increase-pump",
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "promo_card_DE43UH",
+        "promo_card_qe7fCE",
+        "promo_card_UgyiqR"
+      ],
+      "name": "Featured promo trio",
+      "settings": {
+        "color_scheme": "",
+        "eyebrow": "Editor’s picks",
+        "heading": "Products worth exploring",
+        "padding_top": 32,
+        "padding_bottom": 24
+      }
+    },
+    "blocks_mtYFh7": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_3922afe_Ei9qjT": {
+        "ai_gen_block_3922afe_txEz7G": {
           "type": "ai_gen_block_3922afe",
           "name": "AI primjer 2.",
           "settings": {
@@ -319,11 +341,11 @@
             "container_max_width": 1440,
             "section_padding": 0,
             "heading_alignment": "center",
-            "heading_spacing": 30,
+            "heading_spacing": 20,
             "subheading_spacing": 0,
             "product_width": 220,
             "mobile_product_width": 180,
-            "product_gap": 6,
+            "product_gap": 4,
             "card_padding": 28,
             "card_border_radius": 2,
             "card_border_width": 2,
@@ -349,8 +371,8 @@
             "background_color": "#ffffff",
             "heading_color": "#2e2a39",
             "subheading_color": "#2e2a39",
-            "card_background": "#ffffff",
-            "card_border_color": "#ececec",
+            "card_background": "#f6f6f6",
+            "card_border_color": "#f6f6f6",
             "vendor_color": "#999999",
             "product_title_color": "#2e2a39",
             "price_color": "#2e2a39",
@@ -376,103 +398,102 @@
         }
       },
       "block_order": [
-        "ai_gen_block_3922afe_Ei9qjT"
+        "ai_gen_block_3922afe_txEz7G"
       ],
       "name": "Bestsellers",
       "settings": {}
     },
-    "17707594797709b57d": {
-      "type": "_blocks",
+    "featured_bundles_promo_tPwEjE": {
+      "type": "featured-bundles-promo",
       "blocks": {
-        "ai_gen_block_299512d_dpegxJ": {
-          "type": "ai_gen_block_299512d",
-          "name": "Col. AI primjer 1.",
-          "disabled": true,
+        "bundle_49AgRk": {
+          "type": "bundle",
           "settings": {
-            "collection_list": [
-              "remote-control-toys",
-              "rabbit-vibrators",
-              "vibrating-rings",
-              "vibrators",
-              "penis-pumps",
-              "masturbators",
-              "clitoris-stimulator"
-            ],
-            "collections_to_show": 8,
-            "desktop_width_percent": 100,
-            "container_width": 1450,
-            "section_padding": 40,
-            "columns_desktop": 4,
-            "columns_tablet": 4,
-            "columns_mobile": "2",
-            "grid_gap": 10,
-            "heading": "Shop by collection",
-            "subheading": "",
-            "heading_alignment": "center",
-            "heading_size": 26,
-            "heading_weight": "700",
-            "heading_color": "#2e2a39",
-            "subheading_size": 14,
-            "subheading_color": "#666666",
-            "heading_spacing": 20,
-            "subheading_spacing": 10,
-            "card_background": "#f8f0ee",
-            "card_border_radius": 0,
-            "card_border_width": 1,
-            "card_border_color": "#e0e0e0",
-            "card_padding": 20,
-            "card_text_alignment": "center",
-            "image_aspect_ratio": 100,
-            "show_overlay": false,
-            "overlay_color": "#000000",
-            "overlay_opacity": 0.2,
-            "enable_image_zoom": true,
-            "show_collection_title": true,
-            "card_title_size": 16,
-            "card_title_weight": "600",
-            "card_title_color": "#2e2a39",
-            "show_collection_description": false,
-            "description_length": 100,
-            "card_description_size": 14,
-            "card_description_color": "#666666",
-            "card_description_spacing": 15,
-            "show_product_count": false,
-            "badge_position": "right",
-            "badge_spacing": 15,
-            "badge_font_size": 12,
-            "badge_border_radius": 20,
-            "badge_background": "#9b046f",
-            "badge_text_color": "#ffffff",
-            "product_count_size": 14,
-            "product_count_color": "#666666",
-            "show_button": false,
-            "button_text": "View collection",
-            "button_font_size": 14,
-            "button_font_weight": "600",
-            "button_padding_vertical": 10,
-            "button_padding_horizontal": 20,
-            "button_border_radius": 4,
-            "button_border_width": 1,
-            "button_background": "#f8f0ee",
-            "button_text_color": "#ffffff",
-            "button_border_color": "#9b046f",
-            "button_hover_background": "#5e3653",
-            "button_hover_text_color": "#ffffff",
-            "button_hover_border_color": "#5e3653",
-            "card_button_spacing": 15,
-            "enable_hover_effect": true,
-            "hover_lift": 4,
-            "enable_hover_overlay": false,
-            "hover_overlay_opacity": 0.4
-          },
-          "blocks": {}
+            "image": "shopify://shop_images/Gemini_Generated_Image_8ayi7h8ayi7h8ayi_1.jpg",
+            "title": "LELO Premium care bundle",
+            "text": "<p>Two essentials combined for a better intimate experience with a smoother glide, comfort, and more pleasure overall.</p>",
+            "regular_price": "193,85€",
+            "bundle_price": "184,90€",
+            "button_label": "Shop bundle",
+            "button_link": "shopify://products/lelo-enigma-double-suction-stimulation-massager-black"
+          }
+        },
+        "bundle_iGzBz3": {
+          "type": "bundle",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_s1tpats1tpats1tp.jpg",
+            "title": "ring confor & control bundle",
+            "text": "<p>A convenient solution to enhance your experience with two products that work better together than apart.</p>",
+            "regular_price": "155,85€",
+            "bundle_price": "145,90€",
+            "button_label": "Shop bundle",
+            "button_link": "shopify://products/lelo-tor-3-black-vibrator-ring"
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_299512d_dpegxJ"
+        "bundle_49AgRk",
+        "bundle_iGzBz3"
       ],
-      "disabled": true,
-      "settings": {}
+      "name": "Featured bundles promo",
+      "settings": {
+        "eyebrow": "Featured bundles",
+        "heading": "Top bundle offers",
+        "max_width": 1440,
+        "heading_alignment_desktop": "left",
+        "heading_alignment_mobile": "left",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 28,
+        "heading_spacing_desktop": 28,
+        "heading_spacing_mobile": 20,
+        "image_ratio_desktop": 72,
+        "image_ratio_mobile": 78,
+        "content_min_height_desktop": 170,
+        "content_min_height_mobile": 160,
+        "content_padding_desktop": 20,
+        "content_padding_mobile": 18,
+        "card_gap_desktop": 2,
+        "card_gap_mobile": 12,
+        "side_padding_desktop": 0,
+        "side_padding_mobile": 0,
+        "title_size_desktop": 21,
+        "title_size_mobile": 20,
+        "text_size_desktop": 14,
+        "text_size_mobile": 14,
+        "compare_price_size_desktop": 16,
+        "compare_price_size_mobile": 15,
+        "bundle_price_size_desktop": 24,
+        "bundle_price_size_mobile": 22,
+        "button_radius": 0,
+        "section_bg": "#ffffff",
+        "image_bg": "#dfe4ea",
+        "content_bg": "#000000",
+        "content_text": "#ffffff",
+        "eyebrow_color": "#777777",
+        "heading_color": "#111111",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "compare_price_color": "#b8b8b8",
+        "bundle_price_color": "#ffffff",
+        "button_bg": "#ffffff",
+        "button_text": "#000000",
+        "button_border": "#ffffff",
+        "button_bg_hover": "#000000",
+        "button_text_hover": "#ffffff",
+        "button_border_hover": "#ffffff",
+        "arrow_bg": "#ffffff",
+        "arrow_color": "#111111",
+        "arrow_border": "#dddddd",
+        "arrow_bg_hover": "#111111",
+        "arrow_color_hover": "#ffffff",
+        "arrow_border_hover": "#111111",
+        "dot_color": "#111111",
+        "dot_active_color": "#111111",
+        "padding_top_desktop": 36,
+        "padding_bottom_desktop": 36,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20
+      }
     },
     "177092359671149746": {
       "type": "_blocks",
@@ -481,7 +502,7 @@
           "type": "ai_gen_block_d95a1fb",
           "name": "Col AI primjer 2.",
           "settings": {
-            "heading": "Explore our categories",
+            "heading": "Categories",
             "subheading": "",
             "collections": [
               "vibrators",
@@ -497,7 +518,7 @@
             "columns_desktop": 4,
             "columns_tablet": 3,
             "columns_mobile": "2",
-            "grid_gap": 6,
+            "grid_gap": 4,
             "heading_alignment": "center",
             "heading_size": 34,
             "heading_weight": 700,
@@ -540,8 +561,8 @@
             "count_size": 12,
             "count_weight": 500,
             "count_color": "#999999",
-            "section_padding_top": 36,
-            "section_padding_bottom": 40,
+            "section_padding_top": 20,
+            "section_padding_bottom": 20,
             "section_padding_horizontal": 28,
             "background_color": "#ffffff"
           },
@@ -553,225 +574,6 @@
       ],
       "name": "Categories",
       "settings": {}
-    },
-    "1771180918dda3beb6": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_f1abeb2_dmGrLU": {
-          "type": "ai_gen_block_f1abeb2",
-          "settings": {
-            "heading": "Did you know?",
-            "heading_size": 34,
-            "heading_weight": "700",
-            "heading_color": "#2e2a39",
-            "heading_alignment": "center",
-            "heading_spacing": 24,
-            "desktop_width_percent": 100,
-            "background_color": "#ffffff",
-            "container_padding": 20,
-            "border_radius": 12,
-            "card_background_color": "#ffffff",
-            "card_padding": 40,
-            "card_border_radius": 0,
-            "card_border_thickness": 0,
-            "card_border_color": "#fdfbf7",
-            "text_size": 18,
-            "text_color": "#2e2a39",
-            "text_alignment": "center",
-            "line_height": 1.5,
-            "icon_size": 40,
-            "icon_spacing": 16,
-            "show_arrows": true,
-            "show_dots": true,
-            "show_counter": false,
-            "controls_top_spacing": 24,
-            "controls_spacing": 16,
-            "button_size": 30,
-            "button_background_color": "#9b046f",
-            "button_hover_background_color": "#5e3653",
-            "button_icon_color": "#fdfbf7",
-            "button_border_radius": 20,
-            "dot_size": 6,
-            "dots_spacing": 8,
-            "dot_active_color": "#9b046f",
-            "dot_inactive_color": "#e7dbc9",
-            "counter_size": 16,
-            "counter_color": "#2e2a39",
-            "counter_weight": "500",
-            "autoplay": true,
-            "autoplay_speed": 8,
-            "pause_on_hover": true,
-            "show_icon_1": true,
-            "icon_1": "",
-            "fact_1": "The world record for the longest kiss belongs to Thai couple Ekkachai and Laksana Tiranarat. They locked lips for an incredible 58 hours, 35 minutes, and 58 seconds!",
-            "show_icon_2": true,
-            "icon_2": "",
-            "fact_2": "Sean Rosner holds the record for unhooking bras. He managed to undo 69 bras in one minute – using only one hand! Guys, please don't try this at home without consent (and a whole lot of practice).",
-            "show_icon_3": true,
-            "icon_3": "",
-            "fact_3": "Think sex toys are a modern invention? Think again! The oldest dildo was discovered in Germany, carved from stone, and is roughly 28,000 years old. Humans have been having fun since the dawn of time!",
-            "show_icon_4": true,
-            "icon_4": "",
-            "fact_4": "Science has spoken: Cold feet are a total passion killer. A study by the University of Groningen showed that wearing socks during sex increases the chance of achieving orgasm from 50% to 80%.",
-            "show_icon_5": true,
-            "icon_5": "",
-            "fact_5": "Forget expensive colognes. Research suggests the scent that arouses men the most isn't musk, but a combination of pumpkin pie and lavender. Time to start baking?",
-            "show_icon_6": true,
-            "icon_6": "",
-            "fact_6": "During 30 minutes of active sex, you can burn up to 150 calories. That’s equivalent to a light jog, but let’s be real – this is a much more fun way to lose weight.",
-            "show_icon_7": true,
-            "icon_7": "",
-            "fact_7": "\"Not tonight, I have a headache\" is no longer a valid excuse. Sex releases endorphins (natural painkillers) that actually reduce pain. So, sex is the cure, not the obstacle!",
-            "show_icon_8": true,
-            "icon_8": "",
-            "fact_8": "The famous director once asked: \"Is sex dirty? Only if it's done right.\" At LuvMechanics, we say: Keep it fun, safe, and exactly the way you want it!",
-            "show_icon_9": true,
-            "icon_9": "",
-            "fact_9": "\"Sex is like gravity – all it takes is a little push.\" (Or a really good toy). Explore our range and discover how to defy the laws of physics in the bedroom.",
-            "show_icon_10": true,
-            "icon_10": "",
-            "fact_10": "\"If it squeaks, lubricate it.\" Never underestimate the power of a good lubricant. It’s like motor oil for your love life – everything just runs smoother!"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_f1abeb2_dmGrLU"
-      ],
-      "name": "Did you know?",
-      "settings": {}
-    },
-    "1772909820c436293e": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_322d227_MUYNaM": {
-          "type": "ai_gen_block_322d227",
-          "settings": {
-            "heading": "Brands",
-            "desktop_width_percent": 100,
-            "items_per_view": 6,
-            "items_per_view_mobile": 2,
-            "item_spacing": 10,
-            "section_padding": 35,
-            "item_height": 110,
-            "item_padding": 10,
-            "item_background_color": "#ffffff",
-            "item_border_width": 2,
-            "item_border_color": "#e0e0e0",
-            "item_border_radius": 0,
-            "logo_max_height": 150,
-            "logo_grayscale": 100,
-            "logo_opacity": 1,
-            "arrow_size": 45,
-            "arrow_background_color": "#ffffff",
-            "arrow_hover_background_color": "#f98585",
-            "arrow_color": "#000000",
-            "arrow_hover_color": "#000000",
-            "arrow_border_radius": 40,
-            "background_color": "#ffffff",
-            "brand_1": "shopify://shop_images/lelo.png",
-            "brand_1_url": "shopify://collections/lelo",
-            "brand_2": "shopify://shop_images/wevibe.png",
-            "brand_2_url": "shopify://collections/we-vibe",
-            "brand_3": "shopify://shop_images/womanizer.png",
-            "brand_3_url": "shopify://collections/womanizer",
-            "brand_4": "shopify://shop_images/satisfyer.jpg",
-            "brand_4_url": "shopify://collections/satisfyer",
-            "brand_5": "shopify://shop_images/bathmate.png",
-            "brand_5_url": "shopify://collections/bathmate",
-            "brand_6": "shopify://shop_images/pretty-love-kaufbei-logo.jpg",
-            "brand_6_url": "shopify://collections/pretty-love",
-            "brand_7": "shopify://shop_images/Untitled_design_25.png",
-            "brand_7_url": "shopify://collections/arcwave",
-            "brand_8": "shopify://shop_images/kiiro.webp",
-            "brand_8_url": "shopify://collections/kiiro",
-            "brand_9": "shopify://shop_images/FF_Logo_RGB.webp",
-            "brand_9_url": "shopify://collections/fun-factory",
-            "brand_10": "shopify://shop_images/yXeAuHtYxxSo7jg9f5eWPQ.jpg",
-            "brand_10_url": "shopify://collections/durex"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_322d227_MUYNaM"
-      ],
-      "settings": {}
-    },
-    "collection_list_UKmyE4": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_Lwdh6D": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "lelo"
-          }
-        },
-        "featured_collection_bDdaXj": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "we-vibe"
-          }
-        },
-        "featured_collection_W7aQF7": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "satisfyer"
-          }
-        },
-        "featured_collection_kcKicf": {
-          "type": "featured_collection",
-          "disabled": true,
-          "settings": {
-            "collection": "arcwave"
-          }
-        },
-        "featured_collection_yyTNEp": {
-          "type": "featured_collection",
-          "disabled": true,
-          "settings": {
-            "collection": "bathmate"
-          }
-        },
-        "featured_collection_W8yrq8": {
-          "type": "featured_collection",
-          "disabled": true,
-          "settings": {
-            "collection": "womanizer"
-          }
-        },
-        "featured_collection_3YGFcY": {
-          "type": "featured_collection",
-          "disabled": true,
-          "settings": {
-            "collection": "pretty-love"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_Lwdh6D",
-        "featured_collection_bDdaXj",
-        "featured_collection_W7aQF7",
-        "featured_collection_kcKicf",
-        "featured_collection_yyTNEp",
-        "featured_collection_W8yrq8",
-        "featured_collection_3YGFcY"
-      ],
-      "disabled": true,
-      "name": "Brand block",
-      "settings": {
-        "title": "Our Top Brands",
-        "palette": "strong",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 20,
-        "padding_bottom": 32
-      }
     },
     "1757424012f277d6cb": {
       "type": "apps",
@@ -791,22 +593,26 @@
         "include_margins": true
       }
     },
+    "1773954689b81716d0": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "featured_blog_fidJpL": {
       "type": "featured-blog",
       "name": "t:sections.featured-blog.presets.name",
       "settings": {
         "blog": "news",
-        "post_limit": 4,
+        "post_limit": 2,
         "heading": "The Intimacy Column",
         "heading_size": "h1",
-        "columns_desktop": 4,
+        "columns_desktop": 2,
         "show_view_all": true,
         "show_image": true,
         "show_date": false,
         "show_author": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 0
       }
     },
     "1769375150f62370c4": {
@@ -814,12 +620,13 @@
       "blocks": {
         "ai_gen_block_6be1612_3BE9zQ": {
           "type": "ai_gen_block_6be1612",
+          "disabled": true,
           "settings": {
-            "heading_column_1": "Meet Luvmechanics",
-            "text_column_1": "<p>At LuvMechanics, we believe everyone deserves a fun, exciting, and fulfilling intimate life. Over time, things can start to feel routine — that’s where we come in. Whether you’re exploring something new with your partner or treating yourself to a moment of pleasure, our goal is to help you feel confident, curious, and completely comfortable.<br/></p><h3><strong>Why Shop With Us?</strong></h3><p>We get it — shopping for adult products can feel awkward. That’s why we’ve made it simple, safe, and private. All orders from LuvMechanics are shipped discreetly, and your privacy is always our top priority. You can browse freely, explore what excites you, and shop without judgment — all from the comfort of your home.<br/></p><h3><strong>More Than Just a Shop</strong></h3><p>LuvMechanics isn’t only about selling toys — we’re here to make intimacy more open, positive, and fun. Our guides, articles, and newsletters are full of real advice, product tips, and inspiration to help you explore your desires at your own pace.</p>",
-            "heading_column_2": "",
-            "text_column_2": "<h3><strong>Our Products</strong></h3><p>We’re proud to always bring you the most popular and best-loved adult toys from trusted brands worldwide. From vibrators and couples’ toys to lingerie and accessories, everything we offer is carefully selected for quality, safety, and satisfaction.</p><h3><strong>For Everyone</strong></h3><p>Whether you’re new to adult toys or already know what you like, LuvMechanics has something for you. Our collections are designed for all genders, preferences, and experiences — so you can discover what pleasure really means to you.Need a little guidance? Our team is always happy to help with friendly advice and personal recommendations — no awkwardness, no pressure.</p>",
-            "enable_read_more": true,
+            "heading_column_1": "<strong>Customer support & orders</strong>",
+            "text_column_1": "<p>Monday - Saturday 8AM-8PM</p><p></p><p><a href=\"tel:+385996496644\" title=\"tel:+385996496644\">099 649 6644</a><br/><a href=\"mailto:info@50nijansi.hr\">info@luvmechanics.com</a></p>",
+            "heading_column_2": "‎",
+            "text_column_2": "<p>We are a Croatian intimate wellness webshop with an emphasis on competitive prices, discreet delivery, carefully selected products, and support you can trust. </p><p>Everything you see in our offer is selected with a focus on quality, comfort, and a pleasant user experience.</p>",
+            "enable_read_more": false,
             "collapsed_height": 280,
             "fade_height": 60,
             "read_more_text": "Read more",
@@ -828,8 +635,8 @@
             "max_content_width": 1400,
             "column_gap": 40,
             "column_gap_mobile": 30,
-            "section_padding_top": 40,
-            "section_padding_bottom": 40,
+            "section_padding_top": 30,
+            "section_padding_bottom": 20,
             "section_padding_horizontal": 40,
             "section_padding_top_mobile": 30,
             "section_padding_bottom_mobile": 30,
@@ -857,9 +664,9 @@
             "button_bg_color": "#f8275c",
             "button_text_color": "#fdfbf7",
             "button_border_color": "#f8275c",
-            "button_bg_hover_color": "#5e3653",
+            "button_bg_hover_color": "#ffffff",
             "button_text_hover_color": "#fdfbf7",
-            "button_border_hover_color": "#5e3653",
+            "button_border_hover_color": "#f8275c",
             "background_color": "#ffffff",
             "border_radius": 0
           },
@@ -940,14 +747,13 @@
   "order": [
     "image-with-text",
     "multicolumn_WHDRmn",
-    "1771014829a89cf146",
-    "1770922792c79ccaf2",
-    "17707594797709b57d",
-    "177092359671149746",
-    "1771180918dda3beb6",
     "1772909820c436293e",
-    "collection_list_UKmyE4",
+    "featured_promo_trio_ch9Fxi",
+    "blocks_mtYFh7",
+    "featured_bundles_promo_tPwEjE",
+    "177092359671149746",
     "1757424012f277d6cb",
+    "1773954689b81716d0",
     "featured_blog_fidJpL",
     "1769375150f62370c4"
   ]

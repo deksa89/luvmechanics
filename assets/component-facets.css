@@ -77,7 +77,7 @@
 }
 
 .facet-filters__field .select {
-  width: auto;
+  width: 10rem;
 }
 
 .facet-filters__field .select:after,
@@ -186,7 +186,7 @@
 .facets-container .facet-filters__sort,
 .facets-container .select__select,
 .facets-container .product-count__text {
-  font-size: 2rem !important;
+  font-size: 1.4rem !important;
   line-height: 1.4;
 }
 

@@ -24,6 +24,17 @@
     transition: max-height 0.4s ease;
   }
 
+  .ai-about-shop-content-{{ ai_gen_id }} p {
+    font-size: 2rem;
+  }
+
+
+  .ai-about-shop-content-{{ ai_gen_id }} a {
+    text-decoration: none !important;
+    color: inherit;
+    font-size: 2rem;
+  }
+
   .ai-about-shop-content-{{ ai_gen_id }}.collapsed {
     max-height: {{ block.settings.collapsed_height }}px;
     position: relative;
@@ -53,6 +64,12 @@
     position: relative;
   }
 
+  @media screen and (max-width: 425px) {
+    .ai-about-shop-column-{{ ai_gen_id }} {
+      margin-bottom: 20px;
+    }
+  }
+
   .ai-about-shop-heading-{{ ai_gen_id }} {
     font-size: {{ block.settings.heading_size }}px;
     font-weight: 200;
@@ -63,7 +80,7 @@
   }
 
   .ai-about-shop-text-{{ ai_gen_id }} {
-    font-size: {{ block.settings.text_size }}px;
+    font-size: calc(18px * 0.9);
     font-weight: {{ block.settings.text_weight }};
     color: {{ block.settings.text_color }};
     line-height: {{ block.settings.text_line_height }};
@@ -82,13 +99,13 @@
   .ai-about-shop-button-wrapper-{{ ai_gen_id }} {
     margin-top: {{ block.settings.button_margin_top }}px;
     text-align: {{ block.settings.text_alignment }};
-    min-width: calc(12rem + var(--buttons-border-width) * 2);
+    min-width: calc(30rem + var(--buttons-border-width) * 2);
     min-height: calc(4.5rem + var(--buttons-border-width) * 2);
   }
 
   .ai-about-shop-button-{{ ai_gen_id }} {
     display: inline-block;
-    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px !important;
     background-color: {{ block.settings.button_bg_color }};
     color: {{ block.settings.button_text_color }};
     border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
@@ -98,6 +115,16 @@
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
+
+    width: 100%;
+    background-color: #ffffff;
+    color: #3a2a28 !important;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .button {
+    padding: 0 !important;
   }
 
   .ai-about-shop-button-{{ ai_gen_id }}:hover {
@@ -163,7 +190,7 @@
   </div>
 
   {% if block.settings.enable_read_more %}
-    <div class="ai-about-shop-button-wrapper-{{ ai_gen_id }}">
+    <div class="ai-about-shop-button-wrapper-{{ ai_gen_id }} button{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <button class="ai-about-shop-button-{{ ai_gen_id }}" type="button" aria-expanded="false">
         <span class="ai-about-shop-button-text-more-{{ ai_gen_id }}">{{ block.settings.read_more_text }}</span>
         <span class="ai-about-shop-button-text-less-{{ ai_gen_id }}" style="display: none;">{{ block.settings.read_less_text }}</span>
@@ -359,7 +386,7 @@
       "label": "Max content width",
       "min": 600,
       "max": 1400,
-      "step": 50,
+      "step": 10,
       "unit": "px",
       "default": 1200
     },
