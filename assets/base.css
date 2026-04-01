@@ -106,7 +106,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 .page-width-desktop {
-  padding: 0;
+  padding: 20px 0;
   margin: 0 auto;
 }
 
@@ -153,6 +153,12 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   .page-width-desktop {
     max-width: var(--page-width);
     padding: 0;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .page-width-desktop {
+    padding-top: 0px;
   }
 }
 
@@ -3642,18 +3648,17 @@ details-disclosure > details {
   .animate--hover-vertical-lift .button:not([disabled]):hover:after,
   .animate--hover-vertical-lift .customer button:not([disabled]):hover:after,
   .animate--hover-vertical-lift .shopify-payment-button__button:not([disabled]):hover:after {
-    --border-offset: 0.3px; /* Default is 1.3px as defined above in this file. This removes 1px to prevent the border from growing on buttons when this effect is on.  */
+    --border-offset: 0.3px;
     box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
         rgba(var(--color-button-text), var(--border-opacity)),
       0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
   }
 
   .animate--hover-vertical-lift .button:not([disabled]).button--secondary:hover:after {
-    --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
+    --border-offset: 0px; 
   }
 }
 
-/* Loading spinner */
 .loading__spinner {
   position: absolute;
   z-index: 1;
@@ -3716,7 +3721,6 @@ details-disclosure > details {
   cursor: default;
 }
 
-/* Progress bar */
 .progress-bar-container {
   width: 100%;
   margin: auto;
@@ -3781,10 +3785,9 @@ details-disclosure > details {
     align-items: center;
     margin-right: -2.5rem;
     margin-left: 2rem;
-    order: -1; /* pushes flags before logo */
+    order: -1;
   }
 
-  /* Style the flags */
   .header__langflags .lm-flag {
     width: 22px;
     height: 22px;
@@ -3792,7 +3795,6 @@ details-disclosure > details {
     object-fit: cover;
   }
 
-  /* Make button minimal */
   .header__langflags .disclosure__button,
   .header__langflags .localization-form__select {
     background: transparent;
@@ -3802,14 +3804,12 @@ details-disclosure > details {
     box-shadow: none;
   }
 
-  /* Hide caret icon to make it clean */
   .header__langflags .icon-caret,
   .header__langflags svg[aria-hidden="true"] {
     display: none;
   }
 }
 
-/* Optional: hide right-side selector (desktop) */
 .desktop-localization-wrapper #HeaderLanguageForm {
   display: none !important;
 }
@@ -3821,23 +3821,13 @@ details-disclosure > details {
 }
 
 
-/* Force Pumper bundle button to use theme button typography */
-/* Pumper bundle button: match theme button typography */
 .pmpr_bundle__add_to_cart {
   font-family: var(--font-heading-family) !important;
   font-weight: var(--font-heading-weight) !important;
   letter-spacing: 0.06rem !important;
 
-  /* uskladi veličinu s tvojim glavnim CTA gumbom */
   font-size: 1.5rem !important;
   line-height: calc(1 + 0.2 / var(--font-body-scale)) !important;
-}
-
-
-.pmpr_bundle__add_to_cart {
-  border-radius: var(--buttons-radius) !important;
-  padding: 1.2rem 3rem !important;
-  font-weight: 400 !important;
 }
 
 .pmpr_bundle__product_title h4 {
@@ -3867,26 +3857,22 @@ details-disclosure > details {
   max-width: 1440px !important;
 }
 
-/* Quantity + Add to cart side-by-side, bundle below */
 .qty_and_button-container {
   display: flex;
-  flex-direction: row !important; /* override inline flex-direction: column */
+  flex-direction: row !important;
   gap: 12px;
-  flex-wrap: wrap; /* allow next row */
+  flex-wrap: wrap;
 }
 
-/* Quantity block: keep it compact */
 .qty_and_button-container .product-form__quantity {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
 }
 
-/* Button block: take remaining space */
 .qty_and_button-container .product-form__buttons {
   flex: 1 1 500px;
   margin: 0;
 }
 
-/* PMPR bundle: force full width on next row */
 .qty_and_button-container .pmpr_bundle__root {
   flex: 0 0 100%;
   width: 100%;
@@ -3895,13 +3881,15 @@ details-disclosure > details {
 }
 
 .pmpr_bundle__add_to_cart {
-  background-color: #fe053b !important;
+  background-color: #000000 !important;
   border: none !important;
-  border-radius: 10px !important;
-  font-size: 2rem !important;
+  border-radius: 0px !important;
+  font-size: 1.25rem !important;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+  padding: 1.2rem 3rem !important;
 }
 
-/* Simple number input like screenshot */
 .lm-qty {
   display: inline-block;
 }
@@ -3910,7 +3898,7 @@ details-disclosure > details {
   width: 88px;
   font-size: 2.5rem;
   min-height: 5.7rem;
-  border-radius: 10px;
+  border-radius: 0px;
   padding: 0 10px;
   border: 1px solid #000;
   background: #fff;
@@ -3922,19 +3910,16 @@ details-disclosure > details {
   outline: none;
 }
 
-/* Remove focus glow, keep clean border */
 .lm-qty__input:focus {
   border-color: #b9c0c7;
   box-shadow: none;
   outline: none;
 }
 
-/* Optional: prevent crazy long numbers visually */
 .lm-qty__input::-webkit-inner-spin-button,
 .lm-qty__input::-webkit-outer-spin-button {
-  opacity: 1; /* keep spinner visible */
+  opacity: 1;
 }
-
 
 .price--sold-out .price__container {
   display: flex;

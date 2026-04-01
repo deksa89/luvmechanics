@@ -9,6 +9,7 @@
 }
 
 .blog__title {
+  font-size: 34px !important;
   margin: 0;
   font-weight: 200;
 }

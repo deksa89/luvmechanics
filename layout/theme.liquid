@@ -458,5 +458,47 @@
       })();
       </script>
 
+      <script>
+        (() => {
+          const lang = (document.documentElement.lang || '').toLowerCase();
+          const isHr = lang === 'hr' || lang.startsWith('hr-');
+
+          const BUTTON_TEXT = isHr ? 'Kupi u paketu' : 'Buy in bundle';
+
+          function updateBundleButtons(root = document) {
+            const buttons = root.querySelectorAll('.pmpr_bundle__add_to_cart');
+
+            buttons.forEach((button) => {
+              button.textContent = BUTTON_TEXT;
+              button.setAttribute('aria-label', BUTTON_TEXT);
+              button.setAttribute('title', BUTTON_TEXT);
+            });
+          }
+
+          updateBundleButtons();
+
+          const obs = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+              for (const added of mutation.addedNodes) {
+                if (added.nodeType === 1) {
+                  if (added.matches?.('.pmpr_bundle__add_to_cart')) {
+                    added.textContent = BUTTON_TEXT;
+                    added.setAttribute('aria-label', BUTTON_TEXT);
+                    added.setAttribute('title', BUTTON_TEXT);
+                  } else {
+                    updateBundleButtons(added);
+                  }
+                }
+              }
+            }
+          });
+
+          obs.observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        })();
+      </script>
+
   </body>
 </html>

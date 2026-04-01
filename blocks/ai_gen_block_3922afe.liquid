@@ -4,12 +4,21 @@
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
+{% liquid
+  assign real_product_count = 0
+  if block.settings.products != blank
+    assign real_product_count = block.settings.products.count
+  else
+    assign real_product_count = 6
+  endif
+%}
+
 {% style %}
   .ai-product-carousel-{{ ai_gen_id }} {
     display: block;
     width: {{ block.settings.desktop_width_percent }}%;
     max-width: 100%;
-    padding: 40px 0;
+    padding: {{ block.settings.section_padding }}px 0;
     background-color: {{ block.settings.background_color }};
   }
 
@@ -17,12 +26,6 @@
     max-width: {{ block.settings.container_max_width }}px;
     margin: 0 auto;
     padding: 0;
-  }
-
-  @media screen and (max-width: 425px) {
-    .ai-product-carousel-container-{{ ai_gen_id }} {
-      padding: 0;
-    }
   }
 
   .ai-product-carousel-header-{{ ai_gen_id }} {
@@ -43,25 +46,41 @@
     margin: 0;
   }
 
+  .ai-product-carousel-divider-{{ ai_gen_id }} {
+    height: 1px;
+    background-color: #d9d9d9;
+    width: 100%;
+    margin-top: 16px;
+  }
+
   .ai-product-carousel-wrapper-{{ ai_gen_id }} {
     position: relative;
+  }
+
+  .ai-product-carousel-viewport-{{ ai_gen_id }} {
+    overflow: hidden;
+    width: 100%;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   .ai-product-carousel-track-{{ ai_gen_id }} {
     display: flex;
     gap: {{ block.settings.product_gap }}px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    align-items: stretch;
+    will-change: transform;
+    transition: transform 0.45s ease;
     padding: 10px 0;
   }
 
-  .ai-product-carousel-track-{{ ai_gen_id }}::-webkit-scrollbar {
-    display: none;
+  .ai-product-carousel-track-{{ ai_gen_id }}.no-transition {
+    transition: none;
   }
 
   .ai-product-carousel-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
     flex: 0 0 {{ block.settings.product_width }}px;
     min-width: {{ block.settings.product_width }}px;
     background-color: {{ block.settings.card_background }};
@@ -69,10 +88,12 @@
     overflow: hidden;
     border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex-direction: column;
-    text-decoration: none;      /* remove underline */
-    color: inherit;             /* don’t turn blue */
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
+    align-self: stretch;
+    height: auto;
+    box-sizing: border-box;
   }
 
   .ai-product-carousel-item-{{ ai_gen_id }}:hover {
@@ -96,9 +117,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-
-      /* CHANGE */
     object-fit: contain;
   }
 
@@ -130,9 +148,14 @@
     border-radius: {{ block.settings.badge_border_radius }}px;
     font-size: 12px;
     font-weight: 600;
+    z-index: 2;
   }
 
   .ai-product-carousel-info-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex: 1 1 auto;
     padding: 30px 20px 10px 20px;
     text-align: {{ block.settings.product_text_alignment }};
   }
@@ -155,15 +178,6 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-
-  .ai-product-carousel-title-link-{{ ai_gen_id }} {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .ai-product-carousel-title-link-{{ ai_gen_id }}:hover {
-    text-decoration: underline;
   }
 
   .ai-product-carousel-price-{{ ai_gen_id }} {
@@ -193,6 +207,7 @@
     text-decoration: none;
     display: inline-block;
     text-align: center;
+    box-sizing: border-box;
   }
 
   .ai-product-carousel-button-{{ ai_gen_id }}:hover {
@@ -210,14 +225,12 @@
     height: {{ block.settings.nav_button_size }}px;
     border-radius: 50%;
     cursor: pointer;
-    display: flex;
+    display: {% if block.settings.show_navigation %}flex{% else %}none{% endif %};
     align-items: center;
     justify-content: center;
-    z-index: 2;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 3;
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-
-    display: none;
   }
 
   .ai-product-carousel-nav-{{ ai_gen_id }}:hover {
@@ -226,12 +239,8 @@
   }
 
   .ai-product-carousel-nav-{{ ai_gen_id }}:disabled {
-    opacity: 0.3;
+    opacity: 0.35;
     cursor: not-allowed;
-  }
-
-  .ai-product-carousel-nav-{{ ai_gen_id }}:disabled:hover {
-    transform: translateY(-50%) scale(1);
   }
 
   .ai-product-carousel-nav-prev-{{ ai_gen_id }} {
@@ -248,7 +257,7 @@
   }
 
   .ai-product-carousel-dots-{{ ai_gen_id }} {
-    display: flex;
+    display: {% if block.settings.show_dots %}flex{% else %}none{% endif %};
     justify-content: center;
     gap: 8px;
     margin-top: {{ block.settings.dots_spacing }}px;
@@ -257,28 +266,20 @@
   .ai-product-carousel-dot-{{ ai_gen_id }} {
     width: {{ block.settings.dot_size }}px;
     height: {{ block.settings.dot_size }}px;
-    border-radius: 50%;
+    border-radius: 999px;
     background-color: {{ block.settings.dot_color }};
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, width 0.25s ease, opacity 0.25s ease;
     padding: 0;
+    opacity: 0.45;
   }
 
   .ai-product-carousel-dot-{{ ai_gen_id }}.active {
     background-color: {{ block.settings.dot_active_color }};
-    transform: scale(1.2);
-  }
-
-  .ai-product-carousel-divider-{{ ai_gen_id }} {
-      height: 1px;
-      background-color: #d9d9d9;
-      width: 100%;
-      margin-top: 16px;
-    }
-
-  .ai-product-carousel-divider-{{ ai_gen_id }}:empty {
-    display: block !important;
+    width: calc({{ block.settings.dot_size }}px * 2.4);
+    transform: scale(1.05);
+    opacity: 1;
   }
 
   @media screen and (max-width: 749px) {
@@ -299,10 +300,19 @@
       font-size: calc({{ block.settings.subheading_size }}px * 0.9);
     }
   }
+
+  @media screen and (max-width: 425px) {
+    .ai-product-carousel-container-{{ ai_gen_id }} {
+      padding: 0;
+    }
+  }
 {% endstyle %}
 
 <product-carousel-{{ ai_gen_id }}
   class="ai-product-carousel-{{ ai_gen_id }}"
+  data-real-count="{{ real_product_count }}"
+  data-autoplay="{% if block.settings.enable_autoplay %}true{% else %}false{% endif %}"
+  data-autoplay-speed="{{ block.settings.autoplay_speed | times: 1000 }}"
   {{ block.shopify_attributes }}
 >
   <div class="ai-product-carousel-container-{{ ai_gen_id }}">
@@ -314,7 +324,6 @@
         {% if block.settings.subheading != blank %}
           <p class="ai-product-carousel-subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</p>
         {% endif %}
-
         <div class="ai-product-carousel-divider-{{ ai_gen_id }}"></div>
       </div>
     {% endif %}
@@ -325,6 +334,7 @@
           class="ai-product-carousel-nav-{{ ai_gen_id }} ai-product-carousel-nav-prev-{{ ai_gen_id }}"
           aria-label="Previous products"
           data-direction="prev"
+          type="button"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
@@ -332,84 +342,86 @@
         </button>
       {% endif %}
 
-      <div class="ai-product-carousel-track-{{ ai_gen_id }}" data-carousel-track>
-        {% if block.settings.products != blank %}
-          {% for product in block.settings.products %}
-            <a
-              href="{{ product.url }}"
-              class="ai-product-carousel-item-{{ ai_gen_id }}"
-              aria-label="{{ product.title | escape }}"
-            >
-              <div class="ai-product-carousel-image-wrapper-{{ ai_gen_id }}">
-                {% if product.featured_image %}
-                  <img
-                    src="{{ product.featured_image | image_url: width: 600 }}"
-                    alt="{{ product.featured_image.alt | escape }}"
-                    class="ai-product-carousel-image-{{ ai_gen_id }}"
-                    loading="lazy"
-                    width="600"
-                    height="600"
-                  >
-                {% else %}
+      <div class="ai-product-carousel-viewport-{{ ai_gen_id }}" data-carousel-viewport>
+        <div class="ai-product-carousel-track-{{ ai_gen_id }}" data-carousel-track>
+          {% if block.settings.products != blank %}
+            {% for product in block.settings.products %}
+              <a
+                href="{{ product.url }}"
+                class="ai-product-carousel-item-{{ ai_gen_id }}"
+                aria-label="{{ product.title | escape }}"
+                data-real-item="true"
+              >
+                <div class="ai-product-carousel-image-wrapper-{{ ai_gen_id }}">
+                  {% if product.featured_image %}
+                    <img
+                      src="{{ product.featured_image | image_url: width: 600 }}"
+                      alt="{{ product.featured_image.alt | escape }}"
+                      class="ai-product-carousel-image-{{ ai_gen_id }}"
+                      loading="lazy"
+                      width="600"
+                      height="600"
+                    >
+                  {% else %}
+                    <div class="ai-product-carousel-image-placeholder-{{ ai_gen_id }}">
+                      {{ 'product-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_sale_badge and product.compare_at_price > product.price %}
+                    <span class="ai-product-carousel-badge-{{ ai_gen_id }}">{{ block.settings.sale_badge_text }}</span>
+                  {% endif %}
+                </div>
+
+                <div class="ai-product-carousel-info-{{ ai_gen_id }}">
+                  {% if block.settings.show_vendor and product.vendor != blank %}
+                    <p class="ai-product-carousel-vendor-{{ ai_gen_id }}">{{ product.vendor }}</p>
+                  {% endif %}
+
+                  <h3 class="ai-product-carousel-title-{{ ai_gen_id }}">
+                    {{ product.title }}
+                  </h3>
+
+                  {% if block.settings.show_price %}
+                    <div class="ai-product-carousel-price-{{ ai_gen_id }}">
+                      {% if product.compare_at_price > product.price %}
+                        <span class="ai-product-carousel-price-compare-{{ ai_gen_id }}">
+                          {{ product.compare_at_price | money }}
+                        </span>
+                      {% endif %}
+                      <span>{{ product.price | money }}</span>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_button %}
+                    <span class="ai-product-carousel-button-{{ ai_gen_id }}" role="button" aria-hidden="true">
+                      {{ block.settings.button_text }}
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+            {% endfor %}
+          {% else %}
+            {% for i in (1..6) %}
+              <div class="ai-product-carousel-item-{{ ai_gen_id }}" data-real-item="true">
+                <div class="ai-product-carousel-image-wrapper-{{ ai_gen_id }}">
                   <div class="ai-product-carousel-image-placeholder-{{ ai_gen_id }}">
                     {{ 'product-1' | placeholder_svg_tag }}
                   </div>
-                {% endif %}
-
-                {% if block.settings.show_sale_badge and product.compare_at_price > product.price %}
-                  <span class="ai-product-carousel-badge-{{ ai_gen_id }}">{{ block.settings.sale_badge_text }}</span>
-                {% endif %}
-              </div>
-
-              <div class="ai-product-carousel-info-{{ ai_gen_id }}">
-                {% if block.settings.show_vendor and product.vendor != blank %}
-                  <p class="ai-product-carousel-vendor-{{ ai_gen_id }}">{{ product.vendor }}</p>
-                {% endif %}
-
-                <h3 class="ai-product-carousel-title-{{ ai_gen_id }}">
-                  {{ product.title }}
-                </h3>
-
-                {% if block.settings.show_price %}
-                  <div class="ai-product-carousel-price-{{ ai_gen_id }}">
-                    {% if product.compare_at_price > product.price %}
-                      <span class="ai-product-carousel-price-compare-{{ ai_gen_id }}">
-                        {{ product.compare_at_price | money }}
-                      </span>
-                    {% endif %}
-                    <span>{{ product.price | money }}</span>
-                  </div>
-                {% endif %}
-
-                {% if block.settings.show_button %}
-                  <span class="ai-product-carousel-button-{{ ai_gen_id }}" role="button" aria-hidden="true">
-                    {{ block.settings.button_text }}
-                  </span>
-                {% endif %}
-              </div>
-            </a>
-          {% endfor %}
-
-        {% else %}
-          {% for i in (1..6) %}
-            <div class="ai-product-carousel-item-{{ ai_gen_id }}">
-              <div class="ai-product-carousel-image-wrapper-{{ ai_gen_id }}">
-                <div class="ai-product-carousel-image-placeholder-{{ ai_gen_id }}">
-                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+                <div class="ai-product-carousel-info-{{ ai_gen_id }}">
+                  <h3 class="ai-product-carousel-title-{{ ai_gen_id }}">Product title</h3>
+                  <div class="ai-product-carousel-price-{{ ai_gen_id }}">€29.99</div>
+                  {% if block.settings.show_button %}
+                    <span class="ai-product-carousel-button-{{ ai_gen_id }}">
+                      {{ block.settings.button_text }}
+                    </span>
+                  {% endif %}
                 </div>
               </div>
-              <div class="ai-product-carousel-info-{{ ai_gen_id }}">
-                <h3 class="ai-product-carousel-title-{{ ai_gen_id }}">Product title</h3>
-                <div class="ai-product-carousel-price-{{ ai_gen_id }}">€29.99</div>
-                {% if block.settings.show_button %}
-                  <a href="#" class="ai-product-carousel-button-{{ ai_gen_id }}">
-                    {{ block.settings.button_text }}
-                  </a>
-                {% endif %}
-              </div>
-            </div>
-          {% endfor %}
-        {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
       </div>
 
       {% if block.settings.show_navigation %}
@@ -417,6 +429,7 @@
           class="ai-product-carousel-nav-{{ ai_gen_id }} ai-product-carousel-nav-next-{{ ai_gen_id }}"
           aria-label="Next products"
           data-direction="next"
+          type="button"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
@@ -436,142 +449,350 @@
     class ProductCarousel{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
+        this.viewport = this.querySelector('[data-carousel-viewport]');
         this.track = this.querySelector('[data-carousel-track]');
         this.prevButton = this.querySelector('[data-direction="prev"]');
         this.nextButton = this.querySelector('[data-direction="next"]');
         this.dotsContainer = this.querySelector('[data-carousel-dots]');
-        this.items = this.querySelectorAll('.ai-product-carousel-item-{{ ai_gen_id }}');
+        this.realItems = Array.from(this.querySelectorAll('[data-real-item="true"]'));
+
         this.currentIndex = 0;
-        this.itemsPerView = this.calculateItemsPerView();
+        this.startX = 0;
+        this.currentX = 0;
+        this.isDragging = false;
+        this.swipeThreshold = 50;
+        this.cloneCount = 0;
+        this.resumeTimer = null;
+        this.autoPlayTimer = null;
       }
 
       connectedCallback() {
-        if (this.items.length === 0) return;
+        if (!this.track || this.realItems.length === 0) return;
 
-        this.setupNavigation();
+        this.setupInfiniteLoop();
         this.setupDots();
+        this.bindEvents();
+
+        this.jumpToInitialPosition();
+        this.updateCarousel(false);
         this.updateNavigation();
+        this.startAutoplay();
 
-        window.addEventListener('resize', () => {
-          this.itemsPerView = this.calculateItemsPerView();
-          this.updateDots();
-          this.updateNavigation();
+        this.handleResize = this.handleResize.bind(this);
+        this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+
+        window.addEventListener('resize', this.handleResize);
+        this.track.addEventListener('transitionend', this.handleTransitionEnd);
+      }
+
+      disconnectedCallback() {
+        window.removeEventListener('resize', this.handleResize);
+        if (this.track) {
+          this.track.removeEventListener('transitionend', this.handleTransitionEnd);
+        }
+        this.stopAutoplay();
+        clearTimeout(this.resumeTimer);
+      }
+
+      getItemWidth() {
+        const firstItem = this.track.querySelector('.ai-product-carousel-item-{{ ai_gen_id }}');
+        return firstItem ? firstItem.offsetWidth : 0;
+      }
+
+      getGap() {
+        return {{ block.settings.product_gap }};
+      }
+
+      getStepSize() {
+        return this.getItemWidth() + this.getGap();
+      }
+
+      getItemsPerView() {
+        const itemWidth = this.getItemWidth();
+        if (!itemWidth || !this.viewport) return 1;
+        return Math.max(1, Math.floor((this.viewport.offsetWidth + this.getGap()) / (itemWidth + this.getGap())));
+      }
+
+      getPageCount() {
+        const itemsPerView = this.getItemsPerView();
+        return Math.max(1, Math.ceil(this.realItems.length / itemsPerView));
+      }
+
+      getNormalizedIndex() {
+        let normalized = (this.currentIndex - this.cloneCount) % this.realItems.length;
+        if (normalized < 0) normalized += this.realItems.length;
+        return normalized;
+      }
+
+      getCurrentPage() {
+        const itemsPerView = this.getItemsPerView();
+        return Math.floor(this.getNormalizedIndex() / itemsPerView);
+      }
+
+      setupInfiniteLoop() {
+        this.track.querySelectorAll('[data-clone="true"]').forEach((el) => el.remove());
+
+        this.cloneCount = this.getItemsPerView();
+
+        const prependClones = this.realItems.slice(-this.cloneCount).map((item) => {
+          const clone = item.cloneNode(true);
+          clone.setAttribute('data-clone', 'true');
+          return clone;
         });
 
-        this.track.addEventListener('scroll', () => {
-          this.updateCurrentIndex();
+        const appendClones = this.realItems.slice(0, this.cloneCount).map((item) => {
+          const clone = item.cloneNode(true);
+          clone.setAttribute('data-clone', 'true');
+          return clone;
+        });
+
+        prependClones.forEach((clone) => {
+          this.track.insertBefore(clone, this.track.firstChild);
+        });
+
+        appendClones.forEach((clone) => {
+          this.track.appendChild(clone);
         });
       }
 
-      calculateItemsPerView() {
-        if (!this.track || this.items.length === 0) return 1;
-        const trackWidth = this.track.offsetWidth;
-        const itemWidth = this.items[0].offsetWidth;
-        const gap = parseInt('{{ block.settings.product_gap }}');
-        return Math.floor((trackWidth + gap) / (itemWidth + gap)) || 1;
+      jumpToInitialPosition() {
+        this.currentIndex = this.cloneCount;
       }
 
-      setupNavigation() {
+      bindEvents() {
         if (this.prevButton) {
-          this.prevButton.addEventListener('click', () => this.navigate('prev'));
+          this.prevButton.addEventListener('click', () => {
+            this.pauseAndResumeAutoplay();
+            this.navigatePage('prev');
+          });
         }
+
         if (this.nextButton) {
-          this.nextButton.addEventListener('click', () => this.navigate('next'));
+          this.nextButton.addEventListener('click', () => {
+            this.pauseAndResumeAutoplay();
+            this.navigatePage('next');
+          });
         }
+
+        if (this.dotsContainer) {
+          this.dotsContainer.addEventListener('click', (event) => {
+            const dot = event.target.closest('[data-dot-index]');
+            if (!dot) return;
+
+            const targetPage = Number(dot.dataset.dotIndex);
+            this.pauseAndResumeAutoplay();
+            this.goToPage(targetPage);
+          });
+        }
+
+        this.viewport.addEventListener('mouseenter', () => this.stopAutoplay());
+        this.viewport.addEventListener('mouseleave', () => this.startAutoplay());
+
+        this.viewport.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
+        this.viewport.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: true });
+        this.viewport.addEventListener('touchend', this.handleTouchEnd.bind(this));
+
+        this.viewport.addEventListener('mousedown', this.handleMouseDown.bind(this));
+        this.viewport.addEventListener('mousemove', this.handleMouseMove.bind(this));
+        this.viewport.addEventListener('mouseup', this.handleMouseUp.bind(this));
+        this.viewport.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+      }
+
+      handleResize() {
+        const normalized = this.getNormalizedIndex();
+        this.stopAutoplay();
+        this.setupInfiniteLoop();
+        this.setupDots();
+        this.currentIndex = normalized + this.cloneCount;
+        this.updateCarousel(false);
+        this.updateNavigation();
+        this.startAutoplay();
       }
 
       setupDots() {
-        if (!this.dotsContainer || this.items.length === 0) return;
+        if (!this.dotsContainer) return;
 
-        const totalDots = Math.ceil(this.items.length / this.itemsPerView);
+        const pageCount = this.getPageCount();
         this.dotsContainer.innerHTML = '';
 
-        for (let i = 0; i < totalDots; i++) {
+        for (let i = 0; i < pageCount; i++) {
           const dot = document.createElement('button');
+          dot.type = 'button';
           dot.className = 'ai-product-carousel-dot-{{ ai_gen_id }}';
-          dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-          if (i === 0) dot.classList.add('active');
-
-          dot.addEventListener('click', () => {
-            this.scrollToIndex(i * this.itemsPerView);
-          });
-
+          dot.dataset.dotIndex = i;
+          dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+          if (i === this.getCurrentPage()) {
+            dot.classList.add('active');
+          }
           this.dotsContainer.appendChild(dot);
         }
       }
 
       updateDots() {
         if (!this.dotsContainer) return;
-        this.setupDots();
-        this.updateActiveDot();
-      }
 
-      updateActiveDot() {
-        if (!this.dotsContainer) return;
-
+        const activePage = this.getCurrentPage();
         const dots = this.dotsContainer.querySelectorAll('.ai-product-carousel-dot-{{ ai_gen_id }}');
-        const activeDotIndex = Math.floor(this.currentIndex / this.itemsPerView);
 
         dots.forEach((dot, index) => {
-          if (index === activeDotIndex) {
-            dot.classList.add('active');
-          } else {
-            dot.classList.remove('active');
-          }
+          dot.classList.toggle('active', index === activePage);
         });
       }
 
-      navigate(direction) {
-        const scrollAmount = this.items[0].offsetWidth + parseInt('{{ block.settings.product_gap }}');
+      updateCarousel(animate = true) {
+        const step = this.getStepSize();
+        if (!step) return;
 
-        if (direction === 'next') {
-          this.track.scrollBy({ left: scrollAmount * this.itemsPerView, behavior: 'smooth' });
+        if (animate) {
+          this.track.classList.remove('no-transition');
         } else {
-          this.track.scrollBy({ left: -scrollAmount * this.itemsPerView, behavior: 'smooth' });
+          this.track.classList.add('no-transition');
         }
 
-        setTimeout(() => {
-          this.updateCurrentIndex();
-        }, 300);
-      }
+        const offset = this.currentIndex * step;
+        this.track.style.transform = `translateX(-${offset}px)`;
 
-      scrollToIndex(index) {
-        const scrollAmount = this.items[0].offsetWidth + parseInt('{{ block.settings.product_gap }}');
-        this.track.scrollTo({ left: scrollAmount * index, behavior: 'smooth' });
-
-        setTimeout(() => {
-          this.updateCurrentIndex();
-        }, 300);
-      }
-
-      updateCurrentIndex() {
-        const scrollLeft = this.track.scrollLeft;
-        const itemWidth = this.items[0].offsetWidth + parseInt('{{ block.settings.product_gap }}');
-        this.currentIndex = Math.round(scrollLeft / itemWidth);
-        this.updateNavigation();
-        this.updateActiveDot();
+        this.updateDots();
       }
 
       updateNavigation() {
         if (!this.prevButton || !this.nextButton) return;
 
-        const maxScroll = this.track.scrollWidth - this.track.clientWidth;
+        this.prevButton.disabled = false;
+        this.nextButton.disabled = false;
+      }
 
-        if (this.track.scrollLeft <= 0) {
-          this.prevButton.disabled = true;
+      navigatePage(direction) {
+        const itemsPerView = this.getItemsPerView();
+        if (direction === 'next') {
+          this.currentIndex += itemsPerView;
         } else {
-          this.prevButton.disabled = false;
+          this.currentIndex -= itemsPerView;
+        }
+        this.updateCarousel(true);
+      }
+
+      goToPage(pageIndex) {
+        const itemsPerView = this.getItemsPerView();
+        const targetIndex = (pageIndex * itemsPerView) + this.cloneCount;
+        this.currentIndex = targetIndex;
+        this.updateCarousel(true);
+      }
+
+      handleTransitionEnd() {
+        if (this.currentIndex >= this.realItems.length + this.cloneCount) {
+          this.currentIndex = this.cloneCount + (this.currentIndex - this.cloneCount - this.realItems.length);
+          this.updateCarousel(false);
         }
 
-        if (this.track.scrollLeft >= maxScroll - 1) {
-          this.nextButton.disabled = true;
-        } else {
-          this.nextButton.disabled = false;
+        if (this.currentIndex < this.cloneCount) {
+          this.currentIndex = this.realItems.length + this.currentIndex;
+          this.updateCarousel(false);
         }
+      }
+
+      startAutoplay() {
+        if (this.dataset.autoplay !== 'true') return;
+        if (this.realItems.length <= this.getItemsPerView()) return;
+
+        this.stopAutoplay();
+
+        const delay = Number(this.dataset.autoplaySpeed || 5000);
+        this.autoPlayTimer = setInterval(() => {
+          this.navigatePage('next');
+        }, delay);
+      }
+
+      stopAutoplay() {
+        if (this.autoPlayTimer) {
+          clearInterval(this.autoPlayTimer);
+          this.autoPlayTimer = null;
+        }
+      }
+
+      pauseAndResumeAutoplay() {
+        this.stopAutoplay();
+        clearTimeout(this.resumeTimer);
+        this.resumeTimer = setTimeout(() => {
+          this.startAutoplay();
+        }, 4000);
+      }
+
+      handleTouchStart(event) {
+        if (!event.changedTouches.length) return;
+        this.stopAutoplay();
+        this.startX = event.changedTouches[0].clientX;
+        this.currentX = this.startX;
+      }
+
+      handleTouchMove(event) {
+        if (!event.changedTouches.length) return;
+        this.currentX = event.changedTouches[0].clientX;
+      }
+
+      handleTouchEnd() {
+        const diff = this.currentX - this.startX;
+
+        if (Math.abs(diff) > this.swipeThreshold) {
+          if (diff < 0) {
+            this.navigatePage('next');
+          } else {
+            this.navigatePage('prev');
+          }
+        }
+
+        this.startX = 0;
+        this.currentX = 0;
+        this.pauseAndResumeAutoplay();
+      }
+
+      handleMouseDown(event) {
+        this.isDragging = true;
+        this.stopAutoplay();
+        this.startX = event.clientX;
+        this.currentX = event.clientX;
+      }
+
+      handleMouseMove(event) {
+        if (!this.isDragging) return;
+        this.currentX = event.clientX;
+      }
+
+      handleMouseUp() {
+        if (!this.isDragging) return;
+
+        const diff = this.currentX - this.startX;
+
+        if (Math.abs(diff) > this.swipeThreshold) {
+          if (diff < 0) {
+            this.navigatePage('next');
+          } else {
+            this.navigatePage('prev');
+          }
+        }
+
+        this.isDragging = false;
+        this.startX = 0;
+        this.currentX = 0;
+        this.pauseAndResumeAutoplay();
+      }
+
+      handleMouseLeave() {
+        if (!this.isDragging) {
+          this.startAutoplay();
+          return;
+        }
+
+        this.isDragging = false;
+        this.startX = 0;
+        this.currentX = 0;
+        this.pauseAndResumeAutoplay();
       }
     }
 
-    customElements.define('product-carousel-{{ ai_gen_id }}', ProductCarousel{{ ai_gen_id }});
+    if (!customElements.get('product-carousel-{{ ai_gen_id }}')) {
+      customElements.define('product-carousel-{{ ai_gen_id }}', ProductCarousel{{ ai_gen_id }});
+    }
   })();
 </script>
 
@@ -641,18 +862,9 @@
       "id": "heading_alignment",
       "label": "Heading alignment",
       "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "center"
     },
@@ -745,18 +957,9 @@
       "id": "product_text_alignment",
       "label": "Product text alignment",
       "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "left"
     },
@@ -829,14 +1032,8 @@
       "id": "show_nav_mobile",
       "label": "Show arrows on mobile",
       "options": [
-        {
-          "value": "flex",
-          "label": "Show"
-        },
-        {
-          "value": "none",
-          "label": "Hide"
-        }
+        { "value": "flex", "label": "Show" },
+        { "value": "none", "label": "Hide" }
       ],
       "default": "none"
     },
@@ -885,6 +1082,22 @@
       "step": 2,
       "unit": "px",
       "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay interval",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 4
     },
     {
       "type": "header",

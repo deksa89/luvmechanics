@@ -743,6 +743,27 @@
   })();
 </script>
 
+<script>
+  (() => {
+    const mobileBreakpoint = 750;
+    const wrapper = document.getElementById('accordion-wrapper-{{ section.id }}');
+    if (!wrapper) return;
+
+    const accordions = wrapper.querySelectorAll('details');
+
+    function setAccordionStateByScreen() {
+      const isMobile = window.innerWidth <= mobileBreakpoint;
+
+      accordions.forEach((accordion) => {
+        accordion.open = !isMobile;
+      });
+    }
+
+    setAccordionStateByScreen();
+    window.addEventListener('resize', setAccordionStateByScreen);
+  })();
+</script>
+
 </product-info>
 
 {% schema %}
