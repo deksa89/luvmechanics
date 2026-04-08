@@ -468,14 +468,20 @@
 }
 
 .small-three-images-wrapper {
-  display: flex;
-  margin-top: 3rem;
+  display: none;
+  /* margin-top: 3rem;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
+
+/* @media screen and (max-width: 768px) {
+  .small-three-images-wrapper {
+    display: none;
+  }
+} */
 
 .extra-image-wrapper-text {
   display: flex;

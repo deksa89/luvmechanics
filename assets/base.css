@@ -84,9 +84,9 @@
 
 
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .page-width {
-    padding: 1rem;
+    padding: 0rem;
   }
 }
 

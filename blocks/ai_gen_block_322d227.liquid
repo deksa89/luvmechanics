@@ -11,7 +11,8 @@
     width: {{ block.settings.desktop_width_percent }}%;
     max-width: 1400px;
     position: relative;
-    padding: {{ block.settings.section_padding }}px 0;
+    padding-top: {{ block.settings.padding_top_desktop }}px;
+    padding-bottom: {{ block.settings.padding_bottom_desktop }}px;
     background-color: {{ block.settings.background_color }};
     margin: 0 auto;
   }
@@ -149,7 +150,8 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    margin-top: 0;
+    margin-top: {{ block.settings.dots_margin_top_desktop }}px;
+    margin-bottom: {{ block.settings.dots_margin_bottom_desktop }}px;
   }
 
   .ai-brand-carousel-dot-{{ ai_gen_id }} {
@@ -180,12 +182,20 @@
   }
 
   @media screen and (max-width: 749px) {
+    .ai-brand-carousel-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_top_mobile }}px;
+      padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+    }
+
     .ai-brand-carousel-container-{{ ai_gen_id }} {
       padding: 0;
     }
 
     .ai-brand-carousel-dots-{{ ai_gen_id }} {
       gap: 8px;
+      margin-top: {{ block.settings.dots_margin_top_mobile }}px;
+      margin-bottom: {{ block.settings.dots_margin_bottom_mobile }}px;
+      z-index: 111;
     }
 
     .ai-brand-carousel-dot-{{ ai_gen_id }} {
@@ -645,6 +655,46 @@
     },
     {
       "type": "range",
+      "id": "dots_margin_top_desktop",
+      "label": "Dots margin top desktop",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "dots_margin_bottom_desktop",
+      "label": "Dots margin bottom desktop",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "dots_margin_top_mobile",
+      "label": "Dots margin top mobile",
+      "min": -20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "dots_margin_bottom_mobile",
+      "label": "Dots margin bottom mobile",
+      "min": -20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
       "id": "desktop_width_percent",
       "label": "Desktop width",
       "min": 50,
@@ -683,13 +733,43 @@
     },
     {
       "type": "range",
-      "id": "section_padding",
-      "label": "Section padding",
+      "id": "padding_top_desktop",
+      "label": "Top padding desktop",
       "min": 0,
       "max": 100,
-      "step": 5,
+      "step": 1,
       "unit": "px",
       "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom padding desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 25
     },
     {
       "type": "range",

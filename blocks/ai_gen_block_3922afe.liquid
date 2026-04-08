@@ -18,7 +18,8 @@
     display: block;
     width: {{ block.settings.desktop_width_percent }}%;
     max-width: 100%;
-    padding: {{ block.settings.section_padding }}px 0;
+    padding-top: {{ block.settings.padding_top_desktop }}px;
+    padding-bottom: {{ block.settings.padding_bottom_desktop }}px;
     background-color: {{ block.settings.background_color }};
   }
 
@@ -283,6 +284,10 @@
   }
 
   @media screen and (max-width: 749px) {
+    .ai-product-carousel-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_top_mobile }}px;
+      padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+    }
     .ai-product-carousel-item-{{ ai_gen_id }} {
       flex: 0 0 {{ block.settings.mobile_product_width }}px;
       min-width: {{ block.settings.mobile_product_width }}px;
@@ -849,13 +854,43 @@
     },
     {
       "type": "range",
-      "id": "section_padding",
-      "label": "Section padding",
+      "id": "padding_top_desktop",
+      "label": "Top padding desktop",
       "min": 0,
       "max": 100,
-      "step": 5,
+      "step": 1,
       "unit": "px",
       "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom padding desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 25
     },
     {
       "type": "select",
@@ -1067,9 +1102,9 @@
       "type": "range",
       "id": "dots_spacing",
       "label": "Dots spacing",
-      "min": 10,
+      "min": 0,
       "max": 50,
-      "step": 5,
+      "step": 1,
       "unit": "px",
       "default": 25
     },
