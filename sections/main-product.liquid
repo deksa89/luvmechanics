@@ -116,6 +116,116 @@
       }
     }
 
+    .lm-sticky-atc {
+      position: fixed;
+      bottom: 20px;
+      z-index: 40;
+      width: min(550px, calc(100vw - 32px));
+    }
+
+    .lm-sticky-atc[hidden] {
+      display: none !important;
+    }
+
+    .lm-sticky-atc__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      padding: 18px 18px;
+    }
+
+    .lm-sticky-atc__product {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .lm-sticky-atc__image-wrap {
+      flex: 0 0 60px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .lm-sticky-atc__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .lm-sticky-atc__meta {
+      min-width: 0;
+    }
+
+    .lm-sticky-atc__title {
+      font-size: 1.6rem;
+      line-height: 1.2;
+      color: #222;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lm-sticky-atc__variant {
+      margin-top: 4px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .lm-sticky-atc__price {
+      margin-top: 4px;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      color: #222;
+    }
+
+    .lm-sticky-atc__btn {
+      flex: 0 0 auto;
+      min-height: 48px;
+      padding: 0 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    @media screen and (max-width: 768px) {
+      .lm-sticky-atc {
+        right: 12px;
+        left: 12px;
+        bottom: 12px;
+        width: auto;
+      }
+
+      .lm-sticky-atc__inner {
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .lm-sticky-atc__image-wrap {
+        width: 48px;
+        height: 48px;
+        flex-basis: 48px;
+      }
+
+      .lm-sticky-atc__title {
+        font-size: 1.3rem;
+      }
+
+      .lm-sticky-atc__variant,
+      .lm-sticky-atc__price {
+        font-size: 13px;
+      }
+
+      .lm-sticky-atc__btn {
+        max-width: 120px;
+        padding: 0 16px;
+        font-size: 1.2rem;
+      }
+    }
   {%- endstyle -%}
 
   
@@ -365,13 +475,15 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
-                  block: block,
-                  product: product,
-                  product_form_id: product_form_id,
-                  section_id: section.id,
-                  show_pickup_availability: true
-                -%}
+                <div id="lm-buy-area-{{ section.id }}">
+                  {%- render 'buy-buttons',
+                    block: block,
+                    product: product,
+                    product_form_id: product_form_id,
+                    section_id: section.id,
+                    show_pickup_availability: true
+                  -%}
+                </div>
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -663,15 +775,37 @@
     </script>
   </div>
 
-  {%- comment -%} Sticky Add to Cart (bottom) {%- endcomment -%}
+{%- comment -%} Floating sticky Add to Cart {%- endcomment -%}
 {%- assign lm_product_form_id = 'product-form-' | append: section.id -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign sticky_media = current_variant.featured_media | default: product.featured_media -%}
 
 <div class="lm-sticky-atc" data-lm-sticky-atc hidden>
-  <div class="lm-sticky-atc__inner page-width">
-    <div class="lm-sticky-atc__meta">
-      <div class="lm-sticky-atc__title">{{ product.title | escape }}</div>
-      <div class="lm-sticky-atc__price">
-        {{ product.selected_or_first_available_variant.price | money }}
+  <div class="lm-sticky-atc__inner">
+    <div class="lm-sticky-atc__product">
+      <div class="lm-sticky-atc__image-wrap">
+        {% if sticky_media %}
+          <img
+            class="lm-sticky-atc__image"
+            src="{{ sticky_media | image_url: width: 120 }}"
+            alt="{{ product.title | escape }}"
+            width="60"
+            height="60"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+      <div class="lm-sticky-atc__meta">
+        <div class="lm-sticky-atc__title">{{ product.title | escape }}</div>
+
+        {% if current_variant.title != 'Default Title' %}
+          <div class="lm-sticky-atc__variant">{{ current_variant.title | escape }}</div>
+        {% endif %}
+
+        <div class="lm-sticky-atc__price">
+          {{ current_variant.price | money }}
+        </div>
       </div>
     </div>
 
@@ -691,29 +825,22 @@
     const sticky = document.querySelector('[data-lm-sticky-atc]');
     if (!sticky) return;
 
-    // Find the main Add to cart button on the product form
-    const productInfo = document.getElementById('ProductInfo-{{ section.id }}');
-    const originalBtn =
-      productInfo?.querySelector('button[name="add"].product-form__submit') ||
-      productInfo?.querySelector('button[name="add"]');
-
-    // If we can't find it, just show sticky always
-    if (!originalBtn) {
-      sticky.hidden = false;
-      document.documentElement.classList.add('lm-sticky-atc-active');
+    const buyArea = document.getElementById('lm-buy-area-{{ section.id }}');
+    if (!buyArea) {
+      sticky.hidden = true;
       return;
     }
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        const isVisible = entries[0]?.isIntersecting;
-        sticky.hidden = isVisible; // hide sticky if original is visible
-        document.documentElement.classList.toggle('lm-sticky-atc-active', !isVisible);
-      },
-      { root: null, threshold: 0.15 }
-    );
+    function toggleSticky() {
+      const rect = buyArea.getBoundingClientRect();
+      const passedBuyArea = rect.bottom < 0;
 
-    io.observe(originalBtn);
+      sticky.hidden = !passedBuyArea;
+    }
+
+    toggleSticky();
+    window.addEventListener('scroll', toggleSticky, { passive: true });
+    window.addEventListener('resize', toggleSticky);
   })();
 </script>
 

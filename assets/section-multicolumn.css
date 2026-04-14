@@ -6,6 +6,11 @@
   display: none;
 }
 
+.inline-richtext {
+  text-transform: uppercase;
+  text-align: center;
+}
+
 .multicolumn .title-wrapper-with-link {
   margin-top: 0;
 }
@@ -278,7 +283,7 @@
 
 .multicolumn-card__image-wrapper .multicolumn-card__image {
   flex: 1 1 auto;
-  max-width: 30%; /* each star will shrink to fit more in the same row */
+  max-width: 22%; /* each star will shrink to fit more in the same row */
 }
 
 @media screen and (max-width: 530px) {
@@ -308,7 +313,7 @@
     text-align: center;
     display: flex;
     align-items: center;
-    height: 57.58px;
+    height: 104.58px;
   }
 }
 
@@ -341,7 +346,7 @@
   }
 
   .rte {
-    text-align: left !important;
+    text-align: left;
     font-size: 1.2rem;
   }
 }

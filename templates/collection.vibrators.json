@@ -18,43 +18,48 @@
         "color_scheme": "scheme-1"
       }
     },
-    "rich_text_JQmPHP": {
+    "image_banner_hpEckG": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_4ca3ob4ca3ob4ca3-2447ab37-b9e6-4051-9dab-efd548ef73eb.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-right",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_wTXpyg": {
       "type": "rich-text",
       "blocks": {
-        "heading_QR9Hpt": {
+        "heading_fhGwzQ": {
           "type": "heading",
           "settings": {
             "heading": "Vibrators",
-            "heading_size": "h0"
+            "heading_size": "h1"
           }
         },
-        "text_Ft3tKg": {
+        "text_7EgJD8": {
           "type": "text",
           "settings": {
-            "text": ""
-          }
-        },
-        "button_MYNydC": {
-          "type": "button",
-          "settings": {
-            "button_label": "",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p>Buy premium quality vibrators in Croatia. Discretion and body-safe toy design that satisfy beginners and seasoned pleasure seekers.</p>"
           }
         }
       },
       "block_order": [
-        "heading_QR9Hpt",
-        "text_Ft3tKg",
-        "button_MYNydC"
+        "heading_fhGwzQ",
+        "text_7EgJD8"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
@@ -78,24 +83,38 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "padding_top": 32,
-        "padding_bottom": 100
+        "padding_bottom": 40
       }
     },
-    "newsletter_tPNegD": {
-      "type": "newsletter",
-      "name": "t:sections.newsletter.presets.name",
+    "expandable_category_info_D8JHLw": {
+      "type": "expandable-category-info",
+      "name": "Expandable category info",
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
+        "heading": "Explore",
+        "heading_accent": "Vibrators",
+        "collapsed_label": "Find out more about Vibrators",
+        "content_heading": "Your Vibe. Your Rules.",
+        "content_text": "<p>The short answer: everyone. They're not exclusively for a particular type of person, age group, or relationship; they can be for curiosity, relaxation, exploration... Or just fun! Some discover them in their early twenties, some much later – there's no \"right\" time, just when it feels like the right time to you.<br/><br/><strong>Different Bodies. Different Preferences.</strong></p><p>Not everyone experiences pleasure in the same way-and there are so many vibrators for so many reasons. If you're looking for something simple and subtle, a sleek, thin design could work wonders. Curves and bulges may help to better follow your body's natural anatomy and create more concentrated sensations. More complex toys offer two types of sensations to stimulate multiple erogenous zones, while others are compact and great for travel. Of course, there are bigger, more powerful options if you want to explore those sensations that are simply more intense. Ultimately, there's no \"better\"-just what feels good for you.<br/><br/><strong>Solo or Together-It's Your Call.</strong></p><p>Vibrators don't have to be exclusively a solo affair; many couples integrate them into their sex lives. They can offer a whole new way for you and your partner to connect, explore pleasure together, and open up new avenues of communication, not as a replacement, but as a supplement. They can make things more lighthearted, less pressured, and a lot more fun.<br/><br/><strong>It's Not Just About Pleasure.</strong></p><p>While pleasure is definitely a huge factor in exploring vibrators, it's not the only one. Many people turn to them to:</p><ul><li>relieve stress and tension after a busy day</li><li>learn more about what feels good for their body</li><li>build body confidence and comfort</li><li>feel more connected with themselves or their partner</li></ul><p><br/>The reasons why are deeply personal, and that's where the intrigue lies.<br/><br/><strong>No Rules. Just Curiosity.</strong></p><p>You don't need prior experience; you don't need to be an expert to give vibrators a try. All you really need is a little curiosity. Because at the</p>",
+        "page_width": 1480,
+        "section_bg": "#f8f8f8",
+        "box_bg": "#f8f8f8",
+        "heading_color": "#2f2927",
+        "accent_color": "#ff004f",
+        "text_color": "#3a3432",
+        "icon_color": "#3a3432",
+        "border_color": "#d7d2ce",
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 80,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20
       }
     }
   },
   "order": [
     "main-collection-banner",
-    "rich_text_JQmPHP",
+    "image_banner_hpEckG",
+    "rich_text_wTXpyg",
     "main-collection-product-grid",
-    "newsletter_tPNegD"
+    "expandable_category_info_D8JHLw"
   ]
 }

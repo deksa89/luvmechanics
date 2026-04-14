@@ -1,0 +1,524 @@
+{% assign section_title = section.settings.heading %}
+{% assign accent_text = section.settings.heading_accent %}
+
+<style>
+.section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.section_bg }};
+}
+
+.section-{{ section.id }} .page-width {
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.section-{{ section.id }} .expandable-category-info__header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-{{ section.id }} .expandable-category-info__heading {
+    margin: 0;
+    font-size: clamp(2.8rem, 4vw, 5.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: {{ section.settings.heading_color }};
+}
+
+.section-{{ section.id }} .expandable-category-info__heading-main,
+.section-{{ section.id }} .expandable-category-info__heading-accent {
+    display: inline;
+}
+
+.section-{{ section.id }} .expandable-category-info__heading-accent {
+    color: {{ section.settings.accent_color }};
+    margin-left: 0.3rem;
+}
+
+.section-{{ section.id }} .expandable-category-info__box {
+    border: 1px solid {{ section.settings.border_color }};
+    background: {{ section.settings.box_bg }};
+    transition: all 0.25s ease;
+}
+
+.section-{{ section.id }} .expandable-category-info__toggle {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 7rem 4.8rem;
+    cursor: pointer;
+    text-align: left;
+    color: {{ section.settings.text_color }};
+}
+
+.section-{{ section.id }} .expandable-category-info__toggle-label {
+    font-size: clamp(2rem, 2vw, 2.4rem);
+    line-height: 1.35;
+    font-weight: 400;
+}
+
+.section-{{ section.id }} .expandable-category-info__icon {
+    position: relative;
+    width: 2.8rem;
+    height: 2.8rem;
+    flex: 0 0 2.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.icon_color }};
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.section-{{ section.id }} .icon-plus,
+.section-{{ section.id }} .icon-close {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.section-{{ section.id }} .icon-close {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.section-{{ section.id }} .expandable-category-info__box.is-open .icon-plus {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.section-{{ section.id }} .expandable-category-info__box.is-open .icon-close {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.section-{{ section.id }} .expandable-category-info__content {
+    overflow: hidden;
+}
+
+.section-{{ section.id }} .expandable-category-info__content-inner {
+    padding: 0 4.8rem 4.8rem;
+    color: {{ section.settings.text_color }};
+}
+
+.section-{{ section.id }} .expandable-category-info__content-inner h3 {
+    margin: 0 0 2.4rem;
+    font-size: clamp(2.2rem, 3vw, 2.9rem);
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: {{ section.settings.text_color }};
+}
+
+.section-{{ section.id }} .expandable-category-info__content-inner p,
+.section-{{ section.id }} .expandable-category-info__content-inner li {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: {{ section.settings.text_color }};
+}
+
+.section-{{ section.id }} .expandable-category-info__content-inner ul,
+.section-{{ section.id }} .expandable-category-info__content-inner ol {
+    margin: 2.4rem 0;
+    padding-left: 2.2rem;
+}
+
+.section-{{ section.id }} .expandable-category-info__blocks {
+    margin-top: 2rem;
+}
+
+.section-{{ section.id }} .expandable-category-info__block + .expandable-category-info__block {
+    margin-top: 2rem;
+}
+
+.section-{{ section.id }} .expandable-category-info__list-item p {
+    margin: 0;
+}
+
+@media screen and (max-width: 749px) {
+    .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    .section-{{ section.id }} .page-width {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    }
+
+    .section-{{ section.id }} .expandable-category-info__header {
+    margin-bottom: 2.5rem;
+    }
+
+    .section-{{ section.id }} .expandable-category-info__toggle {
+    padding: 3rem 2rem;
+    align-items: center;
+    }
+
+    .section-{{ section.id }} .expandable-category-info__toggle-label {
+    font-size: 1.9rem;
+    }
+
+    .section-{{ section.id }} .expandable-category-info__content-inner {
+    padding: 0 2rem 3rem;
+    }
+
+    .section-{{ section.id }} .expandable-category-info__content-inner h3 {
+    margin-bottom: 1.8rem;
+    }
+
+    .section-{{ section.id }} .expandable-category-info__content-inner p,
+    .section-{{ section.id }} .expandable-category-info__content-inner li {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    }
+}
+</style>
+
+<section class="expandable-category-info section-{{ section.id }}">
+  <div class="page-width">
+    {% if section_title != blank or accent_text != blank %}
+      <div class="expandable-category-info__header">
+        <h2 class="expandable-category-info__heading">
+          {% if section_title != blank %}
+            <span class="expandable-category-info__heading-main">{{ section_title }}</span>
+          {% endif %}
+          {% if accent_text != blank %}
+            <span class="expandable-category-info__heading-accent">{{ accent_text }}</span>
+          {% endif %}
+        </h2>
+      </div>
+    {% endif %}
+
+    <div class="expandable-category-info__box" data-expandable-box>
+      <button
+        type="button"
+        class="expandable-category-info__toggle"
+        aria-expanded="false"
+        aria-controls="ExpandableContent-{{ section.id }}"
+      >
+        <span class="expandable-category-info__toggle-label">
+          {{ section.settings.collapsed_label }}
+        </span>
+        <span class="expandable-category-info__icon" aria-hidden="true">
+          <span class="icon-plus">+</span>
+          <span class="icon-close">×</span>
+        </span>
+      </button>
+
+      <div
+        id="ExpandableContent-{{ section.id }}"
+        class="expandable-category-info__content"
+        hidden
+      >
+        <div class="expandable-category-info__content-inner rte">
+          {% if section.settings.content_heading != blank %}
+            <h3>{{ section.settings.content_heading }}</h3>
+          {% endif %}
+
+          {% if section.settings.content_text != blank %}
+            {{ section.settings.content_text }}
+          {% endif %}
+
+          {% if section.blocks.size > 0 %}
+            <div class="expandable-category-info__blocks">
+              {% for block in section.blocks %}
+                <div class="expandable-category-info__block" {{ block.shopify_attributes }}>
+                  {% case block.type %}
+                    {% when 'heading' %}
+                      {% if block.settings.text != blank %}
+                        <h3>{{ block.settings.text }}</h3>
+                      {% endif %}
+
+                    {% when 'text' %}
+                      {% if block.settings.text != blank %}
+                        <div class="rte">
+                          {{ block.settings.text }}
+                        </div>
+                      {% endif %}
+
+                    {% when 'list_item' %}
+                      {% if block.settings.title != blank or block.settings.text != blank %}
+                        <div class="expandable-category-info__list-item">
+                          <p>
+                            {% if block.settings.title != blank %}
+                              <strong>{{ block.settings.title }}</strong>
+                            {% endif %}
+                            {% if block.settings.text != blank %}
+                              {{ block.settings.text }}
+                            {% endif %}
+                          </p>
+                        </div>
+                      {% endif %}
+                  {% endcase %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const section = document.querySelector('.section-{{ section.id }}');
+      if (!section) return;
+
+      const box = section.querySelector('[data-expandable-box]');
+      const button = section.querySelector('.expandable-category-info__toggle');
+      const content = section.querySelector('.expandable-category-info__content');
+
+      if (!box || !button || !content) return;
+
+      button.addEventListener('click', function() {
+        const isOpen = box.classList.contains('is-open');
+
+        if (isOpen) {
+          content.style.height = content.scrollHeight + 'px';
+
+          requestAnimationFrame(() => {
+            content.style.height = '0px';
+          });
+
+          button.setAttribute('aria-expanded', 'false');
+          box.classList.remove('is-open');
+
+          content.addEventListener('transitionend', function handler() {
+            content.hidden = true;
+            content.style.height = '';
+            content.removeEventListener('transitionend', handler);
+          });
+        } else {
+          content.hidden = false;
+          const fullHeight = content.scrollHeight;
+
+          content.style.height = '0px';
+
+          requestAnimationFrame(() => {
+            content.style.height = fullHeight + 'px';
+          });
+
+          button.setAttribute('aria-expanded', 'true');
+          box.classList.add('is-open');
+
+          content.addEventListener('transitionend', function handler() {
+            content.style.height = 'auto';
+            content.removeEventListener('transitionend', handler);
+          });
+        }
+      });
+
+      content.style.transition = 'height 0.3s ease';
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Expandable category info",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading first part",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent",
+      "default": "Vibrators"
+    },
+    {
+      "type": "text",
+      "id": "collapsed_label",
+      "label": "Collapsed label",
+      "default": "Learn more about Vibrators"
+    },
+    {
+      "type": "text",
+      "id": "content_heading",
+      "label": "Content heading",
+      "default": "Your Vibe. Your Rules."
+    },
+    {
+      "type": "richtext",
+      "id": "content_text",
+      "label": "Content text",
+      "default": "<p>Finding the one just got a lot more fun. Use this section to explain your category and help customers understand the different options available.</p>"
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Content width",
+      "min": 900,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1600
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "box_bg",
+      "label": "Box background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2f2927"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#cc3d5a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#3a3432"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#3a3432"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#d7d2ce"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile top padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile bottom padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Heading text",
+          "default": "For Every Mood, Body, and Bedroom Vibe"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add more descriptive category content here.</p>"
+        }
+      ]
+    },
+    {
+      "type": "list_item",
+      "name": "List item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Item title",
+          "default": "Bullet Vibrators:"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Item text",
+          "default": " Small but mighty, these pocket-sized powerhouses are perfect for targeted pleasure."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Expandable category info",
+      "blocks": [
+        {
+          "type": "list_item"
+        },
+        {
+          "type": "list_item"
+        },
+        {
+          "type": "list_item"
+        },
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -9,14 +9,15 @@
 }
 
 .blog__title {
-  font-size: 2.5rem;
+  font-size: 34px;
   margin: 0;
   font-weight: 200;
+  text-transform: capitalize !important;
 }
 
 @media screen and (max-width: 768px) {
     .blog__title {
-        font-size: 2.5rem !important;
+        font-size: calc(34px * 0.8);
     }
 
     .blog__button {
@@ -54,13 +55,22 @@
 }
 
 .blog__button {
-  margin-top: 3rem;
-  width: 14rem;
-  background-color: #ffffff;
-  color: #3a2a28 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 11px 18px;
+  text-decoration: none;
+  border-radius: 0px;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
   font-size: 14px;
-  letter-spacing: 0.1rem;
-  font-weight: 100;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  margin-top: auto;
+  max-height: 44px;
 }
 
 @media screen and (min-width: 750px) {

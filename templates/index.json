@@ -15,7 +15,7 @@
         "carousel_image_desktop_Cb9Jwi": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/6_b62ca726-b3d3-401d-add6-feaea4c202b8.png",
+            "image": "shopify://shop_images/6_c44dfbd7-8722-4183-9aa7-8883dca34a83.png",
             "link": "shopify://collections/new-arrivals",
             "language": "en"
           }
@@ -23,7 +23,7 @@
         "carousel_image_desktop_MLJGQP": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/7_854698e9-304e-4aa8-b8e1-a4008f2e74a9.png",
+            "image": "shopify://shop_images/7_394c7da2-a4b2-42c2-89b9-a52d5b589223.png",
             "link": "shopify://collections/new-arrivals",
             "language": "hr"
           }
@@ -44,18 +44,26 @@
             "language": "hr"
           }
         },
-        "carousel_image_desktop_b7KNxR": {
+        "carousel_image_desktop_anQdTG": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/o_1.png",
-            "link": "shopify://pages/about-us-1",
-            "language": "all"
+            "image": "shopify://shop_images/8.png",
+            "link": "shopify://collections/bundles",
+            "language": "en"
+          }
+        },
+        "carousel_image_desktop_4KU4Dk": {
+          "type": "carousel_image_desktop",
+          "settings": {
+            "image": "shopify://shop_images/7_dde5719f-d999-40f6-b85c-77548ce0407c.png",
+            "link": "shopify://collections/bundles",
+            "language": "hr"
           }
         },
         "carousel_image_mobile_CV4N7Q": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/val_1.png",
+            "image": "shopify://shop_images/4_cc61c20e-214d-42db-8efe-aa62f94fbf40.png",
             "link": "shopify://collections/new-arrivals",
             "language": "en"
           }
@@ -63,7 +71,7 @@
         "carousel_image_mobile_mFbE3C": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/5_0b14fd15-e5f4-4347-9b4b-5569d0e3dafb.png",
+            "image": "shopify://shop_images/5_81e29a22-14c9-4b6d-9f02-0282d1fe10b3.png",
             "link": "shopify://collections/new-arrivals",
             "language": "hr"
           }
@@ -84,12 +92,20 @@
             "language": "hr"
           }
         },
-        "carousel_image_mobile_QXcPhe": {
+        "carousel_image_mobile_AwLVmK": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/3_bde9962f-7dad-4457-8553-6606288c15e6.png",
-            "link": "shopify://pages/about-us-1",
-            "language": "all"
+            "image": "shopify://shop_images/4_3c00c750-f68e-491d-8eb1-34a000dabac3.png",
+            "link": "shopify://collections/bundles",
+            "language": "hr"
+          }
+        },
+        "carousel_image_mobile_cRGMgW": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/3_6dc71fcf-78d8-4ab4-b9fb-9289dcadb027.png",
+            "link": "shopify://collections/bundles",
+            "language": "en"
           }
         },
         "button": {
@@ -106,12 +122,14 @@
         "carousel_image_desktop_MLJGQP",
         "carousel_image_desktop_yGc8UF",
         "carousel_image_desktop_YEDEXi",
-        "carousel_image_desktop_b7KNxR",
+        "carousel_image_desktop_anQdTG",
+        "carousel_image_desktop_4KU4Dk",
         "carousel_image_mobile_CV4N7Q",
         "carousel_image_mobile_mFbE3C",
         "carousel_image_mobile_MWe3h3",
         "carousel_image_mobile_rKNRUd",
-        "carousel_image_mobile_QXcPhe",
+        "carousel_image_mobile_AwLVmK",
+        "carousel_image_mobile_cRGMgW",
         "button"
       ],
       "settings": {
@@ -129,6 +147,414 @@
         "padding_top_desktop": 0,
         "padding_top_mobile": 0,
         "padding_bottom_desktop": 40,
+        "padding_bottom_mobile": 20
+      }
+    },
+    "blocks_mtYFh7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3922afe_txEz7G": {
+          "type": "ai_gen_block_3922afe",
+          "name": "AI primjer 2.",
+          "settings": {
+            "heading": "Bestsellers",
+            "subheading": "",
+            "products": [
+              "lelo-elise-2-lilac-luxury-vibrator",
+              "lelo-ida-wave-coral-couples-massager",
+              "lelo-soraya-wave-vibrator-rabbit-black",
+              "we-vibe-nova-3-rabbit-vibrator-midnight-blue",
+              "lelo-enigma-double-suction-stimulation-massager-black",
+              "lelo-tor-3-black-vibrator-ring",
+              "lelo-f2sa-teal-male-masturbator-blue"
+            ],
+            "desktop_width_percent": 100,
+            "container_max_width": 1440,
+            "padding_top_desktop": 0,
+            "padding_bottom_desktop": 40,
+            "padding_top_mobile": 0,
+            "padding_bottom_mobile": 20,
+            "heading_alignment": "center",
+            "heading_spacing": 20,
+            "subheading_spacing": 0,
+            "product_width": 220,
+            "mobile_product_width": 180,
+            "product_gap": 4,
+            "card_padding": 28,
+            "card_border_radius": 2,
+            "card_border_width": 2,
+            "product_text_alignment": "left",
+            "show_vendor": true,
+            "show_price": true,
+            "show_sale_badge": true,
+            "sale_badge_text": "Sale",
+            "show_button": false,
+            "button_text": "View product",
+            "button_border_radius": 0,
+            "show_navigation": false,
+            "show_nav_mobile": "none",
+            "nav_button_size": 40,
+            "nav_button_offset": 15,
+            "show_dots": true,
+            "dots_spacing": 15,
+            "dot_size": 6,
+            "enable_autoplay": false,
+            "autoplay_speed": 4,
+            "hover_lift": 2,
+            "hover_shadow_offset": 0,
+            "hover_shadow_blur": 0,
+            "hover_shadow_opacity": 0.3,
+            "background_color": "#ffffff",
+            "heading_color": "#2e2a39",
+            "subheading_color": "#2e2a39",
+            "card_background": "#f6f6f6",
+            "card_border_color": "#f6f6f6",
+            "vendor_color": "#999999",
+            "product_title_color": "#2e2a39",
+            "price_color": "#2e2a39",
+            "button_background": "#9b046f",
+            "button_text_color": "#fdfbf7",
+            "button_hover_background": "#5e3653",
+            "badge_background": "#ececec",
+            "badge_text_color": "#ffffff",
+            "badge_border_radius": 20,
+            "nav_button_background": "#ffffff",
+            "nav_button_color": "#2e2a39",
+            "nav_button_hover_background": "#f98585",
+            "dot_color": "#cccccc",
+            "dot_active_color": "#f98585",
+            "heading_size": 34,
+            "subheading_size": 16,
+            "vendor_size": 11,
+            "product_title_size": 12,
+            "price_size": 13,
+            "button_text_size": 13
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3922afe_txEz7G"
+      ],
+      "name": "Bestsellers",
+      "settings": {}
+    },
+    "featured_promo_trio_ch9Fxi": {
+      "type": "featured-promo-trio",
+      "blocks": {
+        "promo_card_DE43UH": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_u2mxi9u2mxi9u2mx.jpg",
+            "title": "LELO Elise 2",
+            "description": "<p>Smooth, refined, and quietly powerful, Elise 2 pairs sensual curves with sophisticated precision. Its silky finish, graceful silhouette, and deep, resonant energy create an experience that feels both intimate and indulgent.<br/><br/></p>",
+            "link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator",
+            "button_label": ""
+          }
+        },
+        "promo_card_qe7fCE": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/wmremove-transformed_b4d6819b-7869-4899-b5ed-3b690bf4b6fa.png",
+            "title": "LELO IDA WAVE MASSAGER ",
+            "description": "<p>Sculpted for connection and designed with refined precision, IDA Wave blends graceful form with deeply sensual performance. Its fluid silhouette, soft finish, and signature WaveMotion™ create an experience that feels both intuitive and indulgent. <br/><br/></p>",
+            "link": "shopify://products/lelo-ida-wave-coral-couples-massager",
+            "button_label": ""
+          }
+        },
+        "promo_card_UgyiqR": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_gkjsuugkjsuugkjs.jpg",
+            "title": "HYDROMAX 9 TRANSPARENT PENIS PUMP",
+            "description": "<p>Clear design, advanced performance, and confident control come together in Hydromax 9. Powerful, refined, and built for a more elevated experience, it is a modern essential for those who expect more.<br/><br/></p>",
+            "link": "shopify://products/bathmate-hydromax-9-transparent-penis-increase-pump",
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "promo_card_DE43UH",
+        "promo_card_qe7fCE",
+        "promo_card_UgyiqR"
+      ],
+      "name": "Featured promo trio",
+      "settings": {
+        "color_scheme": "",
+        "eyebrow": "Editor’s picks",
+        "heading": "Products worth exploring",
+        "section_bg": "#ffffff",
+        "eyebrow_color": "#737373",
+        "heading_color": "#111111",
+        "card_bg": "#ffffff",
+        "title_color": "#000000",
+        "description_color": "#000000",
+        "button_color": "#ffffff",
+        "dot_color": "#111111",
+        "dot_active_color": "#f98585",
+        "padding_top": 0,
+        "padding_bottom": 40
+      }
+    },
+    "1772909820c436293e": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_322d227_MUYNaM": {
+          "type": "ai_gen_block_322d227",
+          "settings": {
+            "heading": "",
+            "dots_margin_top_desktop": 10,
+            "dots_margin_bottom_desktop": 0,
+            "dots_margin_top_mobile": -10,
+            "dots_margin_bottom_mobile": 0,
+            "desktop_width_percent": 100,
+            "items_per_view": 8,
+            "items_per_view_mobile": 3,
+            "item_spacing": 0,
+            "padding_top_desktop": 0,
+            "padding_bottom_desktop": 40,
+            "padding_top_mobile": 0,
+            "padding_bottom_mobile": 30,
+            "auto_scroll_speed": 2,
+            "item_height": 60,
+            "item_padding": 0,
+            "item_background_color": "#ffffff",
+            "item_border_width": 0,
+            "item_border_color": "#e0e0e0",
+            "item_border_radius": 0,
+            "logo_max_height": 90,
+            "logo_grayscale": 100,
+            "logo_opacity": 1,
+            "arrow_size": 40,
+            "arrow_background_color": "#ffffff",
+            "arrow_hover_background_color": "#f98585",
+            "arrow_color": "#000000",
+            "arrow_hover_color": "#000000",
+            "arrow_border_radius": 40,
+            "background_color": "#ffffff",
+            "brand_1": "shopify://shop_images/LELO_logo_png_480x480-removebg-preview.png",
+            "brand_1_url": "shopify://collections/lelo",
+            "brand_2": "shopify://shop_images/wevibe.png",
+            "brand_2_url": "shopify://collections/we-vibe",
+            "brand_3": "shopify://shop_images/womanizer.png",
+            "brand_3_url": "shopify://collections/womanizer",
+            "brand_4": "shopify://shop_images/Satisfyer_Logo-removebg-preview.png",
+            "brand_4_url": "shopify://collections/satisfyer",
+            "brand_5": "shopify://shop_images/bathmate.png",
+            "brand_5_url": "shopify://collections/bathmate",
+            "brand_6": "shopify://shop_images/pretty-love-kaufbei-logo.jpg",
+            "brand_6_url": "shopify://collections/pretty-love",
+            "brand_7": "shopify://shop_images/Untitled_design_25.png",
+            "brand_7_url": "shopify://collections/arcwave",
+            "brand_8": "shopify://shop_images/kiiro.webp",
+            "brand_8_url": "shopify://collections/kiiro",
+            "brand_9": "shopify://shop_images/FF_Logo_RGB.webp",
+            "brand_9_url": "shopify://collections/fun-factory",
+            "brand_10": "shopify://shop_images/durx-removebg-preview.png",
+            "brand_10_url": "shopify://collections/durex"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_322d227_MUYNaM"
+      ],
+      "name": "Brands",
+      "settings": {}
+    },
+    "featured_bundles_promo_tPwEjE": {
+      "type": "featured-bundles-promo",
+      "blocks": {
+        "bundle_49AgRk": {
+          "type": "bundle",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_8ayi7h8ayi7h8ayi_1.jpg",
+            "title": "LELO Premium care bundle",
+            "text": "<p>Two essentials combined for a better intimate experience with a smoother glide, comfort, and more pleasure overall.</p>",
+            "regular_price": "193,85€",
+            "bundle_price": "184,90€",
+            "button_label": "Shop bundle",
+            "button_link": "shopify://products/lelo-enigma-double-suction-stimulation-massager-black"
+          }
+        },
+        "bundle_iGzBz3": {
+          "type": "bundle",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_s1tpats1tpats1tp.jpg",
+            "title": "ring confor & control bundle",
+            "text": "<p>A convenient solution to enhance your experience with two products that work better together than apart.</p>",
+            "regular_price": "155,85€",
+            "bundle_price": "145,90€",
+            "button_label": "Shop bundle",
+            "button_link": "shopify://products/lelo-tor-3-black-vibrator-ring"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_49AgRk",
+        "bundle_iGzBz3"
+      ],
+      "name": "Featured bundles promo",
+      "settings": {
+        "eyebrow": "Featured bundles",
+        "heading": "Top bundle offers",
+        "max_width": 1440,
+        "heading_alignment_desktop": "left",
+        "heading_alignment_mobile": "left",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 28,
+        "heading_spacing_desktop": 28,
+        "heading_spacing_mobile": 20,
+        "image_ratio_desktop": 72,
+        "image_ratio_mobile": 78,
+        "content_min_height_desktop": 170,
+        "content_min_height_mobile": 160,
+        "content_padding_desktop": 20,
+        "content_padding_mobile": 18,
+        "card_gap_desktop": 2,
+        "card_gap_mobile": 12,
+        "side_padding_desktop": 0,
+        "side_padding_mobile": 0,
+        "title_size_desktop": 21,
+        "title_size_mobile": 20,
+        "text_size_desktop": 14,
+        "text_size_mobile": 14,
+        "compare_price_size_desktop": 16,
+        "compare_price_size_mobile": 15,
+        "bundle_price_size_desktop": 24,
+        "bundle_price_size_mobile": 22,
+        "button_radius": 0,
+        "section_bg": "#ffffff",
+        "image_bg": "#dfe4ea",
+        "content_bg": "#ffffff",
+        "content_text": "#ffffff",
+        "eyebrow_color": "#777777",
+        "heading_color": "#111111",
+        "title_color": "#000000",
+        "text_color": "#000000",
+        "compare_price_color": "#2d2a26",
+        "bundle_price_color": "#f8275c",
+        "button_bg": "#ffffff",
+        "button_text": "#000000",
+        "button_border": "#000000",
+        "button_bg_hover": "#000000",
+        "button_text_hover": "#ffffff",
+        "button_border_hover": "#ffffff",
+        "arrow_bg": "#ffffff",
+        "arrow_color": "#111111",
+        "arrow_border": "#dddddd",
+        "arrow_bg_hover": "#111111",
+        "arrow_color_hover": "#ffffff",
+        "arrow_border_hover": "#111111",
+        "dot_color": "#111111",
+        "dot_active_color": "#111111",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 20
+      }
+    },
+    "177092359671149746": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d95a1fb_EXRdEF": {
+          "type": "ai_gen_block_d95a1fb",
+          "name": "Col AI primjer 2.",
+          "settings": {
+            "heading": "Categories",
+            "subheading": "",
+            "collections": [
+              "vibrators",
+              "masturbators",
+              "rabbit-vibrators",
+              "penis-pumps",
+              "remote-control-toys",
+              "vibrating-rings",
+              "clitoris-stimulator",
+              "bundles"
+            ],
+            "desktop_width_percent": 100,
+            "container_max_width": 1440,
+            "columns_desktop": 4,
+            "columns_tablet": 3,
+            "columns_mobile": "2",
+            "grid_gap": 4,
+            "heading_alignment": "center",
+            "heading_size": 34,
+            "heading_weight": 700,
+            "heading_color": "#2e2a39",
+            "heading_letter_spacing": 0,
+            "heading_spacing": 32,
+            "subheading_size": 16,
+            "subheading_weight": 400,
+            "subheading_color": "#666666",
+            "subheading_spacing": 8,
+            "card_background_color": "#ffffff",
+            "card_border_radius": 2,
+            "card_border_width": 0,
+            "card_border_color": "#e0e0e0",
+            "card_padding": 20,
+            "card_text_alignment": "center",
+            "card_content_vertical_alignment": "flex-start",
+            "card_hover_lift": -4,
+            "card_shadow_vertical": 10,
+            "card_shadow_blur": 20,
+            "card_shadow_opacity": 0.1,
+            "image_aspect_ratio": 100,
+            "image_hover_scale": 1.1,
+            "show_overlay": true,
+            "overlay_opacity": 0.2,
+            "title_size": 18,
+            "title_weight": 500,
+            "title_color": "#2e2a39",
+            "title_letter_spacing": 1,
+            "title_spacing": 4,
+            "show_description": false,
+            "description_length": 80,
+            "description_size": 14,
+            "description_weight": 400,
+            "description_color": "#666666",
+            "description_spacing": 12,
+            "show_product_count": false,
+            "product_count_singular": "product",
+            "product_count_plural": "products",
+            "count_size": 12,
+            "count_weight": 500,
+            "count_color": "#999999",
+            "padding_top_desktop": 0,
+            "padding_bottom_desktop": 40,
+            "padding_horizontal_desktop": 0,
+            "padding_top_mobile": 0,
+            "padding_bottom_mobile": 20,
+            "padding_horizontal_mobile": 0,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d95a1fb_EXRdEF"
+      ],
+      "name": "Categories",
+      "settings": {}
+    },
+    "featured_blog_fidJpL": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "news",
+        "post_limit": 2,
+        "heading": "The Intimacy Column",
+        "heading_size": "h1",
+        "columns_desktop": 2,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "color_scheme": "scheme-1",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 0,
         "padding_bottom_mobile": 20
       }
     },
@@ -213,567 +639,16 @@
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 20
       }
-    },
-    "1772909820c436293e": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_322d227_MUYNaM": {
-          "type": "ai_gen_block_322d227",
-          "settings": {
-            "heading": "",
-            "dots_margin_top_desktop": 10,
-            "dots_margin_bottom_desktop": 0,
-            "dots_margin_top_mobile": -10,
-            "dots_margin_bottom_mobile": 0,
-            "desktop_width_percent": 100,
-            "items_per_view": 8,
-            "items_per_view_mobile": 3,
-            "item_spacing": 0,
-            "padding_top_desktop": 0,
-            "padding_bottom_desktop": 40,
-            "padding_top_mobile": 0,
-            "padding_bottom_mobile": 30,
-            "auto_scroll_speed": 4,
-            "item_height": 60,
-            "item_padding": 0,
-            "item_background_color": "#ffffff",
-            "item_border_width": 0,
-            "item_border_color": "#e0e0e0",
-            "item_border_radius": 0,
-            "logo_max_height": 90,
-            "logo_grayscale": 100,
-            "logo_opacity": 1,
-            "arrow_size": 40,
-            "arrow_background_color": "#ffffff",
-            "arrow_hover_background_color": "#f98585",
-            "arrow_color": "#000000",
-            "arrow_hover_color": "#000000",
-            "arrow_border_radius": 40,
-            "background_color": "#ffffff",
-            "brand_1": "shopify://shop_images/LELO_logo_png_480x480-removebg-preview.png",
-            "brand_1_url": "shopify://collections/lelo",
-            "brand_2": "shopify://shop_images/wevibe.png",
-            "brand_2_url": "shopify://collections/we-vibe",
-            "brand_3": "shopify://shop_images/womanizer.png",
-            "brand_3_url": "shopify://collections/womanizer",
-            "brand_4": "shopify://shop_images/Satisfyer_Logo-removebg-preview.png",
-            "brand_4_url": "shopify://collections/satisfyer",
-            "brand_5": "shopify://shop_images/bathmate.png",
-            "brand_5_url": "shopify://collections/bathmate",
-            "brand_6": "shopify://shop_images/pretty-love-kaufbei-logo.jpg",
-            "brand_6_url": "shopify://collections/pretty-love",
-            "brand_7": "shopify://shop_images/Untitled_design_25.png",
-            "brand_7_url": "shopify://collections/arcwave",
-            "brand_8": "shopify://shop_images/kiiro.webp",
-            "brand_8_url": "shopify://collections/kiiro",
-            "brand_9": "shopify://shop_images/FF_Logo_RGB.webp",
-            "brand_9_url": "shopify://collections/fun-factory",
-            "brand_10": "shopify://shop_images/durx-removebg-preview.png",
-            "brand_10_url": "shopify://collections/durex"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_322d227_MUYNaM"
-      ],
-      "name": "Brands",
-      "settings": {}
-    },
-    "featured_promo_trio_ch9Fxi": {
-      "type": "featured-promo-trio",
-      "blocks": {
-        "promo_card_DE43UH": {
-          "type": "promo_card",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_u2mxi9u2mxi9u2mx.jpg",
-            "title": "LELO Elise 2",
-            "description": "<p>Smooth, refined, and quietly powerful, Elise 2 pairs sensual curves with sophisticated precision. Its silky finish, graceful silhouette, and deep, resonant energy create an experience that feels both intimate and indulgent.<br/><br/></p>",
-            "link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator",
-            "button_label": ""
-          }
-        },
-        "promo_card_qe7fCE": {
-          "type": "promo_card",
-          "settings": {
-            "image": "shopify://shop_images/wmremove-transformed_b4d6819b-7869-4899-b5ed-3b690bf4b6fa.png",
-            "title": "LELO IDA WAVE MASSAGER ",
-            "description": "<p>Sculpted for connection and designed with refined precision, IDA Wave blends graceful form with deeply sensual performance. Its fluid silhouette, soft finish, and signature WaveMotion™ create an experience that feels both intuitive and indulgent. <br/><br/></p>",
-            "link": "shopify://products/lelo-ida-wave-coral-couples-massager",
-            "button_label": ""
-          }
-        },
-        "promo_card_UgyiqR": {
-          "type": "promo_card",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_gkjsuugkjsuugkjs.jpg",
-            "title": "HYDROMAX 9 TRANSPARENT PENIS PUMP",
-            "description": "<p>Clear design, advanced performance, and confident control come together in Hydromax 9. Powerful, refined, and built for a more elevated experience, it is a modern essential for those who expect more.<br/><br/></p>",
-            "link": "shopify://products/bathmate-hydromax-9-transparent-penis-increase-pump",
-            "button_label": ""
-          }
-        }
-      },
-      "block_order": [
-        "promo_card_DE43UH",
-        "promo_card_qe7fCE",
-        "promo_card_UgyiqR"
-      ],
-      "name": "Featured promo trio",
-      "settings": {
-        "color_scheme": "",
-        "eyebrow": "Editor’s picks",
-        "heading": "Products worth exploring",
-        "padding_top": 0,
-        "padding_bottom": 40
-      }
-    },
-    "blocks_mtYFh7": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_3922afe_txEz7G": {
-          "type": "ai_gen_block_3922afe",
-          "name": "AI primjer 2.",
-          "settings": {
-            "heading": "Bestsellers",
-            "subheading": "",
-            "products": [
-              "lelo-elise-2-lilac-luxury-vibrator",
-              "lelo-ida-wave-coral-couples-massager",
-              "lelo-soraya-wave-vibrator-rabbit-black",
-              "we-vibe-nova-3-rabbit-vibrator-midnight-blue",
-              "lelo-enigma-double-suction-stimulation-massager-black",
-              "lelo-tor-3-black-vibrator-ring",
-              "lelo-f2sa-teal-male-masturbator-blue"
-            ],
-            "desktop_width_percent": 100,
-            "container_max_width": 1440,
-            "padding_top_desktop": 0,
-            "padding_bottom_desktop": 40,
-            "padding_top_mobile": 0,
-            "padding_bottom_mobile": 20,
-            "heading_alignment": "center",
-            "heading_spacing": 20,
-            "subheading_spacing": 0,
-            "product_width": 220,
-            "mobile_product_width": 180,
-            "product_gap": 4,
-            "card_padding": 28,
-            "card_border_radius": 2,
-            "card_border_width": 2,
-            "product_text_alignment": "left",
-            "show_vendor": true,
-            "show_price": true,
-            "show_sale_badge": true,
-            "sale_badge_text": "Sale",
-            "show_button": false,
-            "button_text": "View product",
-            "button_border_radius": 0,
-            "show_navigation": false,
-            "show_nav_mobile": "none",
-            "nav_button_size": 40,
-            "nav_button_offset": 15,
-            "show_dots": true,
-            "dots_spacing": 5,
-            "dot_size": 6,
-            "enable_autoplay": false,
-            "autoplay_speed": 4,
-            "hover_lift": 2,
-            "hover_shadow_offset": 0,
-            "hover_shadow_blur": 0,
-            "hover_shadow_opacity": 0.3,
-            "background_color": "#ffffff",
-            "heading_color": "#2e2a39",
-            "subheading_color": "#2e2a39",
-            "card_background": "#f6f6f6",
-            "card_border_color": "#f6f6f6",
-            "vendor_color": "#999999",
-            "product_title_color": "#2e2a39",
-            "price_color": "#2e2a39",
-            "button_background": "#9b046f",
-            "button_text_color": "#fdfbf7",
-            "button_hover_background": "#5e3653",
-            "badge_background": "#ececec",
-            "badge_text_color": "#ffffff",
-            "badge_border_radius": 20,
-            "nav_button_background": "#ffffff",
-            "nav_button_color": "#2e2a39",
-            "nav_button_hover_background": "#f98585",
-            "dot_color": "#cccccc",
-            "dot_active_color": "#f98585",
-            "heading_size": 34,
-            "subheading_size": 16,
-            "vendor_size": 11,
-            "product_title_size": 12,
-            "price_size": 13,
-            "button_text_size": 13
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_3922afe_txEz7G"
-      ],
-      "name": "Bestsellers",
-      "settings": {}
-    },
-    "featured_bundles_promo_tPwEjE": {
-      "type": "featured-bundles-promo",
-      "blocks": {
-        "bundle_49AgRk": {
-          "type": "bundle",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_8ayi7h8ayi7h8ayi_1.jpg",
-            "title": "LELO Premium care bundle",
-            "text": "<p>Two essentials combined for a better intimate experience with a smoother glide, comfort, and more pleasure overall.</p>",
-            "regular_price": "193,85€",
-            "bundle_price": "184,90€",
-            "button_label": "Shop bundle",
-            "button_link": "shopify://products/lelo-enigma-double-suction-stimulation-massager-black"
-          }
-        },
-        "bundle_iGzBz3": {
-          "type": "bundle",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_s1tpats1tpats1tp.jpg",
-            "title": "ring confor & control bundle",
-            "text": "<p>A convenient solution to enhance your experience with two products that work better together than apart.</p>",
-            "regular_price": "155,85€",
-            "bundle_price": "145,90€",
-            "button_label": "Shop bundle",
-            "button_link": "shopify://products/lelo-tor-3-black-vibrator-ring"
-          }
-        }
-      },
-      "block_order": [
-        "bundle_49AgRk",
-        "bundle_iGzBz3"
-      ],
-      "name": "Featured bundles promo",
-      "settings": {
-        "eyebrow": "Featured bundles",
-        "heading": "Top bundle offers",
-        "max_width": 1440,
-        "heading_alignment_desktop": "left",
-        "heading_alignment_mobile": "left",
-        "heading_size_desktop": 40,
-        "heading_size_mobile": 28,
-        "heading_spacing_desktop": 28,
-        "heading_spacing_mobile": 20,
-        "image_ratio_desktop": 72,
-        "image_ratio_mobile": 78,
-        "content_min_height_desktop": 170,
-        "content_min_height_mobile": 160,
-        "content_padding_desktop": 20,
-        "content_padding_mobile": 18,
-        "card_gap_desktop": 2,
-        "card_gap_mobile": 12,
-        "side_padding_desktop": 0,
-        "side_padding_mobile": 0,
-        "title_size_desktop": 21,
-        "title_size_mobile": 20,
-        "text_size_desktop": 14,
-        "text_size_mobile": 14,
-        "compare_price_size_desktop": 16,
-        "compare_price_size_mobile": 15,
-        "bundle_price_size_desktop": 24,
-        "bundle_price_size_mobile": 22,
-        "button_radius": 0,
-        "section_bg": "#ffffff",
-        "image_bg": "#dfe4ea",
-        "content_bg": "#000000",
-        "content_text": "#ffffff",
-        "eyebrow_color": "#777777",
-        "heading_color": "#111111",
-        "title_color": "#ffffff",
-        "text_color": "#ffffff",
-        "compare_price_color": "#b8b8b8",
-        "bundle_price_color": "#ffffff",
-        "button_bg": "#ffffff",
-        "button_text": "#000000",
-        "button_border": "#ffffff",
-        "button_bg_hover": "#000000",
-        "button_text_hover": "#ffffff",
-        "button_border_hover": "#ffffff",
-        "arrow_bg": "#ffffff",
-        "arrow_color": "#111111",
-        "arrow_border": "#dddddd",
-        "arrow_bg_hover": "#111111",
-        "arrow_color_hover": "#ffffff",
-        "arrow_border_hover": "#111111",
-        "dot_color": "#111111",
-        "dot_active_color": "#111111",
-        "padding_top_desktop": 0,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 20
-      }
-    },
-    "177092359671149746": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_d95a1fb_EXRdEF": {
-          "type": "ai_gen_block_d95a1fb",
-          "name": "Col AI primjer 2.",
-          "settings": {
-            "heading": "Categories",
-            "subheading": "",
-            "collections": [
-              "vibrators",
-              "masturbators",
-              "rabbit-vibrators",
-              "penis-pumps",
-              "remote-control-toys",
-              "vibrating-rings",
-              "clitoris-stimulator"
-            ],
-            "desktop_width_percent": 100,
-            "container_max_width": 1440,
-            "columns_desktop": 4,
-            "columns_tablet": 3,
-            "columns_mobile": "2",
-            "grid_gap": 4,
-            "heading_alignment": "center",
-            "heading_size": 34,
-            "heading_weight": 700,
-            "heading_color": "#2e2a39",
-            "heading_letter_spacing": 0,
-            "heading_spacing": 32,
-            "subheading_size": 16,
-            "subheading_weight": 400,
-            "subheading_color": "#666666",
-            "subheading_spacing": 8,
-            "card_background_color": "#ffffff",
-            "card_border_radius": 2,
-            "card_border_width": 0,
-            "card_border_color": "#e0e0e0",
-            "card_padding": 20,
-            "card_text_alignment": "center",
-            "card_content_vertical_alignment": "flex-start",
-            "card_hover_lift": -4,
-            "card_shadow_vertical": 10,
-            "card_shadow_blur": 20,
-            "card_shadow_opacity": 0.1,
-            "image_aspect_ratio": 100,
-            "image_hover_scale": 1.1,
-            "show_overlay": true,
-            "overlay_opacity": 0.2,
-            "title_size": 18,
-            "title_weight": 500,
-            "title_color": "#2e2a39",
-            "title_letter_spacing": 1,
-            "title_spacing": 4,
-            "show_description": false,
-            "description_length": 80,
-            "description_size": 14,
-            "description_weight": 400,
-            "description_color": "#666666",
-            "description_spacing": 12,
-            "show_product_count": false,
-            "product_count_singular": "product",
-            "product_count_plural": "products",
-            "count_size": 12,
-            "count_weight": 500,
-            "count_color": "#999999",
-            "padding_top_desktop": 0,
-            "padding_bottom_desktop": 40,
-            "padding_horizontal_desktop": 0,
-            "padding_top_mobile": 0,
-            "padding_bottom_mobile": 20,
-            "padding_horizontal_mobile": 0,
-            "background_color": "#ffffff"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_d95a1fb_EXRdEF"
-      ],
-      "name": "Categories",
-      "settings": {}
-    },
-    "1757424012f277d6cb": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_featured_carousel_KD3gKQ": {
-          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {
-            "maxwidth": 1080
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_featured_carousel_KD3gKQ"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "1773954689b81716d0": {
-      "type": "_blocks",
-      "settings": {}
-    },
-    "featured_blog_fidJpL": {
-      "type": "featured-blog",
-      "name": "t:sections.featured-blog.presets.name",
-      "settings": {
-        "blog": "news",
-        "post_limit": 2,
-        "heading": "The Intimacy Column",
-        "heading_size": "h1",
-        "columns_desktop": 2,
-        "show_view_all": true,
-        "show_image": true,
-        "show_date": false,
-        "show_author": false,
-        "color_scheme": "scheme-1",
-        "padding_top_desktop": 0,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 20
-      }
-    },
-    "1769375150f62370c4": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_6be1612_3BE9zQ": {
-          "type": "ai_gen_block_6be1612",
-          "disabled": true,
-          "settings": {
-            "heading_column_1": "<strong>Customer support & orders</strong>",
-            "text_column_1": "<p>Monday - Saturday 8AM-8PM</p><p></p><p><a href=\"tel:+385996496644\" title=\"tel:+385996496644\">099 649 6644</a><br/><a href=\"mailto:info@50nijansi.hr\">info@luvmechanics.com</a></p>",
-            "heading_column_2": "‎",
-            "text_column_2": "<p>We are a Croatian intimate wellness webshop with an emphasis on competitive prices, discreet delivery, carefully selected products, and support you can trust. </p><p>Everything you see in our offer is selected with a focus on quality, comfort, and a pleasant user experience.</p>",
-            "enable_read_more": false,
-            "collapsed_height": 280,
-            "fade_height": 60,
-            "read_more_text": "Read more",
-            "read_less_text": "Read less",
-            "desktop_width_percent": 100,
-            "max_content_width": 1400,
-            "column_gap": 40,
-            "column_gap_mobile": 30,
-            "section_padding_top": 30,
-            "section_padding_bottom": 20,
-            "section_padding_horizontal": 40,
-            "section_padding_top_mobile": 30,
-            "section_padding_bottom_mobile": 30,
-            "section_padding_horizontal_mobile": 20,
-            "paragraph_spacing": 15,
-            "heading_size": 32,
-            "heading_size_mobile": 24,
-            "heading_weight": "700",
-            "heading_line_height": 1.2,
-            "heading_margin_bottom": 20,
-            "heading_color": "#2e2a39",
-            "text_size": 16,
-            "text_size_mobile": 14,
-            "text_weight": "400",
-            "text_line_height": 1.6,
-            "text_alignment": "left",
-            "text_color": "#2e2a39",
-            "button_margin_top": 20,
-            "button_padding_vertical": 12,
-            "button_padding_horizontal": 24,
-            "button_font_size": 14,
-            "button_font_weight": "500",
-            "button_border_radius": 0,
-            "button_border_width": 1,
-            "button_bg_color": "#f8275c",
-            "button_text_color": "#fdfbf7",
-            "button_border_color": "#f8275c",
-            "button_bg_hover_color": "#ffffff",
-            "button_text_hover_color": "#fdfbf7",
-            "button_border_hover_color": "#f8275c",
-            "background_color": "#ffffff",
-            "border_radius": 0
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_77b273b_mGBGMC": {
-          "type": "ai_gen_block_77b273b",
-          "disabled": true,
-          "settings": {
-            "column_1_heading": "<strong>Meet LuvMechanics</strong>",
-            "column_1_text": "<p>At LuvMechanics, we believe everyone deserves a fun, exciting, and fulfilling intimate life. Over time, things can start to feel routine — that’s where we come in. Whether you’re exploring something new with your partner or treating yourself to a moment of pleasure, our goal is to help you feel confident, curious, and completely comfortable.<br/></p><h3><strong>Why Shop With Us?</strong></h3><p>We get it — shopping for adult products can feel awkward. That’s why we’ve made it simple, safe, and private. All orders from LuvMechanics are shipped discreetly, and your privacy is always our top priority. You can browse freely, explore what excites you, and shop without judgment — all from the comfort of your home.<br/></p><h3><strong>More Than Just a Shop</strong></h3><p>LuvMechanics isn’t only about selling toys — we’re here to make intimacy more open, positive, and fun. Our guides, articles, and newsletters are full of real advice, product tips, and inspiration to help you explore your desires at your own pace.</p>",
-            "column_2_heading": "",
-            "column_2_text": "<h3><strong>Our Products</strong></h3><p>We’re proud to always bring you the most popular and best-loved adult toys from trusted brands worldwide. From vibrators and couples’ toys to lingerie and accessories, everything we offer is carefully selected for quality, safety, and satisfaction.</p><h3><strong>For Everyone</strong></h3><p>Whether you’re new to adult toys or already know what you like, LuvMechanics has something for you. Our collections are designed for all genders, preferences, and experiences — so you can discover what pleasure really means to you.Need a little guidance? Our team is always happy to help with friendly advice and personal recommendations — no awkwardness, no pressure.</p>",
-            "enable_read_more": true,
-            "collapsed_height": 360,
-            "read_more_text": "Read more",
-            "read_less_text": "Read less",
-            "button_alignment": "center",
-            "desktop_width_percent": 100,
-            "column_gap": 40,
-            "padding_top": 40,
-            "padding_bottom": 40,
-            "padding_horizontal": 20,
-            "border_radius": 0,
-            "background_color": "#fdfbf7",
-            "text_color": "#2e2a39",
-            "heading_color": "#2e2a39",
-            "heading_size": 24,
-            "font_size": 16,
-            "button_color": "#9b046f",
-            "button_hover_color": "#5e3653",
-            "button_text_color": "#fdfbf7",
-            "button_font_size": 14,
-            "button_border_radius": 0
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_471d675_kwydPD": {
-          "type": "ai_gen_block_471d675",
-          "disabled": true,
-          "settings": {
-            "heading": "Meet LuvMechanics",
-            "about_text": "<p>At LuvMechanics, we believe everyone deserves a fun, exciting, and fulfilling intimate life. Over time, things can start to feel routine — that’s where we come in. Whether you’re exploring something new with your partner or treating yourself to a moment of pleasure, our goal is to help you feel confident, curious, and completely comfortable.<br/><br/><strong>Why Shop With Us?</strong><br/><br/>We get it — shopping for adult products can feel awkward. That’s why we’ve made it simple, safe, and private. All orders from LuvMechanics are shipped discreetly, and your privacy is always our top priority. You can browse freely, explore what excites you, and shop without judgment — all from the comfort of your home.<br/><br/><strong>More Than Just a Shop</strong><br/><br/>LuvMechanics isn’t only about selling toys — we’re here to make intimacy more open, positive, and fun. Our guides, articles, and newsletters are full of real advice, product tips, and inspiration to help you explore your desires at your own pace.<br/><br/><strong>Our Products</strong><br/><br/>We’re proud to always bring you the most popular and best-loved adult toys from trusted brands worldwide. From vibrators and couples’ toys to lingerie and accessories, everything we offer is carefully selected for quality, safety, and satisfaction.<br/><strong><br/>For Everyone</strong><br/><br/>Whether you’re new to adult toys or already know what you like, LuvMechanics has something for you. Our collections are designed for all genders, preferences, and experiences — so you can discover what pleasure really means to you.Need a little guidance? Our team is always happy to help with friendly advice and personal recommendations — no awkwardness, no pressure.</p>",
-            "collapsed_height": 360,
-            "read_more_text": "Read more",
-            "read_less_text": "Read less",
-            "max_width": 1200,
-            "text_alignment": "left",
-            "padding_top": 40,
-            "padding_bottom": 40,
-            "padding_horizontal": 20,
-            "border_radius": 16,
-            "background_color": "#fdfbf7",
-            "heading_color": "#2e2a39",
-            "text_color": "#2e2a39",
-            "heading_size": 32,
-            "heading_spacing": 20,
-            "text_size": 16,
-            "button_spacing": 20,
-            "button_text_size": 14,
-            "button_border_radius": 4,
-            "button_bg_color": "#9b046f",
-            "button_hover_bg_color": "#5e3653",
-            "button_text_color": "#fdfbf7"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_6be1612_3BE9zQ",
-        "ai_gen_block_77b273b_mGBGMC",
-        "ai_gen_block_471d675_kwydPD"
-      ],
-      "name": "About Us",
-      "settings": {}
     }
   },
   "order": [
     "image-with-text",
-    "multicolumn_WHDRmn",
-    "1772909820c436293e",
-    "featured_promo_trio_ch9Fxi",
     "blocks_mtYFh7",
+    "featured_promo_trio_ch9Fxi",
+    "1772909820c436293e",
     "featured_bundles_promo_tPwEjE",
     "177092359671149746",
-    "1757424012f277d6cb",
-    "1773954689b81716d0",
     "featured_blog_fidJpL",
-    "1769375150f62370c4"
+    "multicolumn_WHDRmn"
   ]
 }

@@ -3,7 +3,20 @@
   File: sections/featured-promo-trio.liquid
 {% endcomment %}
 
-<section class="featured-promo-trio color-{{ section.settings.color_scheme }}">
+<section
+  class="featured-promo-trio color-{{ section.settings.color_scheme }}"
+  style="
+    --fpt-section-bg: {{ section.settings.section_bg }};
+    --fpt-eyebrow-color: {{ section.settings.eyebrow_color }};
+    --fpt-heading-color: {{ section.settings.heading_color }};
+    --fpt-card-bg: {{ section.settings.card_bg }};
+    --fpt-title-color: {{ section.settings.title_color }};
+    --fpt-description-color: {{ section.settings.description_color }};
+    --fpt-button-color: {{ section.settings.button_color }};
+    --fpt-dot-color: {{ section.settings.dot_color }};
+    --fpt-dot-active-color: {{ section.settings.dot_active_color }};
+  "
+>
   <div class="featured-promo-trio__inner page-width">
     {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
       <div class="featured-promo-trio__heading-wrap">
@@ -160,7 +173,7 @@
 
 <style>
   .featured-promo-trio__heading-wrap {
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
 
   .featured-promo-trio__eyebrow {
@@ -169,7 +182,7 @@
     line-height: 1;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.45);
+    color: var(--fpt-eyebrow-color);
   }
 
   .featured-promo-trio__heading {
@@ -177,7 +190,7 @@
     font-size: 34px;
     line-height: 1.05;
     font-weight: 200;
-    color: #111;
+    color: var(--fpt-heading-color);
   }
 
   @media screen and (max-width: 989px) {
@@ -201,13 +214,14 @@
     }
 
     .featured-promo-trio__heading {
-      font-size: 2.5rem;
+      font-size: calc(34px * 0.8);
     }
   }
 
   .featured-promo-trio {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: var(--fpt-section-bg);
   }
 
   .featured-promo-trio__desktop-tablet {
@@ -239,7 +253,7 @@
     overflow: hidden;
     background: #000;
     min-height: 560px;
-    border: 1px solid rgba(255,255,255,0.08);
+    /* border: 1px solid rgba(255,255,255,0.08); */
   }
 
   .featured-promo-trio__link {
@@ -272,9 +286,9 @@
 
   .featured-promo-trio__content {
     height: 28%;
-    background: #000;
-    color: #fff;
-    padding: 24px 20px 22px;
+    background: var(--fpt-card-bg);
+    color: var(--fpt-title-color);
+    padding: 2rem 2rem 2rem 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -286,14 +300,14 @@
     line-height: 1.1;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--fpt-title-color);
   }
 
   .featured-promo-trio__description {
     margin: 0;
     font-size: 1.4rem;
     line-height: 1.5;
-    color: rgba(255,255,255,0.85);
+    color: var(--fpt-description-color);
   }
 
   .featured-promo-trio__description p {
@@ -306,7 +320,7 @@
     font-size: 1.2rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.92);
+    color: var(--fpt-button-color);
   }
 
   .featured-promo-trio__card:hover .featured-promo-trio__image {
@@ -340,7 +354,6 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 14px;
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -382,7 +395,7 @@
     height: 8px;
     border: none;
     border-radius: 999px;
-    background: #111;
+    background: var(--fpt-dot-color);
     opacity: 0.3;
     cursor: pointer;
     padding: 0;
@@ -392,7 +405,7 @@
   .featured-promo-trio__dot.is-active {
     width: 24px;
     opacity: 1;
-    background-color: #f98585;
+    background-color: var(--fpt-dot-active-color);
   }
 
   @media screen and (max-width: 989px) and (min-width: 426px) {
@@ -422,7 +435,7 @@
     }
   }
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 768px) {
     .featured-promo-trio__inner {
       padding-left: 0;
       padding-right: 0;
@@ -437,7 +450,7 @@
     }
 
     .featured-promo-trio__card {
-      min-height: 530px;
+      min-height: 430px;
     }
 
     .featured-promo-trio__image-wrapper {
@@ -446,11 +459,11 @@
 
     .featured-promo-trio__content {
       height: 32%;
-      padding: 20px 16px 18px;
+      padding: 2rem 2rem 0rem 2rem;
     }
 
     .featured-promo-trio__title {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       margin-bottom: 10px;
     }
 
@@ -587,6 +600,60 @@
       "id": "heading",
       "label": "Heading",
       "default": "Top bundle offers"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#737373"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card content background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Card title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Card description color",
+      "default": "#d9d9d9"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#f98585"
     },
     {
       "type": "range",

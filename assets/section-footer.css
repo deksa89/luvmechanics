@@ -42,7 +42,7 @@
 
 .footer__content-bottom {
   border-top: solid 0.1rem #929292;
-  padding-top: 3rem;
+  padding-top: 2rem;
 }
 
 .footer__content-bottom:only-child {
@@ -54,7 +54,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 768px) {
   .footer__content-bottom {
     flex-wrap: wrap;
     padding-top: 0;
@@ -109,16 +109,22 @@
 }
 
 .footer-block:only-child:last-child {
-  text-align: center;
-  max-width: 76rem;
+  text-align: left;
+  width: 100%;
   margin: 0 auto;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (max-width: 768px) {
   .footer-block {
     display: block;
     margin-top: 0;
+    text-align: left;
   }
+
+  .footer-block:only-child:last-child {
+    text-align: center;
+  }
+
 }
 
 .footer-block:empty {
@@ -157,7 +163,7 @@
 
 @media screen and (min-width: 990px) {
   .footer-block__heading {
-    font-size: calc(var(--font-heading-scale) * 1.8rem);
+    font-size: calc(var(--font-heading-scale) * 2.8rem);
   }
 }
 
@@ -225,18 +231,18 @@
   }
 }
 
-@media screen and (max-width: 749px) {
-  /*
-    On a small screen we want all the items to be centered
-    because they will be stacked.
-   */
+@media screen and (max-width: 768px) {
   .footer-block--newsletter {
     display: flex;
     flex-direction: column;
-    flex: 1 1 100%;
     align-items: center;
+    flex: 1 1 100%;
     gap: 3rem;
-    padding: 0 1rem;
+    padding: 0;
+  }
+
+  .footer-block__heading {
+    text-align: center;
   }
 
   .footer__list-social.list-social,
@@ -248,6 +254,8 @@
 
   .footer-block__newsletter {
     flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1rem;
   }
 }
 
@@ -263,7 +271,6 @@
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-  padding: 1rem 1rem 0;
   gap: 2rem;
 }
 
@@ -304,7 +311,7 @@
 
 @media screen and (min-width: 750px) {
   .footer__content-bottom-wrapper:not(.footer__content-bottom-wrapper--center) .footer__copyright {
-    text-align: right;
+    text-align: left;
   }
 }
 
@@ -516,8 +523,8 @@
 
 .footer-block--newsletter.scroll-trigger.animate--slide-in {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .footer-block__social_media_heading.inline-richtext {

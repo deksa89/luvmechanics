@@ -72,7 +72,6 @@
     align-items: stretch;
     will-change: transform;
     transition: transform 0.45s ease;
-    padding: 10px 0;
   }
 
   .ai-product-carousel-track-{{ ai_gen_id }}.no-transition {
@@ -264,6 +263,8 @@
     margin-top: {{ block.settings.dots_spacing }}px;
   }
 
+
+
   .ai-product-carousel-dot-{{ ai_gen_id }} {
     width: {{ block.settings.dot_size }}px;
     height: {{ block.settings.dot_size }}px;
@@ -288,6 +289,7 @@
       padding-top: {{ block.settings.padding_top_mobile }}px;
       padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
     }
+    
     .ai-product-carousel-item-{{ ai_gen_id }} {
       flex: 0 0 {{ block.settings.mobile_product_width }}px;
       min-width: {{ block.settings.mobile_product_width }}px;

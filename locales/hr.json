@@ -91,7 +91,7 @@
         "image_available": "Slika {{ index }} sada je dostupna u prikazu galerije",
         "open_media": "Otvori medij {{ index }} u modalnom prozoru",
         "play_model": "Reproduciraj 3D preglednik",
-        "play_video": "Reproduciraj videozapis",
+        "play_video": "Reproduciraj videozapis"
       },
       "variant_sold_out_or_unavailable": "Model je prodan ili nedostupan",
       "add_to_cart": "Dodaj u košaricu",
@@ -490,5 +490,12 @@
   "onboarding": {
     "product_title": "Primjer naziva proizvoda",
     "collection_title": "Naziv vaše kolekcije"
+  },
+  "shopify": {
+    "checkout": {
+      "shop_policies": {
+        "refund_policy": "Uvjeti povrata"
+      }
+    }
   }
 }

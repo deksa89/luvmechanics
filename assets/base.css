@@ -84,11 +84,11 @@
 
 
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .page-width {
-    padding: 0rem;
+    padding: 0 0.3rem !important;
   }
-}
+} */
 
 /* Only Image-with-text: remove page-width padding + let it go full width */
 /* .section-template--28235575427409__image-with-text-padding .page-width {
@@ -664,8 +664,8 @@ h3 .icon-arrow,
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 5rem;
+  height: 3rem;
 }
 
 .svg-wrapper > svg {
@@ -2056,6 +2056,13 @@ input[type='checkbox'] {
   position: relative;
 }
 
+@media screen and (max-width: 768px) {
+  .product {
+    padding: 0 0.5rem;
+  }
+}
+
+
 .product__info-container .loading__spinner:not(.hidden) ~ *,
 .quantity__rules-cart .loading__spinner:not(.hidden) ~ * {
   visibility: hidden;
@@ -2811,7 +2818,7 @@ details[open] > .header__submenu {
 }
 
 .header__inline-menu ul > li:first-of-type a > span {
-  color: red;
+  color: #C40234;
   text-decoration: underline;
 }
 
@@ -2898,6 +2905,7 @@ details[open] > .header__submenu {
     width: 100%;
     gap: 15px;
     align-items: flex-start;
+    padding: 0 0.5rem;
   }
 
   .accordion-wrapper .product__accordion {
@@ -3857,11 +3865,18 @@ details-disclosure > details {
   max-width: 1440px !important;
 }
 
+@media screen and (max-width: 768px) {
+  .jdgm-widget {
+   padding: 0 0.5rem !important;
+  }
+}
+
 .qty_and_button-container {
   display: flex;
   flex-direction: row !important;
-  gap: 12px;
+  gap: 0rem;
   flex-wrap: wrap;
+  padding-bottom: 10px;
 }
 
 .qty_and_button-container .product-form__quantity {

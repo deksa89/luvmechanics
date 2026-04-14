@@ -53,6 +53,10 @@
     -webkit-user-select: none;
   }
 
+  .ai-brand-carousel-track-{{ ai_gen_id }} * {
+    user-select: none;
+  }
+
   .ai-brand-carousel-viewport-{{ ai_gen_id }}.is-dragging {
     cursor: grabbing;
   }
@@ -313,11 +317,14 @@
         this.startX = 0;
         this.currentX = 0;
         this.isDragging = false;
-        this.swipeThreshold = 40;
+        this.isHovering = false;
+        this.swipeThreshold = 50;
         this.autoPlayTimer = null;
         this.resumeTimer = null;
         this.realSlidesCount = 0;
         this.cloneCount = 0;
+        this.baseTranslate = 0;
+        this.currentDragOffset = 0;
       }
 
       connectedCallback() {
@@ -336,6 +343,8 @@
 
         this.handleResize = this.handleResize.bind(this);
         this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+        this.handleMouseMove = this.handleMouseMove.bind(this);
+        this.handleMouseUp = this.handleMouseUp.bind(this);
 
         this.setupInfiniteLoop();
         this.setupEventListeners();
@@ -346,13 +355,19 @@
 
         window.addEventListener('resize', this.handleResize);
         this.track.addEventListener('transitionend', this.handleTransitionEnd);
+        document.addEventListener('mousemove', this.handleMouseMove);
+        document.addEventListener('mouseup', this.handleMouseUp);
       }
 
       disconnectedCallback() {
         window.removeEventListener('resize', this.handleResize);
+        document.removeEventListener('mousemove', this.handleMouseMove);
+        document.removeEventListener('mouseup', this.handleMouseUp);
+
         if (this.track) {
           this.track.removeEventListener('transitionend', this.handleTransitionEnd);
         }
+
         this.stopAutoPlay();
         clearTimeout(this.resumeTimer);
       }
@@ -361,14 +376,6 @@
         return window.innerWidth <= 749
           ? {{ block.settings.items_per_view_mobile }}
           : {{ block.settings.items_per_view }};
-      }
-
-      getMaxRealIndex() {
-        return Math.max(0, this.realSlidesCount - 1);
-      }
-
-      getVisiblePageCount() {
-        return Math.max(1, this.realSlidesCount);
       }
 
       getGap() {
@@ -427,17 +434,23 @@
           });
         }
 
-        this.viewport.addEventListener('mouseenter', () => this.stopAutoPlay());
-        this.viewport.addEventListener('mouseleave', () => this.startAutoPlay());
+        this.viewport.addEventListener('mouseenter', () => {
+          this.isHovering = true;
+          this.stopAutoPlay();
+        });
+
+        this.viewport.addEventListener('mouseleave', () => {
+          this.isHovering = false;
+          if (!this.isDragging) {
+            this.startAutoPlay();
+          }
+        });
 
         this.viewport.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
-        this.viewport.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: true });
+        this.viewport.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
         this.viewport.addEventListener('touchend', this.handleTouchEnd.bind(this));
 
         this.viewport.addEventListener('mousedown', this.handleMouseDown.bind(this));
-        this.viewport.addEventListener('mousemove', this.handleMouseMove.bind(this));
-        this.viewport.addEventListener('mouseup', this.handleMouseUp.bind(this));
-        this.viewport.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
       }
 
       handleResize() {
@@ -447,7 +460,9 @@
         this.buildDots();
         this.currentIndex = oldRealIndex + this.cloneCount;
         this.updateCarousel(false);
-        this.startAutoPlay();
+        if (!this.isHovering) {
+          this.startAutoPlay();
+        }
       }
 
       buildDots() {
@@ -484,15 +499,15 @@
         const step = this.getStepSize();
         if (!step) return;
 
+        this.baseTranslate = this.currentIndex * step;
+
         if (animate) {
           this.track.classList.remove('no-transition');
         } else {
           this.track.classList.add('no-transition');
         }
 
-        const offset = this.currentIndex * step;
-        this.track.style.transform = `translateX(-${offset}px)`;
-
+        this.track.style.transform = `translateX(-${this.baseTranslate}px)`;
         this.updateDots();
       }
 
@@ -538,7 +553,7 @@
       startAutoPlay() {
         this.stopAutoPlay();
 
-        if (this.realSlidesCount <= 1) return;
+        if (this.realSlidesCount <= 1 || this.isHovering || this.isDragging) return;
 
         this.autoPlayTimer = setInterval(() => {
           this.navigate('next');
@@ -555,48 +570,73 @@
       pauseAndResumeAutoPlay() {
         this.stopAutoPlay();
         clearTimeout(this.resumeTimer);
+
         this.resumeTimer = setTimeout(() => {
-          this.startAutoPlay();
+          if (!this.isHovering && !this.isDragging) {
+            this.startAutoPlay();
+          }
         }, 3500);
       }
 
       handleTouchStart(event) {
         this.stopAutoPlay();
-        this.startX = event.changedTouches[0].clientX;
+        this.isDragging = true;
+        this.startX = event.touches[0].clientX;
         this.currentX = this.startX;
+        this.currentDragOffset = 0;
+        this.track.classList.add('no-transition');
       }
 
       handleTouchMove(event) {
-        this.currentX = event.changedTouches[0].clientX;
+        if (!this.isDragging) return;
+
+        this.currentX = event.touches[0].clientX;
+        this.currentDragOffset = this.currentX - this.startX;
+
+        this.track.style.transform = `translateX(${-(this.baseTranslate) + this.currentDragOffset}px)`;
+
+        if (Math.abs(this.currentDragOffset) > 8) {
+          event.preventDefault();
+        }
       }
 
       handleTouchEnd() {
+        if (!this.isDragging) return;
+
         const distance = this.currentX - this.startX;
+        this.isDragging = false;
+        this.track.classList.remove('no-transition');
 
         if (Math.abs(distance) >= this.swipeThreshold) {
           if (distance < 0) {
-            this.navigate('next');
+            this.currentIndex += 1;
           } else {
-            this.navigate('prev');
+            this.currentIndex -= 1;
           }
         }
 
-        this.startX = 0;
-        this.currentX = 0;
+        this.updateCarousel(true);
+        this.currentDragOffset = 0;
         this.pauseAndResumeAutoPlay();
       }
 
       handleMouseDown(event) {
+        event.preventDefault();
         this.isDragging = true;
         this.stopAutoPlay();
         this.startX = event.clientX;
         this.currentX = event.clientX;
+        this.currentDragOffset = 0;
         this.viewport.classList.add('is-dragging');
+        this.track.classList.add('no-transition');
       }
 
       handleMouseMove(event) {
         if (!this.isDragging) return;
+
         this.currentX = event.clientX;
+        this.currentDragOffset = this.currentX - this.startX;
+        this.track.style.transform = `translateX(${-(this.baseTranslate) + this.currentDragOffset}px)`;
       }
 
       handleMouseUp() {
@@ -604,29 +644,20 @@
 
         const distance = this.currentX - this.startX;
 
+        this.isDragging = false;
+        this.viewport.classList.remove('is-dragging');
+        this.track.classList.remove('no-transition');
+
         if (Math.abs(distance) >= this.swipeThreshold) {
           if (distance < 0) {
-            this.navigate('next');
+            this.currentIndex += 1;
           } else {
-            this.navigate('prev');
+            this.currentIndex -= 1;
           }
         }
 
-        this.isDragging = false;
-        this.viewport.classList.remove('is-dragging');
-        this.startX = 0;
-        this.currentX = 0;
-        this.pauseAndResumeAutoPlay();
-      }
-
-      handleMouseLeave() {
-        if (!this.isDragging) {
-          this.startAutoPlay();
-          return;
-        }
-
-        this.isDragging = false;
-        this.viewport.classList.remove('is-dragging');
+        this.updateCarousel(true);
+        this.currentDragOffset = 0;
         this.startX = 0;
         this.currentX = 0;
         this.pauseAndResumeAutoPlay();
