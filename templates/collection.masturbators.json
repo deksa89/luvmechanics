@@ -18,6 +18,59 @@
         "color_scheme": "scheme-1"
       }
     },
+    "image_banner_jRkBq3": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_BGkcaU": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_GRt6ei": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_YNPyjn": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_BGkcaU",
+        "text_GRt6ei",
+        "buttons_YNPyjn"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_x7x21hx7x21hx7x2-4e316f64-8e57-4292-a7c0-9fb6481ec682.jpg",
+        "image_mobile": "shopify://shop_images/masturbators-evenly-spread-out.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "rich_text_4nKxkh": {
       "type": "rich-text",
       "blocks": {
@@ -31,7 +84,7 @@
         "text_CFmDFA": {
           "type": "text",
           "settings": {
-            "text": ""
+            "text": "<p>Explore these masturbators. Discreet, body-safe designs crafted for both first-time exploration and refined experience.<br/><br/></p>"
           }
         },
         "button_NhUFMa": {
@@ -53,12 +106,12 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "main-collection-product-grid": {
@@ -81,6 +134,29 @@
         "padding_bottom": 100
       }
     },
+    "expandable_category_info_rJBpwy": {
+      "type": "expandable-category-info",
+      "name": "Expandable category info",
+      "settings": {
+        "heading": "Explore",
+        "heading_accent": "Masturbators",
+        "collapsed_label": "Learn more about Masturbators",
+        "content_heading": "Your Vibe. Your Rules.",
+        "content_text": "<p><strong>So What Are Masturbators Really For?</strong><br/><br/>They're not for boring routine; they're for enhanced experience.<br/><br/> Masturbators aren't about performing the basics, but taking them to the next level. They are designed for anyone that is seeking out that little something more and are readily available in a variety of different forms to give you a range of experiences whether you're feeling like exploring your sexuality for the first time, relaxing after a stressful day, or you're simply looking for something more realistic and satisfying than just your bare hands.<br/><br/> Some will discover them as teenagers and some much later in their adult lives: there is no prescribed timetable. Simply follow your interest.<br/><br/><strong>Not One Size Fits All</strong><br/><br/>Your pleasure is unique, and masturbator designs reflect this.<br/><br/>Compact and discreet options allow for easy-access simplicity<br/>textured interiors add varied sensations, from gentle and light to vigorous and firm<br/>open-ended options are forgiving, user-friendly and allow for more control over the intensity and penetration<br/>closed-end suction products can lead to a deep and immersive experience<br/>app-connected or interactive toys add a tech-savvy layer to sexual satisfaction<br/><br/> It’s not about complexity but about what works for your personal needs and style.<br/><br/><strong>Not Just for Playing Solo</strong><br/><br/>While it’s common to think of masturbators as being purely solitary items, this doesn't have to be the case. Couples can incorporate masturbators into their lovemaking and play as part of their foreplay, or simply to bring something new to the experience and relieve some pressure on either partner and introduce some playfulness and curiosity.<br/><br/> There are no expectations – only exploration.<br/><br/><strong> More than just the Moment</strong><br/><br/> For many individuals masturbation isn’t just about pleasure; it is also:<br/><br/> a form of relaxation after a long, stressful day<br/> an opportunity to explore various kinds of sensation and arousal<br/> a way of building self-confidence and a greater understanding of their own bodies<br/> a fun way to introduce a little novelty and play into an otherwise predictable routine<br/><br/> Sometimes a simple upgrade is all it takes for things to become noticeably better.<br/><br/><strong>No Pressure; Just Curiosity</strong></p><p>Masturbators are designed for you to discover what you enjoy with zero pressure to perform or know how to use it straight away. This is precisely the point.<br/><br/>Masturbators aren't here to replace anything, but to enhance what already exists: they are here to add an element of additional comfort, control and pleasure for your own satisfaction, entirely on your own terms.</p>",
+        "page_width": 1440,
+        "section_bg": "#f8f8f8",
+        "box_bg": "#f8f8f8",
+        "heading_color": "#2f2927",
+        "accent_color": "#cc3d5a",
+        "text_color": "#3a3432",
+        "icon_color": "#3a3432",
+        "border_color": "#d7d2ce",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
     "newsletter_tPNegD": {
       "type": "newsletter",
       "name": "t:sections.newsletter.presets.name",
@@ -94,8 +170,10 @@
   },
   "order": [
     "main-collection-banner",
+    "image_banner_jRkBq3",
     "rich_text_4nKxkh",
     "main-collection-product-grid",
+    "expandable_category_info_rJBpwy",
     "newsletter_tPNegD"
   ]
 }

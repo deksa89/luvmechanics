@@ -18,6 +18,24 @@
         "color_scheme": "scheme-1"
       }
     },
+    "image_banner_8ABFm9": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/penis-pumps-spread-randomly-desktop1.jpg",
+        "image_mobile": "shopify://shop_images/penis-pumps-spread-randomly-mobile.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "rich_text_wNNfwM": {
       "type": "rich-text",
       "blocks": {
@@ -31,7 +49,7 @@
         "text_M98gRQ": {
           "type": "text",
           "settings": {
-            "text": ""
+            "text": "<p>Premium penis pumps are available in Croatia. They offer control, comfort, and confidence and come with a discreet delivery option and body safe materials. They cater to all levels of experience.</p>"
           }
         },
         "button_dPyEmd": {
@@ -53,12 +71,12 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "main-collection-product-grid": {
@@ -81,6 +99,29 @@
         "padding_bottom": 100
       }
     },
+    "expandable_category_info_tjEyg7": {
+      "type": "expandable-category-info",
+      "name": "Expandable category info",
+      "settings": {
+        "heading": "Explore",
+        "heading_accent": "Penis pumps",
+        "collapsed_label": "Learn more about Penis pumps",
+        "content_heading": "Your Vibe. Your Rules.",
+        "content_text": "<p><strong>What exactly are penis pumps for?</strong><br/><br/>At first impression, you might think it's an item solely based on function- but that's not entirely true.<br/><br/>Penis pumps are designed to help you explore control, sensation, and confidence in a unique way. It could be out of curiosity, desire to improve performance, or to explore your sexuality, but no matter the motivation, a penis pump offers a distinct experience which engages you mentally and physically.<br/><br/>Some men discover these devices early on in life, while others may find out later on as they want to experiment more, satisfy curiosity, and have a better sense of themselves and their body.<br/><br/><strong>Simple Idea, Varied Experience</strong><br/><br/>The idea behind penis pumps is relatively easy to grasp, although the exact experience you receive depends on the design and type of pump you select.<br/><br/>Manual pumps can grant you more control in regard to the amount of pressure you apply.<br/>Automatic pumps have a steadier experience with less variation.<br/>A smaller device is great for new users to get comfortable with.<br/>More advanced pumps can have pressure gauges, providing you with a clearer indication of the amount of pressure you're applying.<br/><br/>It doesn't have to be an elaborate or complicated process, and can instead just provide more comfort and control.<br/><br/><strong>Not Pressure, but Confidence</strong><br/><br/>Many people don't exclusively purchase penis pumps for the physical sensations and rather to enhance self-esteem.<br/><br/><strong>Penis pumps are used for:</strong><br/><br/>Gaining self-awareness and body confidence<br/>To enhance performance and response<br/>To incorporate an innovative aspect to a mundane bedroom routine<br/>To help oneself better understand their body under specific conditions.<br/><br/>Think of it as another option to enhance your sexual experience, and not as a necessity.<br/><br/>Whether you do it on your own or with another, is entirely up to you.<br/><br/>While often used on their own, penis pumps can also be a part of the couples experience. They are great to explore, communicate, and experience with your partner without any sort of obligation or pressure. They can also add an element of fun to the sexual routine with new discoveries.<br/><br/>Ultimately, it is about what is comfortable for you.<br/><br/>There's no right or wrong way to use a penis pump and definitely no time pressure you have to adhere to. Work at your own pace, learn your own limits, and adjust as necessary.<br/><br/>After all, penis pumps are not intended to generate a standard, or create a requirement - but to enhance confidence and explore yourself without expectation.</p>",
+        "page_width": 1480,
+        "section_bg": "#f8f8f8",
+        "box_bg": "#f8f8f8",
+        "heading_color": "#2f2927",
+        "accent_color": "#cc3d5a",
+        "text_color": "#3a3432",
+        "icon_color": "#3a3432",
+        "border_color": "#d7d2ce",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
     "newsletter_tPNegD": {
       "type": "newsletter",
       "name": "t:sections.newsletter.presets.name",
@@ -94,8 +135,10 @@
   },
   "order": [
     "main-collection-banner",
+    "image_banner_8ABFm9",
     "rich_text_wNNfwM",
     "main-collection-product-grid",
+    "expandable_category_info_tjEyg7",
     "newsletter_tPNegD"
   ]
 }

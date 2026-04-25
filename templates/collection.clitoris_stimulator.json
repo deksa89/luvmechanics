@@ -18,6 +18,24 @@
         "color_scheme": "scheme-1"
       }
     },
+    "image_banner_WndQBx": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/clitoris-stimulators-desktop.jpg",
+        "image_mobile": "shopify://shop_images/clitoris-stimulators-mobile.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "rich_text_cUdQWx": {
       "type": "rich-text",
       "blocks": {
@@ -31,30 +49,18 @@
         "text_pdhEGg": {
           "type": "text",
           "settings": {
-            "text": ""
-          }
-        },
-        "button_gAALfN": {
-          "type": "button",
-          "settings": {
-            "button_label": "",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p>Shop the finest clitoral stimulators Croatia. Body safe and designed for discreet pleasure-accurate clitoral stimulation whether a first-time or experienced user.</p>"
           }
         }
       },
       "block_order": [
         "heading_fxTVkt",
-        "text_pdhEGg",
-        "button_gAALfN"
+        "text_pdhEGg"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
@@ -81,6 +87,29 @@
         "padding_bottom": 100
       }
     },
+    "expandable_category_info_6BeTNW": {
+      "type": "expandable-category-info",
+      "name": "Expandable category info",
+      "settings": {
+        "heading": "Explore",
+        "heading_accent": "Clitoral Stimulators",
+        "collapsed_label": "Learn more about Clitoral Stimulators",
+        "content_heading": "Your Vibe. Your Rules.",
+        "content_text": "<p>What's Special about Clitoral Stimulators?<br/><br/>Not everything needs to be a thunderclap to pack a punch.<br/><br/>Clitoral stimulators are precision instruments. They offer focused, external stimulation, designed to sync up with how your body naturally responds. For many, this intuition is exactly why they're so enjoyable.<br/><br/>They're not complicated.<br/>They're precise.<br/><br/><strong>Who are they for?</strong><br/><br/>The truth is: anyone who enjoys external stimulation. Beginners, the experienced, and even those who know exactly what they like.<br/><br/>Some find them in their first exploration because they’re so accessible.<br/>Others switch to them later because they’re looking for a more targeted, nuanced sensation.<br/><br/>There's no pre-req-just the will to explore.<br/><br/><strong>So Many Sensations to Explore</strong><br/><br/>Clitoral stimulators aren’t just one type of device; there’s surprising variety:<br/><br/>Contactless air-pulse models offer a unique, distinct sensation.<br/>Classic vibrators give that familiar, reliable rhythm.<br/>Compact and discrete styles offer easy enjoyment any time.<br/>Ergonomic designs make for a more comfortable experience.<br/>Couple-focused options allow for shared pleasure without missing a beat.<br/><br/>They all feel different, and the exploration is part of the fun.<br/><br/><strong> Solo, Shared, or Something in Between</strong><br/><br/>Although a common choice for solo use, they're frequently brought into the bedroom by couples:<br/><br/>They can introduce new elements of pleasure without becoming overwhelming.<br/>They help both partners understand what works.<br/>They add a relaxed, playful dimension to sex.<br/><br/>They don't have to replace anything, just enhance what’s there.<br/><br/><strong> More Than a Brief Encounter</strong><br/><br/>For many people, a clitoral stimulator is not solely about intense sensation; it's about a deeper sense of connection:<br/><br/>To themselves<br/>Reduced stress and tension<br/>Learning about their body’s responses<br/>A boost in their own comfort and confidence<br/><br/>Sometimes it’s the subtle changes that yield the most profound results.<br/><br/><strong> No Rules-Just What Feels Good</strong><br/><br/>There's no 'right' way to use a clitoral stimulator.<br/><br/> Some prefer a soft, slow approach. Others thrive on direct, focused pressure. Most enjoy something in between-and what feels right changes daily.<br/><br/>That's part of the beauty of this kind of toy.<br/><br/> It's not about following an instruction manual.<br/> It’s about discovering your own cadence.</p>",
+        "page_width": 1480,
+        "section_bg": "#f8f8f8",
+        "box_bg": "#f8f8f8",
+        "heading_color": "#2f2927",
+        "accent_color": "#cc3d5a",
+        "text_color": "#3a3432",
+        "icon_color": "#3a3432",
+        "border_color": "#d7d2ce",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
     "newsletter_tPNegD": {
       "type": "newsletter",
       "name": "t:sections.newsletter.presets.name",
@@ -94,8 +123,10 @@
   },
   "order": [
     "main-collection-banner",
+    "image_banner_WndQBx",
     "rich_text_cUdQWx",
     "main-collection-product-grid",
+    "expandable_category_info_6BeTNW",
     "newsletter_tPNegD"
   ]
 }

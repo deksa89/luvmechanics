@@ -2823,12 +2823,14 @@ details[open] > .header__submenu {
 }
 
 .accordion-wrapper {
+  flex-wrap: wrap;
   margin-top: 80px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   gap: 50px;
-  align-items: flex-start; /* was stretch */
+  align-items: center;
+  align-content: center;
 }
 
 .accordion-wrapper .product__accordion {

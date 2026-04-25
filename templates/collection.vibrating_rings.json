@@ -18,6 +18,24 @@
         "color_scheme": "scheme-1"
       }
     },
+    "image_banner_77Hb8f": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/vibrating-penis-rings-desktop.jpg",
+        "image_mobile": "shopify://shop_images/vibrating-penis-rings-mobile.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "rich_text_iMe6pn": {
       "type": "rich-text",
       "blocks": {
@@ -31,7 +49,7 @@
         "text_TinQif": {
           "type": "text",
           "settings": {
-            "text": ""
+            "text": "<p>High-quality vibrating rings are now available in Croatia. Discreet and body-safe designs created for heightened enjoyment during your shared time and each moment you share.</p>"
           }
         },
         "button_ktDGJ8": {
@@ -53,12 +71,12 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "main-collection-product-grid": {
@@ -81,6 +99,29 @@
         "padding_bottom": 100
       }
     },
+    "expandable_category_info_8ftNbt": {
+      "type": "expandable-category-info",
+      "name": "Expandable category info",
+      "settings": {
+        "heading": "Explore",
+        "heading_accent": "Vibrating rings",
+        "collapsed_label": "Learn more about Vibrating rings",
+        "content_heading": "Your Vibe. Your Rules.",
+        "content_text": "<p>Control, Connection, and a Hint of Play<br/><br/>Maybe the focus shouldn't be on what more can be done, but rather on how it can be done differently.<br/><br/>Remotely controlled vibrator rings are built for shared exploration. They introduce a element of playfulness, a bit of unexpectedness-another means of communication, exploration, and pleasure, together whether side by side or apart.<br/><br/>The key is not so much on control as it is on interaction.<br/><strong><br/>What is Different About Them?</strong><br/><br/>Unlike standard designs, these rings incorporate movement, timing, and a bit of the unknown.<br/><br/>Remote control allows either yourself or your partner to adjust the intensity in real time<br/>Both partners are stimulated at the same time<br/>Offers an adaptable fit<br/>A subtle design that doesn't feel intrusive<br/>Includes features that allow for a more interactive experience<br/><br/>Easy to use, and the experience can be incredibly stimulating.<br/><br/><strong>Intended for Couples, but Suitable for More</strong><br/><br/>These products were designed for couples to add an element of inquisitiveness to the partnership.<br/><br/>With a couple, these rings can:<br/><br/>add playful moments without complicating them unnecessarily<br/>facilitate exploration of different rhythms and possibilities<br/>increase connection and interaction between two individuals<br/><br/>However, these can also be used alone. The idea remains similar, just a different approach to exploring stimulation.<br/><br/><strong>Near or Far- It still functions</strong><br/><br/>One particularly captivating aspect? The effect of distance has little to no impact on their efficacy.<br/><br/>Through remote control or app operation, the presence of these vibrator rings is capable of making long distance relationships more tantalizing. A simple concept- yet remarkably adept at sustaining a sense of intimacy.<br/><br/>This should not feel like work or something with strict requirements.<br/><br/>It's not necessary to have prior experience with sex toys or advanced technology, but a simple sense of inquisitiveness and a willingness to try something a little different will work.<br/><br/>Sometimes it's that little adjustment, that small shift of focus from your hands to someone else's control, that will have a significant impact.</p>",
+        "page_width": 1480,
+        "section_bg": "#f8f8f8",
+        "box_bg": "#f8f8f8",
+        "heading_color": "#2f2927",
+        "accent_color": "#cc3d5a",
+        "text_color": "#3a3432",
+        "icon_color": "#3a3432",
+        "border_color": "#d7d2ce",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
     "newsletter_tPNegD": {
       "type": "newsletter",
       "name": "t:sections.newsletter.presets.name",
@@ -94,8 +135,10 @@
   },
   "order": [
     "main-collection-banner",
+    "image_banner_77Hb8f",
     "rich_text_iMe6pn",
     "main-collection-product-grid",
+    "expandable_category_info_8ftNbt",
     "newsletter_tPNegD"
   ]
 }

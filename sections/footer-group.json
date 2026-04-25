@@ -11,49 +11,98 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "newsletter_qrGnPN": {
-      "type": "newsletter",
+    "multicolumn_FxM3i8": {
+      "type": "multicolumn",
       "blocks": {
-        "judge_me_reviews_featured_carousel_NV7P8D": {
-          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
+        "column_fD9Qad": {
+          "type": "column",
           "settings": {
-            "maxwidth": 3000
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/image_1.svg",
+            "title": "Product advising",
+            "text": "<p>Help you choose the product that best suits your needs.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "heading_NNWdCA": {
-          "type": "heading",
-          "disabled": true,
+        "column_Dn8LiY": {
+          "type": "column",
           "settings": {
-            "heading": "",
-            "heading_size": "h2"
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/image.svg",
+            "title": "Discreet delivery",
+            "text": "<p>Products are delivered in discreet packages to your address.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "paragraph_x7mtry": {
-          "type": "paragraph",
-          "disabled": true,
+        "column_iYRFNp": {
+          "type": "column",
           "settings": {
-            "text": ""
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/image_3.svg",
+            "title": "Safe shopping",
+            "text": "<p>Your purchases are safe with us.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "email_form_R9pq36": {
-          "type": "email_form",
-          "disabled": true,
-          "settings": {}
+        "column_XfXRkr": {
+          "type": "column",
+          "settings": {
+            "title_position": "top",
+            "image_position": "above",
+            "image_repeat_count": 1,
+            "image": "shopify://shop_images/image_2.svg",
+            "title": "Reliable support",
+            "text": "<p>We handle returns and complaints quickly and fairly.</p>",
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "judge_me_reviews_featured_carousel_NV7P8D",
-        "heading_NNWdCA",
-        "paragraph_x7mtry",
-        "email_form_R9pq36"
+        "column_fD9Qad",
+        "column_Dn8LiY",
+        "column_iYRFNp",
+        "column_XfXRkr"
       ],
-      "name": "t:sections.newsletter.presets.name",
+      "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "color_scheme": "scheme-3",
-        "full_width": true,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "section_bg_color": "#c40234",
+        "heading_color": "#111111",
+        "card_bg_color": "#c40234",
+        "card_title_color": "#ffffff",
+        "card_text_color": "#ffffff",
+        "card_link_color": "#111111",
+        "button_bg_color": "#111111",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#111111",
+        "slider_button_bg_color": "#ffffff",
+        "slider_button_text_color": "#111111",
+        "slider_counter_color": "#111111",
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 20
       }
     },
     "footer": {
@@ -98,7 +147,7 @@
     }
   },
   "order": [
-    "newsletter_qrGnPN",
+    "multicolumn_FxM3i8",
     "footer"
   ]
 }

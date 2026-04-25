@@ -18,6 +18,24 @@
         "color_scheme": "scheme-1"
       }
     },
+    "image_banner_6eze6Q": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/rabbit-vibrators-spread-evenly-desktop.jpg",
+        "image_mobile": "shopify://shop_images/rabbit-vibrators-spread-evenly-mobile.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "rich_text_kFRafk": {
       "type": "rich-text",
       "blocks": {
@@ -31,7 +49,7 @@
         "text_WpdwWk": {
           "type": "text",
           "settings": {
-            "text": ""
+            "text": "<p>Best rabbit vibrators in Croatia. Double stimulation, body-safe materials, discretion delivered to you.</p>"
           }
         },
         "button_jraFPQ": {
@@ -53,12 +71,12 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "main-collection-product-grid": {
@@ -79,6 +97,29 @@
         "enable_sorting": true,
         "padding_top": 32,
         "padding_bottom": 100
+      }
+    },
+    "expandable_category_info_LiUKRH": {
+      "type": "expandable-category-info",
+      "name": "Expandable category info",
+      "settings": {
+        "heading": "Explore",
+        "heading_accent": "Rabbit vibrators",
+        "collapsed_label": "Learn more about Rabbit vibrators",
+        "content_heading": "Your Vibe. Your Rules.",
+        "content_text": "<p><strong>Why use Rabbit vibrators? </strong></p><p>Because one is not always enough<br/><br/>In moments when choice is not an option.<br/><br/>Rabbit vibrators are designed for when you want to experience more - more depth, more layers, more harmony between varying sensations. Combining internal and external stimulation in one design they are responsible for the ultimate, most satisfying orgasm.<br/><br/>It is not about intensity. It is about rhythm and balance.<br/><br/><strong>Designed for your movement.</strong><br/><br/>Rabbit vibrators were never made to be generic, or designed for a universal feel.<br/><br/>Flexible dual arms follow the natural shape of your body for a snug, perfect fit.<br/>Curved interior shapes follow the internal curves of the body precisely.<br/>Soft external stimulators offer you pinpoint accuracy where it matters most.<br/>Variable vibration modes allow you to explore both subtle and intense possibilities.<br/><br/>Not to play by a set rule, but to explore, and discover.<br/><br/><strong>Great for exploration</strong><br/><br/>Rabbit vibrators are most commonly purchased by people that want to go above and beyond.<br/><br/>They are a great option if you:<br/>would like to try out dual stimulation for the first time<br/>feel your current vibrator does not do enough for you<br/>enjoy layered sensations working in harmony with each other<br/>would like a more engaging experience.<br/><br/>It is as natural a step, or an appropriate one to begin with.<br/><br/><strong>Solo or partner, the choice is yours.</strong><br/><br/>Whilst very popular for solo pleasure, rabbit vibrators also add a wonderful dynamic to shared experiences.<br/><br/>Can they:<br/>introduce new excitement without added fuss.<br/> Help you discover more about your body.<br/> Make partner sex even more exciting and less tense.<br/><br/>Not to replace something you already have, but rather build upon the current experience.<br/><br/><strong>Beyond intensity-a harmony within.</strong><br/><br/>There is a difference with rabbit vibrators which lie not only in the functions, but in the interaction of them with each other.<br/><br/>A sensation of coordination between varied elements helps create that smooth, flowing pleasure that many can achieve. For those who seek pleasure to flow naturally and intimately, the Rabbit is for you.<br/><br/><strong>The rules. Or your rules.</strong><br/><br/>You may not even know what you want at first.<br/><br/>The Rabbit vibrator is for the curious that are willing to adapt. With both steady or pulsating patterns, every motion of a Rabbit vibrator is tailored to fit your style and pace.<br/><br/> Begin gently. Or begin at an extreme.<br/><br/>Either way, you are in charge.</p>",
+        "page_width": 1480,
+        "section_bg": "#f8f8f8",
+        "box_bg": "#f8f8f8",
+        "heading_color": "#2f2927",
+        "accent_color": "#cc3d5a",
+        "text_color": "#3a3432",
+        "icon_color": "#3a3432",
+        "border_color": "#d7d2ce",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
       }
     },
     "newsletter_tPNegD": {
@@ -106,8 +147,10 @@
   },
   "order": [
     "main-collection-banner",
+    "image_banner_6eze6Q",
     "rich_text_kFRafk",
     "main-collection-product-grid",
+    "expandable_category_info_LiUKRH",
     "newsletter_tPNegD"
   ]
 }

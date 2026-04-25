@@ -451,14 +451,21 @@
         this.currentIndex = 0;
         this.startX = 0;
         this.currentX = 0;
-        this.isDragging = false;
         this.swipeThreshold = 50;
         this.intervalMs = parseInt(root.dataset.interval || '5000', 10);
         this.autoplay = root.dataset.autoplay === 'true';
         this.timer = null;
         this.resumeTimer = null;
 
+        this.handleResize = this.handleResize.bind(this);
+        this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
+        this.handlePageShow = this.handlePageShow.bind(this);
+
         this.setup();
+      }
+
+      isVisible() {
+        return this.root.offsetParent !== null;
       }
 
       setup() {
@@ -469,19 +476,54 @@
           this.jumpToRealIndex(0, false);
           this.startAuto();
         } else {
+          this.slides = this.originalSlides;
           this.updateTrackHeight();
         }
 
-        window.addEventListener('resize', () => {
+        window.addEventListener('resize', this.handleResize);
+        window.addEventListener('load', () => this.safeRefresh());
+        window.addEventListener('pageshow', this.handlePageShow);
+        document.addEventListener('visibilitychange', this.handleVisibilityChange);
+
+        this.track.querySelectorAll('img').forEach((img) => {
+          if (!img.complete) {
+            img.addEventListener('load', () => this.safeRefresh(), { once: true });
+          }
+        });
+
+        this.safeRefresh();
+      }
+
+      destroy() {
+        window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('pageshow', this.handlePageShow);
+        document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+        this.stopAuto();
+      }
+
+      handleResize() {
+        this.safeRefresh();
+      }
+
+      handlePageShow() {
+        this.safeRefresh();
+      }
+
+      handleVisibilityChange() {
+        if (!document.hidden) {
+          this.safeRefresh();
+          this.startAuto();
+        } else {
+          this.stopAuto();
+        }
+      }
+
+      safeRefresh() {
+        requestAnimationFrame(() => {
+          if (!this.isVisible()) return;
           this.jumpToRealIndex(this.getRealIndex(), false);
           this.updateTrackHeight();
         });
-
-        this.track.querySelectorAll('img').forEach((img) => {
-          img.addEventListener('load', () => this.updateTrackHeight());
-        });
-
-        this.updateTrackHeight();
       }
 
       cloneSlidesForLoop() {
@@ -594,6 +636,8 @@
       }
 
       applyTransform(animate = true) {
+        if (!this.isVisible()) return;
+
         if (!animate) {
           this.track.classList.add('no-transition');
         } else {
@@ -605,14 +649,29 @@
       }
 
       updateTrackHeight() {
+        if (!this.isVisible()) return;
+
         const activeSlide = this.slides?.[this.currentIndex];
         if (!activeSlide) return;
 
         const img = activeSlide.querySelector('img');
         if (!img) return;
 
+        const viewportWidth = this.viewport.offsetWidth;
+        if (!viewportWidth) return;
+
         const setHeight = () => {
-          this.viewport.style.height = `${img.offsetHeight}px`;
+          const naturalWidth = img.naturalWidth || img.width;
+          const naturalHeight = img.naturalHeight || img.height;
+
+          if (!naturalWidth || !naturalHeight) return;
+
+          const ratio = naturalHeight / naturalWidth;
+          const calculatedHeight = viewportWidth * ratio;
+
+          if (calculatedHeight > 0) {
+            this.viewport.style.height = `${calculatedHeight}px`;
+          }
         };
 
         if (img.complete) {
@@ -663,10 +722,13 @@
       }
 
       startAuto() {
-        if (!this.autoplay || this.originalCount <= 1) return;
+        if (!this.autoplay || this.originalCount <= 1 || !this.isVisible()) return;
+
         this.stopAuto();
         this.timer = setInterval(() => {
-          this.next();
+          if (this.isVisible() && !document.hidden) {
+            this.next();
+          }
         }, this.intervalMs);
       }
 

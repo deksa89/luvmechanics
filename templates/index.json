@@ -164,9 +164,9 @@
               "lelo-ida-wave-coral-couples-massager",
               "lelo-soraya-wave-vibrator-rabbit-black",
               "we-vibe-nova-3-rabbit-vibrator-midnight-blue",
-              "lelo-enigma-double-suction-stimulation-massager-black",
               "lelo-tor-3-black-vibrator-ring",
-              "lelo-f2sa-teal-male-masturbator-blue"
+              "satisfyer-pro-2-air-pulse-stimulator-blue",
+              "lelo-clitoris-stimulator-sona-2-lilac"
             ],
             "desktop_width_percent": 100,
             "container_max_width": 1440,
@@ -249,7 +249,7 @@
             "title": "LELO Elise 2",
             "description": "<p>Smooth, refined, and quietly powerful, Elise 2 pairs sensual curves with sophisticated precision. Its silky finish, graceful silhouette, and deep, resonant energy create an experience that feels both intimate and indulgent.<br/><br/></p>",
             "link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator",
-            "button_label": ""
+            "button_label": "Check it out"
           }
         },
         "promo_card_qe7fCE": {
@@ -259,7 +259,7 @@
             "title": "LELO IDA WAVE MASSAGER ",
             "description": "<p>Sculpted for connection and designed with refined precision, IDA Wave blends graceful form with deeply sensual performance. Its fluid silhouette, soft finish, and signature WaveMotion™ create an experience that feels both intuitive and indulgent. <br/><br/></p>",
             "link": "shopify://products/lelo-ida-wave-coral-couples-massager",
-            "button_label": ""
+            "button_label": "Check it out"
           }
         },
         "promo_card_UgyiqR": {
@@ -269,7 +269,7 @@
             "title": "HYDROMAX 9 TRANSPARENT PENIS PUMP",
             "description": "<p>Clear design, advanced performance, and confident control come together in Hydromax 9. Powerful, refined, and built for a more elevated experience, it is a modern essential for those who expect more.<br/><br/></p>",
             "link": "shopify://products/bathmate-hydromax-9-transparent-penis-increase-pump",
-            "button_label": ""
+            "button_label": "Check it out"
           }
         }
       },
@@ -474,7 +474,7 @@
               "bundles"
             ],
             "desktop_width_percent": 100,
-            "container_max_width": 1440,
+            "container_max_width": 1480,
             "columns_desktop": 4,
             "columns_tablet": 3,
             "columns_mobile": "2",
@@ -544,7 +544,7 @@
       "settings": {
         "blog": "news",
         "post_limit": 2,
-        "heading": "The Intimacy Column",
+        "heading": "The intimacy column",
         "heading_size": "h1",
         "columns_desktop": 2,
         "show_view_all": true,
@@ -620,8 +620,21 @@
         "column_hcVpNc",
         "column_Pj3fep"
       ],
-      "name": "t:sections.multicolumn.presets.name",
+      "disabled": true,
+      "name": "Stari Multicolumn",
       "settings": {
+        "section_bg_color": "#ffffff",
+        "heading_color": "#111111",
+        "card_bg_color": "#ffffff",
+        "card_title_color": "#111111",
+        "card_text_color": "#444444",
+        "card_link_color": "#111111",
+        "button_bg_color": "#111111",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#111111",
+        "slider_button_bg_color": "#ffffff",
+        "slider_button_text_color": "#111111",
+        "slider_counter_color": "#111111",
         "title": "",
         "heading_size": "h1",
         "image_width": "full",

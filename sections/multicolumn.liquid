@@ -2,6 +2,21 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .multicolumn-{{ section.id }} {
+    --mc-section-bg: {{ section.settings.section_bg_color }};
+    --mc-heading-color: {{ section.settings.heading_color }};
+    --mc-card-bg: {{ section.settings.card_bg_color }};
+    --mc-title-color: {{ section.settings.card_title_color }};
+    --mc-text-color: {{ section.settings.card_text_color }};
+    --mc-link-color: {{ section.settings.card_link_color }};
+    --mc-button-bg: {{ section.settings.button_bg_color }};
+    --mc-button-text: {{ section.settings.button_text_color }};
+    --mc-button-border: {{ section.settings.button_border_color }};
+    --mc-slider-button-bg: {{ section.settings.slider_button_bg_color }};
+    --mc-slider-button-text: {{ section.settings.slider_button_text_color }};
+    --mc-slider-counter-color: {{ section.settings.slider_counter_color }};
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top_mobile }}px;
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
@@ -14,6 +29,19 @@
     }
   }
 
+  .multicolumn-{{ section.id }} {
+    background: var(--mc-section-bg);
+  }
+
+  .multicolumn-card__info {
+    text-align: center;
+  }
+
+  .multicolumn-{{ section.id }} .title,
+  .multicolumn-{{ section.id }} .multicolumn__title h2 {
+    color: var(--mc-heading-color);
+  }
+
   #Slider-{{ section.id }} {
     column-gap: 4px;
     row-gap: 4px;
@@ -21,6 +49,51 @@
 
   #Slider-{{ section.id }} .multicolumn-list__item {
     max-width: none;
+  }
+
+  .multicolumn.background-primary .multicolumn-card {
+    background: var(--mc-card-bg);
+  }
+
+  .multicolumn-{{ section.id }} .multicolumn-card__info h3,
+  .multicolumn-{{ section.id }} .multicolumn-card__info .inline-richtext {
+    color: var(--mc-title-color);
+  }
+
+  .multicolumn-{{ section.id }} .multicolumn-card__info .rte,
+  .multicolumn-{{ section.id }} .multicolumn-card__info .rte p,
+  .multicolumn-{{ section.id }} .multicolumn-card__info .rte li {
+    color: var(--mc-text-color);
+  }
+
+  .multicolumn-{{ section.id }} .multicolumn-card__info .link,
+  .multicolumn-{{ section.id }} .multicolumn-card__info .animate-arrow {
+    color: var(--mc-link-color);
+  }
+
+  .multicolumn-{{ section.id }} .button.button--primary {
+    background: var(--mc-button-bg);
+    color: var(--mc-button-text);
+    border: 1px solid var(--mc-button-border);
+  }
+
+  .multicolumn-{{ section.id }} .button.button--primary:hover {
+    opacity: 0.9;
+  }
+
+  .multicolumn-{{ section.id }} .slider-buttons .slider-button {
+    background: var(--mc-slider-button-bg);
+    color: var(--mc-slider-button-text);
+    border: 1px solid var(--mc-slider-button-text);
+  }
+
+  .multicolumn-{{ section.id }} .slider-buttons .slider-button .svg-wrapper,
+  .multicolumn-{{ section.id }} .slider-buttons .slider-button svg {
+    color: var(--mc-slider-button-text);
+  }
+
+  .multicolumn-{{ section.id }} .slider-counter {
+    color: var(--mc-slider-counter-color);
   }
 {%- endstyle -%}
 
@@ -32,8 +105,7 @@
   endif
 -%}
 
-<div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
-  <div
+<div class="multicolumn multicolumn-{{ section.id }} color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">  <div
     class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
@@ -207,9 +279,85 @@
   "class": "section",
   "tag": "section",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#444444"
+    },
+    {
+      "type": "color",
+      "id": "card_link_color",
+      "label": "Card link color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "slider_button_bg_color",
+      "label": "Slider arrow background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "slider_button_text_color",
+      "label": "Slider arrow icon color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "slider_counter_color",
+      "label": "Slider counter color",
+      "default": "#111111"
+    },
     {
       "type": "inline_richtext",
       "id": "title",

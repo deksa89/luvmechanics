@@ -2,17 +2,22 @@
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 768px) {
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before,
       #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        padding-bottom:
+          {% if section.settings.image_mobile != blank %}
+            {{ 1 | divided_by: section.settings.image_mobile.aspect_ratio | times: 100 }}%
+          {% else %}
+            {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%
+          {% endif %};
         content: '';
         display: block;
       }
     }
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 769px) {
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before {
         padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
@@ -20,6 +25,19 @@
         display: block;
       }
     }
+
+  #Banner-{{ section.id }} .banner__media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #Banner-{{ section.id }} .banner__media picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   {%- endstyle -%}
 {%- endif -%}
 
@@ -70,17 +88,45 @@
           assign sizes = full_width
         endif
       -%}
-      {{
-        section.settings.image
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image.width,
-          height: image_height,
-          class: image_class,
-          sizes: sizes,
-          widths: widths,
-          fetchpriority: fetch_priority
-      }}
+      <picture>
+        {%- if section.settings.image_mobile != blank -%}
+          <source
+            media="(max-width: 768px)"
+            srcset="
+              {{ section.settings.image_mobile | image_url: width: 375 }} 375w,
+              {{ section.settings.image_mobile | image_url: width: 550 }} 550w,
+              {{ section.settings.image_mobile | image_url: width: 750 }} 750w,
+              {{ section.settings.image_mobile | image_url: width: 1100 }} 1100w
+            "
+            sizes="100vw"
+          >
+        {%- endif -%}
+
+        <img
+          src="{{ section.settings.image | image_url: width: 3840 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 375 }} 375w,
+            {{ section.settings.image | image_url: width: 550 }} 550w,
+            {{ section.settings.image | image_url: width: 750 }} 750w,
+            {{ section.settings.image | image_url: width: 1100 }} 1100w,
+            {{ section.settings.image | image_url: width: 1500 }} 1500w,
+            {{ section.settings.image | image_url: width: 1780 }} 1780w,
+            {{ section.settings.image | image_url: width: 2000 }} 2000w,
+            {{ section.settings.image | image_url: width: 3000 }} 3000w,
+            {{ section.settings.image | image_url: width: 3840 }} 3840w
+          "
+          sizes="{{ sizes }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ image_height }}"
+          {% if image_class != blank %}class="{{ image_class }}"{% endif %}
+          alt="{{ section.settings.image.alt | escape }}"
+          {% if section.index == 1 %}
+            fetchpriority="high"
+          {% else %}
+            loading="lazy"
+          {% endif %}
+        >
+      </picture>
     </div>
   {%- elsif section.settings.image_2 == blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -179,6 +225,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-banner.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image (≤768px)"
     },
     {
       "type": "image_picker",

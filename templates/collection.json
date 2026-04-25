@@ -18,6 +18,55 @@
         "color_scheme": "scheme-1"
       }
     },
+    "image_banner_9tELrt": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/bundles-vibrators-desktop.jpg",
+        "image_mobile": "shopify://shop_images/bundles-vibrators-mobile.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_hmxFKb": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_U4Fx9E": {
+          "type": "heading",
+          "settings": {
+            "heading": "Bundles",
+            "heading_size": "h1"
+          }
+        },
+        "text_qykqGm": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Check out our selections of sex toy sets, available in Croatia and featuring complementary products to give you an easier choice, great value and a more complete pleasure experience.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_U4Fx9E",
+        "text_qykqGm"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "main-collection-product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -63,6 +112,8 @@
   },
   "order": [
     "main-collection-banner",
+    "image_banner_9tELrt",
+    "rich_text_hmxFKb",
     "main-collection-product-grid",
     "newsletter_tPNegD"
   ]

@@ -18,6 +18,24 @@
         "color_scheme": "scheme-1"
       }
     },
+    "image_banner_RxKBqr": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/remote-controled-toys-desktop.jpg",
+        "image_mobile": "shopify://shop_images/remote-controled-toys-mobile.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "rich_text_XhmkzU": {
       "type": "rich-text",
       "blocks": {
@@ -28,37 +46,25 @@
             "heading_size": "h0"
           }
         },
-        "text_tVLkMB": {
+        "text_4j7KXb": {
           "type": "text",
           "settings": {
-            "text": ""
-          }
-        },
-        "button_GMb7h8": {
-          "type": "button",
-          "settings": {
-            "button_label": "",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p>Explore remote-controlled toys that's all about connection, curiosity and fun. Luxury quality, discreet delivery and body-safe materials for every experience.</p>"
           }
         }
       },
       "block_order": [
         "heading_KVap3m",
-        "text_tVLkMB",
-        "button_GMb7h8"
+        "text_4j7KXb"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "main-collection-product-grid": {
@@ -81,6 +87,29 @@
         "padding_bottom": 100
       }
     },
+    "expandable_category_info_dJQ4Yf": {
+      "type": "expandable-category-info",
+      "name": "Expandable category info",
+      "settings": {
+        "heading": "Explore",
+        "heading_accent": "Remote Controled Toys",
+        "collapsed_label": "Learn more about Remote Controled Toys",
+        "content_heading": "Your Vibe. Your Rules.",
+        "content_text": "<p>Control. Connection. A dash of playfulness.<br/><br/>Some experiences aren't so much about sensation as they are about who is in control.<br/><br/>Remotely-controlled toys add another level to intimacy. In the same room or miles away, they transform simple moments into something interactive, surprising, and perhaps a little bit chaotic.<br/><br/>The point here is less about distance, and more about connection.<br/><br/>Who can use these?<br/><br/>Basically, anyone who is ready for a bit of mystery and play.<br/><br/>* Couples in the same space, wanting to bring something unexpected and new into their intimacy.<br/>* Long-distance partners wishing to connect on a different, more dynamic level.<br/>* Adventurous individuals intrigued by the power of control, pacing and varied types of stimulation.<br/>* Anyone fascinated by the blending of technology with physical experiences.<br/><br/>There's not really one \"type\"-just an openness to try something different.<br/><br/>The Different ways we play<br/><br/>Not all remotely-controlled toys feel the same and this is where the true enjoyment lies.<br/><br/>* App-controlled toys: Offering full control or co-control from anywhere you happen to be.<br/>* Wearable toys: Comfortable to wear, discrete, and designed to move with you.<br/>* Couples' toys: Specifically created for use together with your partner, forming a mutual experience.<br/>* Simply remote-controlled: Basic in its design for easy, no-fuss interactive fun.<br/><br/>Some can be discreet. Some are intended for more intense experiences. The choice is entirely yours and entirely how you'd like to feel it.<br/><br/>It's about the interaction<br/><br/>This type of play is less about consuming a product and more about mutual interaction.<br/><br/>For partners:<br/>* It can re-inject spontaneity and excitement into the relationship.<br/>* It facilitates the sharing of intimates moments even when miles apart.<br/>* It allows for easy, playful communication at your own pace.<br/><br/>For individuals, it's about discovering a brand new dimension to sensations, control, timing, and rhythm.<br/><br/>A different experience<br/><br/>Remotely-controlled toys allow us to move beyond mere physical sensation into experience.<br/><br/>A text, a message, a vibration-these simple actions suddenly transform not only the physical, but the emotional aspects too, in a fun and unexpected way.<br/><br/>Don't overthink it, just explore<br/><br/>The important thing is not to overthink the experience.<br/><br/>Start simple, experience it with your partner, and have some fun! The best sensations often emerge unexpectedly.</p>",
+        "page_width": 1480,
+        "section_bg": "#f8f8f8",
+        "box_bg": "#f8f8f8",
+        "heading_color": "#2f2927",
+        "accent_color": "#cc3d5a",
+        "text_color": "#3a3432",
+        "icon_color": "#3a3432",
+        "border_color": "#d7d2ce",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
     "newsletter_tPNegD": {
       "type": "newsletter",
       "name": "t:sections.newsletter.presets.name",
@@ -94,8 +123,10 @@
   },
   "order": [
     "main-collection-banner",
+    "image_banner_RxKBqr",
     "rich_text_XhmkzU",
     "main-collection-product-grid",
+    "expandable_category_info_dJQ4Yf",
     "newsletter_tPNegD"
   ]
 }
