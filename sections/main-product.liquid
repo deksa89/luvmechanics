@@ -1022,7 +1022,7 @@
 
             @media screen and (max-width: 749px) {
               .product-feature-highlights-wrapper {
-                margin-top: 32px;
+                margin-top: -50px;
               }
 
               .product-feature-highlights--{{ block.id }} {
@@ -1048,9 +1048,35 @@
                 text-align: {{ block.settings.mobile_text_alignment }};
               }
 
-              .product-feature-highlights--{{ block.id }} .product-feature-highlights__item::after {
-                display: none;
-              }
+              {% if block.settings.show_dividers %}
+                {% if block.settings.columns_mobile == '1' %}
+                  .product-feature-highlights--{{ block.id }} .product-feature-highlights__item:not(:last-child)::after {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: auto;
+                    top: auto;
+                    bottom: calc({{ block.settings.mobile_row_gap }}px / -2);
+                    width: 100%;
+                    height: {{ block.settings.divider_width }}px;
+                    background: var(--pfh-divider-color);
+                    opacity: {{ block.settings.divider_opacity | divided_by: 100.0 }};
+                  }
+                {% else %}
+                  .product-feature-highlights--{{ block.id }} .product-feature-highlights__item:not(:last-child)::after {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: calc({{ block.settings.mobile_column_gap }}px / -2);
+                    width: {{ block.settings.divider_width }}px;
+                    height: 100%;
+                    background: var(--pfh-divider-color);
+                    opacity: {{ block.settings.divider_opacity | divided_by: 100.0 }};
+                  }
+                {% endif %}
+              {% endif %}
 
               .product-feature-highlights--{{ block.id }} .product-feature-highlights__icon {
                 width: {{ block.settings.mobile_icon_size }}px;
@@ -1923,7 +1949,7 @@
         {
           "type": "checkbox",
           "id": "show_dividers",
-          "label": "Show dividers on desktop",
+          "label": "Show dividers",
           "default": true
         },
         {

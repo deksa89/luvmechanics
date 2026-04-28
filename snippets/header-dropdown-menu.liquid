@@ -4,6 +4,31 @@
   Usage:
   {% render 'header-dropdown-menu' %}
 {% endcomment %}
+<style>
+@media screen and (min-width: 990px) {
+  .header__inline-menu details {
+    position: relative;
+  }
+
+  .header__inline-menu details > .header__submenu {
+    display: none;
+  }
+
+  .header__inline-menu details[open] > .header__submenu,
+  .header__inline-menu details:hover > .header__submenu,
+  .header__inline-menu details:focus-within > .header__submenu {
+    display: block;
+  }
+
+  .header__inline-menu summary {
+    cursor: pointer;
+  }
+
+  .header__inline-menu summary::-webkit-details-marker {
+    display: none;
+  }
+}
+</style>
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
@@ -53,10 +78,10 @@
                           <span>{{ childlink.title | escape }}</span>
                           {{- 'icon-caret.svg' | inline_asset_content -}}
                         </summary>
-                        <ul
-                          id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                          class="header__submenu list-menu motion-reduce"
-                        >
+                          <ul
+                            id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}"
+                            class="header__submenu list-menu motion-reduce"
+                          >
                           {%- for grandchildlink in childlink.links -%}
                             <li>
                               <a
@@ -101,3 +126,39 @@
     {%- endfor -%}
   </ul>
 </nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const desktopQuery = window.matchMedia('(min-width: 990px)');
+    const menuDetails = document.querySelectorAll('.header__inline-menu details');
+
+    menuDetails.forEach((details) => {
+      let closeTimer;
+
+      details.addEventListener('mouseenter', () => {
+        if (!desktopQuery.matches) return;
+
+        clearTimeout(closeTimer);
+
+        // Close sibling menus on the same level
+        const parentList = details.closest('ul');
+        if (parentList) {
+          parentList.querySelectorAll(':scope > li > details[open], :scope > li > header-menu > details[open]').forEach((openDetails) => {
+            if (openDetails !== details) {
+              openDetails.removeAttribute('open');
+            }
+          });
+        }
+
+        details.setAttribute('open', '');
+      });
+
+      details.addEventListener('mouseleave', () => {
+        if (!desktopQuery.matches) return;
+
+        closeTimer = setTimeout(() => {
+          details.removeAttribute('open');
+        }, 180);
+      });
+    });
+  });
+</script>

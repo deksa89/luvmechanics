@@ -20,9 +20,10 @@
     },
     "image_banner_9tELrt": {
       "type": "image-banner",
-      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
+        "image": "shopify://shop_images/bundles-vibrators-desktop.jpg",
+        "image_mobile": "shopify://shop_images/bundles-vibrators-mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -41,14 +42,14 @@
         "heading_U4Fx9E": {
           "type": "heading",
           "settings": {
-            "heading": "Bestsellers",
+            "heading": "Bundles",
             "heading_size": "h1"
           }
         },
         "text_qykqGm": {
           "type": "text",
           "settings": {
-            "text": "<p>Explore our bestselling intimate wellness products, featuring customer-favorite toys and pleasure essentials chosen for their quality, performance and discreet delivery.</p>"
+            "text": "<p>Check out our selections of sex toy sets, available in Croatia and featuring complementary products to give you an easier choice, great value and a more complete pleasure experience.</p>"
           }
         }
       },

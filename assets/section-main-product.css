@@ -381,11 +381,7 @@ a.product__text {
   .product-form__buttons {
     max-width: 28rem;
   }
-
-  .qty_and_button-container {
-    gap: 1rem;
-  }
-
+  
   .product-form__submit {
     margin-bottom: 0;
     min-height: 5rem;

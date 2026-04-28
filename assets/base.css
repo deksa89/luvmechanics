@@ -3970,3 +3970,14 @@ details-disclosure > details {
 .price--sold-out .price__badge-sold-out {
   display: none;
 }
+
+.shopify-policy__body .rte {
+  text-align: unset;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.shopify-policy__container {
+  max-width: 133ch;
+  padding: 5rem 0;
+}
