@@ -15,9 +15,16 @@
   }
 
   .ai-collection-categories-container-{{ ai_gen_id }} {
-    max-width: {{ block.settings.container_max_width }}px;
+    max-width: var(--page-width);
     margin: 0 auto;
+    padding: 0;
     box-sizing: border-box;
+  }
+
+  @media screen and (min-width: 990px) {
+    .ai-collection-categories-container-{{ ai_gen_id }} {
+      padding: 0 2rem;
+    }
   }
 
   @media screen and (max-width: 768px) {

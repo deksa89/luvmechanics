@@ -122,6 +122,26 @@
         "padding_bottom_mobile": 32
       }
     },
+    "featured_blog_XXGQDb": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "penis-pumps",
+        "post_limit": 2,
+        "heading": "",
+        "heading_size": "h1",
+        "columns_desktop": 2,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 12,
+        "padding_bottom_mobile": 12
+      }
+    },
     "newsletter_tPNegD": {
       "type": "newsletter",
       "name": "t:sections.newsletter.presets.name",
@@ -139,6 +159,7 @@
     "rich_text_wNNfwM",
     "main-collection-product-grid",
     "expandable_category_info_tjEyg7",
+    "featured_blog_XXGQDb",
     "newsletter_tPNegD"
   ]
 }

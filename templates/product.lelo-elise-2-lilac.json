@@ -12,12 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "custom_liquid_9cWEaR": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"custom-text\"> Customer Favorite ❤️</div>"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -118,13 +112,13 @@
             "icon_bottom_spacing": 16,
             "mobile_icon_bottom_spacing": 14,
             "title_font_size": 21,
-            "mobile_title_font_size": 20,
+            "mobile_title_font_size": 16,
             "title_font_weight": "700",
             "title_line_height": "1.25",
             "title_bottom_spacing": 18,
-            "mobile_title_bottom_spacing": 14,
+            "mobile_title_bottom_spacing": 10,
             "text_font_size": 14,
-            "mobile_text_font_size": 14,
+            "mobile_text_font_size": 12,
             "text_font_weight": "400",
             "text_line_height": "1.45",
             "show_dividers": true,
@@ -167,7 +161,6 @@
         }
       },
       "block_order": [
-        "custom_liquid_9cWEaR",
         "title",
         "judge_me_reviews_preview_badge_tXkLyH",
         "text_7HNXAA",

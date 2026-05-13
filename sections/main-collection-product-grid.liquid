@@ -40,6 +40,74 @@
     background-color: white;
   }
 
+  #product-grid .grid__item {
+    display: flex;
+  }
+
+  #product-grid .card-wrapper,
+  #product-grid .card,
+  #product-grid .card__content,
+  #product-grid .card__information {
+    height: 100%;
+    width: 100%;
+  }
+
+  #product-grid .card-information--aligned {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  #product-grid .card-product-reviews {
+    order: 1 !important;
+    min-height: 24px;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+  }
+
+  #product-grid .card-product-reviews--empty {
+    visibility: hidden;
+  }
+
+  #product-grid .card-product-reviews .AirReviews-Widget {
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  #product-grid .card-product-vendor {
+    order: 2 !important;
+    min-height: 18px;
+    margin: 0 0 0.35rem 0;
+  }
+
+  #product-grid .card__vendor {
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  #product-grid .card__heading--aligned {
+    order: 3 !important;
+    min-height: 2.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card__heading {
+    font-size: 1.3rem;
+  }
+
+  #product-grid .card-product-price {
+    order: 4 !important;
+  }
+
+  #product-grid .rating-count {
+    margin: 0;
+  }
+
   @media screen and (max-width: 768px) {
     #product-grid {
       --grid-mobile-horizontal-spacing: 0.8rem;

@@ -16,18 +16,19 @@
           "type": "title",
           "settings": {}
         },
-        "judge_me_reviews_preview_badge_LLy89Q": {
+        "judge_me_reviews_preview_badge_XajXT4": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {}
         },
-        "text_GEknrP": {
+        "text_ckrnPk": {
           "type": "text",
           "settings": {
-            "text": "Looking for dual stimulation with a more natural, targeted feel? IDA™ Wave combines deep internal movement for G-spot pleasure with soft external vibrations for the clitoris, creating a more balanced and satisfying experience. Its WaveMotion™ technology mimics a finger-like motion, while the app connection gives you extra control and access to more intensity modes. Compact, elegant, and easy to personalize, IDA™ Wave is a great choice for anyone who wants blended pleasure with a modern touch.",
+            "text": "Looking for compact internal stimulation with more comfort, control, and versatility? The <strong>Intense vibrating egg</strong> is designed to deliver satisfying sensations through an ergonomic shape that adapts naturally to the body, while its flexible tail makes insertion, positioning, and handling easier during use. Its smooth, compact form provides effective stimulation without feeling overwhelming, making it suitable for both beginners and more experienced users. With remote control operation, USB rechargeable convenience, and a soft, body-friendly finish, <strong>Intense</strong> is a practical and refined choice for anyone seeking comfortable internal pleasure with greater ease and flexibility.",
             "text_style": "body"
           }
         },
-        "delivery_info_6LE3fq": {
+        "delivery_info_Qt9Dkq": {
           "type": "delivery_info",
           "settings": {
             "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
@@ -53,7 +54,7 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "dropdown",
-            "swatch_shape": "circle"
+            "swatch_shape": "none"
           }
         },
         "quantity_selector": {
@@ -67,18 +68,18 @@
             "show_gift_card_recipient": true
           }
         },
-        "feature_highlights_strip_WtRMiE": {
+        "feature_highlights_strip_ce9P87": {
           "type": "feature_highlights_strip",
           "settings": {
             "svg_icon_1": "",
-            "title_1": "App-Controlled Freedom",
-            "text_1": "<p>Connect via Bluetooth and control intensity, modes, and battery status directly from the app.</p>",
+            "title_1": "Comfortable Internal Stimulation",
+            "text_1": "<p>The ergonomic egg shape is designed to adapt naturally to the body, delivering satisfying sensations with a smooth and comfortable fit.</p>",
             "svg_icon_2": "",
-            "title_2": "Dual-Motor Stimulation",
-            "text_2": "<p>Two separate motors provide powerful internal and external pleasure for a more complete experience.</p>",
+            "title_2": "Remote Control Convenience",
+            "text_2": "<p>Adjust vibrations easily without handling the toy directly, making it ideal for both solo sessions and partner play.</p>",
             "svg_icon_3": "",
-            "title_3": "WaveMotion™ Pleasure",
-            "text_3": "<p>The rotating insertable arm mimics finger-like motion for targeted G-Spot stimulation and deeper sensations.</p>",
+            "title_3": "Flexible, Rechargeable Design",
+            "text_3": "<p>With a flexible tail for easier handling and USB rechargeable power, it is designed for simple, practical, and comfortable use.</p>",
             "columns_desktop": "3",
             "columns_mobile": "1",
             "text_alignment": "left",
@@ -88,7 +89,7 @@
             "mobile_column_gap": 20,
             "mobile_row_gap": 30,
             "border_radius": 0,
-            "background_color": "#c40234",
+            "background_color": "#801b32",
             "title_color": "#ffffff",
             "text_color": "#ffffff",
             "icon_color": "#ffffff",
@@ -133,8 +134,9 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Features & experience",
+            "accordion_image": "shopify://shop_images/product-characteristics-icon_b10c6a41-572f-447e-8d84-56f4609057fc.png",
             "icon": "none",
-            "content": "<p>The LELO IDA Wave is designed to deliver sensual independence through intelligent, app-connected stimulation. Featuring two separate motors, it provides gradual, deeply satisfying pleasure by combining internal G-spot massage with external clitoral stimulation.<br/><br/>Thanks to WaveMotion™ technology, the insertable part rotates to simulate a natural finger-like motion, targeting the G-spot with precision. At the same time, the larger upper section delivers refined vibrations to the clitoris, allowing users to experience layered, harmonious stimulation tailored to their preferences.</p>{{ block.settings.page.content }}",
+            "content": "<p>The <strong>Intense vibrating egg</strong> is created for users who want internal stimulation that feels both effective and easy to enjoy. Its ergonomic egg shape is designed to sit comfortably in the body, while the <strong>flexible tail</strong> helps with insertion, positioning, and control, making the experience feel more intuitive and secure. The result is a compact pleasure device that delivers strong sensations while remaining comfortable and approachable.</p><p>Its <strong>remote control operation</strong> adds even more flexibility, allowing vibrations to be adjusted without handling the toy directly during use. Whether enjoyed alone or with a partner, the Intense vibrating egg offers a more relaxed, discreet, and personalized experience with a balance of comfort and stimulation.{{ block.settings.page.title }}</p>{{ block.settings.page.content }}",
             "page": ""
           }
         },
@@ -142,8 +144,9 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Product information",
+            "accordion_image": "shopify://shop_images/product-info-icon_a8db015b-ddf4-4acd-97f6-bcb1fc623814.png",
             "icon": "none",
-            "content": "<p>IDA Wave is crafted from biocompatible silicone and ABS, offering a smooth, body-safe feel and a compact, ergonomic shape. Its dual-motor design enables both internal and external stimulation, while a single-button interface keeps manual control simple and intuitive.<br/><br/>The device offers 4 default modes, with the ability to unlock up to 10 intense pleasure modes via the app. It is powered by a rechargeable 520 mAh lithium-ion battery, providing up to 2 hours of use and up to 90 days of standby time. Bluetooth connectivity allows full control of intensity, modes, and battery status through the companion app.</p><p>CHARACTERISTICS<br/>Materials: Biocompatible silicone and ABS<br/>Size: 63 x 56 x 93mm<br/>Weight: 102g<br/>Battery: Li-ion 3.7 V 520 mAh<br/>Charge: 2 hours at 5.0 V 200 mA<br/>Use time: Up to 2 hours<br/>Standby: Up to 90 days<br/>Frequency: 130Hz<br/>Reducer motor frequency: 1.4 Hz<br/>Interface: 1 button<br/>Modes: 4 (default), up to 10 can be set via app</p><p></p>",
+            "content": "<p>The <strong>Intense vibrating egg</strong> features a compact ergonomic design with a <strong>flexible tail</strong> for easier handling and positioning during use. It is operated by <strong>remote control</strong>, making it simple to change vibration settings with greater convenience and freedom. Its <strong>USB rechargeable</strong> system eliminates the need for batteries, so it is always easier to keep ready for use.</p><p>The device measures <strong>20 cm in total length</strong> with a <strong>maximum diameter of 3.6 cm</strong>. The <strong>egg length is 9.5 cm</strong>, with an <strong>insertable length of 8 cm</strong>, and it weighs <strong>58 g</strong>. Made from a flexible, pleasant-to-the-touch material, it is designed to provide a comfortable experience for different levels of experience. For best use, a <strong>water-based lubricant</strong> is recommended, and the toy should be cleaned before and after each session and stored in a dry, dust-free place.</p>",
             "page": ""
           }
         },
@@ -151,40 +154,27 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Why you'll love it",
+            "accordion_image": "shopify://shop_images/why-youll-love-it-icon_cfeb8990-ada5-4667-b824-aee5a0ca42cc.png",
             "icon": "none",
-            "content": "<p>One of the key advantages of the IDA Wave is its app-controlled functionality, giving users access to a broader range of intensities and customization options than manual control alone. This makes it easy to adapt stimulation levels and patterns to match mood and desire.<br/><br/>Its compact size, lightweight design, and efficient power usage make it practical and discreet, while the WaveMotion™ rotation adds a unique dimension to G-spot stimulation. Combining innovation, comfort, and flexibility, the LELO IDA Wave Coral is a sophisticated choice for those seeking personalized, connected pleasure—solo or as part of a shared experience.</p>",
+            "content": "<p>One of the standout qualities of the <strong>Intense vibrating egg</strong> is its ability to combine <strong>compact design, comfort, and control</strong> in one simple device. Its shape is easy to use and less intimidating, while the flexible tail and remote control make it feel more manageable and adaptable during play. This makes it a strong choice for users who want internal stimulation that feels convenient, comfortable, and easy to personalize.</p><p>Its rechargeable design and body-friendly material also make it practical for regular use, whether you are exploring for the first time or adding more variety to your routine. Smooth, discreet, and designed with ease in mind, the <strong>Intense vibrating egg</strong> is a versatile option for anyone looking for satisfying internal pleasure with a comfortable fit and simple control.</p>",
             "page": ""
           }
-        },
-        "custom_liquid_FWTDLt": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
-          }
-        },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {}
         }
       },
       "block_order": [
         "title",
-        "judge_me_reviews_preview_badge_LLy89Q",
-        "text_GEknrP",
-        "delivery_info_6LE3fq",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "text_ckrnPk",
+        "delivery_info_Qt9Dkq",
         "delivery_info_HrhB9H",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "feature_highlights_strip_WtRMiE",
+        "feature_highlights_strip_ce9P87",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
-        "collapsible_tab_CDVNV9",
-        "custom_liquid_FWTDLt",
-        "description"
+        "collapsible_tab_CDVNV9"
       ],
       "settings": {
         "enable_sticky_info": false,
@@ -200,26 +190,6 @@
         "enable_video_looping": true,
         "padding_top": 48,
         "padding_bottom": 52
-      }
-    },
-    "176713737045a528d2": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_YHQ3g9": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_YHQ3g9"
-      ],
-      "settings": {
-        "include_margins": true
       }
     },
     "1765483876d335107c": {
@@ -246,12 +216,6 @@
         "padding_bottom": 68
       }
     },
-    "1767137355c938f00c": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
     "17549876309243b074": {
       "type": "apps",
       "blocks": {
@@ -276,10 +240,8 @@
   },
   "order": [
     "main",
-    "176713737045a528d2",
     "1765483876d335107c",
     "related-products",
-    "1767137355c938f00c",
     "17549876309243b074"
   ]
 }

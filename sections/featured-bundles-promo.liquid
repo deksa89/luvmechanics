@@ -8,10 +8,17 @@
 
   .bundle-promo-{{ section.id }} {
     background: {{ section.settings.section_bg }};
+    padding: 0 0 20px 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    .bundle-promo-{{ section.id }} {
+      padding: 0 2rem;
+    }
   }
 
   .bundle-promo__inner-{{ section.id }} {
-    max-width: {{ section.settings.max_width }}px;
+    max-width: var(--page-width);
     margin: 0 auto;
     padding-left: {{ section.settings.side_padding_mobile }}px;
     padding-right: {{ section.settings.side_padding_mobile }}px;

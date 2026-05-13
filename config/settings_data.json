@@ -9,14 +9,14 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/Gemini_Generated_Image_k7mt36k7mt36k7mt-removebg-preview.png",
+    "logo": "shopify://shop_images/Title_1.png",
     "logo_width": 140,
     "favicon": "shopify://shop_images/22222-removebg-preview.png",
     "type_header_font": "sans_serif_n7",
     "heading_scale": 90,
     "type_body_font": "sans_serif_n4",
     "body_scale": 100,
-    "page_width": 1440,
+    "page_width": 1600,
     "spacing_sections": 36,
     "spacing_grid_horizontal": 40,
     "spacing_grid_vertical": 40,

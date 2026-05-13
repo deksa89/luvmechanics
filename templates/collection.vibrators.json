@@ -109,6 +109,26 @@
         "padding_top_mobile": 20,
         "padding_bottom_mobile": 20
       }
+    },
+    "featured_blog_NBKYLb": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "vibrators",
+        "post_limit": 3,
+        "heading": "",
+        "heading_size": "h1",
+        "columns_desktop": 2,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 12,
+        "padding_bottom_mobile": 12
+      }
     }
   },
   "order": [
@@ -116,6 +136,7 @@
     "image_banner_hpEckG",
     "rich_text_wTXpyg",
     "main-collection-product-grid",
-    "expandable_category_info_D8JHLw"
+    "expandable_category_info_D8JHLw",
+    "featured_blog_NBKYLb"
   ]
 }

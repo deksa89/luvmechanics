@@ -16,18 +16,19 @@
           "type": "title",
           "settings": {}
         },
-        "judge_me_reviews_preview_badge_LLy89Q": {
+        "judge_me_reviews_preview_badge_XajXT4": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {}
         },
-        "text_GEknrP": {
+        "text_ckrnPk": {
           "type": "text",
           "settings": {
-            "text": "Looking for dual stimulation with a more natural, targeted feel? IDA™ Wave combines deep internal movement for G-spot pleasure with soft external vibrations for the clitoris, creating a more balanced and satisfying experience. Its WaveMotion™ technology mimics a finger-like motion, while the app connection gives you extra control and access to more intensity modes. Compact, elegant, and easy to personalize, IDA™ Wave is a great choice for anyone who wants blended pleasure with a modern touch.",
+            "text": "Looking for compact pleasure with powerful performance and everyday versatility? This <strong>Rocks Off mini wand</strong> combines a sleek pocket-sized design with strong targeted vibrations, making it ideal for relaxation, focused stimulation, or both. Its precision tip is designed to deliver more accurate pleasure exactly where you want it, while <strong>16 exciting functions</strong> offer plenty of variety in one small, travel-friendly device. Rechargeable, body-safe, and easy to enjoy, this mini wand is a smart choice for anyone who wants reliable performance, discreet convenience, and great value without compromising on quality.",
             "text_style": "body"
           }
         },
-        "delivery_info_6LE3fq": {
+        "delivery_info_Qt9Dkq": {
           "type": "delivery_info",
           "settings": {
             "icon": "shopify://shop_images/istockphoto-1183783168-1024x1024__1_-removebg-preview.png",
@@ -53,7 +54,7 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "dropdown",
-            "swatch_shape": "circle"
+            "swatch_shape": "none"
           }
         },
         "quantity_selector": {
@@ -67,18 +68,18 @@
             "show_gift_card_recipient": true
           }
         },
-        "feature_highlights_strip_WtRMiE": {
+        "feature_highlights_strip_ce9P87": {
           "type": "feature_highlights_strip",
           "settings": {
             "svg_icon_1": "",
-            "title_1": "App-Controlled Freedom",
-            "text_1": "<p>Connect via Bluetooth and control intensity, modes, and battery status directly from the app.</p>",
+            "title_1": "Compact but Powerful",
+            "text_1": "<p>This pocket-sized mini wand delivers strong vibrations in a sleek, travel-friendly design that is easy to use and easy to take anywhere.</p>",
             "svg_icon_2": "",
-            "title_2": "Dual-Motor Stimulation",
-            "text_2": "<p>Two separate motors provide powerful internal and external pleasure for a more complete experience.</p>",
+            "title_2": "16 Exciting Functions",
+            "text_2": "<p>Choose from 16 vibration settings to enjoy more variety, flexibility, and personalized stimulation in every session.</p>",
             "svg_icon_3": "",
-            "title_3": "WaveMotion™ Pleasure",
-            "text_3": "<p>The rotating insertable arm mimics finger-like motion for targeted G-Spot stimulation and deeper sensations.</p>",
+            "title_3": "Precision Tip Performance",
+            "text_3": "<p>The precision-tip design helps target pleasure points more accurately for focused stimulation and a more satisfying experience.</p>",
             "columns_desktop": "3",
             "columns_mobile": "1",
             "text_alignment": "left",
@@ -88,7 +89,7 @@
             "mobile_column_gap": 20,
             "mobile_row_gap": 30,
             "border_radius": 0,
-            "background_color": "#c40234",
+            "background_color": "#801b32",
             "title_color": "#ffffff",
             "text_color": "#ffffff",
             "icon_color": "#ffffff",
@@ -133,8 +134,9 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Features & experience",
+            "accordion_image": "shopify://shop_images/product-characteristics-icon_b10c6a41-572f-447e-8d84-56f4609057fc.png",
             "icon": "none",
-            "content": "<p>The LELO IDA Wave is designed to deliver sensual independence through intelligent, app-connected stimulation. Featuring two separate motors, it provides gradual, deeply satisfying pleasure by combining internal G-spot massage with external clitoral stimulation.<br/><br/>Thanks to WaveMotion™ technology, the insertable part rotates to simulate a natural finger-like motion, targeting the G-spot with precision. At the same time, the larger upper section delivers refined vibrations to the clitoris, allowing users to experience layered, harmonious stimulation tailored to their preferences.</p>{{ block.settings.page.content }}",
+            "content": "<p>The <strong>Rocks Off mini wand</strong> is designed for users who want strong, focused stimulation in a compact and approachable format. Its standout feature is the <strong>precision tip</strong>, which helps direct vibrations more accurately to pleasure points for a more targeted and satisfying experience. Despite its small size, it is made to deliver <strong>powerful vibrations</strong>, proving that a compact design can still create impressively intense sensations.</p><p>With <strong>16 functions</strong> to explore, this mini wand offers a variety of rhythms and patterns that make each session feel more customizable and enjoyable. Whether you are looking for a first toy, a travel-friendly option, or a versatile addition to your collection, it offers a simple and effective way to enjoy pleasure without unnecessary complexity.</p>{{ block.settings.page.content }}",
             "page": ""
           }
         },
@@ -142,8 +144,9 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Product information",
+            "accordion_image": "shopify://shop_images/product-info-icon_a8db015b-ddf4-4acd-97f6-bcb1fc623814.png",
             "icon": "none",
-            "content": "<p>IDA Wave is crafted from biocompatible silicone and ABS, offering a smooth, body-safe feel and a compact, ergonomic shape. Its dual-motor design enables both internal and external stimulation, while a single-button interface keeps manual control simple and intuitive.<br/><br/>The device offers 4 default modes, with the ability to unlock up to 10 intense pleasure modes via the app. It is powered by a rechargeable 520 mAh lithium-ion battery, providing up to 2 hours of use and up to 90 days of standby time. Bluetooth connectivity allows full control of intensity, modes, and battery status through the companion app.</p><p>CHARACTERISTICS<br/>Materials: Biocompatible silicone and ABS<br/>Size: 63 x 56 x 93mm<br/>Weight: 102g<br/>Battery: Li-ion 3.7 V 520 mAh<br/>Charge: 2 hours at 5.0 V 200 mA<br/>Use time: Up to 2 hours<br/>Standby: Up to 90 days<br/>Frequency: 130Hz<br/>Reducer motor frequency: 1.4 Hz<br/>Interface: 1 button<br/>Modes: 4 (default), up to 10 can be set via app</p><p></p>",
+            "content": "<p>This <strong>mini wand</strong> features <strong>16 functions</strong> and is designed for <strong>targeted stimulation of pleasure points</strong> thanks to its precision-tip shape. Its compact size makes it easy to hold, easy to store, and especially practical for travel or more discreet use. Although small, it is built to provide <strong>powerful vibrations</strong> for a more effective experience.</p><p>The device is <strong>water-resistant</strong> and <strong>USB rechargeable</strong>, with <strong>90 minutes of charging</strong> providing <strong>up to 60 minutes of playtime</strong>. A USB cable is included for convenient charging. Made from <strong>silicone and ABS plastic</strong>, it is body-safe and comfortable to use. Its dimensions are <strong>30 mm in width</strong> and <strong>115 mm in height</strong>.</p>",
             "page": ""
           }
         },
@@ -151,40 +154,27 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Why you'll love it",
+            "accordion_image": "shopify://shop_images/why-youll-love-it-icon_cfeb8990-ada5-4667-b824-aee5a0ca42cc.png",
             "icon": "none",
-            "content": "<p>One of the key advantages of the IDA Wave is its app-controlled functionality, giving users access to a broader range of intensities and customization options than manual control alone. This makes it easy to adapt stimulation levels and patterns to match mood and desire.<br/><br/>Its compact size, lightweight design, and efficient power usage make it practical and discreet, while the WaveMotion™ rotation adds a unique dimension to G-spot stimulation. Combining innovation, comfort, and flexibility, the LELO IDA Wave Coral is a sophisticated choice for those seeking personalized, connected pleasure—solo or as part of a shared experience.</p>",
+            "content": "<p>One of the standout qualities of this <strong>Rocks Off mini wand</strong> is its ability to combine <strong>size, power, and value</strong> in one well-designed device. It is small enough to be discreet and travel-friendly, yet powerful enough to deliver the kind of focused stimulation many users want from a larger toy. This makes it a great option for anyone who wants something practical, effective, and easy to enjoy.</p><p>Its rechargeable design, body-safe materials, and wide range of settings also make it especially appealing for everyday use. Whether you are new to vibrators or simply want a compact option that still feels reliable and satisfying, this mini wand is a versatile choice that offers strong performance without the premium price.</p>",
             "page": ""
           }
-        },
-        "custom_liquid_FWTDLt": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<p> <img src=\"https://cdn-icons-png.flaticon.com/512/1670/1670915.png\" style=\"height:25px;float:left;margin-right:10px;padding-bottom: 4px;\"/>\nGet it between <strong><span id=\"fromDate\"></span> - <span id=\"toDate\"></span></strong></p>\n{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}\n<script>\nvar fromDate = Date.today().addDays(5);\nif (fromDate.is().saturday() || fromDate.is().sunday()) {\nfromDate = fromDate.next().monday();\n}\nvar toDate = Date.today().addDays(10);\nif (toDate.is().saturday() || toDate.is().sunday()) {\ntoDate = toDate.next().monday();\n}\ndocument.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');\ndocument.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');\n</script>"
-          }
-        },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {}
         }
       },
       "block_order": [
         "title",
-        "judge_me_reviews_preview_badge_LLy89Q",
-        "text_GEknrP",
-        "delivery_info_6LE3fq",
+        "judge_me_reviews_preview_badge_XajXT4",
+        "text_ckrnPk",
+        "delivery_info_Qt9Dkq",
         "delivery_info_HrhB9H",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "feature_highlights_strip_WtRMiE",
+        "feature_highlights_strip_ce9P87",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
-        "collapsible_tab_CDVNV9",
-        "custom_liquid_FWTDLt",
-        "description"
+        "collapsible_tab_CDVNV9"
       ],
       "settings": {
         "enable_sticky_info": false,
@@ -200,26 +190,6 @@
         "enable_video_looping": true,
         "padding_top": 48,
         "padding_bottom": 52
-      }
-    },
-    "176713737045a528d2": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_YHQ3g9": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_YHQ3g9"
-      ],
-      "settings": {
-        "include_margins": true
       }
     },
     "1765483876d335107c": {
@@ -246,12 +216,6 @@
         "padding_bottom": 68
       }
     },
-    "1767137355c938f00c": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
     "17549876309243b074": {
       "type": "apps",
       "blocks": {
@@ -276,10 +240,8 @@
   },
   "order": [
     "main",
-    "176713737045a528d2",
     "1765483876d335107c",
     "related-products",
-    "1767137355c938f00c",
     "17549876309243b074"
   ]
 }

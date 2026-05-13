@@ -13,6 +13,55 @@
 
 
 <style>
+  .header-wrapper {
+    background: #2D2A26;
+  }
+
+  .header-wrapper .header__menu-item,
+  .header-wrapper .header__icon,
+  .header-wrapper .localization-form button,
+  .header-wrapper .header__active-menu-item,
+  .header-wrapper summary,
+  .header-wrapper a {
+    color: #fff;
+  }
+
+  .header .submenu .menu-drawer__menu-item,
+  .header .submenu .header__menu-item,
+  .header .submenu .list-menu__item,
+  .header .submenu .link,
+  .header .header__submenu .list-menu__item,
+  .header .header__submenu .link,
+  .header details[open] > .header__submenu a {
+    color: #000 !important;
+  }
+
+  /* MOBILE DRAWER / SUBMENU */
+  .menu-drawer,
+  .menu-drawer__submenu {
+    background: #fff !important;
+  }
+
+  .menu-drawer .menu-drawer__menu-item,
+  .menu-drawer .list-menu__item,
+  .menu-drawer .link,
+  .menu-drawer summary,
+  .menu-drawer details summary {
+    color: #000 !important;
+  }
+
+  .menu-drawer .menu-drawer__menu-item:hover,
+  .menu-drawer .menu-drawer__menu-item:focus,
+  .menu-drawer .list-menu__item:hover,
+  .menu-drawer .link:hover {
+    color: #000 !important;
+  }
+
+  .header-wrapper .svg-wrapper svg {
+    color: #fff;
+    fill: currentColor;
+  }
+
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;

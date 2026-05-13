@@ -9,12 +9,21 @@
     display: flex;
     flex-direction: column;
     width: {{ block.settings.desktop_width_percent }}%;
-    max-width: 1400px;
+    max-width: var(--page-width);
     position: relative;
     padding-top: {{ block.settings.padding_top_desktop }}px;
+    padding-right: 0;
     padding-bottom: {{ block.settings.padding_bottom_desktop }}px;
+    padding-left: 0;
     background-color: {{ block.settings.background_color }};
     margin: 0 auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    .ai-brand-carousel-{{ ai_gen_id }} {
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
   }
 
   .ai-brand-heading-wrapper-{{ ai_gen_id }} {

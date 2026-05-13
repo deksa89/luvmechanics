@@ -143,6 +143,26 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "featured_blog_eDBW3f": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "rabbit-vibrators",
+        "post_limit": 2,
+        "heading": "",
+        "heading_size": "h1",
+        "columns_desktop": 2,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top_desktop": 36,
+        "padding_bottom_desktop": 36,
+        "padding_top_mobile": 27,
+        "padding_bottom_mobile": 27
+      }
     }
   },
   "order": [
@@ -151,6 +171,7 @@
     "rich_text_kFRafk",
     "main-collection-product-grid",
     "expandable_category_info_LiUKRH",
-    "newsletter_tPNegD"
+    "newsletter_tPNegD",
+    "featured_blog_eDBW3f"
   ]
 }

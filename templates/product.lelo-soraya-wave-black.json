@@ -12,12 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "custom_liquid_HBFXcn": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"custom-text\">Customer Favorite ❤️</div>"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -176,7 +170,6 @@
         }
       },
       "block_order": [
-        "custom_liquid_HBFXcn",
         "title",
         "judge_me_reviews_preview_badge_R3Ub89",
         "text_AwrPYh",
