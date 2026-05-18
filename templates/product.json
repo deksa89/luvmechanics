@@ -12,20 +12,18 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "judge_me_reviews_preview_badge_XajXT4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
         "title": {
           "type": "title",
           "settings": {}
         },
-        "judge_me_reviews_preview_badge_XajXT4": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {}
-        },
-        "text_ckrnPk": {
-          "type": "text",
+        "custom_liquid_LiUYFy": {
+          "type": "custom_liquid",
           "settings": {
-            "text": "Text block",
-            "text_style": "body"
+            "custom_liquid": "{{ product.metafields.custom.product_intro_description\n | metafield_tag }}"
           }
         },
         "delivery_info_Qt9Dkq": {
@@ -72,14 +70,14 @@
           "type": "feature_highlights_strip",
           "settings": {
             "svg_icon_1": "",
-            "title_1": "neki naslov",
-            "text_1": "<p>neki tekst</p>",
+            "title_1": "{{ product.metafields.custom.feature_1_title.value }}",
+            "text_1": "<p>{{ product.metafields.custom.feature_1_text | metafield_tag }}</p>",
             "svg_icon_2": "",
-            "title_2": "neki naslov",
-            "text_2": "<p>neki tekst</p>",
+            "title_2": "{{ product.metafields.custom.feature_2_title.value }}",
+            "text_2": "<p>{{ product.metafields.custom.feature_2_text | metafield_tag }}</p>",
             "svg_icon_3": "",
-            "title_3": "neki naslov",
-            "text_3": "<p>neki tekst</p>",
+            "title_3": "{{ product.metafields.custom.feature_3_title.value }}",
+            "text_3": "<p>{{ product.metafields.custom.feature_3_text | metafield_tag }}</p>",
             "columns_desktop": "3",
             "columns_mobile": "1",
             "text_alignment": "left",
@@ -136,7 +134,7 @@
             "heading": "Features & experience",
             "accordion_image": "shopify://shop_images/product-characteristics-icon_b10c6a41-572f-447e-8d84-56f4609057fc.png",
             "icon": "none",
-            "content": "<p>Here’s something to hit the spot! Seeking a penis ring that can handle anything and everything you bring to it? Check out the Bullseye! The Bullseye is an adjustable ring that allows for complete flexibility – no more struggling to find a penis ring that fits just right. This ring is perfect for beginners and experienced users alike, allowing you to explore the vast possibilities of penis rings! The Bullseye features a simple yet elegant design ideal for penile or testical stimulation. Also, let your partner benefit from experiencing additional stimulation as well when used together! This adjustable ring with a slider is truly one size fits all!{{ block.settings.page.title }}</p>{{ block.settings.page.content }}",
+            "content": "{{ product.metafields.custom.cr_features_experience_rt | metafield_tag }}",
             "page": ""
           }
         },
@@ -146,7 +144,7 @@
             "heading": "Product information",
             "accordion_image": "shopify://shop_images/product-info-icon_a8db015b-ddf4-4acd-97f6-bcb1fc623814.png",
             "icon": "none",
-            "content": "<ul><li>More stamina due to exciting blood retention effect</li><li>Individually adjustable tightness</li><li>The powerful motor transmits intense vibration rhythms throughout the sexual wellness device</li><li>Ideal for couples</li><li>Made of super soft, skin-friendly medical-grade silicone that is smooth to the touch and extremely hygienic</li><li>15-year guarantee</li><li>Body-friendly silicone</li><li>Waterproof IPX7 Whisper mode</li><li>Easy to clean Lithium-ion battery</li><li>USB magnetic charging cable included</li></ul>",
+            "content": "{{ product.metafields.custom.cr_product_information_rt | metafield_tag }}",
             "page": ""
           }
         },
@@ -156,15 +154,15 @@
             "heading": "Why you'll love it",
             "accordion_image": "shopify://shop_images/why-youll-love-it-icon_cfeb8990-ada5-4667-b824-aee5a0ca42cc.png",
             "icon": "none",
-            "content": "<p><strong>With one motor and a one-touch button with 12 vibration programs, you will experience pure bliss with the Bullseye! Also, Bluetooth enabled, the Bullseye connects to the award-winning, free, Satisfyer Connect app, giving you the option to independently control the motor and customize the vibrations to perfectly suit your needs! The Bullseye is made of body-safe silicone, rechargeable, and waterproof (IPX7) rated. Hit the bullseye today!</strong></p>",
+            "content": "{{ product.metafields.custom.cr_why_you_ll_love_it_rt | metafield_tag }}",
             "page": ""
           }
         }
       },
       "block_order": [
-        "title",
         "judge_me_reviews_preview_badge_XajXT4",
-        "text_ckrnPk",
+        "title",
+        "custom_liquid_LiUYFy",
         "delivery_info_Qt9Dkq",
         "delivery_info_HrhB9H",
         "price",

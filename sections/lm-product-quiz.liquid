@@ -1,0 +1,1351 @@
+<section id="lm-product-quiz-{{ section.id }}" class="lm-product-quiz-section color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="lm-product-quiz">
+      {% if section.settings.title != blank %}
+        <p class="lm-product-quiz__eyebrow">{{ section.settings.title }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="lm-product-quiz__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.intro_text != blank %}
+        <div class="lm-product-quiz__intro" data-quiz-intro>
+          <p>{{ section.settings.intro_text }}</p>
+          <button type="button" class="button" data-quiz-start>
+            {{ section.settings.start_button_label }}
+          </button>
+        </div>
+      {% endif %}
+
+      <div class="lm-product-quiz__body hidden" data-quiz-body>
+        <form class="lm-product-quiz__form" data-quiz-form>
+          <div class="lm-product-quiz__progress" data-quiz-progress>
+            Question <span data-current-step>1</span> of <span data-total-steps>5</span>
+          </div>
+
+          <div class="lm-product-quiz__question" data-quiz-step="1">
+            <h3>{{ section.settings.q1_title }}</h3>
+
+            <div class="lm-product-quiz__options">
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="shopping_for" value="myself" data-points="{{ section.settings.q1_myself_points }}" required>
+                <span>{{ section.settings.q1_myself_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="shopping_for" value="partner" data-points="{{ section.settings.q1_partner_points }}">
+                <span>{{ section.settings.q1_partner_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="shopping_for" value="couple" data-points="{{ section.settings.q1_couple_points }}">
+                <span>{{ section.settings.q1_couple_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="shopping_for" value="gift" data-points="{{ section.settings.q1_gift_points }}">
+                <span>{{ section.settings.q1_gift_label }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="lm-product-quiz__question hidden" data-quiz-step="2">
+            <h3>{{ section.settings.q2_title }}</h3>
+
+            <div class="lm-product-quiz__options">
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="experience" value="beginner" data-points="{{ section.settings.q2_beginner_points }}" required>
+                <span>{{ section.settings.q2_beginner_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="experience" value="some_experience" data-points="{{ section.settings.q2_some_points }}">
+                <span>{{ section.settings.q2_some_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="experience" value="advanced" data-points="{{ section.settings.q2_advanced_points }}">
+                <span>{{ section.settings.q2_advanced_label }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="lm-product-quiz__question hidden" data-quiz-step="3">
+            <h3>{{ section.settings.q3_title }}</h3>
+
+            <div class="lm-product-quiz__options">
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="priority" value="ease_of_use" data-points="{{ section.settings.q3_ease_points }}" required>
+                <span>{{ section.settings.q3_ease_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="priority" value="stronger_sensations" data-points="{{ section.settings.q3_stronger_points }}">
+                <span>{{ section.settings.q3_stronger_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="priority" value="premium_quality" data-points="{{ section.settings.q3_premium_points }}">
+                <span>{{ section.settings.q3_premium_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="priority" value="exploring_new" data-points="{{ section.settings.q3_exploring_points }}">
+                <span>{{ section.settings.q3_exploring_label }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="lm-product-quiz__question hidden" data-quiz-step="4">
+            <h3>{{ section.settings.q4_title }}</h3>
+
+            <div class="lm-product-quiz__options">
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="category_interest" value="vibrators" required>
+                <span>{{ section.settings.q4_vibrators_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="category_interest" value="masturbators">
+                <span>{{ section.settings.q4_masturbators_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="category_interest" value="rabbit_vibrators">
+                <span>{{ section.settings.q4_rabbit_vibrators_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="category_interest" value="penis_pumps">
+                <span>{{ section.settings.q4_penis_pumps_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="category_interest" value="remote_control_toys">
+                <span>{{ section.settings.q4_remote_control_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="category_interest" value="clitoris_stimulators">
+                <span>{{ section.settings.q4_clitoris_stimulators_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="category_interest" value="extras">
+                <span>{{ section.settings.q4_extras_label }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="lm-product-quiz__question hidden" data-quiz-step="5">
+            <h3>{{ section.settings.q5_title }}</h3>
+
+            <div class="lm-product-quiz__options">
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="price_range" value="up_to_70" required>
+                <span>{{ section.settings.q5_price_1_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="price_range" value="70_to_150">
+                <span>{{ section.settings.q5_price_2_label }}</span>
+              </label>
+
+              <label class="lm-product-quiz__option">
+                <input type="radio" name="price_range" value="150_plus">
+                <span>{{ section.settings.q5_price_3_label }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="lm-product-quiz__actions hidden" data-quiz-actions>
+            <button type="submit" class="button button--primary">
+              {{ section.settings.submit_button_label }}
+            </button>
+          </div>
+        </form>
+
+        <div class="lm-product-quiz__result hidden" data-quiz-result>
+          <p class="lm-product-quiz__result-label">{{ section.settings.result_label }}</p>
+          <h3 data-result-title></h3>
+          <p data-result-description></p>
+          <p class="lm-product-quiz__score" data-result-score></p>
+
+          <div class="lm-product-quiz__products" data-result-products></div>
+
+          <div class="lm-product-quiz__result-actions">
+            <button type="button" class="lm-product-quiz__restart-button" data-quiz-restart>
+              {{ section.settings.restart_button_label }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-quiz-results>
+    [
+      {% for block in section.blocks %}
+        {
+          "id": {{ block.id | json }},
+          "min": {{ block.settings.min_score | json }},
+          "max": {{ block.settings.max_score | json }},
+          "category": {{ block.settings.category | json }},
+          "title": {{ block.settings.result_title | json }},
+          "description": {{ block.settings.result_description | json }},
+          "products": [
+            {% assign first_product_added = false %}
+
+            {% for i in (1..10) %}
+              {% assign product_setting = 'product_' | append: i %}
+              {% assign selected_product = block.settings[product_setting] %}
+
+              {% if selected_product != blank %}
+                {% if first_product_added %},{% endif %}
+                {% assign first_product_added = true %}
+                {
+                  "title": {{ selected_product.title | json }},
+                  "url": {{ selected_product.url | json }},
+                  "price": {{ selected_product.price | money | json }},
+                  "priceCents": {{ selected_product.price | json }},
+                  "image": {% if selected_product.featured_image %}{{ selected_product.featured_image | image_url: width: 600 | json }}{% else %}null{% endif %}
+                }
+              {% endif %}
+            {% endfor %}
+          ]
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  </script>
+
+  <style>
+    #lm-product-quiz-{{ section.id }} [data-quiz-start],
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 155px;
+      min-height: 44px;
+      padding: 12px 28px;
+      border: 1px solid #111;
+      outline: none !important;
+      background: #fff !important;
+      color: #111 !important;
+      font: inherit;
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 0;
+      box-shadow: none !important;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    #lm-product-quiz-{{ section.id }} [data-quiz-start]:hover,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button:hover,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:hover {
+      background: #111 !important;
+      color: #fff !important;
+      border-color: #111 !important;
+    }
+
+    #lm-product-quiz-{{ section.id }} [data-quiz-start]:focus-visible,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button:focus-visible,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 3px;
+    }
+
+    #lm-product-quiz-{{ section.id }} [data-quiz-start]::before,
+    #lm-product-quiz-{{ section.id }} [data-quiz-start]::after,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button::before,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button::after,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button::before,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button::after {
+      display: none !important;
+      content: none !important;
+      box-shadow: none !important;
+    }
+
+    #lm-product-quiz-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .hidden {
+      display: none !important;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__eyebrow {
+      margin: 0 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__heading {
+      margin: 0 0 16px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
+      padding: 24px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0px;
+      background: #fff;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro p {
+      margin-top: 0;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__form {
+      display: grid;
+      gap: 20px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__body {
+      display: grid;
+      gap: 24px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__progress {
+      margin-bottom: 0;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question {
+      animation: lmQuizFadeIn-{{ section.id }} 0.25s ease;
+    }
+
+    @keyframes lmQuizFadeIn-{{ section.id }} {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question h3 {
+      margin: 0 0 16px;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__options {
+      display: grid;
+      gap: 12px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option:hover {
+      border-color: rgba(0, 0, 0, 0.25);
+      transform: translateY(-1px);
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option:has(input:checked) {
+      border-color: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option input {
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result-actions {
+      margin-top: 30px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 155px;
+      min-height: 44px;
+      padding: 12px 28px;
+      border: 1px solid #111;
+      background: #fff;
+      color: #111;
+      font: inherit;
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:hover {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 3px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result-label {
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
+    #lm-product-quiz-{{ section.id }} [data-result-title] {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    #lm-product-quiz-{{ section.id }} [data-result-description] {
+      margin-top: 0;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__score {
+      margin: 12px 0 24px;
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message {
+      grid-column: 1 / -1;
+      padding: 16px;
+      border-radius: 0px;
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message p {
+      margin: 0 0 8px;
+    }
+
+    @media screen and (max-width: 768px) {
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__eyebrow {
+        margin: 0 0 8px 1.5rem;
+      }
+  
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__heading {
+        margin: 0 0 16px 1.5rem;
+      }
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message p:last-child {
+      margin-bottom: 0;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product {
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image {
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.04);
+      margin-bottom: 12px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-title {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-price {
+      margin: 0 0 12px;
+      font-weight: 600;
+    }
+
+    @media screen and (max-width: 989px) {
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media screen and (max-width: 749px) {
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
+        grid-template-columns: 1fr;
+      }
+
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro,
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__question,
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
+        padding: 18px;
+      }
+
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__question h3 {
+        font-size: 18px;
+      }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const root = document.getElementById('lm-product-quiz-{{ section.id }}');
+
+      if (!root) return;
+
+      const intro = root.querySelector('[data-quiz-intro]');
+      const body = root.querySelector('[data-quiz-body]');
+      const form = root.querySelector('[data-quiz-form]');
+      const resultBox = root.querySelector('[data-quiz-result]');
+      const resultTitle = root.querySelector('[data-result-title]');
+      const resultDescription = root.querySelector('[data-result-description]');
+      const resultScore = root.querySelector('[data-result-score]');
+      const resultProducts = root.querySelector('[data-result-products]');
+      const startButton = root.querySelector('[data-quiz-start]');
+      const restartButton = root.querySelector('[data-quiz-restart]');
+      const resultsDataEl = root.querySelector('[data-quiz-results]');
+      const steps = Array.from(root.querySelectorAll('[data-quiz-step]'));
+      const actions = root.querySelector('[data-quiz-actions]');
+      const currentStepText = root.querySelector('[data-current-step]');
+      const totalStepsText = root.querySelector('[data-total-steps]');
+
+      let resultGroups = [];
+      let currentStep = 1;
+
+      if (totalStepsText) {
+        totalStepsText.textContent = steps.length;
+      }
+
+      try {
+        resultGroups = JSON.parse(resultsDataEl.textContent);
+      } catch (error) {
+        console.error('Quiz results JSON parsing failed', error);
+      }
+
+      function getHeaderOffset() {
+        const stickyHeader =
+          document.querySelector('.shopify-section-header-sticky') ||
+          document.querySelector('sticky-header') ||
+          document.querySelector('.header-wrapper') ||
+          document.querySelector('header');
+
+        if (!stickyHeader) {
+          return 90;
+        }
+
+        return stickyHeader.offsetHeight + 24;
+      }
+
+      function scrollToQuestion(questionElement) {
+        if (!questionElement) return;
+
+        const headerOffset = getHeaderOffset();
+        const questionTop = questionElement.getBoundingClientRect().top + window.pageYOffset;
+
+        window.scrollTo({
+          top: questionTop - headerOffset,
+          behavior: 'smooth'
+        });
+      }
+
+      function showStep(stepNumber) {
+        currentStep = stepNumber;
+
+        steps.forEach((step) => {
+          const isActive = Number(step.dataset.quizStep) === stepNumber;
+          step.classList.toggle('hidden', !isActive);
+        });
+
+        if (currentStepText) {
+          currentStepText.textContent = stepNumber;
+        }
+
+        if (actions) {
+          const isLastStep = stepNumber === steps.length;
+          actions.classList.toggle('hidden', !isLastStep);
+        }
+      }
+
+      function goToNextStep() {
+        if (currentStep < steps.length) {
+          showStep(currentStep + 1);
+        }
+      }
+
+      function calculateScore() {
+        const selectedInputs = form.querySelectorAll('input[data-points]:checked');
+        let total = 0;
+
+        selectedInputs.forEach((input) => {
+          total += Number(input.dataset.points || 0);
+        });
+
+        return total;
+      }
+
+      function getSelectedValue(name) {
+        const selected = form.querySelector(`input[name="${name}"]:checked`);
+        return selected ? selected.value : '';
+      }
+
+      function findMatchingGroup(score, category) {
+        return resultGroups.find((group) => {
+          return (
+            score >= Number(group.min) &&
+            score <= Number(group.max) &&
+            group.category === category
+          );
+        });
+      }
+
+      function filterProductsByPrice(products, priceRange) {
+        return products.filter((product) => {
+          const price = Number(product.priceCents || 0);
+
+          if (priceRange === 'up_to_70') {
+            return price <= 7000;
+          }
+
+          if (priceRange === '70_to_150') {
+            return price > 7000 && price <= 15000;
+          }
+
+          if (priceRange === '150_plus') {
+            return price > 15000;
+          }
+
+          return true;
+        });
+      }
+
+      function renderProducts(products) {
+        resultProducts.innerHTML = '';
+
+        if (!products || !products.length) {
+          const emptyMessage = document.createElement('div');
+          emptyMessage.className = 'lm-product-quiz__empty-message';
+
+          const firstLine = document.createElement('p');
+          firstLine.textContent = 'No products match your selected category and price range yet.';
+
+          const secondLine = document.createElement('p');
+          secondLine.textContent = 'Please try a different price range or add more products to this result group.';
+
+          emptyMessage.appendChild(firstLine);
+          emptyMessage.appendChild(secondLine);
+          resultProducts.appendChild(emptyMessage);
+
+          return;
+        }
+
+        products.forEach((product) => {
+          const card = document.createElement('article');
+          card.className = 'lm-product-quiz__product';
+
+          const link = document.createElement('a');
+          link.className = 'lm-product-quiz__product-link';
+          link.href = product.url;
+
+          const imageWrapper = document.createElement('div');
+          imageWrapper.className = 'lm-product-quiz__product-image';
+
+          if (product.image) {
+            const image = document.createElement('img');
+            image.src = product.image;
+            image.alt = product.title;
+            image.loading = 'lazy';
+            imageWrapper.appendChild(image);
+          }
+
+          const title = document.createElement('h4');
+          title.className = 'lm-product-quiz__product-title';
+          title.textContent = product.title;
+
+          const price = document.createElement('p');
+          price.className = 'lm-product-quiz__product-price';
+          price.textContent = product.price;
+
+          link.appendChild(imageWrapper);
+          link.appendChild(title);
+          link.appendChild(price);
+
+          card.appendChild(link);
+          resultProducts.appendChild(card);
+        });
+      }
+
+      function showResults(event) {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const score = calculateScore();
+        const selectedCategory = getSelectedValue('category_interest');
+        const selectedPriceRange = getSelectedValue('price_range');
+
+        const matchedGroup = findMatchingGroup(score, selectedCategory);
+
+        if (!matchedGroup) {
+          resultTitle.textContent = 'No matching result found';
+          resultDescription.textContent = 'Please check that this category has a result group for the current score range.';
+
+          if (resultScore) {
+            resultScore.textContent = '';
+          }
+
+          resultProducts.innerHTML = '';
+          form.classList.add('hidden');
+          resultBox.classList.remove('hidden');
+          scrollToQuestion(resultBox);
+
+          return;
+        }
+
+        const filteredProducts = filterProductsByPrice(matchedGroup.products, selectedPriceRange);
+
+        resultTitle.textContent = matchedGroup.title || 'Your recommendation';
+        resultDescription.textContent = matchedGroup.description || '';
+
+        if (resultScore) {
+          resultScore.textContent = '';
+        }
+
+        renderProducts(filteredProducts);
+
+        form.classList.add('hidden');
+        resultBox.classList.remove('hidden');
+        scrollToQuestion(resultBox);
+      }
+
+      function restartQuiz() {
+        form.reset();
+        resultProducts.innerHTML = '';
+        resultBox.classList.add('hidden');
+        form.classList.remove('hidden');
+
+        showStep(1);
+
+        if (intro) {
+          intro.classList.remove('hidden');
+        }
+
+        body.classList.add('hidden');
+
+        if (intro) {
+          scrollToQuestion(intro);
+        }
+      }
+
+      function handleAnswerChange(event) {
+        const input = event.target;
+
+        if (!input.matches('input[type="radio"]')) return;
+
+        setTimeout(() => {
+          if (currentStep < steps.length) {
+            goToNextStep();
+          }
+        }, 250);
+      }
+
+      if (startButton) {
+        startButton.addEventListener('click', () => {
+          if (intro) {
+            intro.classList.add('hidden');
+          }
+
+          body.classList.remove('hidden');
+          form.classList.remove('hidden');
+          resultBox.classList.add('hidden');
+          showStep(1);
+        });
+      } else {
+        body.classList.remove('hidden');
+        showStep(1);
+      }
+
+      if (form) {
+        form.addEventListener('change', handleAnswerChange);
+        form.addEventListener('submit', showResults);
+      }
+
+      if (restartButton) {
+        restartButton.addEventListener('click', restartQuiz);
+      }
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "LM Product Quiz",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Small title",
+      "default": "Product Finder"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find your perfect match"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "Answer 5 quick questions and we’ll suggest products that match your preferences."
+    },
+    {
+      "type": "text",
+      "id": "start_button_label",
+      "label": "Start button label",
+      "default": "Start quiz"
+    },
+    {
+      "type": "text",
+      "id": "submit_button_label",
+      "label": "Submit button label",
+      "default": "Show my results"
+    },
+    {
+      "type": "text",
+      "id": "result_label",
+      "label": "Result title label",
+      "default": "Your results"
+    },
+    {
+      "type": "text",
+      "id": "restart_button_label",
+      "label": "Restart button label",
+      "default": "Retake quiz"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Question 1"
+    },
+    {
+      "type": "text",
+      "id": "q1_title",
+      "label": "Question 1 title",
+      "default": "1. Who are you shopping for?"
+    },
+    {
+      "type": "text",
+      "id": "q1_myself_label",
+      "label": "Answer 1 label",
+      "default": "For myself"
+    },
+    {
+      "type": "range",
+      "id": "q1_myself_points",
+      "label": "Answer 1 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "q1_partner_label",
+      "label": "Answer 2 label",
+      "default": "For my partner"
+    },
+    {
+      "type": "range",
+      "id": "q1_partner_points",
+      "label": "Answer 2 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "q1_couple_label",
+      "label": "Answer 3 label",
+      "default": "For us as a couple"
+    },
+    {
+      "type": "range",
+      "id": "q1_couple_points",
+      "label": "Answer 3 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "q1_gift_label",
+      "label": "Answer 4 label",
+      "default": "As a gift"
+    },
+    {
+      "type": "range",
+      "id": "q1_gift_points",
+      "label": "Answer 4 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Question 2"
+    },
+    {
+      "type": "text",
+      "id": "q2_title",
+      "label": "Question 2 title",
+      "default": "2. How much experience do you have with adult toys?"
+    },
+    {
+      "type": "text",
+      "id": "q2_beginner_label",
+      "label": "Answer 1 label",
+      "default": "Beginner / just exploring"
+    },
+    {
+      "type": "range",
+      "id": "q2_beginner_points",
+      "label": "Answer 1 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "q2_some_label",
+      "label": "Answer 2 label",
+      "default": "I have some experience"
+    },
+    {
+      "type": "range",
+      "id": "q2_some_points",
+      "label": "Answer 2 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "q2_advanced_label",
+      "label": "Answer 3 label",
+      "default": "I know what suits me"
+    },
+    {
+      "type": "range",
+      "id": "q2_advanced_points",
+      "label": "Answer 3 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Question 3"
+    },
+    {
+      "type": "text",
+      "id": "q3_title",
+      "label": "Question 3 title",
+      "default": "3. What matters most to you?"
+    },
+    {
+      "type": "text",
+      "id": "q3_ease_label",
+      "label": "Answer 1 label",
+      "default": "Ease of use"
+    },
+    {
+      "type": "range",
+      "id": "q3_ease_points",
+      "label": "Answer 1 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "q3_stronger_label",
+      "label": "Answer 2 label",
+      "default": "Stronger sensations"
+    },
+    {
+      "type": "range",
+      "id": "q3_stronger_points",
+      "label": "Answer 2 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "q3_premium_label",
+      "label": "Answer 3 label",
+      "default": "Premium quality"
+    },
+    {
+      "type": "range",
+      "id": "q3_premium_points",
+      "label": "Answer 3 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "q3_exploring_label",
+      "label": "Answer 4 label",
+      "default": "Exploring something new"
+    },
+    {
+      "type": "range",
+      "id": "q3_exploring_points",
+      "label": "Answer 4 points",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 7
+    },
+    {
+      "type": "header",
+      "content": "Question 4"
+    },
+    {
+      "type": "text",
+      "id": "q4_title",
+      "label": "Question 4 title",
+      "default": "4. Which category interests you the most?"
+    },
+    {
+      "type": "text",
+      "id": "q4_vibrators_label",
+      "label": "Vibrators label",
+      "default": "Vibrators"
+    },
+    {
+      "type": "text",
+      "id": "q4_masturbators_label",
+      "label": "Masturbators label",
+      "default": "Masturbators"
+    },
+    {
+      "type": "text",
+      "id": "q4_rabbit_vibrators_label",
+      "label": "Rabbit vibrators label",
+      "default": "Rabbit vibrators"
+    },
+    {
+      "type": "text",
+      "id": "q4_penis_pumps_label",
+      "label": "Penis pumps label",
+      "default": "Penis pumps"
+    },
+    {
+      "type": "text",
+      "id": "q4_remote_control_label",
+      "label": "Remote control toys label",
+      "default": "Remote control toys"
+    },
+    {
+      "type": "text",
+      "id": "q4_clitoris_stimulators_label",
+      "label": "Clitoris stimulators label",
+      "default": "Clitoris stimulators"
+    },
+    {
+      "type": "text",
+      "id": "q4_extras_label",
+      "label": "Extras label",
+      "default": "Extras"
+    },
+    {
+      "type": "header",
+      "content": "Question 5"
+    },
+    {
+      "type": "text",
+      "id": "q5_title",
+      "label": "Question 5 title",
+      "default": "5. What price range are you looking for?"
+    },
+    {
+      "type": "text",
+      "id": "q5_price_1_label",
+      "label": "Price 1 label",
+      "default": "Up to €70"
+    },
+    {
+      "type": "text",
+      "id": "q5_price_2_label",
+      "label": "Price 2 label",
+      "default": "€70 to €150"
+    },
+    {
+      "type": "text",
+      "id": "q5_price_3_label",
+      "label": "Price 3 label",
+      "default": "€150+"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "result_group",
+      "name": "Result group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "result_title",
+          "label": "Result title",
+          "default": "Recommended products"
+        },
+        {
+          "type": "textarea",
+          "id": "result_description",
+          "label": "Result description",
+          "default": "Based on your answers, these products are a great match for you."
+        },
+        {
+          "type": "range",
+          "id": "min_score",
+          "label": "Minimum score",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "max_score",
+          "label": "Maximum score",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 20
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            {
+              "value": "vibrators",
+              "label": "Vibrators"
+            },
+            {
+              "value": "masturbators",
+              "label": "Masturbators"
+            },
+            {
+              "value": "rabbit_vibrators",
+              "label": "Rabbit vibrators"
+            },
+            {
+              "value": "penis_pumps",
+              "label": "Penis pumps"
+            },
+            {
+              "value": "remote_control_toys",
+              "label": "Remote control toys"
+            },
+            {
+              "value": "clitoris_stimulators",
+              "label": "Clitoris stimulators"
+            },
+            {
+              "value": "extras",
+              "label": "Extras"
+            }
+          ],
+          "default": "vibrators"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product 1"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product 2"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product 3"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Product 4"
+        },
+        {
+          "type": "product",
+          "id": "product_5",
+          "label": "Product 5"
+        },
+        {
+          "type": "product",
+          "id": "product_6",
+          "label": "Product 6"
+        },
+        {
+          "type": "product",
+          "id": "product_7",
+          "label": "Product 7"
+        },
+        {
+          "type": "product",
+          "id": "product_8",
+          "label": "Product 8"
+        },
+        {
+          "type": "product",
+          "id": "product_9",
+          "label": "Product 9"
+        },
+        {
+          "type": "product",
+          "id": "product_10",
+          "label": "Product 10"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 28,
+  "presets": [
+    {
+      "name": "LM Product Quiz",
+      "blocks": [
+        {
+          "type": "result_group",
+          "settings": {
+            "result_title": "Gentle Start - Vibrators",
+            "result_description": "These products are a gentle and easy starting point.",
+            "min_score": 0,
+            "max_score": 10,
+            "category": "vibrators"
+          }
+        },
+        {
+          "type": "result_group",
+          "settings": {
+            "result_title": "Curious Explorer - Vibrators",
+            "result_description": "These products are a good match if you want to explore a little more.",
+            "min_score": 11,
+            "max_score": 20,
+            "category": "vibrators"
+          }
+        },
+        {
+          "type": "result_group",
+          "settings": {
+            "result_title": "Confident Pleasure - Vibrators",
+            "result_description": "These products are suited for users who already know what they enjoy.",
+            "min_score": 21,
+            "max_score": 30,
+            "category": "vibrators"
+          }
+        },
+        {
+          "type": "result_group",
+          "settings": {
+            "result_title": "Bold & Premium - Vibrators",
+            "result_description": "These products are for a bolder, more premium experience.",
+            "min_score": 31,
+            "max_score": 100,
+            "category": "vibrators"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
