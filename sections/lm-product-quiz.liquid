@@ -21,7 +21,7 @@
       <div class="lm-product-quiz__body hidden" data-quiz-body>
         <form class="lm-product-quiz__form" data-quiz-form>
           <div class="lm-product-quiz__progress" data-quiz-progress>
-            Question <span data-current-step>1</span> of <span data-total-steps>5</span>
+            <span data-current-step>1</span> / <span data-total-steps>5</span>
           </div>
 
           <div class="lm-product-quiz__question" data-quiz-step="1">
@@ -220,6 +220,10 @@
   </script>
 
   <style>
+    .lm-product-quiz__actions {
+      padding-left: 1.8rem;
+    }
+
     #lm-product-quiz-{{ section.id }} [data-quiz-start],
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button {
@@ -297,19 +301,21 @@
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__heading {
       margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 200;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__question,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
-      padding: 24px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 3rem 0;
       border-radius: 0px;
-      background: #fff;
+      background-color: rgb(var(--color-background));
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro p {
       margin-top: 0;
+      font-size: 1.4rem;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__form {
@@ -326,6 +332,7 @@
       margin-bottom: 0;
       font-size: 14px;
       opacity: 0.7;
+      padding-left: 1.5rem;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__question {
@@ -424,6 +431,7 @@
       letter-spacing: 0.08em;
       font-size: 12px;
       opacity: 0.75;
+      color: white;
     }
 
     #lm-product-quiz-{{ section.id }} [data-result-title] {
@@ -486,17 +494,20 @@
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image {
-      aspect-ratio: 1 / 1;
-      border-radius: 12px;
+      height: 260px;
+      border-radius: 0;
       overflow: hidden;
-      background: rgba(0, 0, 0, 0.04);
+      background: #fff;
       margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
     }
 
@@ -504,11 +515,13 @@
       margin: 0 0 8px;
       font-size: 16px;
       line-height: 1.4;
+      color: #000000;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-price {
       margin: 0 0 12px;
       font-weight: 600;
+      color: #000000;
     }
 
     @media screen and (max-width: 989px) {
@@ -530,6 +543,14 @@
 
       #lm-product-quiz-{{ section.id }} .lm-product-quiz__question h3 {
         font-size: 18px;
+      }
+
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image {
+        height: 220px;
+      }
+
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__product {
+        padding: 14px;
       }
     }
   </style>

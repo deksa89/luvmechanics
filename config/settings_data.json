@@ -165,7 +165,7 @@
         "settings": {
           "background": "#ffffff",
           "background_gradient": "#FFFFFF",
-          "text": "#3a2a28",
+          "text": "#2d2a26",
           "button": "#f8275c",
           "button_label": "#ffffff",
           "secondary_button_label": "#f98585",
@@ -174,9 +174,9 @@
       },
       "scheme-2": {
         "settings": {
-          "background": "#edffa7",
+          "background": "#f29ca6",
           "background_gradient": "#f7f7f7",
-          "text": "#2e2a39",
+          "text": "#ffffff",
           "button": "#2e2a39",
           "button_label": "#edffa7",
           "secondary_button_label": "#2e2a39",

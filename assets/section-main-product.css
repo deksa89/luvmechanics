@@ -78,14 +78,14 @@ product-info {
 
   .product--medium:not(.product--no-media) .product__media-wrapper,
   .product--small:not(.product--no-media) .product__info-wrapper {
-    max-width: 55%;
-    width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 40%;
+    width: calc(40% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--medium:not(.product--no-media) .product__info-wrapper,
   .product--small:not(.product--no-media) .product__media-wrapper {
-    max-width: 45%;
-    width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 60%;
+    width: calc(60% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 }
 
@@ -370,7 +370,7 @@ a.product__text {
 }
 
 .product-form__buttons {
-  max-width: 50rem;
+  max-width: 44rem;
 }
 
 @media screen and (max-width: 749px) {
@@ -1610,7 +1610,70 @@ a.product__text {
   }
 }
 
+.metafield-rich_text_field {
+  text-align: justify;
+}
+
 .lm-sticky-atc__btn:focus-visible {
   outline: 2px solid rgba(var(--color-foreground), 0.35);
   outline-offset: 3px;
+}
+
+
+/* Product page desktop layout refinement */
+@media screen and (min-width: 990px) {
+  .product--large:not(.product--no-media) .product__media-wrapper {
+    max-width: 52%;
+    width: calc(52% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+
+  .product--large:not(.product--no-media) .product__info-wrapper {
+    max-width: 48%;
+    width: calc(48% - var(--grid-desktop-horizontal-spacing) / 2);
+    padding-left: 5.5rem;
+  }
+
+  .product__info-container {
+    max-width: 56rem;
+    min-height: 66rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .product__media-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .product__media-list .product__media-item,
+  .product-media-container,
+  .product__media,
+  .product__media img {
+    max-height: 66rem;
+  }
+
+  .product__media img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* Reduce main product image size on desktop only */
+@media screen and (min-width: 990px) {
+  .product__media-wrapper .product__media img {
+    max-height: 58rem;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  .product__media-wrapper .product__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

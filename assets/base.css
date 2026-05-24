@@ -3845,6 +3845,31 @@ details-disclosure > details {
   line-height: calc(1 + 0.2 / var(--font-body-scale)) !important;
 }
 
+.pmpr_bundle__root {
+  border-radius: 0px !important;
+}
+
+.pmpr_bundle__product {
+  border-radius: 0px !important;
+}
+
+.pmpr_bundle__quantity {
+  border-radius: 0px !important;
+}
+
+.pmpr_bundle__buy_all {
+  border-radius: 0px !important;
+}
+
+.pmpr_bundle__product_img {
+  border: 1px solid #d1d1d1 !important;
+  border-radius: 0px !important;
+  min-width: 96px !important;
+  width: 96px !important;
+  height: 97px !important;
+  padding: 4px !important;
+}
+
 .pmpr_bundle__product_title h4 {
   overflow: hidden !important;
   text-overflow: ellipsis !important;

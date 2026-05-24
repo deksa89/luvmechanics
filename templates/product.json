@@ -26,6 +26,10 @@
             "custom_liquid": "{{ product.metafields.custom.product_intro_description\n | metafield_tag }}"
           }
         },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "delivery_info_Qt9Dkq": {
           "type": "delivery_info",
           "settings": {
@@ -44,10 +48,6 @@
             "delivery_time": "Delivery time: 4–7 days"
           }
         },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -64,6 +64,19 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
+          }
+        },
+        "recommended_with_7RE7zt": {
+          "type": "recommended_with",
+          "disabled": true,
+          "settings": {
+            "heading": "Recommended with",
+            "products": [
+              "shunga-toko-aqua-natural-lubricant",
+              "cobeco-bodylube-body-lube-latex-safe-250-ml"
+            ],
+            "show_vendor": true,
+            "show_price": true
           }
         },
         "feature_highlights_strip_ce9P87": {
@@ -91,7 +104,7 @@
             "title_color": "#ffffff",
             "text_color": "#ffffff",
             "icon_color": "#ffffff",
-            "margin_top": 24,
+            "margin_top": 50,
             "margin_bottom": 24,
             "padding_top": 34,
             "padding_bottom": 36,
@@ -111,13 +124,13 @@
             "icon_bottom_spacing": 16,
             "mobile_icon_bottom_spacing": 14,
             "title_font_size": 21,
-            "mobile_title_font_size": 20,
+            "mobile_title_font_size": 17,
             "title_font_weight": "700",
             "title_line_height": "1.25",
             "title_bottom_spacing": 18,
             "mobile_title_bottom_spacing": 14,
             "text_font_size": 14,
-            "mobile_text_font_size": 14,
+            "mobile_text_font_size": 13,
             "text_font_weight": "400",
             "text_line_height": "1.45",
             "show_dividers": true,
@@ -163,12 +176,13 @@
         "judge_me_reviews_preview_badge_XajXT4",
         "title",
         "custom_liquid_LiUYFy",
+        "price",
         "delivery_info_Qt9Dkq",
         "delivery_info_HrhB9H",
-        "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "recommended_with_7RE7zt",
         "feature_highlights_strip_ce9P87",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",
