@@ -58,8 +58,19 @@
               class="lm-flag"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"
             />
+
             <span class="lm-flag-fallback" aria-hidden="true">{{ code | upcase }}</span>
-            <span class="visually-hidden">{{ language.endonym_name | capitalize }}</span>
+
+            <span class="lm-language-name">
+              {%- case code -%}
+                {%- when 'en' -%}
+                  English
+                {%- when 'hr' -%}
+                  Hrvatski
+                {%- else -%}
+                  {{ language.endonym_name | capitalize }}
+              {%- endcase -%}
+            </span>
           </a>
         </li>
       {%- endfor -%}

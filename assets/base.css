@@ -89,11 +89,15 @@
 }
 
 
-/* @media screen and (max-width: 768px) {
-  .page-width {
-    padding: 0 0.3rem !important;
+@media screen and (max-width: 768px) {
+  cart-items > .page-width {
+    padding: 0 1.5rem;
   }
-} */
+
+  #main-cart-footer > .page-width {
+    padding: 0 1.5rem;
+  }
+}
 
 /* Only Image-with-text: remove page-width padding + let it go full width */
 /* .section-template--28235575427409__image-with-text-padding .page-width {

@@ -27,21 +27,41 @@
 
   <div class="disclosure__list-wrapper" hidden>
     <ul id="{{ localPosition }}List" role="list" class="disclosure__list list-unstyled">
-      {%- for country in localization.available_countries -%}
-        <li class="disclosure__item" tabindex="-1">
-          <a
-            class="link link--text disclosure__link caption-large focus-inset"
-            href="#"
-            data-value="{{ country.iso_code }}"
-            {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}
-          >
-            <span {% if country.iso_code != localization.country.iso_code %}class="visibility-hidden"{% endif %}>
-              {{- 'icon-checkmark.svg' | inline_asset_content -}}
-            </span>
-            {{ country.currency.iso_code }}
-          </a>
-        </li>
-      {%- endfor -%}
+  {%- assign shown_currencies = '' -%}
+
+  {%- for country in localization.available_countries -%}
+    {%- assign currency_code = country.currency.iso_code -%}
+    {%- assign currency_token = '|' | append: currency_code | append: '|' -%}
+
+    {%- unless shown_currencies contains currency_token -%}
+      {%- assign shown_currencies = shown_currencies | append: currency_token -%}
+
+      <li class="disclosure__item" tabindex="-1">
+        <a
+          class="link link--text disclosure__link caption-large focus-inset"
+          href="#"
+          data-value="{{ country.iso_code }}"
+          {% if country.currency.iso_code == localization.country.currency.iso_code %}aria-current="true"{% endif %}
+        >
+          <span {% if country.currency.iso_code != localization.country.currency.iso_code %}class="visibility-hidden"{% endif %}>
+            {{- 'icon-checkmark.svg' | inline_asset_content -}}
+          </span>
+
+          <span class="lm-country-currency">
+            {{ currency_code }}
+          </span>
+
+          <span class="lm-country-name">
+            {%- if currency_code == 'EUR' -%}
+              Eurozone
+            {%- else -%}
+              {{ country.name }}
+            {%- endif -%}
+          </span>
+        </a>
+      </li>
+    {%- endunless -%}
+  {%- endfor -%}
     </ul>
   </div>
 </div>
