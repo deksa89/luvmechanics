@@ -12,6 +12,38 @@
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
+        "carousel_image_desktop_FPjd8A": {
+          "type": "carousel_image_desktop",
+          "settings": {
+            "image": "shopify://shop_images/LELO_POPUST_HR.png",
+            "link": "shopify://collections/lelo",
+            "language": "hr"
+          }
+        },
+        "carousel_image_mobile_DLhMiU": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/lelo_popust_hr_mobile.png",
+            "link": "shopify://collections/lelo",
+            "language": "hr"
+          }
+        },
+        "carousel_image_desktop_jryD6j": {
+          "type": "carousel_image_desktop",
+          "settings": {
+            "image": "shopify://shop_images/LELO_POPUST_ENG_DESKTOP_46c5137d-3a50-4979-8e87-02a3470b4b25.png",
+            "link": "shopify://collections/lelo",
+            "language": "en"
+          }
+        },
+        "carousel_image_mobile_yg6cxz": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/LELO_POPUST_ENG_MOBILE.png",
+            "link": "shopify://collections/lelo",
+            "language": "en"
+          }
+        },
         "carousel_image_desktop_Cb9Jwi": {
           "type": "carousel_image_desktop",
           "settings": {
@@ -118,6 +150,10 @@
         }
       },
       "block_order": [
+        "carousel_image_desktop_FPjd8A",
+        "carousel_image_mobile_DLhMiU",
+        "carousel_image_desktop_jryD6j",
+        "carousel_image_mobile_yg6cxz",
         "carousel_image_desktop_Cb9Jwi",
         "carousel_image_desktop_MLJGQP",
         "carousel_image_desktop_yGc8UF",
@@ -362,6 +398,26 @@
       "disabled": true,
       "name": "Bestsellers",
       "settings": {}
+    },
+    "image_banner_link_DbGgJx": {
+      "type": "image-banner-link",
+      "disabled": true,
+      "name": "Image banner with button",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "button_label": "Istraži više",
+        "button_link": "",
+        "desktop_height": 400,
+        "mobile_height": 420,
+        "overlay_opacity": 25,
+        "content_position_x": 50,
+        "content_position_y": 85,
+        "text_color": "#ffffff",
+        "button_background": "#ffffff",
+        "button_text_color": "#111111",
+        "button_border_color": "#ffffff"
+      }
     },
     "lm_product_quiz_kJWWB7": {
       "type": "lm-product-quiz",
@@ -1125,6 +1181,7 @@
     "image-with-text",
     "product_carousel_tabs_9QhRbc",
     "blocks_mtYFh7",
+    "image_banner_link_DbGgJx",
     "lm_product_quiz_kJWWB7",
     "featured_promo_trio_ch9Fxi",
     "1772909820c436293e",
