@@ -22,11 +22,17 @@
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/vibrating-penis-rings-desktop.jpg",
-        "image_mobile": "shopify://shop_images/vibrating-penis-rings-mobile.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
+        "image": "shopify://shop_images/novo-p-r_37569b20-d887-4047-bbbd-27be9a70dbbd.png",
+        "image_mobile": "shopify://shop_images/novo-p-r_58818c03-f553-4551-880d-04ce50d38889.png",
+        "image_overlay_opacity": 20,
+        "image_height": "jimmyjane",
+        "image_position_desktop": "center bottom",
+        "image_position_mobile": "center bottom",
         "image_behavior": "none",
+        "hero_title": "Vibrating rings",
+        "hero_title_color": "#ffffff",
+        "hero_title_size_desktop": 64,
+        "hero_title_size_mobile": 36,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
@@ -69,6 +75,7 @@
         "text_TinQif",
         "button_ktDGJ8"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
@@ -83,7 +90,7 @@
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 20,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",

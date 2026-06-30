@@ -26,6 +26,16 @@
     assign terms = results.terms | escape
     assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
   endif
+
+  assign price_range_min = null
+  if results.products != blank
+    for product in results.products
+      if price_range_min == null or product.price_min < price_range_min
+        assign price_range_min = product.price_min
+      endif
+    endfor
+  endif
+  assign price_range_min = price_range_min | default: 0
 -%}
 
 <div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -93,7 +103,7 @@
                       <facet-remove>
                         <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
                           <span class="active-facets__button-inner button button--tertiary">
-                            {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
+                            {{ min | default: price_range_min | money }} - {{ max | default: filter.range_max | money }}
                             <span class="svg-wrapper">
                               {{- 'icon-close-small.svg' | inline_asset_content -}}
                             </span>
@@ -113,6 +123,12 @@
               {% liquid
                 assign total_active_values = total_active_values | plus: filter.active_values.size
                 assign presentation = filter.presentation | default: default_presentation
+                assign filter_label_downcase = filter.label | downcase
+                assign is_numeric_range_filter = false
+
+                if filter_label_downcase contains 'duljina' or filter_label_downcase contains 'širina' or filter_label_downcase contains 'sirina' or filter.param_name contains 'sirina' or filter.param_name contains 'width' or filter.param_name contains 'length' or filter_label_downcase contains 'length' or filter_label_downcase contains 'width'
+                  assign is_numeric_range_filter = true
+                endif
 
                 if presentation == 'image'
                   assign show_more_number = 12
@@ -177,6 +193,9 @@
                           </facet-remove>
                         </div>
                       {%- endif -%}
+                      {% if is_numeric_range_filter %}
+                        {% render 'numeric-list-facet', filter: filter, id_prefix: 'Filter-Numeric-' %}
+                      {% else %}
                       <fieldset class="facets-wrap parent-wrap {% if filter_type == 'vertical' %} facets-wrap-vertical{% endif %}">
                         <legend class="visually-hidden">{{ filter.label | escape }}</legend>
                         {%- liquid
@@ -277,7 +296,8 @@
                           {%- endfor -%}
                         </ul>
                       </fieldset>
-                      {%- if filter.values.size > show_more_number and filter_type == 'vertical' -%}
+                      {% endif %}
+                      {%- if is_numeric_range_filter == false and filter.values.size > show_more_number and filter_type == 'vertical' -%}
                         <show-more-button>
                           <button
                             class="button-show-more link underlined-link"
@@ -328,7 +348,12 @@
                         {%- endif -%}
                       </div>
                       <price-range class="facets__price">
-                        {% render 'price-facet', filter: filter, id_prefix: 'Filter-', filter_type: filter_type %}
+                        {% render 'price-facet',
+                          filter: filter,
+                          id_prefix: 'Filter-',
+                          filter_type: filter_type,
+                          results: results
+                        %}
                       </price-range>
                     </div>
                   </details>
@@ -359,7 +384,7 @@
                     <facet-remove>
                       <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
                         <span class="active-facets__button-inner button button--tertiary">
-                          {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
+                          {{ min | default: price_range_min | money }} - {{ max | default: filter.range_max | money }}
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
                           </span>
@@ -511,6 +536,13 @@
                 {%- for filter in results.filters -%}
                   {% liquid
                     assign presentation = filter.presentation | default: default_presentation
+                    assign filter_label_downcase = filter.label | downcase
+                    assign is_numeric_range_filter = false
+
+                    if filter_label_downcase contains 'duljina' or filter_label_downcase contains 'širina' or filter_label_downcase contains 'sirina' or filter.param_name contains 'sirina' or filter.param_name contains 'width' or filter.param_name contains 'length' or filter_label_downcase contains 'length' or filter_label_downcase contains 'width'
+                      assign is_numeric_range_filter = true
+                    endif
+
                     if presentation == 'image'
                       assign visual_layout_class = 'facets-layout facets-layout-grid facets-layout-grid--' | append: presentation
                     else
@@ -550,6 +582,9 @@
                               </span>
                             {%- endif -%}
                           </button>
+                          {% if is_numeric_range_filter %}
+                            {% render 'numeric-list-facet', filter: filter, id_prefix: 'Mobile-Filter-Numeric-' %}
+                          {% else %}
                           <ul class="{{ visual_layout_class }} mobile-facets__list list-unstyled" role="list">
                             {%- liquid
                               assign sorted_values = filter.values
@@ -644,6 +679,7 @@
                               </li>
                             {%- endfor -%}
                           </ul>
+                          {% endif %}
 
                           <div class="mobile-facets__footer gradient">
                             <facet-remove class="mobile-facets__clear-wrapper">
@@ -694,7 +730,12 @@
                           </p>
 
                           <price-range class="facets__price">
-                            {% render 'price-facet', filter: filter, id_prefix: 'Mobile-Filter-' %}
+                            {% render 'price-facet',
+                              filter: filter,
+                              id_prefix: 'Mobile-Filter-',
+                              filter_type: filter_type,
+                              results: results
+                            %}
                           </price-range>
                           <div class="mobile-facets__footer">
                             <facet-remove class="mobile-facets__clear-wrapper">
@@ -805,7 +846,7 @@
           <facet-remove>
             <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
               <span class="active-facets__button-inner button button--tertiary">
-                {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
+                {{ min | default: price_range_min | money }} - {{ max | default: filter.range_max | money }}
                 <span class="svg-wrapper">
                   {{- 'icon-close-small.svg' | inline_asset_content -}}
                 </span>
@@ -914,7 +955,7 @@
                 <facet-remove>
                   <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
                     <span class="active-facets__button-inner button button--tertiary">
-                      {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
+                      {{ min | default: price_range_min | money }} - {{ max | default: filter.range_max | money }}
                       <span class="svg-wrapper">
                         {{- 'icon-close-small.svg' | inline_asset_content -}}
                       </span>

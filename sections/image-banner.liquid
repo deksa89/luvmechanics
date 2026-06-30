@@ -45,6 +45,119 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+
+  #Banner-{{ section.id }} {
+    --banner-title-color: {{ section.settings.hero_title_color }};
+    --banner-title-size-desktop: {{ section.settings.hero_title_size_desktop }}px;
+    --banner-title-size-mobile: {{ section.settings.hero_title_size_mobile }}px;
+    --banner-image-position-desktop: {{ section.settings.image_position_desktop }};
+    --banner-image-position-mobile: {{ section.settings.image_position_mobile }};
+  }
+
+  #Banner-{{ section.id }} .banner__media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #Banner-{{ section.id }} .banner__media picture img,
+  #Banner-{{ section.id }} .banner__media > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--banner-image-position-desktop);
+  }
+
+  #Banner-{{ section.id }}.banner--jimmyjane {
+    min-height: clamp(360px, 31vw, 620px);
+  }
+
+  #Banner-{{ section.id }}.banner--jimmyjane::before,
+  #Banner-{{ section.id }}.banner--jimmyjane .banner__media::before {
+    content: none;
+    display: none;
+  }
+
+  #Banner-{{ section.id }}.banner--jimmyjane .banner__media {
+    height: 100%;
+  }
+
+  #Banner-{{ section.id }}.banner--jimmyjane .banner__content {
+    min-height: clamp(360px, 31vw, 620px);
+  }
+
+  #Banner-{{ section.id }} .banner__hero-title {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    pointer-events: none;
+  }
+
+  #Banner-{{ section.id }} .banner__hero-title-inner {
+    width: 100%;
+    padding-top: 4rem;
+    padding-bottom: clamp(5.2rem, 8vw, 9.5rem);
+  }
+
+  #Banner-{{ section.id }} .banner__hero-title-text {
+    max-width: 100%;
+    margin: 0;
+    color: var(--banner-title-color);
+    font-size: clamp(48px, 7vw, var(--banner-title-size-desktop));
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0;
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 768px) {
+    #Banner-{{ section.id }}.banner--jimmyjane.banner--mobile-bottom .banner__media,
+    #Banner-{{ section.id }}.banner--jimmyjane.banner--stacked:not(.banner--mobile-bottom) .banner__media {
+      position: absolute;
+    }
+
+    #Banner-{{ section.id }} .banner__media picture img,
+    #Banner-{{ section.id }} .banner__media > img {
+      object-position: var(--banner-image-position-mobile);
+    }
+
+    #Banner-{{ section.id }}.banner--jimmyjane .banner__media picture img,
+    #Banner-{{ section.id }}.banner--jimmyjane .banner__media > img {
+      object-position: var(--banner-image-position-mobile, center center);
+    }
+
+    #Banner-{{ section.id }}.banner--jimmyjane,
+    #Banner-{{ section.id }}.banner--jimmyjane .banner__content {
+      min-height: clamp(320px, 84vw, 380px);
+    }
+
+    #Banner-{{ section.id }}.banner--jimmyjane .banner__content {
+      padding: 0;
+    }
+
+    #Banner-{{ section.id }}.banner--jimmyjane .banner__box {
+      display: none;
+    }
+
+    #Banner-{{ section.id }}.banner--jimmyjane .banner__hero-title {
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    #Banner-{{ section.id }} .banner__hero-title-inner {
+      padding: 0 1.8rem 3.2rem;
+    }
+
+    #Banner-{{ section.id }} .banner__hero-title-text {
+      max-width: calc(100vw - 3.6rem);
+      font-size: clamp(28px, 10vw, var(--banner-title-size-mobile));
+      line-height: 0.98;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -161,6 +274,15 @@
       }}
     </div>
   {%- endif -%}
+  {%- if section.settings.hero_title != blank -%}
+    <div class="banner__hero-title page-width">
+      <div class="banner__hero-title-inner">
+        <h2 class="banner__hero-title-text">
+          {{ section.settings.hero_title }}
+        </h2>
+      </div>
+    </div>
+  {%- endif -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
@@ -265,10 +387,70 @@
         {
           "value": "large",
           "label": "t:sections.image-banner.settings.image_height.options__4.label"
+        },
+        {
+          "value": "jimmyjane",
+          "label": "JimmyJane wide hero"
         }
       ],
       "default": "medium",
       "label": "t:sections.image-banner.settings.image_height.label"
+    },
+    {
+      "type": "select",
+      "id": "image_position_desktop",
+      "label": "Desktop image crop position",
+      "options": [
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "image_position_mobile",
+      "label": "Mobile image crop position",
+      "options": [
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center center"
     },
     {
       "type": "select",
@@ -297,6 +479,37 @@
     {
       "type": "header",
       "content": "t:sections.image-banner.settings.content.content"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero title"
+    },
+    {
+      "type": "color",
+      "id": "hero_title_color",
+      "label": "Hero title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "hero_title_size_desktop",
+      "label": "Hero title desktop size",
+      "min": 48,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 112
+    },
+    {
+      "type": "range",
+      "id": "hero_title_size_mobile",
+      "label": "Hero title mobile size",
+      "min": 32,
+      "max": 84,
+      "step": 4,
+      "unit": "px",
+      "default": 56
     },
     {
       "type": "select",

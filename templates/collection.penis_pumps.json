@@ -22,11 +22,17 @@
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/penis-pumps-spread-randomly-desktop1.jpg",
-        "image_mobile": "shopify://shop_images/penis-pumps-spread-randomly-mobile.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
+        "image": "shopify://shop_images/grok-image-4181f35e-6cf1-458d-9a01-46472be18d77.jpg",
+        "image_mobile": "shopify://shop_images/pp-image.2_6373f76e-14aa-4fc8-8fc6-88baca6a9567.png",
+        "image_overlay_opacity": 20,
+        "image_height": "jimmyjane",
+        "image_position_desktop": "center bottom",
+        "image_position_mobile": "center center",
         "image_behavior": "none",
+        "hero_title": "Penis pumps",
+        "hero_title_color": "#eaeaea",
+        "hero_title_size_desktop": 64,
+        "hero_title_size_mobile": 36,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
@@ -69,6 +75,7 @@
         "text_M98gRQ",
         "button_dPyEmd"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
@@ -83,7 +90,7 @@
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 20,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",

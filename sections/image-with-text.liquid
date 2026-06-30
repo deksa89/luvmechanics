@@ -9,14 +9,15 @@
   .carousel-shell {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 
   .carousel-viewport {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
     touch-action: pan-y;
     user-select: none;
     -webkit-user-select: none;
@@ -52,8 +53,19 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain !important;
+    object-fit: cover !important;
     object-position: center;
+  }
+
+  .carousel-instance,
+  .carousel-track,
+  .carousel-slide,
+  .carousel-slide-link {
+    height: 100%;
+  }
+
+  .carousel-instance {
+    width: 100%;
   }
 
   .carousel-controls {
@@ -141,6 +153,10 @@
       display: block;
     }
 
+    .mobile-carousel .carousel-viewport {
+      aspect-ratio: 4 / 5;
+    }
+
     .section-{{ section.id }}-padding > .page-width {
       max-width: 100%;
       padding-left: 0;
@@ -177,6 +193,10 @@
       padding-top: {{ section.settings.padding_top_desktop }}px;
       padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
     }
+
+    .section-{{ section.id }}-padding > .image-with-text-page-width {
+      max-width: {{ section.settings.desktop_max_width | default: 1200 }}px;
+    }
   }
 {%- endstyle -%}
 
@@ -195,7 +215,7 @@
 -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="page-width">
+  <div class="page-width image-with-text-page-width">
     <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
@@ -651,34 +671,15 @@
       updateTrackHeight() {
         if (!this.isVisible()) return;
 
-        const activeSlide = this.slides?.[this.currentIndex];
-        if (!activeSlide) return;
-
-        const img = activeSlide.querySelector('img');
-        if (!img) return;
-
         const viewportWidth = this.viewport.offsetWidth;
         if (!viewportWidth) return;
 
-        const setHeight = () => {
-          const naturalWidth = img.naturalWidth || img.width;
-          const naturalHeight = img.naturalHeight || img.height;
-
-          if (!naturalWidth || !naturalHeight) return;
-
-          const ratio = naturalHeight / naturalWidth;
-          const calculatedHeight = viewportWidth * ratio;
-
-          if (calculatedHeight > 0) {
-            this.viewport.style.height = `${calculatedHeight}px`;
-          }
-        };
-
-        if (img.complete) {
-          setHeight();
-        } else {
-          img.addEventListener('load', setHeight, { once: true });
+        if (this.root.classList.contains('mobile-carousel')) {
+          this.viewport.style.height = `${viewportWidth * 5 / 4}px`;
+          return;
         }
+
+        this.viewport.style.height = `${viewportWidth * 9 / 16}px`;
       }
 
       getRealIndex() {
@@ -821,6 +822,16 @@
         { "value": "large",  "label": "Large" }
       ],
       "default": "medium"
+    },
+    {
+      "type": "range",
+      "id": "desktop_max_width",
+      "min": 900,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Max width (desktop)",
+      "default": 1200
     },
     {
       "type": "select",

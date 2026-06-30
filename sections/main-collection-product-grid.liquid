@@ -53,10 +53,15 @@
   }
 
   #product-grid .card-information--aligned {
+    position: relative;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end;
     height: 100%;
+  }
+
+  #product-grid .card-information--aligned:has(.lm-product-badges) {
+    padding-right: min(12rem, 42%);
   }
 
   #product-grid .card-product-reviews {
@@ -104,6 +109,39 @@
     order: 4 !important;
   }
 
+  #product-grid .lm-product-badges {
+    order: 5 !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.2rem;
+    max-width: min(11rem, 40%);
+  }
+
+  #product-grid .lm-product-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: {{ section.settings.product_badge_icon_size }}px;
+    height: {{ section.settings.product_badge_icon_size }}px;
+    line-height: 0;
+  }
+
+  #product-grid .lm-product-badge__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #product-grid .lm-product-badge + .lm-product-badge {
+    margin-top: -12px;
+  }
+
   #product-grid .rating-count {
     margin: 0;
   }
@@ -112,6 +150,63 @@
     position: relative;
     width: 100%;
     height: 100%;
+  }
+
+  #product-grid .lm-card-corner-badges {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    max-width: min(12rem, 42%);
+    pointer-events: none;
+  }
+
+  #product-grid .lm-card-corner-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: {{ section.settings.product_badge_icon_size }}px;
+    height: {{ section.settings.product_badge_icon_size }}px;
+    line-height: 0;
+  }
+
+  #product-grid .lm-card-corner-badge__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media screen and (min-width: 990px) {
+    .section-{{ section.id }}-padding .facets-vertical {
+      gap: 2rem;
+    }
+
+    .section-{{ section.id }}-padding .facets-vertical .facets-wrapper {
+      width: 26rem;
+      flex-basis: 26rem;
+      padding-right: 2rem;
+    }
+
+    .section-{{ section.id }}-padding .collection {
+      width: 100%;
+    }
+
+    .section-{{ section.id }}-padding #product-grid.grid {
+      display: grid;
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+      column-gap: 1.2rem;
+      row-gap: 2.4rem;
+    }
+
+    .section-{{ section.id }}-padding #product-grid > .grid__item {
+      width: auto;
+      max-width: none;
+    }
   }
 
   #product-grid .lm-sale-badge {
@@ -156,6 +251,17 @@
       padding: 0.7rem 1rem;
     }
 
+    #product-grid .lm-card-corner-badges {
+      top: 0.8rem;
+      left: 0.8rem;
+      gap: 0.3rem;
+    }
+
+    #product-grid .lm-card-corner-badge {
+      width: {{ section.settings.product_badge_icon_size | times: 0.75 | round: 0 }}px;
+      height: {{ section.settings.product_badge_icon_size | times: 0.75 | round: 0 }}px;
+    }
+
     #product-grid .lm-save-badge {
       left: 1.2rem;
       bottom: 1.2rem;
@@ -165,6 +271,23 @@
 
     #product-grid .lm-collection-card--on-sale .card__information {
       padding-bottom: 3.8rem;
+    }
+
+    #product-grid .card-information--aligned:has(.lm-product-badges) {
+      padding-right: 0;
+    }
+
+    #product-grid .lm-product-badges {
+      position: static;
+      flex-direction: row;
+      gap: 0.45rem;
+      max-width: 100%;
+      margin-top: 0.9rem;
+    }
+
+    #product-grid .lm-product-badge {
+      width: {{ section.settings.product_badge_icon_size | times: 0.75 | round: 0 }}px;
+      height: {{ section.settings.product_badge_icon_size | times: 0.75 | round: 0 }}px;
     }
   }
 
@@ -191,8 +314,14 @@
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
+    {%- liquid
+      assign collection_filter_type = section.settings.filter_type
+      if section.settings.enable_filtering
+        assign collection_filter_type = 'vertical'
+      endif
+    -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
-    {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
+    {%- if section.settings.enable_sorting and collection_filter_type == 'vertical' -%}
       <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
         <form class="facets-vertical-form" id="FacetSortForm">
           <div class="facet-filters sorting caption">
@@ -250,13 +379,646 @@
       </facet-filters-form>
     {%- endif -%}
 
-    <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
+    <div class="{% if collection_filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+      <style>
+        @media screen and (min-width: 750px) {
+          .section-{{ section.id }}-padding .facets-vertical {
+            align-items: flex-start;
+            gap: 2rem;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets-wrapper {
+            width: 26rem;
+            flex: 0 0 26rem;
+            padding-right: 2rem;
+            border-right: 0.1rem solid rgba(var(--color-foreground), 0.14);
+          }
+
+          .section-{{ section.id }}-padding .facets__form-vertical {
+            width: 100%;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical-sort {
+            margin-bottom: 2.4rem;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical-form {
+            justify-content: flex-end;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets-container {
+            display: block;
+            padding-top: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .active-facets {
+            display: block;
+            margin: 0 0 1.6rem;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .active-facets-vertical-filter {
+            display: block;
+          }
+
+          .section-{{ section.id }}-padding .facets__heading--vertical {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0 0 1.6rem;
+            color: rgb(var(--color-foreground));
+            font-size: 1.5rem !important;
+            font-weight: 500;
+            letter-spacing: 0;
+            text-transform: none;
+          }
+
+          .section-{{ section.id }}-padding .facets__heading--vertical::before {
+            content: "";
+            width: 1.8rem;
+            height: 1.8rem;
+            background: currentColor;
+            mask: url("{{ 'icon-filter.svg' | asset_url }}") center / contain no-repeat;
+            -webkit-mask: url("{{ 'icon-filter.svg' | asset_url }}") center / contain no-repeat;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .active-facets__button-wrapper {
+            display: block;
+            margin: 0 0 1.8rem;
+            padding: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .active-facets__button-remove {
+            display: block;
+            width: 100%;
+            padding: 1.1rem 1.6rem;
+            background: #d7ecd4;
+            color: #168020;
+            border-radius: 0.3rem;
+            text-align: center;
+            text-decoration: none;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .active-facets__button-remove span {
+            font-size: 1.3rem;
+            font-weight: 500;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .active-facets__button {
+            display: inline-flex;
+            margin: 0 0.6rem 0.8rem 0;
+            padding: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical span.active-facets__button-inner {
+            min-height: 0;
+            padding: 0.5rem 0.9rem;
+            border-radius: 0;
+            box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.16);
+            font-size: 1.2rem;
+          }
+
+          .section-{{ section.id }}-padding .facets__disclosure-vertical {
+            border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+            margin: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets__disclosure-vertical:last-of-type {
+            border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets__summary {
+            margin: 0;
+            padding: 1.8rem 1.2rem;
+            color: rgb(var(--color-foreground));
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets__summary > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets__summary-label,
+          .section-{{ section.id }}-padding .facets-vertical .facets__summary span:first-child {
+            color: rgb(var(--color-foreground));
+            font-size: 1.4rem !important;
+            font-weight: 700;
+            text-decoration: none;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets__summary:hover .facets__summary-label {
+            text-decoration: none;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets__summary .icon-caret {
+            display: none;
+          }
+
+          .section-{{ section.id }}-padding .facets-vertical .facets__summary > div::after {
+            content: "+";
+            color: rgba(var(--color-foreground), 0.82);
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1;
+          }
+
+          .section-{{ section.id }}-padding .facets__disclosure-vertical[open] .facets__summary > div::after {
+            content: "−";
+          }
+
+          .section-{{ section.id }}-padding .facets__display-vertical {
+            padding: 0 1.2rem 1.8rem;
+          }
+
+          .section-{{ section.id }}-padding .facets__header-vertical {
+            display: none;
+          }
+
+          .section-{{ section.id }}-padding .facets-wrap-vertical {
+            padding: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets__list--vertical {
+            padding: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets__item {
+            margin: 0.8rem 0;
+          }
+
+          .section-{{ section.id }}-padding .facet-checkbox {
+            align-items: center;
+            padding: 0.4rem 0;
+            color: rgba(var(--color-foreground), 0.72);
+            font-size: 1.4rem;
+          }
+
+          .section-{{ section.id }}-padding .facet-checkbox > svg {
+            width: 1.8rem;
+            height: 1.8rem;
+            margin-right: 1rem;
+            border: 0.1rem solid rgba(var(--color-foreground), 0.18);
+          }
+
+          .section-{{ section.id }}-padding .facet-checkbox .svg-wrapper {
+            top: 0.9rem;
+            left: 0.35rem;
+          }
+
+          .section-{{ section.id }}-padding .facets-layout-list--text input[type='checkbox'] {
+            top: 0.4rem;
+            left: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets__price {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto auto minmax(0, 1fr);
+            align-items: center;
+            gap: 0.8rem 1.2rem;
+            padding: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range {
+            grid-column: 1 / -1;
+            position: relative;
+            height: 2rem;
+            margin: 0.6rem 0 1rem;
+            --range-start: 0%;
+            --range-end: 100%;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__track {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 0.5rem;
+            border-radius: 99rem;
+            transform: translateY(-50%);
+            background:
+              linear-gradient(
+                to right,
+                rgba(var(--color-foreground), 0.12) 0,
+                rgba(var(--color-foreground), 0.12) var(--range-start),
+                #d4479b var(--range-start),
+                #d4479b var(--range-end),
+                rgba(var(--color-foreground), 0.12) var(--range-end),
+                rgba(var(--color-foreground), 0.12) 100%
+              );
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__handle {
+            position: absolute;
+            top: 50%;
+            z-index: 3;
+            width: 1.4rem;
+            height: 1.4rem;
+            border-radius: 50%;
+            background: #d4479b;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__handle--min {
+            left: var(--range-start);
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__handle--max {
+            left: var(--range-end);
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__input {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 2rem;
+            margin: 0;
+            padding: 0;
+            appearance: none;
+            -webkit-appearance: none;
+            background: transparent;
+            pointer-events: none;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__input::-webkit-slider-runnable-track {
+            height: 0.5rem;
+            background: transparent;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__input::-moz-range-track {
+            height: 0.5rem;
+            background: transparent;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__input::-webkit-slider-thumb {
+            width: 1.4rem;
+            height: 1.4rem;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            pointer-events: auto;
+            appearance: none;
+            -webkit-appearance: none;
+            margin-top: -0.45rem;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .lm-price-range__input::-moz-range-thumb {
+            width: 1.4rem;
+            height: 1.4rem;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            pointer-events: auto;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .field-separator {
+            color: rgb(var(--color-foreground));
+            text-align: center;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .field-currency {
+            margin: 0;
+            color: rgba(var(--color-foreground), 0.72);
+          }
+
+          .section-{{ section.id }}-padding .facets__price .field {
+            min-width: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .field + .field-currency,
+          .section-{{ section.id }}-padding .facets-vertical .facets__price .field:last-of-type {
+            margin-left: 0;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .field__input {
+            min-height: 3.8rem;
+            padding: 0.8rem 1rem;
+            border: 0.1rem solid rgba(var(--color-foreground), 0.18);
+            border-radius: 0;
+            font-size: 1.3rem;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .field__input::placeholder {
+            color: rgba(var(--color-foreground), 0.78);
+            opacity: 1;
+          }
+
+          .section-{{ section.id }}-padding .facets__price .field__label {
+            display: none;
+          }
+
+          .section-{{ section.id }}-padding .product-grid-container {
+            min-width: 0;
+          }
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet {
+          padding: 0.4rem 0 0.8rem;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__range {
+          position: relative;
+          height: 2rem;
+          margin: 0.8rem 0 1rem;
+          --numeric-end: 100%;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__track {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          height: 0.5rem;
+          border-radius: 99rem;
+          transform: translateY(-50%);
+          background: linear-gradient(
+            to right,
+            #d4479b 0,
+            #d4479b var(--numeric-end),
+            rgba(var(--color-foreground), 0.12) var(--numeric-end),
+            rgba(var(--color-foreground), 0.12) 100%
+          );
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__handle {
+          position: absolute;
+          top: 50%;
+          left: var(--numeric-end);
+          z-index: 2;
+          width: 1.4rem;
+          height: 1.4rem;
+          border-radius: 50%;
+          background: #d4479b;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__slider {
+          position: absolute;
+          inset: 0;
+          z-index: 3;
+          width: 100%;
+          height: 2rem;
+          margin: 0;
+          padding: 0;
+          appearance: none;
+          -webkit-appearance: none;
+          background: transparent;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__slider::-webkit-slider-runnable-track {
+          height: 0.5rem;
+          background: transparent;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__slider::-moz-range-track {
+          height: 0.5rem;
+          background: transparent;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__slider::-webkit-slider-thumb {
+          width: 1.4rem;
+          height: 1.4rem;
+          border: 0;
+          border-radius: 50%;
+          background: transparent;
+          cursor: pointer;
+          appearance: none;
+          -webkit-appearance: none;
+          margin-top: -0.45rem;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__slider::-moz-range-thumb {
+          width: 1.4rem;
+          height: 1.4rem;
+          border: 0;
+          border-radius: 50%;
+          background: transparent;
+          cursor: pointer;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__labels {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          color: rgba(var(--color-foreground), 0.72);
+          font-size: 1.3rem;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__labels span:nth-child(2) {
+          color: rgb(var(--color-foreground));
+          font-weight: 600;
+        }
+
+        .section-{{ section.id }}-padding .lm-numeric-facet__options {
+          display: none;
+        }
+
+        @media screen and (max-width: 749px) {
+          .section-{{ section.id }}-padding .mobile-facets__submenu .lm-numeric-facet {
+            padding: 2rem 2.5rem;
+          }
+        }
+      </style>
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+      <script>
+        if (!window.lmPriceRangeFilters) {
+          window.lmPriceRangeFilters = true;
+
+          const lmParseMoneyToCents = (value, fallback) => {
+            if (!value) return fallback;
+
+            const normalized = String(value)
+              .replace(/[^\d,.-]/g, '')
+              .replace(/\./g, '')
+              .replace(',', '.');
+            const parsed = Number(normalized);
+
+            return Number.isFinite(parsed) ? Math.round(parsed * 100) : fallback;
+          };
+
+          const lmCentsToInputValue = (cents) => {
+            const value = Number(cents) / 100;
+
+            if (Number.isInteger(value)) return String(value);
+
+            return value.toFixed(2).replace('.', ',');
+          };
+
+          const lmUpdatePriceRangeTrack = (range) => {
+            const min = Number(range.dataset.min);
+            const max = Number(range.dataset.max);
+            const minSlider = range.querySelector('[data-price-range-min]');
+            const maxSlider = range.querySelector('[data-price-range-max]');
+
+            if (!minSlider || !maxSlider || max <= min) return;
+
+            const currentMin = Number(minSlider.value);
+            const currentMax = Number(maxSlider.value);
+            const start = ((currentMin - min) / (max - min)) * 100;
+            const end = ((currentMax - min) / (max - min)) * 100;
+
+            range.style.setProperty('--range-start', `${Math.max(0, Math.min(start, 100))}%`);
+            range.style.setProperty('--range-end', `${Math.max(0, Math.min(end, 100))}%`);
+          };
+
+          const lmUpdatePriceRangeFromSlider = (range, changedSlider) => {
+            const min = Number(range.dataset.min);
+            const max = Number(range.dataset.max);
+            const minSlider = range.querySelector('[data-price-range-min]');
+            const maxSlider = range.querySelector('[data-price-range-max]');
+            const priceRange = range.closest('price-range');
+            const minInput = priceRange?.querySelector('[data-price-input-min]');
+            const maxInput = priceRange?.querySelector('[data-price-input-max]');
+
+            if (!minSlider || !maxSlider || !minInput || !maxInput) return;
+
+            let currentMin = Number(minSlider.value);
+            let currentMax = Number(maxSlider.value);
+
+            if (currentMin > currentMax && changedSlider === minSlider) {
+              currentMin = currentMax;
+              minSlider.value = currentMin;
+            }
+
+            if (currentMax < currentMin && changedSlider === maxSlider) {
+              currentMax = currentMin;
+              maxSlider.value = currentMax;
+            }
+
+            minInput.value = currentMin <= min ? '' : lmCentsToInputValue(currentMin);
+            maxInput.value = currentMax >= max ? '' : lmCentsToInputValue(currentMax);
+
+            lmUpdatePriceRangeTrack(range);
+          };
+
+          const lmUpdateSliderFromPriceInputs = (input) => {
+            const priceRange = input.closest('price-range');
+            const range = priceRange?.querySelector('[data-price-range]');
+            const minSlider = range?.querySelector('[data-price-range-min]');
+            const maxSlider = range?.querySelector('[data-price-range-max]');
+            const minInput = priceRange?.querySelector('[data-price-input-min]');
+            const maxInput = priceRange?.querySelector('[data-price-input-max]');
+
+            if (!range || !minSlider || !maxSlider || !minInput || !maxInput) return;
+
+            const min = Number(range.dataset.min);
+            const max = Number(range.dataset.max);
+            const currentMin = Math.max(min, Math.min(lmParseMoneyToCents(minInput.value, min), max));
+            const currentMax = Math.max(min, Math.min(lmParseMoneyToCents(maxInput.value, max), max));
+
+            minSlider.value = Math.min(currentMin, currentMax);
+            maxSlider.value = Math.max(currentMin, currentMax);
+            lmUpdatePriceRangeTrack(range);
+          };
+
+          const lmFormatNumericFacetValue = (value) => {
+            const number = Number(value);
+            if (!Number.isFinite(number)) return '0';
+            if (Number.isInteger(number)) return String(number);
+            return number.toFixed(1).replace(/\.0$/, '');
+          };
+
+          const lmUpdateNumericFacet = (facet, syncCheckboxes = false) => {
+            const slider = facet.querySelector('[data-numeric-facet-slider]');
+            const range = facet.querySelector('.lm-numeric-facet__range');
+            const output = facet.querySelector('[data-numeric-facet-output]');
+            const max = Number(facet.dataset.max || 0);
+
+            if (!slider || !max) return;
+
+            const current = Math.max(0, Math.min(Number(slider.value || max), max));
+            const end = max > 0 ? (current / max) * 100 : 100;
+
+            slider.value = current;
+            (range || facet).style.setProperty('--numeric-end', `${Math.max(0, Math.min(end, 100))}%`);
+
+            if (output) {
+              output.textContent = lmFormatNumericFacetValue(current);
+            }
+
+            if (!syncCheckboxes) return;
+
+            const clearFilter = current >= max;
+            facet.querySelectorAll('[data-numeric-facet-checkbox]').forEach((checkbox) => {
+              if (checkbox.disabled && !checkbox.checked) return;
+
+              const value = Number(checkbox.dataset.numericValue || 0);
+              checkbox.checked = !clearFilter && value <= current;
+            });
+          };
+
+          document.addEventListener(
+            'input',
+            (event) => {
+              const range = event.target.closest?.('[data-price-range]');
+
+              if (range && event.target.matches('.lm-price-range__input')) {
+                lmUpdatePriceRangeFromSlider(range, event.target);
+                return;
+              }
+
+              if (event.target.matches?.('[data-price-input-min], [data-price-input-max]')) {
+                lmUpdateSliderFromPriceInputs(event.target);
+                return;
+              }
+
+              const numericFacet = event.target.closest?.('[data-numeric-facet]');
+              if (numericFacet && event.target.matches('[data-numeric-facet-slider]')) {
+                lmUpdateNumericFacet(numericFacet, true);
+              }
+            },
+            true
+          );
+
+          const lmInitAllPriceRanges = (root = document) => {
+            root.querySelectorAll?.('[data-price-range]').forEach(lmUpdatePriceRangeTrack);
+          };
+
+          const lmInitAllNumericFacets = (root = document) => {
+            if (root.matches?.('[data-numeric-facet]')) {
+              lmUpdateNumericFacet(root, false);
+            }
+
+            root.querySelectorAll?.('[data-numeric-facet]').forEach((facet) => lmUpdateNumericFacet(facet, false));
+          };
+
+          document.addEventListener('DOMContentLoaded', () => {
+            lmInitAllPriceRanges();
+            lmInitAllNumericFacets();
+          });
+
+          new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              mutation.addedNodes.forEach((node) => {
+                if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+                if (node.matches?.('[data-price-range]')) {
+                  lmUpdatePriceRangeTrack(node);
+                  return;
+                }
+
+                lmInitAllPriceRanges(node);
+                lmInitAllNumericFacets(node);
+              });
+            });
+          }).observe(document.body, { childList: true, subtree: true });
+
+          document.querySelectorAll('[data-price-range]').forEach((range) => {
+            lmUpdatePriceRangeTrack(range);
+          });
+          lmInitAllNumericFacets();
+        }
+      </script>
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
-          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if collection_filter_type != 'vertical' %} page-width{% endif %}"
           id="main-collection-filters"
           data-id="{{ section.id }}"
         >
@@ -264,7 +1026,7 @@
             results: collection,
             enable_filtering: section.settings.enable_filtering,
             enable_sorting: section.settings.enable_sorting,
-            filter_type: section.settings.filter_type,
+            filter_type: collection_filter_type,
             paginate: paginate
           %}
         </aside>
@@ -293,7 +1055,7 @@
           </div>
         {%- else -%}
           <div
-            class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+            class="collection{% if collection_filter_type != 'vertical' %} page-width{% endif %}"
           >
             <div class="loading-overlay gradient"></div>
             <ul
@@ -319,6 +1081,42 @@
                   {% endif %}
                 >
                   <div class="lm-collection-card{% if product.compare_at_price > product.price %} lm-collection-card--on-sale{% endif %}">
+                    {%- liquid
+                      assign lm_corner_icon_1 = product.metafields.custom.top_left_badge_icon_1.value | default: product.metafields.custom.card_corner_icon_1.value | default: product.metafields.custom.corner_badge_icon_1.value
+                      assign lm_corner_icon_2 = product.metafields.custom.top_left_badge_icon_2.value | default: product.metafields.custom.card_corner_icon_2.value | default: product.metafields.custom.corner_badge_icon_2.value
+                      assign lm_corner_icon_3 = product.metafields.custom.top_left_badge_icon_3.value | default: product.metafields.custom.card_corner_icon_3.value | default: product.metafields.custom.corner_badge_icon_3.value
+                      assign lm_corner_alt_1 = product.metafields.custom.top_left_badge_1.value | default: product.metafields.custom.card_corner_badge_1.value | default: product.metafields.custom.corner_badge_1.value | default: 'Product badge 1'
+                      assign lm_corner_alt_2 = product.metafields.custom.top_left_badge_2.value | default: product.metafields.custom.card_corner_badge_2.value | default: product.metafields.custom.corner_badge_2.value | default: 'Product badge 2'
+                      assign lm_corner_alt_3 = product.metafields.custom.top_left_badge_3.value | default: product.metafields.custom.card_corner_badge_3.value | default: product.metafields.custom.corner_badge_3.value | default: 'Product badge 3'
+                    -%}
+
+                    {%- capture lm_card_corner_badges -%}
+                      {%- if lm_corner_icon_1 != blank -%}
+                        <span class="lm-card-corner-badge">
+                          {{ lm_corner_icon_1 | image_url: width: 160 | image_tag: class: 'lm-card-corner-badge__image', loading: 'lazy', alt: lm_corner_alt_1 }}
+                        </span>
+                      {%- endif -%}
+
+                      {%- if lm_corner_icon_2 != blank -%}
+                        <span class="lm-card-corner-badge">
+                          {{ lm_corner_icon_2 | image_url: width: 160 | image_tag: class: 'lm-card-corner-badge__image', loading: 'lazy', alt: lm_corner_alt_2 }}
+                        </span>
+                      {%- endif -%}
+
+                      {%- if lm_corner_icon_3 != blank -%}
+                        <span class="lm-card-corner-badge">
+                          {{ lm_corner_icon_3 | image_url: width: 160 | image_tag: class: 'lm-card-corner-badge__image', loading: 'lazy', alt: lm_corner_alt_3 }}
+                        </span>
+                      {%- endif -%}
+                    {%- endcapture -%}
+
+                    {%- assign lm_card_corner_badges = lm_card_corner_badges | strip -%}
+                    {%- if lm_card_corner_badges != blank -%}
+                      <div class="lm-card-corner-badges" aria-label="Product corner badges">
+                        {{ lm_card_corner_badges }}
+                      </div>
+                    {%- endif -%}
+
                     {%- if product.compare_at_price > product.price -%}
                       {%- assign savings = product.compare_at_price | minus: product.price -%}
 
@@ -337,7 +1135,8 @@
                       lazy_load: lazy_load,
                       skip_styles: skip_card_product_styles,
                       quick_add: section.settings.quick_add,
-                      section_id: section.id
+                      section_id: section.id,
+                      show_collection_badges: true
                     %}
 
                     {%- if product.compare_at_price > product.price -%}
@@ -494,6 +1293,16 @@
       "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
     },
     {
+      "type": "range",
+      "id": "product_badge_icon_size",
+      "min": 24,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Badge icon size"
+    },
+    {
       "type": "select",
       "id": "quick_add",
       "default": "none",
@@ -541,7 +1350,7 @@
           "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
         }
       ],
-      "default": "horizontal",
+      "default": "vertical",
       "label": "t:sections.main-collection-product-grid.settings.filter_type.label"
     },
     {

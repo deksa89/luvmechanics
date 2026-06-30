@@ -1,0 +1,249 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_banner_nPW8mn": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_gQ4exM": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "text_HVHpiz": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_Y8dkn9": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_gQ4exM",
+        "text_HVHpiz",
+        "buttons_Y8dkn9"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/bachelorette1.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "split_bundle_offer_VygxPp": {
+      "type": "split-bundle-offer",
+      "name": "Split bundle offer",
+      "settings": {
+        "media_position": "right",
+        "mobile_layout": "stacked",
+        "media_min_height": 560,
+        "media_min_height_mobile": 360,
+        "image": "shopify://shop_images/mini_wand_bachelorette.png",
+        "media_heading": "",
+        "media_text": "",
+        "eyebrow": "Bridesmaid's Mini Wand offers",
+        "heading": "Bachelorette's Mini Wand party",
+        "text": "",
+        "product_1": "rocks-off-mini-rechargeable-wand-16-functions-black-tulip",
+        "product_1_quantity": 5,
+        "product_2": "",
+        "product_2_quantity": 0,
+        "bundle_price": 80,
+        "regular_price_label": "Regular price",
+        "bundle_price_label": "Bundle price",
+        "savings_label": "You save",
+        "discount_note": "",
+        "discount_code": "BACHELORETTE40",
+        "button_label": "Add bundle",
+        "sold_out_label": "Bundle unavailable",
+        "color_scheme": "",
+        "section_background": "#ffffff",
+        "media_background": "#f4f4f4",
+        "content_background": "#f8f2f4",
+        "text_color": "#111111",
+        "muted_color": "#5f5f5f",
+        "accent_color": "#b71b50",
+        "button_background": "#111111",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#111111",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28
+      }
+    },
+    "split_bundle_offer_9pF6R3": {
+      "type": "split-bundle-offer",
+      "name": "Split bundle offer",
+      "settings": {
+        "media_position": "left",
+        "mobile_layout": "stacked",
+        "media_min_height": 560,
+        "media_min_height_mobile": 360,
+        "image": "shopify://shop_images/pro2-kiss.png",
+        "media_heading": "",
+        "media_text": "",
+        "eyebrow": "Pro2 Kiss Bachelorette Bundle",
+        "heading": "5 Kisses are better than 1 Kiss",
+        "text": "",
+        "product_1": "satisfyer-pro-2-kiss-wave-clitoris-stimulator-garnet-black",
+        "product_1_quantity": 5,
+        "product_2": "",
+        "product_2_quantity": 0,
+        "bundle_price": 199,
+        "regular_price_label": "Regular price",
+        "bundle_price_label": "Bundle price",
+        "savings_label": "You save",
+        "discount_note": "Create the matching Shopify discount so cart and checkout use the shown bundle price.",
+        "discount_code": "",
+        "button_label": "Add bundle to cart",
+        "sold_out_label": "Bundle unavailable",
+        "color_scheme": "",
+        "section_background": "#ffffff",
+        "media_background": "#f4f4f4",
+        "content_background": "#f8f2f4",
+        "text_color": "#111111",
+        "muted_color": "#5f5f5f",
+        "accent_color": "#b71b50",
+        "button_background": "#111111",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#111111",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28
+      }
+    },
+    "split_bundle_offer_NaWA4X": {
+      "type": "split-bundle-offer",
+      "name": "Split bundle offer",
+      "settings": {
+        "media_position": "right",
+        "mobile_layout": "stacked",
+        "media_min_height": 560,
+        "media_min_height_mobile": 360,
+        "image": "shopify://shop_images/lelo-mia.png",
+        "media_heading": "",
+        "media_text": "",
+        "eyebrow": "Maid of Honor's Bundle",
+        "heading": "Maid of honor's secret",
+        "text": "",
+        "product_1": "lelo-mia-3-personal-vibrator-black",
+        "product_1_quantity": 2,
+        "product_2": "",
+        "product_2_quantity": 0,
+        "bundle_price": 140,
+        "regular_price_label": "Regular price",
+        "bundle_price_label": "Bundle price",
+        "savings_label": "You save",
+        "discount_note": "Create the matching Shopify discount so cart and checkout use the shown bundle price.",
+        "discount_code": "",
+        "button_label": "Add bundle to cart",
+        "sold_out_label": "Bundle unavailable",
+        "color_scheme": "",
+        "section_background": "#ffffff",
+        "media_background": "#f4f4f4",
+        "content_background": "#f8f2f4",
+        "text_color": "#111111",
+        "muted_color": "#5f5f5f",
+        "accent_color": "#b71b50",
+        "button_background": "#111111",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#111111",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28
+      }
+    },
+    "split_bundle_offer_7nwGJ4": {
+      "type": "split-bundle-offer",
+      "name": "Split bundle offer",
+      "settings": {
+        "media_position": "left",
+        "mobile_layout": "stacked",
+        "media_min_height": 560,
+        "media_min_height_mobile": 360,
+        "image": "shopify://shop_images/Untitled_057b7c4e-e526-45de-8045-4bda021f652e.png",
+        "media_heading": "",
+        "media_text": "",
+        "eyebrow": "Bride's bundle offers",
+        "heading": "Special gift for the Bride",
+        "text": "",
+        "product_1": "lelo-elise-2-lilac-luxury-vibrator",
+        "product_1_quantity": 1,
+        "product_2": "pjur-med-vegan-glide-water-based-lubricant-100-ml",
+        "product_2_quantity": 1,
+        "bundle_price": 140,
+        "regular_price_label": "Regular price",
+        "bundle_price_label": "Bundle price",
+        "savings_label": "You save",
+        "discount_note": "",
+        "discount_code": "BRIDE140",
+        "button_label": "Add bundle",
+        "sold_out_label": "Bundle unavailable",
+        "color_scheme": "",
+        "section_background": "#ffffff",
+        "media_background": "#f4f4f4",
+        "content_background": "#f8f2f4",
+        "text_color": "#111111",
+        "muted_color": "#5f5f5f",
+        "accent_color": "#b71b50",
+        "button_background": "#111111",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#111111",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_nPW8mn",
+    "split_bundle_offer_VygxPp",
+    "split_bundle_offer_9pF6R3",
+    "split_bundle_offer_NaWA4X",
+    "split_bundle_offer_7nwGJ4"
+  ]
+}

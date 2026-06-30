@@ -126,6 +126,12 @@
       text-transform: none;
     }
 
+    .lm-conditional-free-shipping .delivery-text {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 2px;
+    }
+
     .product-delivery-info .delivery-separator {
       color: rgba(0, 0, 0, 0.45);
     }
@@ -242,6 +248,33 @@
       .product__media-wrapper {
         position: sticky;
         top: 20px;
+      }
+    }
+
+    @media screen and (max-width: 749px) {
+      #MainProduct-{{ section.id }} .product__media-wrapper .product-media-container {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-wrapper .product-media-container .media {
+        height: clamp(38rem, 105vw, 56rem);
+        padding-top: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-wrapper .product__media img {
+        position: static;
+        width: auto;
+        max-width: 84%;
+        height: auto;
+        max-height: 88%;
+        object-fit: contain !important;
+        object-position: center;
+        margin: 0 auto;
       }
     }
 
@@ -904,6 +937,62 @@
                     </div>
                   </div>
 
+                {% when 'conditional_free_shipping' %}
+                  {%- liquid
+                    assign selected_shipping_variant = product.selected_or_first_available_variant
+                    assign domestic_country_code = block.settings.domestic_country_code | default: 'HR' | upcase | strip
+                    assign current_country_code = localization.country.iso_code | default: domestic_country_code | upcase | strip
+                    assign domestic_threshold_cents = block.settings.domestic_threshold | times: 100
+                    assign eu_threshold_cents = block.settings.eu_threshold | times: 100
+                    assign active_shipping_threshold_cents = eu_threshold_cents
+
+                    if current_country_code == domestic_country_code
+                      assign active_shipping_threshold_cents = domestic_threshold_cents
+                    endif
+
+                    assign show_free_shipping_message = false
+                    if selected_shipping_variant.price >= active_shipping_threshold_cents
+                      assign show_free_shipping_message = true
+                    endif
+                  -%}
+
+                  <div
+                    class="product-delivery-info lm-conditional-free-shipping"
+                    data-lm-free-shipping-block
+                    data-domestic-country="{{ domestic_country_code }}"
+                    data-current-country="{{ current_country_code }}"
+                    data-domestic-threshold="{{ domestic_threshold_cents }}"
+                    data-eu-threshold="{{ eu_threshold_cents }}"
+                    data-initial-price="{{ selected_shipping_variant.price }}"
+                    {% unless show_free_shipping_message %}hidden{% endunless %}
+                    {{ block.shopify_attributes }}
+                  >
+                    {% if block.settings.icon != blank %}
+                      <img
+                        src="{{ block.settings.icon | image_url: width: 40 }}"
+                        alt=""
+                        class="delivery-icon"
+                        loading="lazy"
+                        width="20"
+                        height="20"
+                      >
+                    {% endif %}
+
+                    <div class="delivery-text">
+                      {% if block.settings.title != blank %}
+                        <span class="delivery-title">
+                          {{ block.settings.title }}
+                        </span>
+                      {% endif %}
+
+                      {% if block.settings.delivery_time != blank %}
+                        <span class="delivery-time">
+                          {{ block.settings.delivery_time }}
+                        </span>
+                      {% endif %}
+                    </div>
+                  </div>
+
               {%- when 'price' -%}
                 {%- assign current_variant = product.selected_or_first_available_variant -%}
 
@@ -1095,6 +1184,7 @@
                           value="{{ variant.id }}"
                           data-variant-id="{{ variant.id }}"
                           data-variant-price="{{ variant.price | money }}"
+                          data-variant-price-cents="{{ variant.price }}"
                           data-variant-title="{{ variant.title | escape }}"
                           data-variant-available="{{ variant.available }}"
                           {% if variant.id == product.selected_or_first_available_variant.id %}checked{% endif %}
@@ -1998,8 +2088,25 @@
     const stickyPrice = document.querySelector('.lm-sticky-atc__price');
     const stickyVariant = document.querySelector('.lm-sticky-atc__variant');
     const selectedVariantTitle = productInfo.querySelector('[data-lm-selected-variant-title]');
+    const freeShippingBlocks = document.querySelectorAll('[data-lm-free-shipping-block]');
 
-    function updateVariant(variantId, variantPrice, variantTitle) {
+    function updateFreeShippingBlocks(variantPriceCents) {
+      const numericPrice = Number(variantPriceCents);
+
+      if (!numericPrice || !freeShippingBlocks.length) return;
+
+      freeShippingBlocks.forEach((block) => {
+        const currentCountry = String(block.dataset.currentCountry || '').toUpperCase();
+        const domesticCountry = String(block.dataset.domesticCountry || 'HR').toUpperCase();
+        const threshold = Number(
+          currentCountry === domesticCountry ? block.dataset.domesticThreshold : block.dataset.euThreshold
+        );
+
+        block.hidden = !(threshold && numericPrice >= threshold);
+      });
+    }
+
+    function updateVariant(variantId, variantPrice, variantTitle, variantPriceCents) {
       productForms.forEach((form) => {
         const idInput = form.querySelector('input[name="id"]');
 
@@ -2021,6 +2128,8 @@
         selectedVariantTitle.textContent = variantTitle;
       }
 
+      updateFreeShippingBlocks(variantPriceCents);
+
       const url = new URL(window.location.href);
       url.searchParams.set('variant', variantId);
       window.history.replaceState({}, '', url.toString());
@@ -2034,7 +2143,8 @@
       updateVariant(
         input.dataset.variantId,
         input.dataset.variantPrice,
-        input.dataset.variantTitle
+        input.dataset.variantTitle,
+        input.dataset.variantPriceCents
       );
     });
 
@@ -2044,7 +2154,8 @@
       updateVariant(
         checkedInput.dataset.variantId,
         checkedInput.dataset.variantPrice,
-        checkedInput.dataset.variantTitle
+        checkedInput.dataset.variantTitle,
+        checkedInput.dataset.variantPriceCents
       );
     }
   })();
@@ -2124,6 +2235,55 @@
       ]
     },
 
+    {
+      "type": "conditional_free_shipping",
+      "name": "Free shipping by price",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text",
+          "default": "For this product shipping is free"
+        },
+        {
+          "type": "text",
+          "id": "delivery_time",
+          "label": "Delivery time",
+          "default": "Delivery time: 4 - 7 days"
+        },
+        {
+          "type": "text",
+          "id": "domestic_country_code",
+          "label": "Domestic country code",
+          "default": "HR"
+        },
+        {
+          "type": "range",
+          "id": "domestic_threshold",
+          "label": "Domestic free shipping threshold",
+          "min": 0,
+          "max": 500,
+          "step": 5,
+          "unit": "EUR",
+          "default": 80
+        },
+        {
+          "type": "range",
+          "id": "eu_threshold",
+          "label": "EU free shipping threshold",
+          "min": 0,
+          "max": 500,
+          "step": 5,
+          "unit": "EUR",
+          "default": 100
+        }
+      ]
+    },
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",

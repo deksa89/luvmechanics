@@ -4015,3 +4015,7 @@ details-disclosure > details {
   max-width: 133ch;
   padding: 5rem 0;
 }
+
+.wb-btn-trigger {
+  display: none;
+}

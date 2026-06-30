@@ -23,7 +23,7 @@
         "carousel_image_mobile_DLhMiU": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/lelo_popust_hr_mobile.png",
+            "image": "shopify://shop_images/15.png",
             "link": "shopify://collections/lelo",
             "language": "hr"
           }
@@ -39,7 +39,7 @@
         "carousel_image_mobile_yg6cxz": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/LELO_POPUST_ENG_MOBILE.png",
+            "image": "shopify://shop_images/15_1.png",
             "link": "shopify://collections/lelo",
             "language": "en"
           }
@@ -57,22 +57,6 @@
           "settings": {
             "image": "shopify://shop_images/7_394c7da2-a4b2-42c2-89b9-a52d5b589223.png",
             "link": "shopify://collections/new-arrivals",
-            "language": "hr"
-          }
-        },
-        "carousel_image_desktop_yGc8UF": {
-          "type": "carousel_image_desktop",
-          "settings": {
-            "image": "shopify://shop_images/3_b7456579-c46c-4f10-b8bd-5e694e2e6905.png",
-            "link": "shopify://collections/bestsellers",
-            "language": "en"
-          }
-        },
-        "carousel_image_desktop_YEDEXi": {
-          "type": "carousel_image_desktop",
-          "settings": {
-            "image": "shopify://shop_images/5_09f9cefa-224e-45cf-95ae-3f60359bbdbf.png",
-            "link": "shopify://collections/bestsellers",
             "language": "hr"
           }
         },
@@ -108,22 +92,6 @@
             "language": "hr"
           }
         },
-        "carousel_image_mobile_MWe3h3": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/9.png",
-            "link": "shopify://collections/bestsellers",
-            "language": "en"
-          }
-        },
-        "carousel_image_mobile_rKNRUd": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/10.png",
-            "link": "shopify://collections/bestsellers",
-            "language": "hr"
-          }
-        },
         "carousel_image_mobile_AwLVmK": {
           "type": "carousel_image_mobile",
           "settings": {
@@ -156,14 +124,10 @@
         "carousel_image_mobile_yg6cxz",
         "carousel_image_desktop_Cb9Jwi",
         "carousel_image_desktop_MLJGQP",
-        "carousel_image_desktop_yGc8UF",
-        "carousel_image_desktop_YEDEXi",
         "carousel_image_desktop_anQdTG",
         "carousel_image_desktop_4KU4Dk",
         "carousel_image_mobile_CV4N7Q",
         "carousel_image_mobile_mFbE3C",
-        "carousel_image_mobile_MWe3h3",
-        "carousel_image_mobile_rKNRUd",
         "carousel_image_mobile_AwLVmK",
         "carousel_image_mobile_cRGMgW",
         "button"
@@ -171,6 +135,7 @@
       "settings": {
         "height_desktop": "medium",
         "height_mobile": "large",
+        "desktop_max_width": 1600,
         "desktop_image_width": "medium",
         "layout": "image_first",
         "image_behavior": "none",
@@ -256,14 +221,15 @@
         "tab_border_color": "#f3f1f1",
         "tab_active_background": "#000000",
         "tab_active_text_color": "#ffffff",
-        "product_width": 250,
+        "product_width": 310,
         "mobile_product_width": 250,
-        "product_gap": 18,
+        "product_gap": 9,
         "card_border_radius": 0,
         "card_border_width": 1,
         "product_text_alignment": "left",
         "show_vendor": true,
         "show_price": true,
+        "product_badge_icon_size": 64,
         "show_sale_badge": true,
         "sale_badge_text": "Sale",
         "show_button": false,
@@ -407,7 +373,7 @@
         "heading": "",
         "text": "",
         "button_label": "Istraži više",
-        "button_link": "",
+        "button_link": "shopify://pages/bride-bridesmaids-gifts",
         "desktop_height": 400,
         "mobile_height": 420,
         "overlay_opacity": 25,

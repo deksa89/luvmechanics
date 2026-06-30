@@ -1,0 +1,83 @@
+{%- liquid
+  assign range_max = 0
+  assign current_max = 0
+  assign has_active_value = false
+
+  for value in filter.values
+    assign numeric_value = value.label | replace: ',', '.' | plus: 0
+
+    if numeric_value > range_max
+      assign range_max = numeric_value
+    endif
+
+    if value.active
+      assign has_active_value = true
+      if numeric_value > current_max
+        assign current_max = numeric_value
+      endif
+    endif
+  endfor
+
+  unless has_active_value
+    assign current_max = range_max
+  endunless
+
+  assign range_step = 1
+  if range_max < 100
+    assign range_step = 0.1
+  endif
+-%}
+
+<div
+  class="lm-numeric-facet"
+  data-numeric-facet
+  data-min="0"
+  data-max="{{ range_max }}"
+>
+  <div class="lm-numeric-facet__range">
+    <span class="lm-numeric-facet__track" aria-hidden="true"></span>
+    <span class="lm-numeric-facet__handle" aria-hidden="true"></span>
+    <input
+      class="lm-numeric-facet__slider"
+      type="range"
+      min="0"
+      max="{{ range_max }}"
+      step="{{ range_step }}"
+      value="{{ current_max }}"
+      data-numeric-facet-slider
+      aria-label="{{ filter.label | escape }}"
+    >
+  </div>
+
+  <div class="lm-numeric-facet__labels" aria-hidden="true">
+    <span>0</span>
+    <span>
+      <span>{{ 'products.facets.to' | t }}</span>
+      <output data-numeric-facet-output>{{ current_max }}</output>
+    </span>
+    <span>{{ range_max }}</span>
+  </div>
+
+  <div class="lm-numeric-facet__options">
+    {%- for value in filter.values -%}
+      {%- liquid
+        assign numeric_value = value.label | replace: ',', '.' | plus: 0
+        assign input_id = id_prefix | append: filter.param_name | escape | append: '-' | append: forloop.index
+        assign is_disabled = false
+        if value.count == 0 and value.active == false
+          assign is_disabled = true
+        endif
+      -%}
+      <input
+        type="checkbox"
+        name="{{ value.param_name }}"
+        value="{{ value.value }}"
+        id="{{ input_id }}"
+        data-numeric-facet-checkbox
+        data-numeric-value="{{ numeric_value }}"
+        {% if value.active %}checked{% endif %}
+        {% if is_disabled %}disabled{% endif %}
+      >
+    {%- endfor -%}
+  </div>
+</div>

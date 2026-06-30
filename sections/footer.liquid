@@ -371,6 +371,28 @@
     padding: 0;
   }
 
+  .policies .footer-contract-link-item {
+    order: -1;
+    margin-right: auto;
+  }
+
+  .footer-contract-link,
+  a[href*="cancel-contract"] {
+    right: auto !important;
+    left: 2rem !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    .footer-contract-link,
+    a[href*="cancel-contract"] {
+      left: 1.6rem !important;
+    }
+
+    .policies .footer-contract-link-item {
+      margin-right: inherit;
+    }
+  }
+
   @media screen and (max-width: 1200px) {
     .footer__content-top.page-width {
       grid-template-columns: 1fr 1fr;
@@ -877,6 +899,8 @@
           </small>
           {%- if section.settings.show_policy -%}
             <ul class="policies list-unstyled">
+              {%- assign rendered_footer_urls = '|' -%}
+
               {%- for policy in shop.policies -%}
                 {%- if policy != blank -%}
 
@@ -888,57 +912,101 @@
                     {%- continue -%}
                   {%- endif -%}
 
-                  <li>
-                    <small class="copyright__content">
-                      <a href="{{ policy.url }}">{{ policy.title | escape }}</a>
-                    </small>
-                  </li>
+                  {%- assign policy_url_key = policy.url | prepend: '|' | append: '|' -%}
+                  {%- unless rendered_footer_urls contains policy_url_key -%}
+                    <li>
+                      <small class="copyright__content">
+                        <a href="{{ policy.url }}">{{ policy.title | escape }}</a>
+                      </small>
+                    </li>
+                    {%- assign rendered_footer_urls = rendered_footer_urls | append: policy.url | append: '|' -%}
+                  {%- endunless -%}
                 {%- endif -%}
               {%- endfor -%}
 
               {%- assign impressum_page = pages['impressum'] -%}
               {%- if impressum_page != blank -%}
-                <li>
-                  <small class="copyright__content">
-                    <a href="{{ impressum_page.url }}">Impressum</a>
-                  </small>
-                </li>
+                {%- assign impressum_url_key = impressum_page.url | prepend: '|' | append: '|' -%}
+                {%- unless rendered_footer_urls contains impressum_url_key -%}
+                  <li>
+                    <small class="copyright__content">
+                      <a href="{{ impressum_page.url }}">Impressum</a>
+                    </small>
+                  </li>
+                  {%- assign rendered_footer_urls = rendered_footer_urls | append: impressum_page.url | append: '|' -%}
+                {%- endunless -%}
               {%- endif -%}
 
               {%- assign payment_terms_page = pages['payment-terms'] -%}
               {%- if payment_terms_page != blank -%}
-                <li>
-                  <small class="copyright__content">
-                    <a href="{{ payment_terms_page.url }}">{{ payment_terms_page.title }}</a>
-                  </small>
-                </li>
+                {%- assign payment_terms_url_key = payment_terms_page.url | prepend: '|' | append: '|' -%}
+                {%- unless rendered_footer_urls contains payment_terms_url_key -%}
+                  <li>
+                    <small class="copyright__content">
+                      <a href="{{ payment_terms_page.url }}">{{ payment_terms_page.title }}</a>
+                    </small>
+                  </li>
+                  {%- assign rendered_footer_urls = rendered_footer_urls | append: payment_terms_page.url | append: '|' -%}
+                {%- endunless -%}
               {%- endif -%}
 
               {%- assign delivery_page = pages['delivery'] -%}
               {%- if delivery_page != blank -%}
-                <li>
-                  <small class="copyright__content">
-                    <a href="{{ delivery_page.url }}">{{ delivery_page.title }}</a>
-                  </small>
-                </li>
+                {%- assign delivery_url_key = delivery_page.url | prepend: '|' | append: '|' -%}
+                {%- unless rendered_footer_urls contains delivery_url_key -%}
+                  <li>
+                    <small class="copyright__content">
+                      <a href="{{ delivery_page.url }}">{{ delivery_page.title }}</a>
+                    </small>
+                  </li>
+                  {%- assign rendered_footer_urls = rendered_footer_urls | append: delivery_page.url | append: '|' -%}
+                {%- endunless -%}
               {%- endif -%}
 
               {%- assign returns_page = pages['return-and-replacement'] -%}
               {%- if returns_page != blank -%}
-                <li>
-                  <small class="copyright__content">
-                    <a href="{{ returns_page.url }}">{{ returns_page.title }}</a>
-                  </small>
-                </li>
+                {%- assign returns_url_key = returns_page.url | prepend: '|' | append: '|' -%}
+                {%- unless rendered_footer_urls contains returns_url_key -%}
+                  <li>
+                    <small class="copyright__content">
+                      <a href="{{ returns_page.url }}">{{ returns_page.title }}</a>
+                    </small>
+                  </li>
+                  {%- assign rendered_footer_urls = rendered_footer_urls | append: returns_page.url | append: '|' -%}
+                {%- endunless -%}
               {%- endif -%}
 
               {%- assign terms_page = pages['terms-and-conditions'] -%}
               {%- if terms_page != blank -%}
-                <li>
-                  <small class="copyright__content">
-                    <a href="{{ terms_page.url }}">{{ terms_page.title }}</a>
-                  </small>
-                </li>
+                {%- assign terms_url_key = terms_page.url | prepend: '|' | append: '|' -%}
+                {%- unless rendered_footer_urls contains terms_url_key -%}
+                  <li>
+                    <small class="copyright__content">
+                      <a href="{{ terms_page.url }}">{{ terms_page.title }}</a>
+                    </small>
+                  </li>
+                  {%- assign rendered_footer_urls = rendered_footer_urls | append: terms_page.url | append: '|' -%}
+                {%- endunless -%}
+              {%- endif -%}
+
+              {%- assign footer_navigation = linklists.footer -%}
+              {%- if footer_navigation != blank and footer_navigation.links.size > 0 -%}
+                {%- for link in footer_navigation.links -%}
+                  {%- assign footer_link_url_key = link.url | prepend: '|' | append: '|' -%}
+                  {%- unless rendered_footer_urls contains footer_link_url_key -%}
+                    {%- assign footer_link_title = link.title | downcase -%}
+                    {%- assign is_contract_link = false -%}
+                    {%- if footer_link_title contains 'contract' or footer_link_title contains 'ugovor' or link.url contains 'cancel-contract' -%}
+                      {%- assign is_contract_link = true -%}
+                    {%- endif -%}
+                    <li{% if is_contract_link %} class="footer-contract-link-item"{% endif %}>
+                      <small class="copyright__content">
+                        <a href="{{ link.url }}"{% if is_contract_link %} class="footer-contract-link"{% endif %}>{{ link.title | escape }}</a>
+                      </small>
+                    </li>
+                    {%- assign rendered_footer_urls = rendered_footer_urls | append: link.url | append: '|' -%}
+                  {%- endunless -%}
+                {%- endfor -%}
               {%- endif -%}
             </ul>
           {%- endif -%}

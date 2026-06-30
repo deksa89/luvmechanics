@@ -225,6 +225,44 @@
             <div class="card-product-price">
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
             </div>
+
+            {%- if show_collection_badges -%}
+              {%- liquid
+                assign lm_badge_icon_1 = card_product.metafields.custom.collection_badge_icon_1.value | default: card_product.metafields.custom.badge_icon_1.value
+                assign lm_badge_icon_2 = card_product.metafields.custom.collection_badge_icon_2.value | default: card_product.metafields.custom.badge_icon_2.value
+                assign lm_badge_icon_3 = card_product.metafields.custom.collection_badge_icon_3.value | default: card_product.metafields.custom.badge_icon_3.value
+                assign lm_badge_alt_1 = card_product.metafields.custom.collection_badge_1.value | default: card_product.metafields.custom.badge_1.value | default: 'Product badge 1'
+                assign lm_badge_alt_2 = card_product.metafields.custom.collection_badge_2.value | default: card_product.metafields.custom.badge_2.value | default: 'Product badge 2'
+                assign lm_badge_alt_3 = card_product.metafields.custom.collection_badge_3.value | default: card_product.metafields.custom.badge_3.value | default: 'Product badge 3'
+              -%}
+
+              {%- capture lm_product_badges -%}
+                {%- if lm_badge_icon_1 != blank -%}
+                  <span class="lm-product-badge">
+                    {{ lm_badge_icon_1 | image_url: width: 96 | image_tag: class: 'lm-product-badge__image', loading: 'lazy', alt: lm_badge_alt_1 }}
+                  </span>
+                {%- endif -%}
+
+                {%- if lm_badge_icon_2 != blank -%}
+                  <span class="lm-product-badge">
+                    {{ lm_badge_icon_2 | image_url: width: 96 | image_tag: class: 'lm-product-badge__image', loading: 'lazy', alt: lm_badge_alt_2 }}
+                  </span>
+                {%- endif -%}
+
+                {%- if lm_badge_icon_3 != blank -%}
+                  <span class="lm-product-badge">
+                    {{ lm_badge_icon_3 | image_url: width: 96 | image_tag: class: 'lm-product-badge__image', loading: 'lazy', alt: lm_badge_alt_3 }}
+                  </span>
+                {%- endif -%}
+              {%- endcapture -%}
+
+              {%- assign lm_product_badges = lm_product_badges | strip -%}
+              {%- if lm_product_badges != blank -%}
+                <div class="lm-product-badges" aria-label="Product badges">
+                  {{ lm_product_badges }}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
           </div>
         </div>
       </div>

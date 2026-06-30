@@ -22,11 +22,17 @@
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/rabbit-vibrators-spread-evenly-desktop.jpg",
-        "image_mobile": "shopify://shop_images/rabbit-vibrators-spread-evenly-mobile.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
+        "image": "shopify://shop_images/rabbit-1-lm_b31bf5a7-8a9d-4bb5-a2a2-a0e414cbe67f.png",
+        "image_mobile": "shopify://shop_images/rabbit-1-lm_b31bf5a7-8a9d-4bb5-a2a2-a0e414cbe67f.png",
+        "image_overlay_opacity": 20,
+        "image_height": "jimmyjane",
+        "image_position_desktop": "center center",
+        "image_position_mobile": "center center",
         "image_behavior": "none",
+        "hero_title": "Rabbit vibrators",
+        "hero_title_color": "#eaeaea",
+        "hero_title_size_desktop": 64,
+        "hero_title_size_mobile": 36,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
@@ -69,6 +75,7 @@
         "text_WpdwWk",
         "button_jraFPQ"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
@@ -83,7 +90,7 @@
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 20,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
