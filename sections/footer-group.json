@@ -33,11 +33,11 @@
             "title_position": "top",
             "image_position": "above",
             "image_repeat_count": 1,
-            "image": "shopify://shop_images/questiobox.png",
+            "image": "shopify://shop_images/questiobox-removebg-preview.png",
             "title": "Discreet delivery",
             "text": "<p>Products are delivered in discreet packages to your address.</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://policies/shipping-policy"
           }
         },
         "column_iYRFNp": {
@@ -46,11 +46,11 @@
             "title_position": "top",
             "image_position": "above",
             "image_repeat_count": 1,
-            "image": "shopify://shop_images/shopping.png",
+            "image": "shopify://shop_images/shopping-removebg-preview.png",
             "title": "Safe shopping",
             "text": "<p>Your purchases are safe with us.</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://policies/terms-of-service"
           }
         },
         "column_XfXRkr": {
@@ -63,7 +63,7 @@
             "title": "Reliable support",
             "text": "<p>We handle returns and complaints quickly and fairly.</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://policies/refund-policy"
           }
         }
       },

@@ -220,49 +220,120 @@
   </script>
 
   <style>
-    .lm-product-quiz__actions {
-      padding-left: 1.8rem;
+    #lm-product-quiz-{{ section.id }} {
+      background: #ffffff;
+      border-top: 1px solid rgba(43, 37, 33, 0.12);
+      color: #2f2b30;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .page-width {
+      /* padding-left: clamp(16px, 2.4vw, 40px);
+      padding-right: clamp(16px, 2.4vw, 40px); */
+    }
+
+    #lm-product-quiz-{{ section.id }} .hidden {
+      display: none !important;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz {
+      background: linear-gradient(135deg, #fffaf0 0%, #eef9f7 46%, #f8f1fb 100%);
+      border: 1px solid rgba(43, 37, 33, 0.06);
+      box-shadow: none;
+      display: grid;
+      margin: 0 auto;
+      /* max-width: 1520px; */
+      min-height: 190px;
+      overflow: hidden;
+      padding: clamp(28px, 4vw, 58px) clamp(22px, 5vw, 74px);
+      text-align: center;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__eyebrow {
+      color: #d2174f;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      opacity: 1;
+      text-transform: uppercase;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__heading {
+      color: #2f2b30;
+      font-size: clamp(24px, 2.6vw, 42px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.12;
+      margin: 0 0 14px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro {
+      margin: 0 auto;
+      max-width: 760px;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro p,
+    #lm-product-quiz-{{ section.id }} [data-result-description] {
+      color: #5f5652;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      line-height: 1.55;
+      margin: 0 auto 18px;
+      max-width: 720px;
     }
 
     #lm-product-quiz-{{ section.id }} [data-quiz-start],
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button {
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-width: 155px;
-      min-height: 44px;
-      padding: 12px 28px;
-      border: 1px solid #111;
-      outline: none !important;
-      background: #fff !important;
-      color: #111 !important;
-      font: inherit;
-      font-size: 14px;
-      line-height: 1;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      border-radius: 0;
-      box-shadow: none !important;
       appearance: none;
       -webkit-appearance: none;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      background: #ffffff !important;
+      border: 1px solid #2b2521;
+      border-radius: 0;
+      box-shadow: none !important;
+      color: #2b2521 !important;
+      cursor: pointer;
+      display: inline-flex;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      justify-content: center;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      min-height: 44px;
+      min-width: 165px;
+      outline: none !important;
+      padding: 13px 28px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
     }
 
     #lm-product-quiz-{{ section.id }} [data-quiz-start]:hover,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button:hover,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:hover {
-      background: #111 !important;
-      color: #fff !important;
-      border-color: #111 !important;
+      background: #2b2521 !important;
+      border-color: #2b2521 !important;
+      color: #ffffff !important;
+      transform: translateY(-1px);
     }
 
     #lm-product-quiz-{{ section.id }} [data-quiz-start]:focus-visible,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button:focus-visible,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:focus-visible {
-      outline: 2px solid #111;
+      outline: 2px solid #d2174f !important;
       outline-offset: 3px;
     }
 
@@ -272,71 +343,39 @@
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button::after,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button::before,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button::after {
-      display: none !important;
-      content: none !important;
       box-shadow: none !important;
-    }
-
-    #lm-product-quiz-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .hidden {
+      content: none !important;
       display: none !important;
     }
 
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__eyebrow {
-      margin: 0 0 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 12px;
-      opacity: 0.75;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__heading {
-      margin: 0 0 16px;
-      font-size: 34px;
-      font-weight: 200;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
-      padding: 3rem 0;
-      border-radius: 0px;
-      background-color: rgb(var(--color-background));
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro p {
-      margin-top: 0;
-      font-size: 1.4rem;
-    }
-
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__body,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__form {
       display: grid;
-      gap: 20px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__body {
-      display: grid;
-      gap: 24px;
+      gap: 22px;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__progress {
-      margin-bottom: 0;
-      font-size: 14px;
-      opacity: 0.7;
-      padding-left: 1.5rem;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(43, 37, 33, 0.08);
+      color: #5f5652;
+      display: inline-flex;
+      font-size: 12px;
+      font-weight: 700;
+      justify-self: center;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin: 0;
+      opacity: 1;
+      padding: 9px 14px;
+      text-transform: uppercase;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__question {
       animation: lmQuizFadeIn-{{ section.id }} 0.25s ease;
+      margin: 0 auto;
+      max-width: 900px;
+      width: 100%;
     }
 
     @keyframes lmQuizFadeIn-{{ section.id }} {
@@ -351,129 +390,112 @@
       }
     }
 
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question h3 {
-      margin: 0 0 16px;
-      font-size: 20px;
-      line-height: 1.3;
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question h3,
+    #lm-product-quiz-{{ section.id }} [data-result-title] {
+      color: #2f2b30;
+      font-size: clamp(20px, 2vw, 30px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin: 0 0 20px;
+      text-align: center;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__options {
       display: grid;
-      gap: 12px;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__option {
-      display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 14px 16px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 0px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(43, 37, 33, 0.08);
+      color: #3a3431;
       cursor: pointer;
-      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      display: flex;
+      gap: 12px;
+      min-height: 56px;
+      padding: 15px 16px;
+      text-align: left;
+      transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__option:hover {
-      border-color: rgba(0, 0, 0, 0.25);
+      background: #ffffff;
+      border-color: rgba(248, 39, 92, 0.2);
+      box-shadow: 0 14px 28px rgba(43, 37, 33, 0.06);
       transform: translateY(-1px);
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__option:has(input:checked) {
-      border-color: rgba(0, 0, 0, 0.45);
-      background: rgba(0, 0, 0, 0.03);
+      background: #fff3f8;
+      border-color: rgba(248, 39, 92, 0.45);
+      box-shadow: inset 0 0 0 1px rgba(248, 39, 92, 0.18);
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__option input {
-      margin: 0;
+      accent-color: #f8275c;
       flex-shrink: 0;
+      height: 16px;
+      margin: 0;
+      width: 16px;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions,
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__result-actions {
-      margin-top: 30px;
+      margin-top: 8px;
+      padding-left: 0;
+      text-align: center;
     }
 
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 155px;
-      min-height: 44px;
-      padding: 12px 28px;
-      border: 1px solid #111;
-      background: #fff;
-      color: #111;
-      font: inherit;
-      font-size: 14px;
-      line-height: 1;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:hover {
-      background: #111;
-      color: #fff;
-      border-color: #111;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:focus-visible {
-      outline: 2px solid #111;
-      outline-offset: 3px;
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
+      margin: 0 auto;
+      max-width: 1180px;
+      width: 100%;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__result-label {
-      margin: 0 0 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      color: #d2174f;
       font-size: 12px;
-      opacity: 0.75;
-      color: white;
-    }
-
-    #lm-product-quiz-{{ section.id }} [data-result-title] {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    #lm-product-quiz-{{ section.id }} [data-result-description] {
-      margin-top: 0;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      opacity: 1;
+      text-transform: uppercase;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__score {
-      margin: 12px 0 24px;
-      opacity: 0.7;
-      font-size: 14px;
+      color: #5f5652;
+      font-size: 13px;
+      margin: 4px 0 24px;
+      opacity: 0.82;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      text-align: left;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message,
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(43, 37, 33, 0.08);
+      border-radius: 0;
+      box-shadow: none;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message {
       grid-column: 1 / -1;
-      padding: 16px;
-      border-radius: 0px;
-      background: rgba(0, 0, 0, 0.03);
+      padding: 18px;
+      text-align: center;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message p {
       margin: 0 0 8px;
-    }
-
-    @media screen and (max-width: 768px) {
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__eyebrow {
-        margin: 0 0 8px 1.5rem;
-      }
-  
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__heading {
-        margin: 0 0 16px 1.5rem;
-      }
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message p:last-child {
@@ -481,47 +503,54 @@
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product {
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 0px;
       padding: 16px;
-      background: #fff;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product:hover {
+      border-color: rgba(248, 39, 92, 0.16);
+      box-shadow: 0 18px 36px rgba(43, 37, 33, 0.08);
+      transform: translateY(-2px);
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-link {
-      text-decoration: none;
       color: inherit;
       display: block;
+      text-decoration: none;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image {
-      height: 260px;
-      border-radius: 0;
-      overflow: hidden;
-      background: #fff;
-      margin-bottom: 12px;
-      display: flex;
       align-items: center;
+      background: #ffffff;
+      display: flex;
+      height: 250px;
       justify-content: center;
+      margin-bottom: 12px;
+      overflow: hidden;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image img {
-      width: 100%;
+      display: block;
       height: 100%;
       object-fit: contain;
-      display: block;
+      width: 100%;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-title {
+      color: #2f2b30;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
       margin: 0 0 8px;
-      font-size: 16px;
-      line-height: 1.4;
-      color: #000000;
+      text-transform: uppercase;
     }
 
     #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-price {
-      margin: 0 0 12px;
-      font-weight: 600;
-      color: #000000;
+      color: #d2174f;
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0;
     }
 
     @media screen and (max-width: 989px) {
@@ -531,26 +560,37 @@
     }
 
     @media screen and (max-width: 749px) {
+      #lm-product-quiz-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top | times: 0.7 | round }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.7 | round }}px;
+      }
+
+      #lm-product-quiz-{{ section.id }} .page-width {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz {
+        min-height: 165px;
+        padding: 26px 18px;
+      }
+
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__options,
       #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
         grid-template-columns: 1fr;
       }
 
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro,
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__question,
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
-        padding: 18px;
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro p,
+      #lm-product-quiz-{{ section.id }} [data-result-description] {
+        font-size: 13px;
       }
 
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__question h3 {
-        font-size: 18px;
+      #lm-product-quiz-{{ section.id }} .lm-product-quiz__option {
+        min-height: 52px;
       }
 
       #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image {
         height: 220px;
-      }
-
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__product {
-        padding: 14px;
       }
     }
   </style>
@@ -580,7 +620,13 @@
       let resultGroups = [];
       let currentStep = 1;
 
-      if (totalStepsText) {
+      const quizTexts = {
+        noMatchingTitle: {{ section.settings.no_matching_result_title | json }},
+        noMatchingDescription: {{ section.settings.no_matching_result_description | json }},
+        emptyProductsLine1: {{ section.settings.empty_products_line_1 | json }},
+        emptyProductsLine2: {{ section.settings.empty_products_line_2 | json }},
+        fallbackResultTitle: {{ section.settings.fallback_result_title | json }}
+      };if (totalStepsText) {
         totalStepsText.textContent = steps.length;
       }
 
@@ -694,10 +740,10 @@
           emptyMessage.className = 'lm-product-quiz__empty-message';
 
           const firstLine = document.createElement('p');
-          firstLine.textContent = 'No products match your selected category and price range yet.';
+          firstLine.textContent = quizTexts.emptyProductsLine1;
 
           const secondLine = document.createElement('p');
-          secondLine.textContent = 'Please try a different price range or add more products to this result group.';
+          secondLine.textContent = quizTexts.emptyProductsLine2;
 
           emptyMessage.appendChild(firstLine);
           emptyMessage.appendChild(secondLine);
@@ -754,8 +800,8 @@
         const matchedGroup = findMatchingGroup(score, selectedCategory);
 
         if (!matchedGroup) {
-          resultTitle.textContent = 'No matching result found';
-          resultDescription.textContent = 'Please check that this category has a result group for the current score range.';
+          resultTitle.textContent = quizTexts.noMatchingTitle;
+          resultDescription.textContent = quizTexts.noMatchingDescription;
 
           if (resultScore) {
             resultScore.textContent = '';
@@ -771,7 +817,7 @@
 
         const filteredProducts = filterProductsByPrice(matchedGroup.products, selectedPriceRange);
 
-        resultTitle.textContent = matchedGroup.title || 'Your recommendation';
+        resultTitle.textContent = matchedGroup.title || quizTexts.fallbackResultTitle;
         resultDescription.textContent = matchedGroup.description || '';
 
         if (resultScore) {
@@ -889,6 +935,40 @@
       "id": "restart_button_label",
       "label": "Restart button label",
       "default": "Retake quiz"
+    },
+        {
+      "type": "header",
+      "content": "Quiz messages"
+    },
+    {
+      "type": "text",
+      "id": "no_matching_result_title",
+      "label": "No match title",
+      "default": "Nema odgovarajućeg rezultata"
+    },
+    {
+      "type": "textarea",
+      "id": "no_matching_result_description",
+      "label": "No match text",
+      "default": "Provjeri ima li ova kategorija podešenu grupu rezultata za trenutni raspon bodova."
+    },
+    {
+      "type": "textarea",
+      "id": "empty_products_line_1",
+      "label": "Empty products first line",
+      "default": "Trenutno nema proizvoda koji odgovaraju odabranoj kategoriji i cjenovnom rasponu."
+    },
+    {
+      "type": "textarea",
+      "id": "empty_products_line_2",
+      "label": "Empty products second line",
+      "default": "Pokušaj odabrati drugi cjenovni raspon ili dodaj proizvode u ovu grupu rezultata."
+    },
+    {
+      "type": "text",
+      "id": "fallback_result_title",
+      "label": "Fallback result title",
+      "default": "Tvoja preporuka"
     },
     {
       "type": "color_scheme",

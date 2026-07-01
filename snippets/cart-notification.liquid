@@ -4,29 +4,74 @@
   Accepts:
   - color_scheme: {String} sets the color scheme of the notification (optional)
   - desktop_menu_type: {String} passes the desktop menu type which allows us to use the right css class (optional)
+  - cart_popup_*: Header section settings for editable popup text, color, width, and shipping progress
 
   Usage:
   {% render 'cart-notification' %}
 {% endcomment %}
 
+{%- liquid
+  assign popup_eyebrow = cart_popup_eyebrow | default: 'LuvMechanics cart'
+  assign popup_title = cart_popup_title
+  if popup_title == blank
+    assign popup_title = 'general.cart.item_added' | t
+  endif
+
+  assign popup_accent_color = cart_popup_accent_color | default: '#f8275c'
+  assign popup_panel_width = cart_popup_panel_width | default: 48
+  assign popup_footer_note = cart_popup_footer_note | default: 'Taxes and shipping calculated at checkout'
+  assign popup_subtotal_label = cart_popup_subtotal_label | default: 'Subtotal'
+  assign shipping_unlocked_text = cart_popup_shipping_unlocked_text | default: 'You have right to free domestic shipping!'
+  assign shipping_remaining_text = cart_popup_shipping_remaining_text | default: 'Spend [amount] more for free domestic shipping'
+  assign shipping_threshold_value = cart_popup_shipping_threshold | default: 80
+  assign free_shipping_threshold = shipping_threshold_value | times: 100
+  assign show_shipping_progress = true
+
+  if cart_popup_show_shipping_progress == false
+    assign show_shipping_progress = false
+  endif
+
+  assign free_shipping_progress = 0
+  if free_shipping_threshold > 0
+    assign free_shipping_progress = cart.total_price | times: 100 | divided_by: free_shipping_threshold
+  endif
+
+  if free_shipping_progress > 100
+    assign free_shipping_progress = 100
+  endif
+-%}
+
 <cart-notification>
   <div class="cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
+    <button
+      type="button"
+      class="cart-notification__scrim"
+      data-cart-notification-close
+      aria-label="{{ 'accessibility.close' | t }}"
+    ></button>
+
     <div
       id="cart-notification"
       class="cart-notification focus-inset{% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}"
+      style="--lm-cart-accent: {{ popup_accent_color }}; --lm-cart-panel-width: {{ popup_panel_width }}rem;"
       aria-modal="true"
-      aria-label="{{ 'general.cart.item_added' | t }}"
+      aria-label="{{ popup_title | escape }}"
       role="dialog"
       tabindex="-1"
     >
       <div class="cart-notification__header">
-        <h2 class="cart-notification__heading caption-large text-body">
-          {{- 'icon-checkmark.svg' | inline_asset_content -}}
-          {{ 'general.cart.item_added' | t }}
-        </h2>
+        <div class="cart-notification__title-wrap">
+          <span class="cart-notification__eyebrow">{{ popup_eyebrow | escape }}</span>
+          <h2 class="cart-notification__title">
+            {{ popup_title | escape }}
+            <sup data-cart-notification-count>{{ cart.item_count }}</sup>
+          </h2>
+        </div>
+
         <button
           type="button"
           class="cart-notification__close modal__close-button link link--text focus-inset"
+          data-cart-notification-close
           aria-label="{{ 'accessibility.close' | t }}"
         >
           <span class="svg-wrapper">
@@ -34,21 +79,73 @@
           </span>
         </button>
       </div>
-      <div id="cart-notification-product" class="cart-notification-product"></div>
-      <div class="cart-notification__links">
-        <a
-          href="{{ routes.cart_url }}"
-          id="cart-notification-button"
-          class="button button--secondary button--full-width"
+
+      {%- if show_shipping_progress and free_shipping_threshold > 0 -%}
+        <div
+          class="cart-notification__shipping"
+          data-cart-notification-shipping
+          data-shipping-threshold="{{ free_shipping_threshold }}"
+          data-unlocked-text="{{ shipping_unlocked_text | escape }}"
+          data-remaining-text="{{ shipping_remaining_text | escape }}"
         >
-          {{- 'general.cart.view_empty_cart' | t -}}
-        </a>
+          <p class="cart-notification__shipping-message" data-cart-notification-shipping-status>
+            {%- if cart.total_price >= free_shipping_threshold -%}
+              {{ shipping_unlocked_text | escape }}
+            {%- else -%}
+              {%- assign missing_shipping_amount = free_shipping_threshold | minus: cart.total_price | money -%}
+              {{ shipping_remaining_text | replace: '[amount]', missing_shipping_amount | escape }}
+            {%- endif -%}
+          </p>
+          <div class="cart-notification__shipping-scale">
+            <span>{{ 0 | money_without_trailing_zeros }}</span>
+            <div class="cart-notification__shipping-track" aria-hidden="true">
+              <span
+                class="cart-notification__shipping-fill"
+                data-cart-notification-progress
+                style="width: {{ free_shipping_progress }}%;"
+              ></span>
+              <span class="cart-notification__shipping-knob" data-cart-notification-knob style="left: {{ free_shipping_progress }}%;"></span>
+            </div>
+            <span>{{ free_shipping_threshold | money_without_trailing_zeros }}</span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="cart-notification__body">
+        <p class="cart-notification__added">
+          {{- 'icon-checkmark.svg' | inline_asset_content -}}
+          {{ 'general.cart.item_added' | t }}
+        </p>
+        <div id="cart-notification-product" class="cart-notification-product"></div>
+      </div>
+
+      <div class="cart-notification__footer">
+        <div class="cart-notification__summary">
+          <p>{{ popup_footer_note | escape }}</p>
+          <div>
+            <span>{{ popup_subtotal_label | escape }}</span>
+            <strong data-cart-notification-total>{{ cart.total_price | money_with_currency }}</strong>
+          </div>
+        </div>
+
         <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
-          <button class="button button--primary button--full-width" name="checkout">
+          <button class="button button--primary button--full-width cart-notification__checkout" name="checkout">
             {{ 'sections.cart.checkout' | t }}
           </button>
         </form>
-        <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
+
+        <div class="cart-notification__links">
+          <a
+            href="{{ routes.cart_url }}"
+            id="cart-notification-button"
+            class="button button--secondary button--full-width cart-notification__cart-link"
+          >
+            {{- 'general.cart.view_empty_cart' | t -}}
+          </a>
+          <button type="button" class="link button-label" data-cart-notification-close>
+            {{ 'general.continue_shopping' | t }}
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -342,7 +342,20 @@
 </{{ header_tag }}>
 
 {%- if settings.cart_type == "notification" -%}
-  {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
+    {%- render 'cart-notification',
+    color_scheme: section.settings.color_scheme,
+    desktop_menu_type: section.settings.menu_type_desktop,
+    cart_popup_eyebrow: section.settings.cart_popup_eyebrow,
+    cart_popup_title: section.settings.cart_popup_title,
+    cart_popup_accent_color: section.settings.cart_popup_accent_color,
+    cart_popup_panel_width: section.settings.cart_popup_panel_width,
+    cart_popup_show_shipping_progress: section.settings.cart_popup_show_shipping_progress,
+    cart_popup_shipping_threshold: section.settings.cart_popup_shipping_threshold,
+    cart_popup_shipping_unlocked_text: section.settings.cart_popup_shipping_unlocked_text,
+    cart_popup_shipping_remaining_text: section.settings.cart_popup_shipping_remaining_text,
+    cart_popup_footer_note: section.settings.cart_popup_footer_note,
+    cart_popup_subtotal_label: section.settings.cart_popup_subtotal_label
+  -%}
 {%- endif -%}
 
 {% javascript %}
@@ -640,6 +653,79 @@
       "default": true,
       "label": "t:sections.header.settings.enable_customer_avatar.label",
       "info": "t:sections.header.settings.enable_customer_avatar.info"
+    },
+    {
+      "type": "header",
+      "content": "Add to cart popup"
+    },
+    {
+      "type": "text",
+      "id": "cart_popup_eyebrow",
+      "label": "Small heading",
+      "default": "LuvMechanics cart"
+    },
+    {
+      "type": "text",
+      "id": "cart_popup_title",
+      "label": "Title",
+      "default": "Item added to your cart"
+    },
+    {
+      "type": "color",
+      "id": "cart_popup_accent_color",
+      "label": "Accent color",
+      "default": "#f8275c"
+    },
+    {
+      "type": "range",
+      "id": "cart_popup_panel_width",
+      "label": "Desktop popup width",
+      "min": 36,
+      "max": 64,
+      "step": 2,
+      "unit": "rem",
+      "default": 48
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_popup_show_shipping_progress",
+      "label": "Show shipping progress",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cart_popup_shipping_threshold",
+      "label": "Free shipping threshold",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "EUR",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "cart_popup_shipping_unlocked_text",
+      "label": "Free shipping reached text",
+      "default": "You have right to free domestic shipping!"
+    },
+    {
+      "type": "text",
+      "id": "cart_popup_shipping_remaining_text",
+      "label": "Free shipping remaining text",
+      "info": "Use [amount] where the missing amount should appear.",
+      "default": "Spend [amount] more for free domestic shipping"
+    },
+    {
+      "type": "text",
+      "id": "cart_popup_footer_note",
+      "label": "Footer note",
+      "default": "Taxes and shipping calculated at checkout"
+    },
+    {
+      "type": "text",
+      "id": "cart_popup_subtotal_label",
+      "label": "Subtotal label",
+      "default": "Subtotal"
     },
     {
       "type": "header",

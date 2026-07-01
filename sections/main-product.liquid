@@ -88,6 +88,10 @@
       line-height: 1.35;
     }
 
+    .product-delivery-info[hidden] {
+      display: none !important;
+    }
+
     .product-delivery-info:first-of-type {
       border-top: 1px dotted rgba(0, 0, 0, 0.18);
     }
@@ -270,7 +274,7 @@
         position: static;
         width: auto;
         max-width: 84%;
-        height: auto;
+        /* height: auto; */
         max-height: 88%;
         object-fit: contain !important;
         object-position: center;
@@ -942,16 +946,22 @@
                     assign selected_shipping_variant = product.selected_or_first_available_variant
                     assign domestic_country_code = block.settings.domestic_country_code | default: 'HR' | upcase | strip
                     assign current_country_code = localization.country.iso_code | default: domestic_country_code | upcase | strip
-                    assign domestic_threshold_cents = block.settings.domestic_threshold | times: 100
-                    assign eu_threshold_cents = block.settings.eu_threshold | times: 100
-                    assign active_shipping_threshold_cents = eu_threshold_cents
+                    assign domestic_threshold = block.settings.domestic_threshold | plus: 0
+                    assign eu_threshold = block.settings.eu_threshold | plus: 0
 
-                    if current_country_code == domestic_country_code
-                      assign active_shipping_threshold_cents = domestic_threshold_cents
+                    if domestic_threshold <= 0
+                      assign domestic_threshold = 80
                     endif
 
+                    if eu_threshold <= 0
+                      assign eu_threshold = 100
+                    endif
+
+                    assign domestic_threshold_cents = domestic_threshold | times: 100
+                    assign eu_threshold_cents = eu_threshold | times: 100
+
                     assign show_free_shipping_message = false
-                    if selected_shipping_variant.price >= active_shipping_threshold_cents
+                    if selected_shipping_variant.price >= domestic_threshold_cents and selected_shipping_variant.price >= eu_threshold_cents
                       assign show_free_shipping_message = true
                     endif
                   -%}
@@ -2096,13 +2106,15 @@
       if (!numericPrice || !freeShippingBlocks.length) return;
 
       freeShippingBlocks.forEach((block) => {
-        const currentCountry = String(block.dataset.currentCountry || '').toUpperCase();
-        const domesticCountry = String(block.dataset.domesticCountry || 'HR').toUpperCase();
-        const threshold = Number(
-          currentCountry === domesticCountry ? block.dataset.domesticThreshold : block.dataset.euThreshold
-        );
+        const domesticThreshold = Number(block.dataset.domesticThreshold || 8000);
+        const euThreshold = Number(block.dataset.euThreshold || 10000);
 
-        block.hidden = !(threshold && numericPrice >= threshold);
+        block.hidden = !(
+          domesticThreshold
+          && euThreshold
+          && numericPrice >= domesticThreshold
+          && numericPrice >= euThreshold
+        );
       });
     }
 
