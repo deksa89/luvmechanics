@@ -12,18 +12,26 @@
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
+        "carousel_image_desktop_b7w97g": {
+          "type": "carousel_image_desktop",
+          "settings": {
+            "image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_2.png",
+            "link": "",
+            "language": "en"
+          }
+        },
+        "carousel_image_desktop_rnQEgH": {
+          "type": "carousel_image_desktop",
+          "settings": {
+            "image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_1.png",
+            "link": "",
+            "language": "hr"
+          }
+        },
         "carousel_image_desktop_FPjd8A": {
           "type": "carousel_image_desktop",
           "settings": {
             "image": "shopify://shop_images/LELO_POPUST_HR.png",
-            "link": "shopify://collections/lelo",
-            "language": "hr"
-          }
-        },
-        "carousel_image_mobile_DLhMiU": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/15.png",
             "link": "shopify://collections/lelo",
             "language": "hr"
           }
@@ -36,75 +44,35 @@
             "language": "en"
           }
         },
+        "carousel_image_mobile_PQdzTW": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_eng_fca59f47-097a-431d-b9a2-7c422e41c379.png",
+            "link": "",
+            "language": "en"
+          }
+        },
+        "carousel_image_mobile_CgjJgg": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_hrv.png",
+            "link": "",
+            "language": "hr"
+          }
+        },
+        "carousel_image_mobile_DLhMiU": {
+          "type": "carousel_image_mobile",
+          "settings": {
+            "image": "shopify://shop_images/15.png",
+            "link": "shopify://collections/lelo",
+            "language": "hr"
+          }
+        },
         "carousel_image_mobile_yg6cxz": {
           "type": "carousel_image_mobile",
           "settings": {
             "image": "shopify://shop_images/15_1.png",
             "link": "shopify://collections/lelo",
-            "language": "en"
-          }
-        },
-        "carousel_image_desktop_Cb9Jwi": {
-          "type": "carousel_image_desktop",
-          "settings": {
-            "image": "shopify://shop_images/6_c44dfbd7-8722-4183-9aa7-8883dca34a83.png",
-            "link": "shopify://collections/new-arrivals",
-            "language": "en"
-          }
-        },
-        "carousel_image_desktop_MLJGQP": {
-          "type": "carousel_image_desktop",
-          "settings": {
-            "image": "shopify://shop_images/7_394c7da2-a4b2-42c2-89b9-a52d5b589223.png",
-            "link": "shopify://collections/new-arrivals",
-            "language": "hr"
-          }
-        },
-        "carousel_image_desktop_anQdTG": {
-          "type": "carousel_image_desktop",
-          "settings": {
-            "image": "shopify://shop_images/8.png",
-            "link": "shopify://collections/bundles",
-            "language": "en"
-          }
-        },
-        "carousel_image_desktop_4KU4Dk": {
-          "type": "carousel_image_desktop",
-          "settings": {
-            "image": "shopify://shop_images/7_dde5719f-d999-40f6-b85c-77548ce0407c.png",
-            "link": "shopify://collections/bundles",
-            "language": "hr"
-          }
-        },
-        "carousel_image_mobile_CV4N7Q": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/4_cc61c20e-214d-42db-8efe-aa62f94fbf40.png",
-            "link": "shopify://collections/new-arrivals",
-            "language": "en"
-          }
-        },
-        "carousel_image_mobile_mFbE3C": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/5_81e29a22-14c9-4b6d-9f02-0282d1fe10b3.png",
-            "link": "shopify://collections/new-arrivals",
-            "language": "hr"
-          }
-        },
-        "carousel_image_mobile_AwLVmK": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/4_3c00c750-f68e-491d-8eb1-34a000dabac3.png",
-            "link": "shopify://collections/bundles",
-            "language": "hr"
-          }
-        },
-        "carousel_image_mobile_cRGMgW": {
-          "type": "carousel_image_mobile",
-          "settings": {
-            "image": "shopify://shop_images/3_6dc71fcf-78d8-4ab4-b9fb-9289dcadb027.png",
-            "link": "shopify://collections/bundles",
             "language": "en"
           }
         },
@@ -118,18 +86,14 @@
         }
       },
       "block_order": [
+        "carousel_image_desktop_b7w97g",
+        "carousel_image_desktop_rnQEgH",
         "carousel_image_desktop_FPjd8A",
-        "carousel_image_mobile_DLhMiU",
         "carousel_image_desktop_jryD6j",
+        "carousel_image_mobile_PQdzTW",
+        "carousel_image_mobile_CgjJgg",
+        "carousel_image_mobile_DLhMiU",
         "carousel_image_mobile_yg6cxz",
-        "carousel_image_desktop_Cb9Jwi",
-        "carousel_image_desktop_MLJGQP",
-        "carousel_image_desktop_anQdTG",
-        "carousel_image_desktop_4KU4Dk",
-        "carousel_image_mobile_CV4N7Q",
-        "carousel_image_mobile_mFbE3C",
-        "carousel_image_mobile_AwLVmK",
-        "carousel_image_mobile_cRGMgW",
         "button"
       ],
       "settings": {
