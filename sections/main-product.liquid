@@ -504,50 +504,126 @@
     }
 
     .lm-recommended-with {
-      margin: 18px 0 24px;
-      padding-top: 12px;
+      margin: 22px 0 26px;
+      padding: 16px;
+      border: 1px solid rgba(255, 43, 104, 0.18);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(255, 43, 104, 0.06), rgba(255, 255, 255, 0.94) 52%, rgba(43, 43, 43, 0.04));
+      box-shadow: 0 12px 30px rgba(43, 43, 43, 0.06);
+    }
+
+    .lm-recommended-with__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 0 0 14px;
+    }
+
+    .lm-recommended-with__eyebrow {
+      display: none;
+      margin: 0 0 4px;
+      font-size: 1.05rem;
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ff2b68;
+      font-weight: 700;
     }
 
     .lm-recommended-with__title {
-      margin: 0 0 12px;
-      font-size: 1.5rem;
-      line-height: 1.35;
-      font-weight: 400;
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1.25;
+      font-weight: 600;
       color: #2b2b2b;
     }
 
-    .lm-recommended-with__list {
+    .lm-recommended-with__viewport {
       display: grid;
-      gap: 0;
-      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
     .lm-recommended-with__item {
       display: grid;
-      grid-template-columns: 24px 58px 1fr;
-      gap: 14px;
+      grid-template-columns: 24px 72px minmax(0, 1fr);
+      gap: 12px;
       align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-      cursor: pointer;
+      min-height: 112px;
+      padding: 14px;
+      border: 1px solid rgba(43, 43, 43, 0.08);
+      border-radius: 8px;
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .lm-recommended-with__checkbox {
+    .lm-recommended-with__item:only-child {
+      grid-column: 1 / -1;
+    }
+
+    .lm-recommended-with__item:has([data-upsell-checkbox]:checked) {
+      border-color: rgba(255, 43, 104, 0.55);
+      box-shadow: 0 0 0 1px rgba(255, 43, 104, 0.12);
+    }
+
+    .lm-recommended-with__selector {
+      position: relative;
       width: 22px;
       height: 22px;
-      margin: 0;
-      border: 1px solid #ff2b68;
-      accent-color: #ff2b68;
       cursor: pointer;
     }
 
-    .lm-recommended-with__image-wrap {
-      width: 58px;
-      height: 58px;
+    .lm-recommended-with__selector input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .lm-recommended-with__checkmark {
+      width: 22px;
+      height: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid rgba(43, 43, 43, 0.28);
+      border-radius: 4px;
       background: #ffffff;
+      color: #ffffff;
+    }
+
+    .lm-recommended-with__checkmark svg {
+      width: 13px;
+      height: 10px;
+      opacity: 0;
+    }
+
+    .lm-recommended-with__selector input:checked + .lm-recommended-with__checkmark {
+      border-color: #ff2b68;
+      background: #ff2b68;
+    }
+
+    .lm-recommended-with__selector input:checked + .lm-recommended-with__checkmark svg {
+      opacity: 1;
+    }
+
+    .lm-recommended-with__selector input:focus-visible + .lm-recommended-with__checkmark {
+      outline: 2px solid #2b2b2b;
+      outline-offset: 2px;
+    }
+
+    .lm-recommended-with__image-wrap {
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: #f8f8f8;
+      overflow: hidden;
     }
 
     .lm-recommended-with__image {
@@ -555,75 +631,122 @@
       height: 100%;
       object-fit: contain;
       display: block;
+      padding: 8px;
     }
 
     .lm-recommended-with__meta {
       min-width: 0;
     }
 
+    .lm-recommended-with__badge {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 0 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 43, 104, 0.1);
+      color: #c0183d;
+      font-size: 1.05rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
     .lm-recommended-with__product-title {
-      margin: 0 0 4px;
-      font-size: 1.4rem;
+      display: block;
+      margin: 0 0 5px;
+      font-size: 1.45rem;
       line-height: 1.35;
-      font-weight: 500;
+      font-weight: 600;
       color: #2b2b2b;
+      text-decoration: none;
+    }
+
+    .lm-recommended-with__product-title:hover {
+      color: #ff2b68;
     }
 
     .lm-recommended-with__vendor {
-      margin: 0 0 4px;
-      font-size: 1.15rem;
+      display: block;
+      margin: 0 0 5px;
+      font-size: 1.1rem;
       line-height: 1.3;
       color: #666666;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
     .lm-recommended-with__price {
+      display: block;
       margin: 0;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       line-height: 1.2;
       font-weight: 700;
       color: #2b2b2b;
     }
 
-    .lm-recommended-with__price::before {
-      content: "+ ";
+    .lm-recommended-with__message {
+      margin: 8px 0 0;
+      font-size: 1.2rem;
+      line-height: 1.35;
+      color: #c0183d;
+    }
+
+    .lm-recommended-with__message:empty {
+      display: none;
+    }
+
+    .lm-recommended-with__empty {
+      margin: 22px 0 26px;
+      padding: 16px;
+      border: 1px dashed rgba(255, 43, 104, 0.45);
+      border-radius: 8px;
+      background: rgba(255, 43, 104, 0.04);
+      color: #2b2b2b;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+
+    .lm-recommended-with__empty strong {
+      display: block;
+      margin-bottom: 4px;
     }
 
     @media screen and (max-width: 749px) {
       .lm-recommended-with {
-        margin: 16px 0 22px;
+        margin: 18px 0 24px;
+        padding: 14px;
+      }
+
+      .lm-recommended-with__top {
+        align-items: center;
       }
 
       .lm-recommended-with__title {
-        font-size: 1.45rem;
+        font-size: 1.5rem;
+      }
+
+      .lm-recommended-with__viewport {
+        grid-template-columns: 1fr;
       }
 
       .lm-recommended-with__item {
-        grid-template-columns: 22px 52px 1fr;
-        gap: 12px;
-        padding: 11px 0;
-      }
-
-      .lm-recommended-with__checkbox {
-        width: 21px;
-        height: 21px;
+        grid-template-columns: 24px 64px minmax(0, 1fr);
+        gap: 10px;
+        min-height: 100px;
+        padding: 12px;
       }
 
       .lm-recommended-with__image-wrap {
-        width: 52px;
-        height: 52px;
+        width: 64px;
+        height: 64px;
       }
 
       .lm-recommended-with__product-title {
-        font-size: 1.3rem;
-      }
-
-      .lm-recommended-with__price {
-        font-size: 1.3rem;
+        font-size: 1.32rem;
       }
     }
-
     .lm-product-price__compare {
       color: #777777;
       font-size: 1.5rem;
@@ -1240,10 +1363,21 @@
                 </div>
 
               {%- when 'recommended_with' -%}
-                {%- assign recommended_products = block.settings.products -%}
+                {%- assign recommended_products = product.metafields.custom.upsell_products.value -%}
+
+                {%- if recommended_products == blank -%}
+                  {%- assign recommended_products = block.settings.products -%}
+                {%- endif -%}
 
                 {%- if recommended_products != blank -%}
                   {%- assign recommended_title = block.settings.heading -%}
+                  {%- assign available_recommendations = 0 -%}
+
+                  {%- for recommended_product in recommended_products limit: 2 -%}
+                    {%- if recommended_product.selected_or_first_available_variant.available -%}
+                      {%- assign available_recommendations = available_recommendations | plus: 1 -%}
+                    {%- endif -%}
+                  {%- endfor -%}
 
                   {%- if recommended_title == blank -%}
                     {%- assign recommended_title = 'Complete your experience' -%}
@@ -1253,59 +1387,86 @@
                     {%- endif -%}
                   {%- endif -%}
 
-                  <div class="lm-recommended-with" data-recommended-with="{{ block.id }}" {{ block.shopify_attributes }}>
-                    <h2 class="lm-recommended-with__title">
-                      {{ recommended_title }}
-                    </h2>
+                  {%- if available_recommendations > 0 -%}
+                    <div class="lm-recommended-with" data-recommended-with="{{ block.id }}" {{ block.shopify_attributes }}>
+                      <div class="lm-recommended-with__top">
+                        <div>
+                          <span class="lm-recommended-with__eyebrow">
+                            Add-on choice
+                          </span>
 
-                    <div class="lm-recommended-with__list">
-                      {%- for recommended_product in recommended_products -%}
-                        {%- assign recommended_variant = recommended_product.selected_or_first_available_variant -%}
+                          <h2 class="lm-recommended-with__title">
+                            {{ recommended_title }}
+                          </h2>
+                        </div>
 
-                        {%- if recommended_variant.available -%}
-                          <label class="lm-recommended-with__item">
-                            <input
-                              type="checkbox"
-                              class="lm-recommended-with__checkbox"
-                              data-recommended-checkbox
+                      </div>
+
+                      <div class="lm-recommended-with__viewport">
+                        {%- for recommended_product in recommended_products limit: 2 -%}
+                          {%- assign recommended_variant = recommended_product.selected_or_first_available_variant -%}
+
+                          {%- if recommended_variant.available -%}
+                            <article
+                              class="lm-recommended-with__item"
+                              data-upsell-item
                               data-variant-id="{{ recommended_variant.id }}"
                               data-product-title="{{ recommended_product.title | escape }}"
                             >
-
-                            <span class="lm-recommended-with__image-wrap">
-                              {%- if recommended_product.featured_image -%}
-                                <img
-                                  src="{{ recommended_product.featured_image | image_url: width: 120 }}"
-                                  alt="{{ recommended_product.featured_image.alt | default: recommended_product.title | escape }}"
-                                  class="lm-recommended-with__image"
-                                  width="60"
-                                  height="60"
-                                  loading="lazy"
-                                >
-                              {%- endif -%}
-                            </span>
-
-                            <span class="lm-recommended-with__meta">
-                              <span class="lm-recommended-with__product-title">
-                                {{ recommended_product.title }}
-                              </span>
-
-                              {%- if block.settings.show_vendor and recommended_product.vendor != blank -%}
-                                <span class="lm-recommended-with__vendor">
-                                  {{ recommended_product.vendor }}
+                              <label class="lm-recommended-with__selector" for="Upsell-{{ section.id }}-{{ block.id }}-{{ recommended_variant.id }}">
+                                <input type="checkbox" id="Upsell-{{ section.id }}-{{ block.id }}-{{ recommended_variant.id }}" value="{{ recommended_variant.id }}" data-upsell-checkbox>
+                                <span class="lm-recommended-with__checkmark" aria-hidden="true">
+                                  <svg viewBox="0 0 14 11" fill="none"><path d="M1 5.5 5 9.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                 </span>
-                              {%- endif -%}
+                                <span class="visually-hidden">Select {{ recommended_product.title | escape }}</span>
+                              </label>
 
-                              {%- if block.settings.show_price -%}
+                              <a href="{{ recommended_product.url }}" class="lm-recommended-with__image-wrap">
+                                {%- if recommended_product.featured_image -%}
+                                  <img
+                                    src="{{ recommended_product.featured_image | image_url: width: 180 }}"
+                                    alt="{{ recommended_product.featured_image.alt | default: recommended_product.title | escape }}"
+                                    class="lm-recommended-with__image"
+                                    width="90"
+                                    height="90"
+                                    loading="lazy"
+                                  >
+                                {%- endif -%}
+                              </a>
+
+                              <div class="lm-recommended-with__meta">
+                                {%- if block.settings.badge_text != blank -%}
+                                  <span class="lm-recommended-with__badge">
+                                    {{ block.settings.badge_text }}
+                                  </span>
+                                {%- endif -%}
+
+                                <a href="{{ recommended_product.url }}" class="lm-recommended-with__product-title">
+                                  {{ recommended_product.title }}
+                                </a>
+
+                                {%- if block.settings.show_vendor and recommended_product.vendor != blank -%}
+                                  <span class="lm-recommended-with__vendor">
+                                    {{ recommended_product.vendor }}
+                                  </span>
+                                {%- endif -%}
+
                                 <span class="lm-recommended-with__price">
                                   {{ recommended_variant.price | money }}
                                 </span>
-                              {%- endif -%}
-                            </span>
-                          </label>
-                        {%- endif -%}
-                      {%- endfor -%}
+                              </div>
+                            </article>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+
+                      <p class="lm-recommended-with__message" data-upsell-message role="status" aria-live="polite"></p>
                     </div>
+                  {%- endif -%}
+                {%- elsif request.design_mode -%}
+                  <div class="lm-recommended-with__empty" {{ block.shopify_attributes }}>
+                    <strong>{{ block.settings.heading | default: 'Pairs well with' }}</strong>
+                    Select up to two products below, or populate the product metafield <code>custom.upsell_products</code>.
                   </div>
                 {%- endif -%}
               {%- when 'rating' -%}
@@ -2011,74 +2172,101 @@
 <script>
   (() => {
     const productInfo = document.getElementById('MainProduct-{{ section.id }}');
-    if (!productInfo) return;
+    const productForm = document.getElementById('product-form-{{ section.id }}');
 
-    const productForm = productInfo.querySelector('form[action*="/cart/add"]');
-    if (!productForm) return;
+    if (!productInfo || !productForm) return;
+
+    const cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+    const cartAddUrl = window.routes?.cart_add_url || window.Shopify.routes.root + 'cart/add.js';
 
     productForm.addEventListener(
       'submit',
       async (event) => {
-        const selectedAddons = Array.from(
-          productInfo.querySelectorAll('[data-recommended-checkbox]:checked')
-        );
+        const selectedVariantIds = [
+          ...new Set(
+            Array.from(productInfo.querySelectorAll('[data-upsell-checkbox]:checked'))
+              .map((checkbox) => Number(checkbox.value))
+              .filter(Boolean)
+          )
+        ].slice(0, 2);
 
-        if (!selectedAddons.length) return;
+        if (!selectedVariantIds.length) return;
 
         event.preventDefault();
         event.stopPropagation();
         event.stopImmediatePropagation();
 
-        const submitButton = productForm.querySelector('[type="submit"]');
-        if (submitButton) {
-          submitButton.setAttribute('disabled', 'disabled');
-          submitButton.classList.add('loading');
-        }
-
         const formData = new FormData(productForm);
         const mainVariantId = Number(formData.get('id'));
-        const mainQuantity = Number(formData.get('quantity') || 1);
+        const mainQuantity = Math.max(Number(formData.get('quantity') || 1), 1);
+        const submitButton = event.submitter || productForm.querySelector('[type="submit"]');
+        const message = productInfo.querySelector('[data-upsell-message]');
 
-        const items = [
-          {
-            id: mainVariantId,
-            quantity: mainQuantity
-          }
-        ];
+        if (!mainVariantId) {
+          if (message) message.textContent = 'Please choose an available product variant first.';
+          return;
+        }
 
-        selectedAddons.forEach((checkbox) => {
-          const variantId = Number(checkbox.dataset.variantId);
+        submitButton?.setAttribute('disabled', 'disabled');
+        submitButton?.classList.add('loading');
+        if (message) message.textContent = '';
 
-          if (!variantId) return;
+        const body = {
+          items: [
+            { id: mainVariantId, quantity: mainQuantity },
+            ...selectedVariantIds.map((variantId) => ({ id: variantId, quantity: 1 }))
+          ]
+        };
 
-          items.push({
-            id: variantId,
-            quantity: 1
-          });
-        });
+        if (cart) {
+          body.sections = cart.getSectionsToRender().map((section) => section.id);
+          body.sections_url = window.location.pathname;
+        }
 
         try {
-          const response = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
+          const response = await fetch(cartAddUrl, {
             method: 'POST',
             headers: {
+              Accept: 'application/javascript',
               'Content-Type': 'application/json',
-              Accept: 'application/json'
+              'X-Requested-With': 'XMLHttpRequest'
             },
-            body: JSON.stringify({ items })
+            body: JSON.stringify(body)
           });
 
-          if (!response.ok) {
-            throw new Error('Cart add failed');
+          const parsedState = await response.json();
+
+          if (parsedState.status || !response.ok) {
+            throw new Error(parsedState.description || parsedState.message || 'Products could not be added to cart.');
           }
 
-          window.location.href = `${window.Shopify.routes.root}cart`;
+          const mainItem = parsedState.items?.find((item) => Number(item.variant_id) === mainVariantId) || parsedState.items?.[0];
+
+          if (mainItem?.key) {
+            parsedState.key = mainItem.key;
+            parsedState.id = mainItem.id;
+          }
+
+          if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+            publish(PUB_SUB_EVENTS.cartUpdate, {
+              source: 'product-form',
+              productVariantId: mainVariantId,
+              cartData: parsedState
+            });
+          }
+
+          if (cart) {
+            cart.classList.remove('is-empty');
+            cart.renderContents(parsedState);
+          } else {
+            window.location.href = window.routes?.cart_url || window.Shopify.routes.root + 'cart';
+          }
         } catch (error) {
           console.error('Products could not be added to cart:', error);
-
-          if (submitButton) {
-            submitButton.removeAttribute('disabled');
-            submitButton.classList.remove('loading');
-          }
+          if (message) message.textContent = error.message || 'Products could not be added to cart. Please try again.';
+        } finally {
+          submitButton?.removeAttribute('disabled');
+          submitButton?.classList.remove('loading');
         }
       },
       true
@@ -3047,10 +3235,17 @@
           "default": "Pairs well with"
         },
         {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "default": "Perfect match"
+        },
+        {
           "type": "product_list",
           "id": "products",
-          "label": "Products",
-          "limit": 8
+          "label": "Preview / fallback products",
+          "info": "Choose up to 2 products. The current product's custom.upsell_products metafield takes priority.",
+          "limit": 2
         },
         {
           "type": "checkbox",
@@ -3058,12 +3253,6 @@
           "label": "Show vendor",
           "default": true
         },
-        {
-          "type": "checkbox",
-          "id": "show_price",
-          "label": "Show price",
-          "default": true
-        }
       ]
     },
     {

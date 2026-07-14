@@ -15,7 +15,7 @@
         "carousel_image_desktop_b7w97g": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_2.png",
+            "image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_3.png",
             "link": "",
             "language": "en"
           }
@@ -23,7 +23,7 @@
         "carousel_image_desktop_rnQEgH": {
           "type": "carousel_image_desktop",
           "settings": {
-            "image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_1.png",
+            "image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_4.png",
             "link": "",
             "language": "hr"
           }
@@ -47,7 +47,7 @@
         "carousel_image_mobile_PQdzTW": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_eng_fca59f47-097a-431d-b9a2-7c422e41c379.png",
+            "image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_2.png",
             "link": "",
             "language": "en"
           }
@@ -55,7 +55,7 @@
         "carousel_image_mobile_CgjJgg": {
           "type": "carousel_image_mobile",
           "settings": {
-            "image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_hrv.png",
+            "image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_1.png",
             "link": "",
             "language": "hr"
           }
@@ -929,7 +929,7 @@
               "remote-control-toys",
               "vibrating-rings",
               "clitoris-stimulator",
-              "bundles"
+              "lubricants"
             ],
             "desktop_width_percent": 100,
             "container_max_width": 1600,

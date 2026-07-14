@@ -23,8 +23,9 @@
       "blocks": {
         "heading_3KdbeV": {
           "type": "heading",
+          "disabled": true,
           "settings": {
-            "heading": "<em>Lubricants & Accessories</em>",
+            "heading": "",
             "heading_size": "h0"
           }
         },
@@ -73,6 +74,7 @@
         "show_secondary_image": true,
         "show_vendor": true,
         "show_rating": true,
+        "product_badge_icon_size": 48,
         "quick_add": "standard",
         "enable_filtering": true,
         "filter_type": "horizontal",

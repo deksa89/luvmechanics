@@ -48,6 +48,18 @@
             "delivery_time": "Delivery time: 4–7 days"
           }
         },
+        "recommended_with_HBbEhj": {
+          "type": "recommended_with",
+          "disabled": true,
+          "settings": {
+            "heading": "Pairs well with",
+            "badge_text": "",
+            "products": [
+              "eros-all-purpose-toy-cleaner-50-ml"
+            ],
+            "show_vendor": true
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -59,24 +71,23 @@
           "type": "quantity_selector",
           "settings": {}
         },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true
-          }
-        },
         "recommended_with_7RE7zt": {
           "type": "recommended_with",
           "disabled": true,
           "settings": {
             "heading": "Recommended with",
+            "badge_text": "",
             "products": [
-              "shunga-toko-aqua-natural-lubricant",
-              "cobeco-bodylube-body-lube-latex-safe-250-ml"
+              "bruma-aloe-vera-sliding-gel-natural-confort-100-ml"
             ],
-            "show_vendor": true,
-            "show_price": true
+            "show_vendor": true
+          }
+        },
+        "buy_buttons_QBPB6q": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
           }
         },
         "feature_highlights_strip_ce9P87": {
@@ -179,10 +190,11 @@
         "price",
         "delivery_info_Qt9Dkq",
         "delivery_info_HrhB9H",
+        "recommended_with_HBbEhj",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons",
         "recommended_with_7RE7zt",
+        "buy_buttons_QBPB6q",
         "feature_highlights_strip_ce9P87",
         "collapsible_tab_UFJziw",
         "collapsible_tab_PQya4J",

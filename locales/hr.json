@@ -151,7 +151,7 @@
       "taxes_included": "Porezi uključeni.",
       "duties_included": "Uključene dužnosti.",
       "duties_and_taxes_included": "Uključeni porezi i carine.",
-      "shipping_policy_html": "<a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">Dostava</a> se obračunava prilikom plaćanja."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Dostava</a> se obračunava prilikom plaćanja."
     },
     "facets": {
       "filter_and_sort": "Filtriraj i razvrstaj",

@@ -274,12 +274,18 @@
       }}
     </div>
   {%- endif -%}
-  {%- if section.settings.hero_title != blank -%}
+  {%- if request.page_type == 'collection' or section.settings.hero_title != blank -%}
     <div class="banner__hero-title page-width">
       <div class="banner__hero-title-inner">
-        <h2 class="banner__hero-title-text">
-          {{ section.settings.hero_title }}
-        </h2>
+        {%- if request.page_type == 'collection' -%}
+          <h1 class="banner__hero-title-text">
+            {{ collection.title | escape }}
+          </h1>
+        {%- else -%}
+          <h2 class="banner__hero-title-text">
+            {{ section.settings.hero_title }}
+          </h2>
+        {%- endif -%}
       </div>
     </div>
   {%- endif -%}
