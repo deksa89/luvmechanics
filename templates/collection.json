@@ -25,7 +25,13 @@
       "settings": {
         "image_overlay_opacity": 0,
         "image_height": "adapt",
+        "image_position_desktop": "center center",
+        "image_position_mobile": "center center",
         "image_behavior": "none",
+        "hero_title": "",
+        "hero_title_color": "#ffffff",
+        "hero_title_size_desktop": 112,
+        "hero_title_size_mobile": 56,
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
@@ -56,6 +62,7 @@
         "heading_U4Fx9E",
         "text_qykqGm"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
@@ -78,6 +85,7 @@
         "show_secondary_image": true,
         "show_vendor": true,
         "show_rating": true,
+        "product_badge_icon_size": 48,
         "quick_add": "standard",
         "enable_filtering": true,
         "filter_type": "horizontal",

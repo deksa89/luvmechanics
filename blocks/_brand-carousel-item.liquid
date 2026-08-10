@@ -1,0 +1,53 @@
+{%- if block.settings.logo != blank -%}
+  {%- assign brand_name = block.settings.name | default: block.settings.logo.alt | default: 'Brand' -%}
+  <div class="brand-carousel__item" data-real-slide="true" {{ block.shopify_attributes }}>
+    {%- if block.settings.link != blank -%}
+      <a href="{{ block.settings.link }}" aria-label="Visit {{ brand_name | escape }}">
+        <img
+          src="{{ block.settings.logo | image_url: width: 400 }}"
+          alt="{{ brand_name | escape }}"
+          loading="lazy"
+          width="{{ block.settings.logo.width }}"
+          height="{{ block.settings.logo.height }}"
+        >
+      </a>
+    {%- else -%}
+      <img
+        src="{{ block.settings.logo | image_url: width: 400 }}"
+        alt="{{ brand_name | escape }}"
+        loading="lazy"
+        width="{{ block.settings.logo.width }}"
+        height="{{ block.settings.logo.height }}"
+      >
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Brand",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Brand name"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand"
+    }
+  ]
+}
+{% endschema %}

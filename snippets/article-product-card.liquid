@@ -1,0 +1,31 @@
+{%- comment -%}
+  Renders one product card from an article product-reference metafield.
+
+  Accepts:
+  - product: Product Liquid object
+  - article_settings: Visual settings from main-article
+  - position: top, middle, or bottom
+  - product_index: Product index within the position group
+  - section_id: Parent section ID
+{%- endcomment -%}
+
+{%- if product != blank -%}
+  {%- assign card_section_id = section_id | append: '-' | append: position | append: '-' | append: product_index -%}
+  <div
+    class="article-template__product{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    style="--article-product-card-width: {{ article_settings.product_card_width }}px;"
+  >
+    <div class="article-template__product-card">
+      {% render 'card-product',
+        card_product: product,
+        media_aspect_ratio: article_settings.product_image_ratio,
+        show_secondary_image: article_settings.product_show_secondary_image,
+        show_vendor: article_settings.product_show_vendor,
+        show_rating: article_settings.product_show_rating,
+        lazy_load: true,
+        skip_styles: true,
+        section_id: card_section_id
+      %}
+    </div>
+  </div>
+{%- endif -%}

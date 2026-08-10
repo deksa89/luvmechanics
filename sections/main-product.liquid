@@ -507,7 +507,6 @@
       margin: 22px 0 26px;
       padding: 16px;
       border: 1px solid rgba(255, 43, 104, 0.18);
-      border-radius: 8px;
       background: linear-gradient(135deg, rgba(255, 43, 104, 0.06), rgba(255, 255, 255, 0.94) 52%, rgba(43, 43, 43, 0.04));
       box-shadow: 0 12px 30px rgba(43, 43, 43, 0.06);
     }
@@ -541,7 +540,7 @@
 
     .lm-recommended-with__viewport {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 10px;
     }
 
@@ -553,7 +552,6 @@
       min-height: 112px;
       padding: 14px;
       border: 1px solid rgba(43, 43, 43, 0.08);
-      border-radius: 8px;
       background: #ffffff;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
@@ -1365,10 +1363,6 @@
               {%- when 'recommended_with' -%}
                 {%- assign recommended_products = product.metafields.custom.upsell_products.value -%}
 
-                {%- if recommended_products == blank -%}
-                  {%- assign recommended_products = block.settings.products -%}
-                {%- endif -%}
-
                 {%- if recommended_products != blank -%}
                   {%- assign recommended_title = block.settings.heading -%}
                   {%- assign available_recommendations = 0 -%}
@@ -1466,7 +1460,7 @@
                 {%- elsif request.design_mode -%}
                   <div class="lm-recommended-with__empty" {{ block.shopify_attributes }}>
                     <strong>{{ block.settings.heading | default: 'Pairs well with' }}</strong>
-                    Select up to two products below, or populate the product metafield <code>custom.upsell_products</code>.
+                    Add up to two products to this product's <code>custom.upsell_products</code> metafield.
                   </div>
                 {%- endif -%}
               {%- when 'rating' -%}
@@ -3241,18 +3235,15 @@
           "default": "Perfect match"
         },
         {
-          "type": "product_list",
-          "id": "products",
-          "label": "Preview / fallback products",
-          "info": "Choose up to 2 products. The current product's custom.upsell_products metafield takes priority.",
-          "limit": 2
+          "type": "paragraph",
+          "content": "Products are selected separately on every product using the custom.upsell_products metafield (list of products, maximum 2). This block does not use shared fallback products."
         },
         {
           "type": "checkbox",
           "id": "show_vendor",
           "label": "Show vendor",
           "default": true
-        },
+        }
       ]
     },
     {

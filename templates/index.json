@@ -757,8 +757,8 @@
     "1772909820c436293e": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_322d227_MUYNaM": {
-          "type": "ai_gen_block_322d227",
+        "brand_carousel_MUYNaM": {
+          "type": "brand-carousel",
           "settings": {
             "heading": "",
             "dots_margin_top_desktop": 10,
@@ -789,33 +789,116 @@
             "arrow_color": "#000000",
             "arrow_hover_color": "#000000",
             "arrow_border_radius": 40,
-            "background_color": "#ffffff",
-            "brand_1": "shopify://shop_images/LELO_logo_png_480x480-removebg-preview.png",
-            "brand_1_url": "shopify://collections/lelo",
-            "brand_2": "shopify://shop_images/wevibe.png",
-            "brand_2_url": "shopify://collections/we-vibe",
-            "brand_3": "shopify://shop_images/womanizer.png",
-            "brand_3_url": "shopify://collections/womanizer",
-            "brand_4": "shopify://shop_images/Satisfyer_Logo-removebg-preview.png",
-            "brand_4_url": "shopify://collections/satisfyer",
-            "brand_5": "shopify://shop_images/bathmate.png",
-            "brand_5_url": "shopify://collections/bathmate",
-            "brand_6": "shopify://shop_images/pretty-love-kaufbei-logo.jpg",
-            "brand_6_url": "shopify://collections/pretty-love",
-            "brand_7": "shopify://shop_images/Untitled_design_25.png",
-            "brand_7_url": "shopify://collections/arcwave",
-            "brand_8": "shopify://shop_images/kiiro.webp",
-            "brand_8_url": "shopify://collections/kiiro",
-            "brand_9": "shopify://shop_images/FF_Logo_RGB.webp",
-            "brand_9_url": "shopify://collections/fun-factory",
-            "brand_10": "shopify://shop_images/durx-removebg-preview.png",
-            "brand_10_url": "shopify://collections/durex"
+            "background_color": "#ffffff"
           },
-          "blocks": {}
+          "blocks": {
+            "brand_1": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "LELO",
+                "logo": "shopify://shop_images/LELO_logo_png_480x480-removebg-preview.png",
+                "link": "shopify://collections/lelo"
+              },
+              "blocks": {}
+            },
+            "brand_2": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "We-Vibe",
+                "logo": "shopify://shop_images/wevibe.png",
+                "link": "shopify://collections/we-vibe"
+              },
+              "blocks": {}
+            },
+            "brand_3": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Womanizer",
+                "logo": "shopify://shop_images/womanizer.png",
+                "link": "shopify://collections/womanizer"
+              },
+              "blocks": {}
+            },
+            "brand_4": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Satisfyer",
+                "logo": "shopify://shop_images/Satisfyer_Logo-removebg-preview.png",
+                "link": "shopify://collections/satisfyer"
+              },
+              "blocks": {}
+            },
+            "brand_5": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Bathmate",
+                "logo": "shopify://shop_images/bathmate.png",
+                "link": "shopify://collections/bathmate"
+              },
+              "blocks": {}
+            },
+            "brand_6": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Pretty Love",
+                "logo": "shopify://shop_images/pretty-love-kaufbei-logo.jpg",
+                "link": "shopify://collections/pretty-love"
+              },
+              "blocks": {}
+            },
+            "brand_7": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Arcwave",
+                "logo": "shopify://shop_images/Untitled_design_25.png",
+                "link": "shopify://collections/arcwave"
+              },
+              "blocks": {}
+            },
+            "brand_8": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Kiiroo",
+                "logo": "shopify://shop_images/kiiro.webp",
+                "link": "shopify://collections/kiiro"
+              },
+              "blocks": {}
+            },
+            "brand_9": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Fun Factory",
+                "logo": "shopify://shop_images/FF_Logo_RGB.webp",
+                "link": "shopify://collections/fun-factory"
+              },
+              "blocks": {}
+            },
+            "brand_10": {
+              "type": "_brand-carousel-item",
+              "settings": {
+                "name": "Durex",
+                "logo": "shopify://shop_images/durx-removebg-preview.png",
+                "link": "shopify://collections/durex"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "brand_1",
+            "brand_2",
+            "brand_3",
+            "brand_4",
+            "brand_5",
+            "brand_6",
+            "brand_7",
+            "brand_8",
+            "brand_9",
+            "brand_10"
+          ]
         }
       },
       "block_order": [
-        "ai_gen_block_322d227_MUYNaM"
+        "brand_carousel_MUYNaM"
       ],
       "name": "Brands",
       "settings": {}

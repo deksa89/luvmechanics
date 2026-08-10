@@ -1,10 +1,126 @@
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
 
-<article class="article-template">
+<article
+  class="article-template"
+  data-article-template
+  style="--article-content-width: {{ section.settings.article_content_width | default: 800 }}px;"
+>
+  {%- liquid
+    assign article_words = article.content | strip_html | replace: '&nbsp;', ' ' | split: ' ' | size
+    assign reading_minutes = article_words | plus: 199 | divided_by: 200 | at_least: 1
+    assign article_label = article.tags.first | default: blog.title
+    assign share_url = request.origin | append: article.url
+    assign article_products_after_intro = article.metafields.custom.products_after_intro.value
+    assign article_products_middle = article.metafields.custom.products_middle.value
+    assign article_products_before_conclusion = article.metafields.custom.products_before_conclusion.value
+    assign related_articles = article.metafields.custom.related_articles.value
+    if related_articles == blank
+      assign related_articles = article.metafields.custom.custom_related_articles.value
+    endif
+    assign related_article = article.metafields.custom.related_article.value
+    if related_article == blank
+      assign related_article = article.metafields.custom.custom_related_article.value
+    endif
+  -%}
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'title' -%}
+      <header
+        class="article-template__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        {%- if block.settings.blog_show_category and article_label != blank -%}
+          <span class="article-template__eyebrow">{{ article_label | escape }}</span>
+        {%- endif -%}
+        <h1 class="article-template__title">{{ article.title | escape }}</h1>
+        <div class="article-template__meta">
+          {%- if block.settings.blog_show_date -%}
+            {{- article.published_at | time_tag: format: 'date' -}}
+          {%- endif -%}
+          {%- if block.settings.blog_show_author -%}
+            <span>{{ article.author }}</span>
+          {%- endif -%}
+          {%- if block.settings.blog_show_reading_time -%}
+            <span>
+              {{- reading_minutes }}
+              {%- if request.locale.iso_code == 'hr' %} min &#269;itanja{% else %} min read{% endif -%}
+            </span>
+          {%- endif -%}
+        </div>
+      </header>
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'featured_image' and article.image -%}
+      <figure
+        class="article-template__hero-shell page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        <div
+          class="article-template__hero article-template__hero--{{ block.settings.image_height }} media"
+          {% if block.settings.image_height == 'adapt' %}
+            style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+          {% endif %}
+        >
+          <img
+            srcset="
+              {% if article.image.width >= 480 %}{{ article.image | image_url: width: 480 }} 480w,{% endif %}
+              {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+              {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+              {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+              {{ article.image | image_url }} {{ article.image.width }}w
+            "
+            sizes="(min-width: 1200px) 1120px, (min-width: 750px) calc(100vw - 80px), calc(100vw - 40px)"
+            src="{{ article.image | image_url: width: 1100 }}"
+            loading="eager"
+            fetchpriority="high"
+            width="{{ article.image.width }}"
+            height="{{ article.image.height }}"
+            alt="{{ article.image.alt | default: article.title | escape }}"
+          >
+        </div>
+      </figure>
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="article-template__utility page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <a href="{{ blog.url }}" class="article-template__back-link">
+      <span class="svg-wrapper" aria-hidden="true">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+      {{ 'blogs.article.back_to_blog' | t: title: blog.title | escape }}
+    </a>
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'share' -%}
+        <div class="article-template__share" {{ block.shopify_attributes }}>
+          <span class="article-template__share-label">{{ block.settings.share_label | escape }}</span>
+          <button type="button" class="article-template__share-button" data-native-share aria-label="{{ block.settings.share_label | escape }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+          </button>
+          <button
+            type="button"
+            class="article-template__share-button"
+            data-copy-link
+            data-share-url="{{ share_url }}"
+            aria-label="{% if request.locale.iso_code == 'hr' %}Kopiraj poveznicu{% else %}Copy link{% endif %}"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 14.5l5-5M7.8 17.9l-1.7 1.7a3.5 3.5 0 0 1-5-5l4-4a3.5 3.5 0 0 1 5 0M16.2 6.1l1.7-1.7a3.5 3.5 0 1 1 5 5l-4 4a3.5 3.5 0 0 1-5 0"/></svg>
+          </button>
+          <span class="article-template__share-status visually-hidden" role="status" aria-live="polite"></span>
+        </div>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
   {%- for block in section.blocks -%}
     {%- case block.type -%}
       {%- when '@app' -%}
-        <div class="page-width page-width--narrow">
+        <div class="article-template__app page-width page-width--narrow">
           {% render block %}
         </div>
       {%- when 'featured_image' -%}
@@ -68,7 +184,46 @@
           class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {{ block.shopify_attributes }}
         >
-          {{ article.content }}
+          {%- assign article_content_parts = article.content | split: '</p>' -%}
+          {%- assign article_paragraph_end = '</p>' -%}
+          {%- assign article_paragraph_count = 0 -%}
+
+          {%- for article_content_part in article_content_parts -%}
+            {%- if article_content_part != blank -%}
+              {%- assign article_paragraph_count = article_paragraph_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- assign article_middle_paragraph = article_paragraph_count | plus: 1 | divided_by: 2 | at_least: 1 -%}
+          {%- assign article_current_paragraph = 0 -%}
+
+
+          {%- if article_paragraph_count == 0 -%}
+            {{ article.content }}
+          {%- else -%}
+            {%- for article_content_part in article_content_parts -%}
+              {%- if article_content_part != blank -%}
+                {%- assign article_current_paragraph = article_current_paragraph | plus: 1 -%}
+
+                {{ article_content_part }}{{ article_paragraph_end }}
+
+                {%- if article_current_paragraph == 1 -%}
+                  {% render 'article-product-group', products: article_products_after_intro, position: 'top', article_settings: section.settings, section_id: section.id %}
+                {%- endif -%}
+
+                {%- if article_current_paragraph == article_middle_paragraph -%}
+                  {% render 'article-product-group', products: article_products_middle, position: 'middle', article_settings: section.settings, section_id: section.id %}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+
+          {% render 'article-product-group',
+            products: article_products_before_conclusion,
+            position: 'bottom',
+            article_settings: section.settings,
+            section_id: section.id
+          %}
         </div>
 
       {%- when 'share' -%}
@@ -81,6 +236,36 @@
         </div>
     {%- endcase -%}
   {%- endfor -%}
+
+  {%- capture related_article_cards -%}
+    {%- if related_articles != blank -%}
+      {%- for related_article_item in related_articles limit: 5 -%}
+        {%- if related_article_item != blank and related_article_item.id != article.id -%}
+          {% render 'article-related-card', related_article: related_article_item %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- elsif related_article != blank and related_article.id != article.id -%}
+      {% render 'article-related-card', related_article: related_article %}
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- assign related_article_cards = related_article_cards | strip -%}
+
+  {%- if related_article_cards != blank -%}
+    <aside
+      class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      aria-labelledby="RelatedArticlesHeading-{{ section.id }}"
+    >
+      <div class="article-template__related-heading">
+        <span class="article-template__related-eyebrow">
+          {%- if request.locale.iso_code == 'hr' -%}Nastavite čitati{%- else -%}Continue reading{%- endif -%}
+        </span>
+        <h2 id="RelatedArticlesHeading-{{ section.id }}" class="article-template__related-heading-title">
+          {%- if request.locale.iso_code == 'hr' -%}Povezani članci{%- else -%}Related articles{%- endif -%}
+        </h2>
+      </div>
+      <div class="article-template__related-grid">{{ related_article_cards }}</div>
+    </aside>
+  {%- endif -%}
 
   <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
@@ -99,7 +284,7 @@
         class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       >
         {%- if article.comments_count > 0 -%}
-          {%- assign anchorId = '#Comments-' | append: article.id -%}
+          {%- assign anchor_id = '#Comments-' | append: article.id -%}
 
           <h2 id="Comments-{{ article.id }}" tabindex="-1">
             {{ 'blogs.article.comments' | t: count: article.comments_count }}
@@ -126,7 +311,7 @@
                   </footer>
                 </article>
               {%- endfor -%}
-              {% render 'pagination', paginate: paginate, anchor: anchorId %}
+              {% render 'pagination', paginate: paginate, anchor: anchor_id %}
             </div>
           {% endpaginate %}
         {%- endif -%}
@@ -288,6 +473,102 @@
   {%- endif -%}
 </article>
 
+<script>
+  (() => {
+    const articleRoot = document.querySelector('[data-article-template]');
+
+    if (!articleRoot) return;
+
+    const articleContent = articleRoot.querySelector('.article-template__content');
+    const copyButton = articleRoot.querySelector('[data-copy-link]');
+    const shareButton = articleRoot.querySelector('[data-native-share]');
+    const status = articleRoot.querySelector('.article-template__share-status');
+    const shareUrl = copyButton?.dataset.shareUrl || window.location.href;
+    const isCroatian = document.documentElement.lang.toLowerCase().startsWith('hr');
+
+    if (articleContent) {
+      const firstSectionHeading = articleContent.querySelector('h2');
+      const topProducts = articleContent.querySelector('.article-template__products--top');
+
+      // "After intro" means after all opening paragraphs, immediately before
+      // the article's first section rather than after only its first paragraph.
+      if (topProducts && firstSectionHeading) {
+        firstSectionHeading.before(topProducts);
+      }
+
+      articleContent.querySelectorAll('.article-template__products--middle').forEach((productGroup) => {
+        let nextSectionHeading = productGroup.nextElementSibling;
+
+        while (nextSectionHeading && !nextSectionHeading.matches('h2, h3')) {
+          nextSectionHeading = nextSectionHeading.nextElementSibling;
+        }
+
+        // Keep a product from splitting a lead-in sentence from its list or
+        // interrupting the explanatory paragraph at the end of a section.
+        if (nextSectionHeading) {
+          nextSectionHeading.before(productGroup);
+        }
+      });
+
+      const bottomProducts = articleContent.querySelector('.article-template__products--bottom');
+      const contentParagraphs = [...articleContent.children].filter((element) => element.matches('p'));
+      const finalParagraph = contentParagraphs[contentParagraphs.length - 1];
+
+      // Render the final product independently of translated paragraph markup,
+      // then place it immediately before the article's closing paragraph.
+      if (bottomProducts && finalParagraph) {
+        finalParagraph.before(bottomProducts);
+      }
+
+      articleContent.querySelectorAll('ul, ol').forEach((list) => {
+        const listIntro = list.previousElementSibling;
+
+        if (listIntro?.matches('p')) {
+          listIntro.classList.add('article-template__list-intro');
+        }
+      });
+    }
+
+    const updateStatus = (message) => {
+      if (!status) return;
+      status.textContent = message;
+    };
+
+    const copyLink = async () => {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+      } catch (error) {
+        const helper = document.createElement('textarea');
+        helper.value = shareUrl;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+      }
+
+      updateStatus(isCroatian ? 'Poveznica je kopirana.' : 'Link copied.');
+    };
+
+    copyButton?.addEventListener('click', copyLink);
+
+    shareButton?.addEventListener('click', async () => {
+      if (!navigator.share) {
+        await copyLink();
+        return;
+      }
+
+      try {
+        await navigator.share({ title: document.title, url: shareUrl });
+      } catch (error) {
+        if (error.name !== 'AbortError') await copyLink();
+      }
+    });
+  })();
+</script>
+
 <script type="application/ld+json">
   {{ article | structured_data }}
 </script>
@@ -348,6 +629,18 @@
           "id": "blog_show_author",
           "default": false,
           "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_category",
+          "default": true,
+          "label": "Show category label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_reading_time",
+          "default": true,
+          "label": "Show estimated reading time"
         }
       ]
     },
@@ -368,6 +661,90 @@
           "default": "t:sections.main-article.blocks.share.settings.text.default"
         }
       ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Izgled blog članka"
+    },
+    {
+      "type": "range",
+      "id": "article_content_width",
+      "min": 600,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 800,
+      "label": "Širina sadržaja"
+    },
+    {
+      "type": "paragraph",
+      "content": "Određuje maksimalnu širinu teksta, povezanih članaka i komentara. Na mobitelu se sadržaj automatski prilagođava širini ekrana."
+    },
+    {
+      "type": "header",
+      "content": "Izgled proizvoda u članku"
+    },
+    {
+      "type": "paragraph",
+      "content": "Proizvodi se odabiru zasebno u metafield poljima svakog blog članka."
+    },
+    {
+      "type": "select",
+      "id": "product_image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Prilagodi slici"
+        },
+        {
+          "value": "square",
+          "label": "Kvadrat"
+        },
+        {
+          "value": "portrait",
+          "label": "Portret"
+        }
+      ],
+      "default": "adapt",
+      "label": "Omjer slike"
+    },
+    {
+      "type": "range",
+      "id": "product_card_width",
+      "min": 220,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "default": 260,
+      "label": "Širina kartice"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_show_vendor",
+      "default": true,
+      "label": "Prikaži proizvođača"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_show_rating",
+      "default": true,
+      "label": "Prikaži ocjenu"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_show_secondary_image",
+      "default": false,
+      "label": "Prikaži drugu sliku prelaskom miša"
+    },
+    {
+      "type": "header",
+      "content": "Povezani članak"
+    },
+    {
+      "type": "paragraph",
+      "content": "Za najviše 5 članaka koristite custom.related_articles tipa List of articles. Postojeći custom.related_article ostaje podržan kao fallback."
     }
   ]
 }

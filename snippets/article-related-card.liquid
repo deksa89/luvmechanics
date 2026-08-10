@@ -1,0 +1,44 @@
+{%- comment -%}
+  Renders one related article card.
+
+  Accepts:
+  - related_article: Article Liquid object
+{%- endcomment -%}
+
+{%- if related_article != blank -%}
+  {%- liquid
+    assign related_article_image_alt = related_article.image.alt | default: related_article.title
+    assign related_article_excerpt = related_article.excerpt_or_content | strip_html | strip
+  -%}
+  <a
+    class="article-template__related-link{% unless related_article.image %} article-template__related-link--text-only{% endunless %}"
+    href="{{ related_article.url }}"
+  >
+    {%- if related_article.image -%}
+      <div class="article-template__related-media">
+        {{
+          related_article.image
+          | image_url: width: 720
+          | image_tag:
+            widths: '320, 480, 640, 720',
+            sizes: '(min-width: 750px) 390px, calc(100vw - 40px)',
+            loading: 'lazy',
+            alt: related_article_image_alt
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="article-template__related-content">
+      <h3 class="article-template__related-title">{{ related_article.title | escape }}</h3>
+      {%- if related_article_excerpt != blank -%}
+        <p class="article-template__related-excerpt">
+          {{ related_article_excerpt | truncatewords: 24 | escape }}
+        </p>
+      {%- endif -%}
+      <span class="article-template__related-cta">
+        {%- if request.locale.iso_code == 'hr' -%}Pročitajte članak{%- else -%}Read article{%- endif -%}
+        <span class="svg-wrapper" aria-hidden="true">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+      </span>
+    </div>
+  </a>
+{%- endif -%}

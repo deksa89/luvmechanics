@@ -1,11 +1,7 @@
-{% doc %}
-  @prompt
-    generate me a highly customizable carousel block where i can put my brands. carousel must be moved by arrows on both sides
-{% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign carousel_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
-  .ai-brand-carousel-{{ ai_gen_id }} {
+  .brand-carousel-{{ carousel_id }} {
     display: flex;
     flex-direction: column;
     width: {{ block.settings.desktop_width_percent }}%;
@@ -20,17 +16,17 @@
   }
 
   @media screen and (min-width: 768px) {
-    .ai-brand-carousel-{{ ai_gen_id }} {
+    .brand-carousel-{{ carousel_id }} {
       padding-right: 2rem;
       padding-left: 2rem;
     }
   }
 
-  .ai-brand-heading-wrapper-{{ ai_gen_id }} {
+  .brand-carousel-heading-wrapper-{{ carousel_id }} {
     margin-bottom: 30px;
   }
 
-  .ai-brand-carousel-heading-{{ ai_gen_id }} {
+  .brand-carousel-heading-{{ carousel_id }} {
     margin: 0 0 16px;
     text-align: center;
     font-size: 34px;
@@ -38,23 +34,23 @@
     font-weight: 200 !important;
   }
 
-  .ai-brand-carousel-divider-{{ ai_gen_id }} {
+  .brand-carousel-divider-{{ carousel_id }} {
     height: 1px;
     background-color: #d9d9d9;
     width: 100%;
   }
 
-  .ai-brand-carousel-divider-{{ ai_gen_id }}:empty {
+  .brand-carousel-divider-{{ carousel_id }}:empty {
     display: block !important;
   }
 
-  .ai-brand-carousel-container-{{ ai_gen_id }} {
+  .brand-carousel-container-{{ carousel_id }} {
     position: relative;
     padding: 0;
     box-sizing: border-box;
   }
 
-  .ai-brand-carousel-viewport-{{ ai_gen_id }} {
+  .brand-carousel-viewport-{{ carousel_id }} {
     overflow: hidden;
     touch-action: pan-y;
     cursor: grab;
@@ -62,26 +58,26 @@
     -webkit-user-select: none;
   }
 
-  .ai-brand-carousel-track-{{ ai_gen_id }} * {
+  .brand-carousel-track-{{ carousel_id }} * {
     user-select: none;
   }
 
-  .ai-brand-carousel-viewport-{{ ai_gen_id }}.is-dragging {
+  .brand-carousel-viewport-{{ carousel_id }}.is-dragging {
     cursor: grabbing;
   }
 
-  .ai-brand-carousel-track-{{ ai_gen_id }} {
+  .brand-carousel-track-{{ carousel_id }} {
     display: flex;
     gap: {{ block.settings.item_spacing }}px;
     will-change: transform;
     transition: transform 0.45s ease;
   }
 
-  .ai-brand-carousel-track-{{ ai_gen_id }}.no-transition {
+  .brand-carousel-track-{{ carousel_id }}.no-transition {
     transition: none;
   }
 
-  .ai-brand-carousel-item-{{ ai_gen_id }} {
+  .brand-carousel-{{ carousel_id }} .brand-carousel__item {
     flex: 0 0 calc((100% - ({{ block.settings.items_per_view | minus: 1 }} * {{ block.settings.item_spacing }}px)) / {{ block.settings.items_per_view }});
     display: flex;
     align-items: center;
@@ -94,13 +90,13 @@
     box-sizing: border-box;
   }
 
-  .ai-brand-carousel-item-{{ ai_gen_id }} a,
-  .ai-brand-carousel-item-{{ ai_gen_id }} img {
+  .brand-carousel-{{ carousel_id }} .brand-carousel__item a,
+  .brand-carousel-{{ carousel_id }} .brand-carousel__item img {
     user-select: none;
     -webkit-user-drag: none;
   }
 
-  .ai-brand-carousel-item-{{ ai_gen_id }} img {
+  .brand-carousel-{{ carousel_id }} .brand-carousel__item img {
     max-width: 100%;
     max-height: {{ block.settings.logo_max_height }}px;
     width: auto;
@@ -111,12 +107,12 @@
     transition: all 0.3s ease;
   }
 
-  .ai-brand-carousel-item-{{ ai_gen_id }}:hover img {
+  .brand-carousel-{{ carousel_id }} .brand-carousel__item:hover img {
     filter: grayscale(0%);
     opacity: 1;
   }
 
-  .ai-brand-carousel-arrow-{{ ai_gen_id }} {
+  .brand-carousel-arrow-{{ carousel_id }} {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -136,29 +132,29 @@
     display: none;
   }
 
-  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover {
+  .brand-carousel-arrow-{{ carousel_id }}:hover {
     background-color: {{ block.settings.arrow_hover_background_color }};
   }
 
-  .ai-brand-carousel-arrow-{{ ai_gen_id }} svg {
+  .brand-carousel-arrow-{{ carousel_id }} svg {
     width: 50%;
     height: 50%;
     stroke: {{ block.settings.arrow_color }};
   }
 
-  .ai-brand-carousel-arrow-{{ ai_gen_id }}:hover svg {
+  .brand-carousel-arrow-{{ carousel_id }}:hover svg {
     stroke: {{ block.settings.arrow_hover_color }};
   }
 
-  .ai-brand-carousel-arrow-prev-{{ ai_gen_id }} {
+  .brand-carousel-arrow-prev-{{ carousel_id }} {
     left: 0;
   }
 
-  .ai-brand-carousel-arrow-next-{{ ai_gen_id }} {
+  .brand-carousel-arrow-next-{{ carousel_id }} {
     right: 0;
   }
 
-  .ai-brand-carousel-dots-{{ ai_gen_id }} {
+  .brand-carousel-dots-{{ carousel_id }} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,7 +163,7 @@
     margin-bottom: {{ block.settings.dots_margin_bottom_desktop }}px;
   }
 
-  .ai-brand-carousel-dot-{{ ai_gen_id }} {
+  .brand-carousel-dot-{{ carousel_id }} {
     width: 6px;
     height: 6px;
     padding: 0;
@@ -178,16 +174,16 @@
     transition: transform 0.25s ease, background-color 0.25s ease;
   }
 
-  .ai-brand-carousel-dot-{{ ai_gen_id }}:hover {
+  .brand-carousel-dot-{{ carousel_id }}:hover {
     background-color: rgba(0, 0, 0, 0.4);
   }
 
-  .ai-brand-carousel-dot-{{ ai_gen_id }}.is-active {
+  .brand-carousel-dot-{{ carousel_id }}.is-active {
     background-color: #f98585;
     transform: scale(1.15);
   }
 
-  .ai-brand-carousel-empty-state-{{ ai_gen_id }} {
+  .brand-carousel-empty-state-{{ carousel_id }} {
     text-align: center;
     padding: 40px 20px;
     color: #666;
@@ -195,66 +191,59 @@
   }
 
   @media screen and (max-width: 749px) {
-    .ai-brand-carousel-{{ ai_gen_id }} {
+    .brand-carousel-{{ carousel_id }} {
       padding-top: {{ block.settings.padding_top_mobile }}px;
       padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
     }
 
-    .ai-brand-carousel-container-{{ ai_gen_id }} {
+    .brand-carousel-container-{{ carousel_id }} {
       padding: 0;
     }
 
-    .ai-brand-carousel-dots-{{ ai_gen_id }} {
+    .brand-carousel-dots-{{ carousel_id }} {
       gap: 8px;
       margin-top: {{ block.settings.dots_margin_top_mobile }}px;
       margin-bottom: {{ block.settings.dots_margin_bottom_mobile }}px;
       z-index: 111;
     }
 
-    .ai-brand-carousel-dot-{{ ai_gen_id }} {
+    .brand-carousel-dot-{{ carousel_id }} {
       width: 5px;
       height: 5px;
     }
 
-    .ai-brand-carousel-heading-{{ ai_gen_id }} {
+    .brand-carousel-heading-{{ carousel_id }} {
       font-size: calc(34px * 0.8);
     }
 
-    .ai-brand-carousel-item-{{ ai_gen_id }} {
+    .brand-carousel-{{ carousel_id }} .brand-carousel__item {
       flex: 0 0 calc((100% - ({{ block.settings.items_per_view_mobile | minus: 1 }} * {{ block.settings.item_spacing }}px)) / {{ block.settings.items_per_view_mobile }});
     }
 
-    .ai-brand-carousel-arrow-{{ ai_gen_id }} {
+    .brand-carousel-arrow-{{ carousel_id }} {
       width: {{ block.settings.arrow_size | times: 0.8 }}px;
       height: {{ block.settings.arrow_size | times: 0.8 }}px;
     }
   }
 {% endstyle %}
 
-<brand-carousel-{{ ai_gen_id }} class="ai-brand-carousel-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  {% assign has_brands = false %}
-  {% assign brand_count = 0 %}
-  {% for i in (1..10) %}
-    {% assign brand_key = 'brand_' | append: i %}
-    {% if block.settings[brand_key] != blank %}
-      {% assign has_brands = true %}
-      {% assign brand_count = brand_count | plus: 1 %}
-    {% endif %}
-  {% endfor %}
+<brand-carousel-{{ carousel_id }} class="brand-carousel-{{ carousel_id }}" {{ block.shopify_attributes }}>
+  {% capture brand_items %}{% content_for 'blocks' %}{% endcapture %}
+  {% assign brand_items = brand_items | strip %}
 
   {% if block.settings.heading != blank %}
-    <div class="ai-brand-heading-wrapper-{{ ai_gen_id }}">
-      <h2 class="ai-brand-carousel-heading-{{ ai_gen_id }}">
+    <div class="brand-carousel-heading-wrapper-{{ carousel_id }}">
+      <h2 class="brand-carousel-heading-{{ carousel_id }}">
         {{ block.settings.heading }}
       </h2>
-      <div class="ai-brand-carousel-divider-{{ ai_gen_id }}"></div>
+      <div class="brand-carousel-divider-{{ carousel_id }}"></div>
     </div>
   {% endif %}
 
-  {% if has_brands %}
-    <div class="ai-brand-carousel-container-{{ ai_gen_id }}">
+  {% if brand_items != blank %}
+    <div class="brand-carousel-container-{{ carousel_id }}">
       <button
-        class="ai-brand-carousel-arrow-{{ ai_gen_id }} ai-brand-carousel-arrow-prev-{{ ai_gen_id }}"
+        class="brand-carousel-arrow-{{ carousel_id }} brand-carousel-arrow-prev-{{ carousel_id }}"
         aria-label="Previous brands"
         type="button"
       >
@@ -263,43 +252,14 @@
         </svg>
       </button>
 
-      <div class="ai-brand-carousel-viewport-{{ ai_gen_id }}">
-        <div class="ai-brand-carousel-track-{{ ai_gen_id }}">
-          {% for i in (1..10) %}
-            {% assign brand_key = 'brand_' | append: i %}
-            {% assign brand_url_key = 'brand_' | append: i | append: '_url' %}
-            {% assign brand_image = block.settings[brand_key] %}
-            {% assign brand_url = block.settings[brand_url_key] %}
-
-            {% if brand_image != blank %}
-              <div class="ai-brand-carousel-item-{{ ai_gen_id }}" data-real-slide="true">
-                {% if brand_url != blank %}
-                  <a href="{{ brand_url }}" aria-label="Visit brand {{ i }}">
-                    <img
-                      src="{{ brand_image | image_url: width: 400 }}"
-                      alt="{{ brand_image.alt | escape }}"
-                      loading="lazy"
-                      width="{{ brand_image.width }}"
-                      height="{{ brand_image.height }}"
-                    >
-                  </a>
-                {% else %}
-                  <img
-                    src="{{ brand_image | image_url: width: 400 }}"
-                    alt="{{ brand_image.alt | escape }}"
-                    loading="lazy"
-                    width="{{ brand_image.width }}"
-                    height="{{ brand_image.height }}"
-                  >
-                {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
+      <div class="brand-carousel-viewport-{{ carousel_id }}">
+        <div class="brand-carousel-track-{{ carousel_id }}">
+          {{ brand_items }}
         </div>
       </div>
 
       <button
-        class="ai-brand-carousel-arrow-{{ ai_gen_id }} ai-brand-carousel-arrow-next-{{ ai_gen_id }}"
+        class="brand-carousel-arrow-{{ carousel_id }} brand-carousel-arrow-next-{{ carousel_id }}"
         aria-label="Next brands"
         type="button"
       >
@@ -309,17 +269,17 @@
       </button>
     </div>
 
-    <div class="ai-brand-carousel-dots-{{ ai_gen_id }}" aria-label="Carousel pagination"></div>
+    <div class="brand-carousel-dots-{{ carousel_id }}" aria-label="Carousel pagination"></div>
   {% else %}
-    <div class="ai-brand-carousel-empty-state-{{ ai_gen_id }}">
+    <div class="brand-carousel-empty-state-{{ carousel_id }}">
       Next, add brand logos to display in the carousel
     </div>
   {% endif %}
-</brand-carousel-{{ ai_gen_id }}>
+</brand-carousel-{{ carousel_id }}>
 
 <script>
   (function() {
-    class BrandCarousel{{ ai_gen_id }} extends HTMLElement {
+    class BrandCarousel{{ carousel_id }} extends HTMLElement {
       constructor() {
         super();
         this.currentIndex = 0;
@@ -337,11 +297,11 @@
       }
 
       connectedCallback() {
-        this.viewport = this.querySelector('.ai-brand-carousel-viewport-{{ ai_gen_id }}');
-        this.track = this.querySelector('.ai-brand-carousel-track-{{ ai_gen_id }}');
-        this.prevButton = this.querySelector('.ai-brand-carousel-arrow-prev-{{ ai_gen_id }}');
-        this.nextButton = this.querySelector('.ai-brand-carousel-arrow-next-{{ ai_gen_id }}');
-        this.dotsContainer = this.querySelector('.ai-brand-carousel-dots-{{ ai_gen_id }}');
+        this.viewport = this.querySelector('.brand-carousel-viewport-{{ carousel_id }}');
+        this.track = this.querySelector('.brand-carousel-track-{{ carousel_id }}');
+        this.prevButton = this.querySelector('.brand-carousel-arrow-prev-{{ carousel_id }}');
+        this.nextButton = this.querySelector('.brand-carousel-arrow-next-{{ carousel_id }}');
+        this.dotsContainer = this.querySelector('.brand-carousel-dots-{{ carousel_id }}');
 
         if (!this.viewport || !this.track) return;
 
@@ -392,7 +352,7 @@
       }
 
       getStepSize() {
-        const firstVisibleItem = this.track.querySelector('.ai-brand-carousel-item-{{ ai_gen_id }}');
+        const firstVisibleItem = this.track.querySelector('.brand-carousel__item');
         if (!firstVisibleItem) return 0;
         return firstVisibleItem.offsetWidth + this.getGap();
       }
@@ -482,7 +442,7 @@
         for (let i = 0; i < this.realSlidesCount; i++) {
           const dot = document.createElement('button');
           dot.type = 'button';
-          dot.className = 'ai-brand-carousel-dot-{{ ai_gen_id }}';
+          dot.className = 'brand-carousel-dot-{{ carousel_id }}';
           dot.setAttribute('aria-label', `Go to brand page ${i + 1}`);
           dot.addEventListener('click', () => {
             this.pauseAndResumeAutoPlay();
@@ -524,7 +484,7 @@
         if (!this.dotsContainer) return;
 
         const activeIndex = this.getNormalizedIndex();
-        const dots = this.dotsContainer.querySelectorAll('.ai-brand-carousel-dot-{{ ai_gen_id }}');
+        const dots = this.dotsContainer.querySelectorAll('.brand-carousel-dot-{{ carousel_id }}');
 
         dots.forEach((dot, index) => {
           dot.classList.toggle('is-active', index === activeIndex);
@@ -673,8 +633,8 @@
       }
     }
 
-    if (!customElements.get('brand-carousel-{{ ai_gen_id }}')) {
-      customElements.define('brand-carousel-{{ ai_gen_id }}', BrandCarousel{{ ai_gen_id }});
+    if (!customElements.get('brand-carousel-{{ carousel_id }}')) {
+      customElements.define('brand-carousel-{{ carousel_id }}', BrandCarousel{{ carousel_id }});
     }
   })();
 </script>
@@ -683,6 +643,9 @@
 {
   "name": "Brand carousel",
   "tag": null,
+  "blocks": [
+    { "type": "_brand-carousel-item" }
+  ],
   "settings": [
     {
       "type": "header",
@@ -967,151 +930,14 @@
       "id": "background_color",
       "label": "Background",
       "default": "#fdfbf7"
-    },
-    {
-      "type": "header",
-      "content": "Brand 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_1",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_1_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_2",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_2_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 3"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_3",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_3_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 4"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_4",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_4_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 5"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_5",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_5_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 6"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_6",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_6_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 7"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_7",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_7_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 8"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_8",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_8_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 9"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_9",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_9_url",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Brand 10"
-    },
-    {
-      "type": "image_picker",
-      "id": "brand_10",
-      "label": "Logo"
-    },
-    {
-      "type": "url",
-      "id": "brand_10_url",
-      "label": "Link"
     }
   ],
   "presets": [
     {
-      "name": "Brand carousel"
+      "name": "Brand carousel",
+      "blocks": [
+        { "type": "_brand-carousel-item" }
+      ]
     }
   ]
 }

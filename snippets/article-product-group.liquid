@@ -1,0 +1,28 @@
+{%- comment -%}
+  Renders an article's product-reference metafield list.
+
+  Accepts:
+  - products: List of Product Liquid objects
+  - position: top, middle, or bottom
+  - article_settings: Visual settings from main-article
+  - section_id: Parent section ID
+{%- endcomment -%}
+
+{%- capture product_cards -%}
+  {%- for article_product in products -%}
+    {%- if article_product != blank -%}
+      {% render 'article-product-card',
+        product: article_product,
+        article_settings: article_settings,
+        position: position,
+        product_index: forloop.index,
+        section_id: section_id
+      %}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- assign product_cards = product_cards | strip -%}
+{%- if product_cards != blank -%}
+  <div class="article-template__products article-template__products--{{ position }}">{{ product_cards }}</div>
+{%- endif -%}
