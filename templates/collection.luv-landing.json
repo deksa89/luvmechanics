@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "luv_collection_hero": {
+      "type": "luv-collection-hero",
+      "settings": {
+        "cta_label": "SHOP PRODUCTS",
+        "overlay_strength": 55
+      }
+    },
+    "luv_collection_trust_bar": {
+      "type": "luv-collection-trust-bar",
+      "settings": {
+        "trust_item_1_label": "Discreet delivery",
+        "trust_item_2_label": "Secure shopping",
+        "trust_item_3_label": "Help choosing"
+      }
+    },
+    "luv_collection_featured_products": {
+      "type": "luv-collection-featured-products",
+      "settings": {
+        "show_vendor": true
+      }
+    },
+    "luv_collection_product_finder": {
+      "type": "luv-collection-product-finder",
+      "settings": {}
+    },
+    "luv_collection_product_grid": {
+      "type": "luv-collection-product-grid",
+      "settings": {
+        "heading": "All Products",
+        "products_per_page": 16,
+        "desktop_columns": 4,
+        "show_vendor": true,
+        "enable_filtering": true,
+        "enable_sorting": true
+      }
+    },
+    "luv_collection_buying_guide": {
+      "type": "luv-collection-buying-guide",
+      "settings": {}
+    },
+    "luv_collection_editorial": {
+      "type": "luv-collection-editorial",
+      "settings": {
+        "eyebrow": "NOT SURE WHAT TO CHOOSE?",
+        "cta_label": "READ THE GUIDE"
+      }
+    },
+    "luv_collection_benefits": {
+      "type": "luv-collection-benefits",
+      "settings": {
+        "heading": "Why shop at LuvMechanics?",
+        "benefit_1_icon": "guidance",
+        "benefit_1_title": "Product guidance",
+        "benefit_1_text": "Not sure what to choose? We are here to help.",
+        "benefit_2_icon": "delivery",
+        "benefit_2_title": "Discreet delivery",
+        "benefit_2_text": "Orders are shipped in discreet packaging.",
+        "benefit_3_icon": "secure",
+        "benefit_3_title": "Secure shopping",
+        "benefit_3_text": "Secure checkout and a transparent purchase process.",
+        "benefit_4_icon": "support",
+        "benefit_4_title": "Reliable support",
+        "benefit_4_text": "We are here for questions about products and orders."
+      }
+    },
+    "luv_collection_newsletter": {
+      "type": "luv-collection-newsletter",
+      "settings": {
+        "heading": "Stay in touch",
+        "text": "Tips, news and special offers from LuvMechanics.",
+        "email_placeholder": "Your email address",
+        "button_label": "SUBSCRIBE"
+      }
+    }
+  },
+  "order": [
+    "luv_collection_hero",
+    "luv_collection_trust_bar",
+    "luv_collection_featured_products",
+    "luv_collection_product_finder",
+    "luv_collection_product_grid",
+    "luv_collection_buying_guide",
+    "luv_collection_editorial",
+    "luv_collection_benefits",
+    "luv_collection_newsletter"
+  ]
+}

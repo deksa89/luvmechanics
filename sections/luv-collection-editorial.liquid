@@ -1,0 +1,80 @@
+{%- liquid
+  assign featured_article = collection.metafields.custom.luv_featured_article.value
+
+  if featured_article != blank
+    assign article_excerpt = featured_article.excerpt | strip_html | strip
+    if article_excerpt == blank
+      assign article_excerpt = featured_article.content | strip_html | strip | truncatewords: 32
+    else
+      assign article_excerpt = article_excerpt | truncatewords: 32
+    endif
+
+    assign article_image_alt = featured_article.image.alt | default: featured_article.title
+  endif
+-%}
+
+{%- if featured_article != blank -%}
+  <section
+    class="luv-collection-editorial"
+    aria-labelledby="LuvCollectionEditorialTitle-{{ section.id }}"
+  >
+    <article class="luv-collection-editorial__inner{% if featured_article.image == blank %} luv-collection-editorial__inner--text-only{% endif %}">
+      {%- if featured_article.image != blank -%}
+        <div class="luv-collection-editorial__media">
+          {{-
+            featured_article.image
+            | image_url: width: 1600
+            | image_tag:
+              widths: '360, 550, 750, 900, 1100, 1300, 1600',
+              sizes: '(min-width: 1280px) 616px, (min-width: 750px) calc(50vw - 48px), calc(100vw - 32px)',
+              class: 'luv-collection-editorial__image',
+              loading: 'lazy',
+              alt: article_image_alt
+          -}}
+        </div>
+      {%- endif -%}
+
+      <div class="luv-collection-editorial__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="luv-collection-editorial__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 class="luv-collection-editorial__title" id="LuvCollectionEditorialTitle-{{ section.id }}">
+          {{ featured_article.title | escape }}
+        </h2>
+        {%- if article_excerpt != blank -%}
+          <p class="luv-collection-editorial__text">{{ article_excerpt | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank -%}
+          <a class="luv-collection-editorial__button" href="{{ featured_article.url }}">
+            {{- section.settings.cta_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    </article>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Luv editorial guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "NOT SURE WHAT TO CHOOSE?"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "READ THE GUIDE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv editorial guide"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,104 @@
+{%- liquid
+  assign guide_title = collection.metafields.custom.luv_guide_title.value | default: 'Buying Guide'
+  assign guide_intro = collection.metafields.custom.luv_guide_intro.value
+  assign guide_cards = collection.metafields.custom.luv_guide_cards.value
+  assign valid_guide_card_count = 0
+-%}
+
+{%- capture guide_cards_markup -%}
+  {%- for guide_card in guide_cards -%}
+    {%- if guide_card != blank -%}
+      {%- liquid
+        assign card_title = guide_card.title.value
+        assign card_text = guide_card.text.value
+        assign card_link_label = guide_card.link_label.value
+        assign card_link = guide_card.link.value
+        assign card_icon_key = guide_card.icon_key.value | handleize
+
+        if card_link != blank and card_link_label == blank
+          assign card_link_label = 'Read more'
+        endif
+      -%}
+
+      {%- if card_title != blank or card_text != blank -%}
+        {%- assign valid_guide_card_count = valid_guide_card_count | plus: 1 -%}
+
+        {%- capture guide_icon -%}
+          {%- case card_icon_key -%}
+            {%- when 'size' -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 19 19 5" />
+                <path d="m7.5 16.5 2 2M10.5 13.5l2 2M13.5 10.5l2 2M16.5 7.5l2 2" />
+                <path d="M4.5 16.5 7.5 19.5 19.5 7.5 16.5 4.5 4.5 16.5Z" />
+              </svg>
+            {%- when 'compare' -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M8 5h11M8 12h11M8 19h11" />
+                <path d="m3.5 5 1.25 1.25L6.8 4.2M3.5 12l1.25 1.25L6.8 11.2M3.5 19l1.25 1.25 2.05-2.05" />
+              </svg>
+            {%- when 'beginner' -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3.5 14.6 8l5 .9-3.45 3.7.65 5.1L12 15.55 7.2 17.7l.65-5.1L4.4 8.9l5-.9L12 3.5Z" />
+                <path d="M12 9.25v3.25M12 15.25h.01" />
+              </svg>
+          {%- endcase -%}
+        {%- endcapture -%}
+
+        <li class="luv-collection-guide__card">
+          {%- if guide_icon != blank -%}
+            <span class="luv-collection-guide__icon" aria-hidden="true">
+              {{- guide_icon -}}
+            </span>
+          {%- endif -%}
+          <div class="luv-collection-guide__body">
+            {%- if card_title != blank -%}
+              <h3 class="luv-collection-guide__title">{{ card_title | strip_html | escape }}</h3>
+            {%- endif -%}
+            {%- if card_text != blank -%}
+              <p class="luv-collection-guide__text">{{ card_text | strip_html | escape }}</p>
+            {%- endif -%}
+            {%- if card_link != blank -%}
+              <a class="luv-collection-guide__link" href="{{ card_link | escape }}">
+                {{- card_link_label | strip_html | escape -}}
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if valid_guide_card_count > 0 -%}
+  <section
+    class="luv-collection-guide"
+    aria-labelledby="LuvCollectionGuideTitle-{{ section.id }}"
+  >
+    <div class="luv-collection-guide__inner">
+      <header class="luv-collection-guide__header">
+        <h2 class="luv-collection-guide__heading" id="LuvCollectionGuideTitle-{{ section.id }}">
+          {{ guide_title | strip_html | escape }}
+        </h2>
+        {%- if guide_intro != blank -%}
+          <p class="luv-collection-guide__intro">{{ guide_intro | strip_html | escape }}</p>
+        {%- endif -%}
+      </header>
+      <ul class="luv-collection-guide__grid" role="list">
+        {{ guide_cards_markup }}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Luv buying guide",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Luv buying guide"
+    }
+  ]
+}
+{% endschema %}

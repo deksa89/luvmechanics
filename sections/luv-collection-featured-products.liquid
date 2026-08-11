@@ -1,0 +1,95 @@
+{%- liquid
+  assign featured_title = collection.metafields.custom.luv_featured_title.value | default: 'Most Popular'
+  assign featured_products = collection.metafields.custom.luv_featured_products.value
+  assign valid_product_count = 0
+-%}
+
+{%- capture featured_cards -%}
+  {%- for featured_product in featured_products -%}
+    {%- if featured_product != blank and featured_product.id != blank -%}
+      {%- liquid
+        assign valid_product_count = valid_product_count | plus: 1
+        assign featured_image = featured_product.featured_image
+        assign featured_image_alt = featured_image.alt | default: featured_product.title
+      -%}
+      <li class="luv-collection-featured__card" role="listitem">
+        <a
+          class="luv-collection-featured__link"
+          href="{{ featured_product.url }}"
+          aria-label="{{ featured_product.title | escape }}"
+        >
+          <div class="luv-collection-featured__media{% if featured_image == blank %} luv-collection-featured__media--empty{% endif %}">
+            {%- if featured_image != blank -%}
+              {{-
+                featured_image
+                | image_url: width: 720
+                | image_tag:
+                  widths: '240, 320, 480, 600, 720',
+                  sizes: '(min-width: 1280px) 288px, (min-width: 990px) calc((100vw - 112px) / 4), (min-width: 750px) calc((100vw - 80px) / 2), 58vw',
+                  class: 'luv-collection-featured__image',
+                  loading: 'lazy',
+                  alt: featured_image_alt
+              -}}
+            {%- endif -%}
+          </div>
+
+          <div class="luv-collection-featured__details">
+            {%- if section.settings.show_vendor and featured_product.vendor != blank -%}
+              <p class="luv-collection-featured__vendor">{{ featured_product.vendor | escape }}</p>
+            {%- endif -%}
+            <h3 class="luv-collection-featured__title">{{ featured_product.title | escape }}</h3>
+            <div class="luv-collection-featured__price">
+              {%- render 'price',
+                product: featured_product,
+                price_class: 'luv-collection-featured__price-rendered',
+                show_compare_at_price: true
+              -%}
+            </div>
+          </div>
+        </a>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if valid_product_count > 0 -%}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+  <section
+    class="luv-collection-featured"
+    aria-labelledby="LuvCollectionFeaturedTitle-{{ section.id }}"
+  >
+    <div class="luv-collection-featured__inner">
+      <h2 class="luv-collection-featured__heading" id="LuvCollectionFeaturedTitle-{{ section.id }}">
+        {{ featured_title | strip_html | escape }}
+      </h2>
+      <ul
+        class="luv-collection-featured__rail"
+        role="list"
+        tabindex="0"
+        aria-labelledby="LuvCollectionFeaturedTitle-{{ section.id }}"
+      >
+        {{ featured_cards }}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Luv featured products",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv featured products"
+    }
+  ]
+}
+{% endschema %}

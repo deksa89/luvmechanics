@@ -1,0 +1,92 @@
+{{ 'luv-collection-landing.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign hero_title = collection.metafields.custom.luv_hero_title.value | default: collection.title
+  assign hero_text = collection.metafields.custom.luv_hero_text.value | strip_html
+
+  if hero_text == blank and collection.description != blank
+    assign hero_text = collection.description | strip_html | truncatewords: 32
+  endif
+
+  assign hero_image = collection.metafields.custom.luv_hero_image.value
+  if hero_image == blank
+    assign hero_image = collection.image
+  endif
+
+  assign hero_image_alt = hero_image.alt | default: collection.title
+  assign overlay_base = section.settings.overlay_strength | divided_by: 100.0
+  assign overlay_left = overlay_base | plus: 0.25 | at_most: 0.92
+  assign overlay_middle = overlay_base | times: 0.75
+  assign overlay_edge = overlay_base | times: 0.35
+-%}
+
+<section
+  class="luv-collection-hero{% if hero_image == blank %} luv-collection-hero--no-image{% endif %}"
+  style="--luv-hero-overlay-left: {{ overlay_left }}; --luv-hero-overlay-middle: {{ overlay_middle }}; --luv-hero-overlay-edge: {{ overlay_edge }};"
+  aria-labelledby="LuvCollectionHeroTitle-{{ section.id }}"
+>
+  {%- if hero_image != blank -%}
+    <div class="luv-collection-hero__media">
+      {{-
+        hero_image
+        | image_url: width: 2400
+        | image_tag:
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2400',
+          sizes: '100vw',
+          class: 'luv-collection-hero__image',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: hero_image_alt
+      -}}
+    </div>
+  {%- endif -%}
+
+  <div class="luv-collection-hero__overlay" aria-hidden="true"></div>
+
+  <div class="luv-collection-hero__inner page-width">
+    <div class="luv-collection-hero__content">
+      <h1 class="luv-collection-hero__title" id="LuvCollectionHeroTitle-{{ section.id }}">
+        {{ hero_title | strip_html | escape }}
+      </h1>
+
+      {%- if hero_text != blank -%}
+        <p class="luv-collection-hero__text">{{ hero_text | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank -%}
+        <a class="luv-collection-hero__button" href="#luv-collection-products">
+          {{ section.settings.cta_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luv collection hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "SHOP PRODUCTS"
+    },
+    {
+      "type": "range",
+      "id": "overlay_strength",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay strength",
+      "default": 55
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv collection hero"
+    }
+  ]
+}
+{% endschema %}

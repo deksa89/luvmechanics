@@ -1,3 +1,11 @@
+{%- liquid
+  assign suppress_luv_collection_footer_benefits = false
+  if template.name == 'collection' and template.suffix == 'luv-landing' and section.id contains 'multicolumn_FxM3i8'
+    assign suppress_luv_collection_footer_benefits = true
+  endif
+-%}
+
+{%- unless suppress_luv_collection_footer_benefits -%}
 {{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
@@ -418,6 +426,7 @@
     </div>
   </div>
 </div>
+{%- endunless -%}
 
 {% schema %}
 {

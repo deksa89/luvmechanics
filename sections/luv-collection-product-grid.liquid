@@ -1,0 +1,260 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+
+<section
+  id="luv-collection-products"
+  class="luv-collection-products"
+  style="--luv-products-columns-desktop: {{ section.settings.desktop_columns }};"
+>
+  <div class="luv-collection-products__inner">
+    <header class="luv-collection-products__header">
+      <h2 class="luv-collection-products__heading">{{ section.settings.heading | escape }}</h2>
+    </header>
+
+    {%- paginate collection.products by section.settings.products_per_page -%}
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+        <aside
+          class="luv-collection-products__toolbar"
+          id="main-collection-filters"
+          aria-label="{{ 'products.facets.filter_and_sort' | t | escape }}"
+          data-id="{{ section.id }}"
+        >
+          {% render 'facets',
+            results: collection,
+            enable_filtering: section.settings.enable_filtering,
+            enable_sorting: section.settings.enable_sorting,
+            filter_type: 'drawer',
+            paginate: paginate
+          %}
+        </aside>
+      {%- endif -%}
+
+      <div class="luv-collection-products__container" id="ProductGridContainer">
+        {%- if collection.products.size == 0 -%}
+          <div class="collection collection--empty luv-collection-products__empty" id="product-grid" data-id="{{ section.id }}">
+            <div class="loading-overlay gradient"></div>
+            <div class="title-wrapper center">
+              <h3 class="luv-collection-products__empty-heading">
+                {{ 'sections.collection_template.empty' | t }}
+              </h3>
+              <p class="luv-collection-products__empty-text">
+                {{
+                  'sections.collection_template.use_fewer_filters_html'
+                  | t: link: collection.url, class: 'underlined-link link'
+                }}
+              </p>
+            </div>
+          </div>
+        {%- else -%}
+          <div class="collection luv-collection-products__collection">
+            <div class="loading-overlay gradient"></div>
+            <ul
+              id="product-grid"
+              class="luv-collection-products__grid"
+              data-id="{{ section.id }}"
+              role="list"
+            >
+              {%- assign desktop_image_width = 1184 | divided_by: section.settings.desktop_columns -%}
+              {%- capture product_image_sizes -%}
+                (min-width: 1280px) {{ desktop_image_width }}px, (min-width: 990px) calc((100vw - 96px) / {{ section.settings.desktop_columns }}), (min-width: 750px) calc((100vw - 64px) / 3), calc((100vw - 42px) / 2)
+              {%- endcapture -%}
+
+              {%- for product in collection.products -%}
+                {%- liquid
+                  assign product_image = product.featured_image
+                  assign product_image_alt = product_image.alt | default: product.title
+                  assign product_is_on_sale = false
+                  if product.compare_at_price > product.price
+                    assign product_is_on_sale = true
+                  endif
+                -%}
+                <li class="luv-collection-products__item">
+                  <article class="luv-collection-products__card">
+                    <a
+                      class="luv-collection-products__media"
+                      href="{{ product.url }}"
+                      aria-labelledby="LuvProductTitle-{{ section.id }}-{{ product.id }}"
+                    >
+                      {%- if product.available == false -%}
+                        <span class="luv-collection-products__badge luv-collection-products__badge--sold-out">
+                          {{- 'products.product.sold_out' | t -}}
+                        </span>
+                      {%- elsif product_is_on_sale -%}
+                        <span class="luv-collection-products__badge luv-collection-products__badge--sale">
+                          {{- 'products.product.on_sale' | t -}}
+                        </span>
+                      {%- endif -%}
+
+                      {%- if product_image != blank -%}
+                        {{
+                          product_image
+                          | image_url: width: 720
+                          | image_tag:
+                            class: 'luv-collection-products__image',
+                            widths: '180, 240, 320, 480, 640, 720',
+                            sizes: product_image_sizes,
+                            loading: 'lazy',
+                            alt: product_image_alt
+                        }}
+                      {%- else -%}
+                        {{ 'product-1' | placeholder_svg_tag: 'luv-collection-products__placeholder placeholder-svg' }}
+                      {%- endif -%}
+                    </a>
+
+                    <div class="luv-collection-products__details">
+                      {%- if section.settings.show_vendor and product.vendor != blank -%}
+                        <p class="luv-collection-products__vendor">
+                          <span class="visually-hidden">{{ 'accessibility.vendor' | t }}:</span>
+                          {{ product.vendor | escape }}
+                        </p>
+                      {%- endif -%}
+
+                      <h3 class="luv-collection-products__title" id="LuvProductTitle-{{ section.id }}-{{ product.id }}">
+                        <a href="{{ product.url }}">{{ product.title | escape }}</a>
+                      </h3>
+
+                      <div class="luv-collection-products__price">
+                        {% render 'price', product: product, show_compare_at_price: true %}
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              {%- endfor -%}
+            </ul>
+
+            {%- if paginate.pages > 1 -%}
+              <div class="luv-collection-products__pagination">
+                {% render 'pagination', paginate: paginate, anchor: '#luv-collection-products' %}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endpaginate -%}
+  </div>
+</section>
+
+<script>
+  if (!window.luvCollectionNumericFacets) {
+    window.luvCollectionNumericFacets = true;
+
+    const luvFormatNumericFacetValue = (value) => {
+      const number = Number(value);
+      if (!Number.isFinite(number)) return '0';
+      if (Number.isInteger(number)) return String(number);
+      return number.toFixed(1).replace(/\.0$/, '');
+    };
+
+    const luvUpdateNumericFacet = (facet, syncCheckboxes = false) => {
+      const slider = facet.querySelector('[data-numeric-facet-slider]');
+      const range = facet.querySelector('.lm-numeric-facet__range');
+      const output = facet.querySelector('[data-numeric-facet-output]');
+      const max = Number(facet.dataset.max || 0);
+
+      if (!slider || !max) return;
+
+      const current = Math.max(0, Math.min(Number(slider.value || max), max));
+      const end = max > 0 ? (current / max) * 100 : 100;
+
+      slider.value = current;
+      (range || facet).style.setProperty('--numeric-end', `${Math.max(0, Math.min(end, 100))}%`);
+
+      if (output) output.textContent = luvFormatNumericFacetValue(current);
+      if (!syncCheckboxes) return;
+
+      const clearFilter = current >= max;
+      facet.querySelectorAll('[data-numeric-facet-checkbox]').forEach((checkbox) => {
+        if (checkbox.disabled && !checkbox.checked) return;
+        const value = Number(checkbox.dataset.numericValue || 0);
+        checkbox.checked = !clearFilter && value <= current;
+      });
+    };
+
+    const luvInitNumericFacets = (root = document) => {
+      if (root.matches?.('[data-numeric-facet]')) luvUpdateNumericFacet(root);
+      root.querySelectorAll?.('[data-numeric-facet]').forEach((facet) => luvUpdateNumericFacet(facet));
+    };
+
+    document.addEventListener(
+      'input',
+      (event) => {
+        const facet = event.target.closest?.('[data-numeric-facet]');
+        if (facet && event.target.matches('[data-numeric-facet-slider]')) {
+          luvUpdateNumericFacet(facet, true);
+        }
+      },
+      true
+    );
+
+    document.addEventListener('DOMContentLoaded', () => luvInitNumericFacets());
+
+    new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) luvInitNumericFacets(node);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+
+    luvInitNumericFacets();
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Luv collection products",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "All Products"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Desktop columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": true,
+      "label": "Show vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "Enable filtering",
+      "info": "Filters are configured in Shopify Search & Discovery."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "Enable sorting"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv collection products"
+    }
+  ]
+}
+{% endschema %}

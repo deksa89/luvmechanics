@@ -1,0 +1,53 @@
+<section class="luv-collection-trust" aria-label="Store benefits">
+  <ul class="luv-collection-trust__inner" role="list">
+    <li class="luv-collection-trust__item">
+      <span class="luv-collection-trust__icon" aria-hidden="true">
+        {{- 'icon-box.svg' | inline_asset_content -}}
+      </span>
+      <span class="luv-collection-trust__label">{{ section.settings.trust_item_1_label | escape }}</span>
+    </li>
+    <li class="luv-collection-trust__item">
+      <span class="luv-collection-trust__icon" aria-hidden="true">
+        {{- 'icon-lock.svg' | inline_asset_content -}}
+      </span>
+      <span class="luv-collection-trust__label">{{ section.settings.trust_item_2_label | escape }}</span>
+    </li>
+    <li class="luv-collection-trust__item">
+      <span class="luv-collection-trust__icon" aria-hidden="true">
+        {{- 'icon-chat-bubble.svg' | inline_asset_content -}}
+      </span>
+      <span class="luv-collection-trust__label">{{ section.settings.trust_item_3_label | escape }}</span>
+    </li>
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "Luv collection trust bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "trust_item_1_label",
+      "label": "First trust label",
+      "default": "Discreet delivery"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_2_label",
+      "label": "Second trust label",
+      "default": "Secure shopping"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_3_label",
+      "label": "Third trust label",
+      "default": "Help choosing"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv collection trust bar"
+    }
+  ]
+}
+{% endschema %}

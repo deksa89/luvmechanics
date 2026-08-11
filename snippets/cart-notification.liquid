@@ -41,6 +41,21 @@
   endif
 -%}
 
+{% style %}
+  cart-notification,
+  .cart-notification {
+    display: none;
+  }
+
+  cart-notification.is-open {
+    display: block;
+  }
+
+  .cart-notification.active {
+    display: flex;
+  }
+{% endstyle %}
+
 <cart-notification>
   <div class="cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
     <button
@@ -150,8 +165,3 @@
     </div>
   </div>
 </cart-notification>
-{% style %}
-  .cart-notification {
-    display: none;
-  }
-{% endstyle %}
