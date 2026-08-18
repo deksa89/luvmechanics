@@ -65,6 +65,8 @@
                 {%- liquid
                   assign product_image = product.featured_image
                   assign product_image_alt = product_image.alt | default: product.title
+                  assign product_variant = product.selected_or_first_available_variant
+                  assign analytics_price = product_variant.price | divided_by: 100.0
                   assign product_is_on_sale = false
                   if product.compare_at_price > product.price
                     assign product_is_on_sale = true
@@ -76,6 +78,14 @@
                       class="luv-collection-products__media"
                       href="{{ product.url }}"
                       aria-labelledby="LuvProductTitle-{{ section.id }}-{{ product.id }}"
+                      data-luv-track="product-grid-product"
+                      data-product-id="{{ product.id }}"
+                      data-product-handle="{{ product.handle | escape }}"
+                      data-product-title="{{ product.title | escape }}"
+                      data-product-vendor="{{ product.vendor | escape }}"
+                      data-variant-id="{{ product_variant.id }}"
+                      data-price="{{ analytics_price }}"
+                      data-position="{{ forloop.index }}"
                     >
                       {%- if product.available == false -%}
                         <span class="luv-collection-products__badge luv-collection-products__badge--sold-out">
@@ -112,7 +122,19 @@
                       {%- endif -%}
 
                       <h3 class="luv-collection-products__title" id="LuvProductTitle-{{ section.id }}-{{ product.id }}">
-                        <a href="{{ product.url }}">{{ product.title | escape }}</a>
+                        <a
+                          href="{{ product.url }}"
+                          data-luv-track="product-grid-product"
+                          data-product-id="{{ product.id }}"
+                          data-product-handle="{{ product.handle | escape }}"
+                          data-product-title="{{ product.title | escape }}"
+                          data-product-vendor="{{ product.vendor | escape }}"
+                          data-variant-id="{{ product_variant.id }}"
+                          data-price="{{ analytics_price }}"
+                          data-position="{{ forloop.index }}"
+                        >
+                          {{- product.title | escape -}}
+                        </a>
                       </h3>
 
                       <div class="luv-collection-products__price">

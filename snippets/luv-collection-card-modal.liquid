@@ -1,0 +1,26 @@
+<dialog
+  class="luv-collection-modal"
+  id="{{ modal_id | escape }}"
+  aria-labelledby="{{ modal_title_id | escape }}"
+  data-luv-collection-modal
+>
+  <div class="luv-collection-modal__inner">
+    <header class="luv-collection-modal__header">
+      <h2 class="luv-collection-modal__title" id="{{ modal_title_id | escape }}">
+        {{ modal_title | strip_html | escape }}
+      </h2>
+      <button
+        class="luv-collection-modal__close"
+        type="button"
+        aria-label="{{ 'accessibility.close' | t }}"
+        data-luv-collection-modal-close
+        autofocus
+      >
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </button>
+    </header>
+    <div class="luv-collection-modal__content">
+      {{ popup_content | metafield_tag }}
+    </div>
+  </div>
+</dialog>

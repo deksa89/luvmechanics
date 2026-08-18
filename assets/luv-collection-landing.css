@@ -498,18 +498,26 @@
   list-style: none;
 }
 
+.luv-collection-finder__item {
+  min-width: 0;
+}
+
 .luv-collection-finder__card {
+  position: relative;
   display: grid;
   grid-template-columns: 36px minmax(0, 1fr);
   align-items: start;
   min-width: 0;
+  height: 100%;
   gap: 12px;
   margin: 0;
   padding: 20px;
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   background: #ffffff;
+  color: inherit;
   box-shadow: 0 4px 20px rgba(17, 17, 17, 0.03);
+  text-decoration: none;
 }
 
 .luv-collection-finder__icon {
@@ -568,16 +576,10 @@
   text-decoration: none;
 }
 
-.luv-collection-finder__link:hover {
+.luv-collection-card--interactive:hover .luv-collection-finder__link {
   color: #7f1526;
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-.luv-collection-finder__link:focus-visible {
-  outline: 2px solid var(--luv-collection-finder-burgundy);
-  outline-offset: 3px;
-  border-radius: 2px;
 }
 
 @media screen and (max-width: 749px) {
@@ -607,6 +609,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .luv-collection-finder__item {
+    width: 100%;
   }
 
   .luv-collection-finder__card {
@@ -1313,17 +1319,25 @@
   list-style: none;
 }
 
+.luv-collection-guide__item {
+  min-width: 0;
+}
+
 .luv-collection-guide__card {
+  position: relative;
   display: flex;
   align-items: flex-start;
   min-width: 0;
+  height: 100%;
   gap: 12px;
   margin: 0;
   padding: 18px;
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   background: #ffffff;
+  color: inherit;
   box-shadow: 0 4px 20px rgba(17, 17, 17, 0.03);
+  text-decoration: none;
 }
 
 .luv-collection-guide__icon {
@@ -1383,16 +1397,10 @@
   text-decoration: none;
 }
 
-.luv-collection-guide__link:hover {
+.luv-collection-card--interactive:hover .luv-collection-guide__link {
   color: #7f1526;
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-.luv-collection-guide__link:focus-visible {
-  outline: 2px solid var(--luv-guide-burgundy);
-  outline-offset: 3px;
-  border-radius: 2px;
 }
 
 .luv-collection-editorial {
@@ -1929,5 +1937,219 @@
   .luv-collection-newsletter__inner {
     grid-template-columns: minmax(180px, 0.7fr) minmax(340px, 1.3fr);
     gap: 28px;
+  }
+}
+
+.luv-collection-card--interactive {
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.luv-collection-card--interactive:hover {
+  border-color: #d8c2c6;
+  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.08);
+}
+
+.luv-collection-card--interactive:focus-visible,
+.luv-collection-card-trigger:focus-visible {
+  outline: 3px solid #9b1b30;
+  outline-offset: 3px;
+}
+
+.luv-collection-card-trigger {
+  position: absolute;
+  z-index: 1;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+html.luv-collection-modal-open {
+  overflow: hidden;
+}
+
+.luv-collection-modal {
+  width: min(640px, calc(100% - 32px));
+  max-width: 640px;
+  max-height: min(85vh, 760px);
+  max-height: min(85dvh, 760px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #1a1c1c;
+  box-shadow: 0 24px 70px rgba(17, 17, 17, 0.28);
+}
+
+.luv-collection-modal::backdrop {
+  background: rgba(17, 17, 17, 0.6);
+}
+
+.luv-collection-modal__inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  max-height: inherit;
+  min-width: 0;
+}
+
+.luv-collection-modal__header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 28px 18px;
+  border-bottom: 1px solid #ece7e8;
+}
+
+.luv-collection-modal__title {
+  margin: 0;
+  color: #1a1c1c;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.luv-collection-modal__close {
+  display: inline-flex;
+  flex: 0 0 40px;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: -6px -6px 0 0;
+  padding: 0;
+  border: 1px solid #ded7d9;
+  border-radius: 50%;
+  appearance: none;
+  background: #ffffff;
+  color: #1a1c1c;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.luv-collection-modal__close:hover {
+  border-color: #9b1b30;
+  background: #fff0f1;
+  color: #9b1b30;
+}
+
+.luv-collection-modal__close:focus-visible {
+  outline: 3px solid #9b1b30;
+  outline-offset: 2px;
+}
+
+.luv-collection-modal__close svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.luv-collection-modal__content {
+  min-width: 0;
+  padding: 22px 28px 30px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: #303333;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.luv-collection-modal__content > :first-child,
+.luv-collection-modal__content .metafield-rich_text_field > :first-child {
+  margin-top: 0;
+}
+
+.luv-collection-modal__content > :last-child,
+.luv-collection-modal__content .metafield-rich_text_field > :last-child {
+  margin-bottom: 0;
+}
+
+.luv-collection-modal__content p {
+  margin: 0 0 16px;
+}
+
+.luv-collection-modal__content h2,
+.luv-collection-modal__content h3 {
+  margin: 24px 0 10px;
+  color: #1a1c1c;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.luv-collection-modal__content h2 {
+  font-size: 20px;
+}
+
+.luv-collection-modal__content h3 {
+  font-size: 17px;
+}
+
+.luv-collection-modal__content ul,
+.luv-collection-modal__content ol {
+  margin: 0 0 18px;
+  padding-left: 24px;
+}
+
+.luv-collection-modal__content li + li {
+  margin-top: 6px;
+}
+
+.luv-collection-modal__content a {
+  color: #9b1b30;
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.luv-collection-modal__content a:focus-visible {
+  outline: 2px solid #9b1b30;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 749px) {
+  .luv-collection-modal {
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    border-radius: 12px;
+  }
+
+  .luv-collection-modal__header {
+    gap: 16px;
+    padding: 22px 20px 16px;
+  }
+
+  .luv-collection-modal__title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .luv-collection-modal__content {
+    padding: 20px 20px 24px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luv-collection-card--interactive,
+  .luv-collection-modal__close {
+    transition: none;
   }
 }

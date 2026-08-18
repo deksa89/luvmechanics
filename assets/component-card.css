@@ -5,6 +5,10 @@
   text-decoration: none;
 }
 
+.product-card-wrapper[data-product-url] {
+  cursor: pointer;
+}
+
 .card {
   text-decoration: none;
   text-align: var(--text-alignment);

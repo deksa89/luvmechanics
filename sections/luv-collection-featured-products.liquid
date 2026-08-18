@@ -11,12 +11,22 @@
         assign valid_product_count = valid_product_count | plus: 1
         assign featured_image = featured_product.featured_image
         assign featured_image_alt = featured_image.alt | default: featured_product.title
+        assign featured_variant = featured_product.selected_or_first_available_variant
+        assign featured_price = featured_variant.price | divided_by: 100.0
       -%}
       <li class="luv-collection-featured__card" role="listitem">
         <a
           class="luv-collection-featured__link"
           href="{{ featured_product.url }}"
           aria-label="{{ featured_product.title | escape }}"
+          data-luv-track="featured-product"
+          data-product-id="{{ featured_product.id }}"
+          data-product-handle="{{ featured_product.handle | escape }}"
+          data-product-title="{{ featured_product.title | escape }}"
+          data-product-vendor="{{ featured_product.vendor | escape }}"
+          data-variant-id="{{ featured_variant.id }}"
+          data-price="{{ featured_price }}"
+          data-position="{{ valid_product_count }}"
         >
           <div class="luv-collection-featured__media{% if featured_image == blank %} luv-collection-featured__media--empty{% endif %}">
             {%- if featured_image != blank -%}

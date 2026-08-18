@@ -45,7 +45,14 @@
           <p class="luv-collection-editorial__text">{{ article_excerpt | escape }}</p>
         {%- endif -%}
         {%- if section.settings.cta_label != blank -%}
-          <a class="luv-collection-editorial__button" href="{{ featured_article.url }}">
+          <a
+            class="luv-collection-editorial__button"
+            href="{{ featured_article.url }}"
+            data-luv-track="editorial"
+            data-article-id="{{ featured_article.id }}"
+            data-article-title="{{ featured_article.title | escape }}"
+            data-article-handle="{{ featured_article.handle | escape }}"
+          >
             {{- section.settings.cta_label | escape -}}
           </a>
         {%- endif -%}

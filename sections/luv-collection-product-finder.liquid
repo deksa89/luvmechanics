@@ -3,71 +3,145 @@
   assign finder_intro = collection.metafields.custom.luv_finder_intro.value
   assign finder_cards = collection.metafields.custom.luv_finder_cards.value
   assign valid_finder_card_count = 0
+  assign finder_popup_card_count = 0
 -%}
 
 {%- capture finder_cards_markup -%}
   {%- for finder_card in finder_cards -%}
-    {%- liquid
-      assign card_title = finder_card.title.value
-      assign card_text = finder_card.text.value
-      assign card_link_label = finder_card.link_label.value
-      assign card_link = finder_card.link.value
-      assign card_icon_key = finder_card.icon_key.value | handleize
+    {%- if finder_card != blank -%}
+      {%- liquid
+        assign card_title = finder_card.title.value
+        assign card_text = finder_card.text.value
+        assign card_link_label = finder_card.link_label.value
+        assign card_link = finder_card.link.value
+        assign card_icon_key = finder_card.icon_key.value | handleize
+        assign card_popup_content_field = finder_card.popup_content
+        assign card_popup_content = card_popup_content_field.value
+        assign card_has_link = false
+        assign card_has_popup = false
+        assign card_element = 'div'
+        assign card_title_id = 'LuvCollectionFinderCardTitle-' | append: section.id | append: '-' | append: forloop.index
+        assign modal_id = 'LuvCollectionModal-Finder-' | append: section.id | append: '-' | append: forloop.index
 
-      if card_link != blank and card_link_label == blank
-        assign card_link_label = 'Learn more'
-      endif
-    -%}
+        if card_link != blank and card_link_label == blank
+          assign card_link_label = 'Learn more'
+        endif
 
-    {%- if finder_card != blank and card_title != blank or card_text != blank -%}
-      {%- assign valid_finder_card_count = valid_finder_card_count | plus: 1 -%}
+        if card_link != blank
+          assign card_has_link = true
+          assign card_element = 'a'
+        elsif card_popup_content != blank
+          assign card_has_popup = true
+        endif
+      -%}
 
-      {%- capture finder_icon -%}
-        {%- case card_icon_key -%}
-          {%- when 'premium' -%}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="m12 3 1.45 4.55L18 9l-4.55 1.45L12 15l-1.45-4.55L6 9l4.55-1.45L12 3Z" />
-              <path d="m18.5 15 .75 2.25L21.5 18l-2.25.75L18.5 21l-.75-2.25L15.5 18l2.25-.75L18.5 15Z" />
-            </svg>
-          {%- when 'size' -%}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M5 19 19 5" />
-              <path d="m7.5 16.5 2 2M10.5 13.5l2 2M13.5 10.5l2 2M16.5 7.5l2 2" />
-              <path d="M4.5 16.5 7.5 19.5 19.5 7.5 16.5 4.5 4.5 16.5Z" />
-            </svg>
-          {%- when 'help' -%}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="8.5" />
-              <path d="M9.8 9.2a2.4 2.4 0 1 1 3.35 2.2c-.78.34-1.15.82-1.15 1.6v.35" />
-              <path d="M12 17h.01" />
-            </svg>
-          {%- else -%}
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="8.5" />
-              <path d="m14.8 9.2-1.65 3.95L9.2 14.8l1.65-3.95 3.95-1.65Z" />
-            </svg>
-        {%- endcase -%}
-      {%- endcapture -%}
+      {%- if card_title != blank or card_text != blank -%}
+        {%- liquid
+          assign valid_finder_card_count = valid_finder_card_count | plus: 1
+          if card_has_popup
+            assign finder_popup_card_count = finder_popup_card_count | plus: 1
+          endif
+        -%}
 
-      <li class="luv-collection-finder__card">
-        <span class="luv-collection-finder__icon" aria-hidden="true">
-          {{- finder_icon -}}
-        </span>
-        <div class="luv-collection-finder__body">
-          {%- if card_title != blank -%}
-            <h3 class="luv-collection-finder__title">{{ card_title | strip_html | escape }}</h3>
-          {%- endif -%}
-          {%- if card_text != blank -%}
-            <p class="luv-collection-finder__text">{{ card_text | strip_html | escape }}</p>
-          {%- endif -%}
-          {%- if card_link != blank -%}
-            <a class="luv-collection-finder__link" href="{{ card_link | escape }}">
-              {{- card_link_label | strip_html | escape -}}
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-          {%- endif -%}
-        </div>
-      </li>
+        {%- capture finder_icon -%}
+          {%- case card_icon_key -%}
+            {%- when 'premium' -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m12 3 1.45 4.55L18 9l-4.55 1.45L12 15l-1.45-4.55L6 9l4.55-1.45L12 3Z" />
+                <path d="m18.5 15 .75 2.25L21.5 18l-2.25.75L18.5 21l-.75-2.25L15.5 18l2.25-.75L18.5 15Z" />
+              </svg>
+            {%- when 'size' -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 19 19 5" />
+                <path d="m7.5 16.5 2 2M10.5 13.5l2 2M13.5 10.5l2 2M16.5 7.5l2 2" />
+                <path d="M4.5 16.5 7.5 19.5 19.5 7.5 16.5 4.5 4.5 16.5Z" />
+              </svg>
+            {%- when 'help' -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="8.5" />
+                <path d="M9.8 9.2a2.4 2.4 0 1 1 3.35 2.2c-.78.34-1.15.82-1.15 1.6v.35" />
+                <path d="M12 17h.01" />
+              </svg>
+            {%- else -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="8.5" />
+                <path d="m14.8 9.2-1.65 3.95L9.2 14.8l1.65-3.95 3.95-1.65Z" />
+              </svg>
+          {%- endcase -%}
+        {%- endcapture -%}
+
+        <li class="luv-collection-finder__item">
+          <{{ card_element }}
+            class="luv-collection-finder__card{% if card_has_link or card_has_popup %} luv-collection-card--interactive{% endif %}"
+            {% if card_has_link %}
+              href="{{ card_link | escape }}"
+              data-luv-track="finder-link"
+              data-luv-card-type="finder"
+              data-luv-interaction-type="link"
+              data-luv-card-title="{{ card_title | default: card_text | strip_html | escape }}"
+            {% endif %}
+          >
+            <span class="luv-collection-finder__icon" aria-hidden="true">
+              {{- finder_icon -}}
+            </span>
+            <div class="luv-collection-finder__body">
+              {%- if card_title != blank -%}
+                <h3 class="luv-collection-finder__title" id="{{ card_title_id }}">
+                  {{- card_title | strip_html | escape -}}
+                </h3>
+              {%- endif -%}
+              {%- if card_text != blank -%}
+                <p class="luv-collection-finder__text">{{ card_text | strip_html | escape }}</p>
+              {%- endif -%}
+              {%- if card_has_link -%}
+                <span class="luv-collection-finder__link">
+                  {{- card_link_label | strip_html | escape -}}
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
+              {%- endif -%}
+            </div>
+            {%- if card_has_popup -%}
+              <button
+                class="luv-collection-card-trigger"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="{{ modal_id }}"
+                aria-label="{{ card_title | default: card_text | strip_html | escape }}"
+                data-luv-collection-modal-trigger
+                data-luv-card-type="finder"
+                data-luv-card-title="{{ card_title | default: card_text | strip_html | escape }}"
+              ></button>
+            {%- endif -%}
+          </{{ card_element }}>
+        </li>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture finder_modals_markup -%}
+  {%- for finder_card in finder_cards -%}
+    {%- if finder_card != blank -%}
+      {%- liquid
+        assign card_title = finder_card.title.value
+        assign card_text = finder_card.text.value
+        assign card_link = finder_card.link.value
+        assign card_popup_content_field = finder_card.popup_content
+        assign card_popup_content = card_popup_content_field.value
+        assign modal_id = 'LuvCollectionModal-Finder-' | append: section.id | append: '-' | append: forloop.index
+        assign modal_title_id = modal_id | append: '-Title'
+        assign modal_title = card_title | default: finder_title
+      -%}
+      {%- if card_link == blank and card_popup_content != blank -%}
+        {%- if card_title != blank or card_text != blank -%}
+          {% render 'luv-collection-card-modal',
+            modal_id: modal_id,
+            modal_title_id: modal_title_id,
+            modal_title: modal_title,
+            popup_content: card_popup_content_field
+          %}
+        {%- endif -%}
+      {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
 {%- endcapture -%}
@@ -90,7 +164,11 @@
         {{ finder_cards_markup }}
       </ul>
     </div>
+    {{ finder_modals_markup }}
   </section>
+  {%- if finder_popup_card_count > 0 -%}
+    <script src="{{ 'luv-collection-card-modal.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 {%- endif -%}
 
 {% schema %}

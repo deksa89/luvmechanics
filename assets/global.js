@@ -1330,3 +1330,46 @@ class CartPerformance {
     );
   }
 }
+
+const productCardInteractiveSelector = [
+  'a',
+  'button',
+  'input',
+  'select',
+  'textarea',
+  'label',
+  'summary',
+  'details',
+  'form',
+  'iframe',
+  'audio',
+  'video',
+  '[role="button"]',
+  '[role="link"]',
+  '[contenteditable]:not([contenteditable="false"])',
+  '[tabindex]:not([tabindex="-1"])',
+  '[data-no-card-link]',
+].join(',');
+
+document.addEventListener('click', (event) => {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    !(event.target instanceof Element)
+  ) {
+    return;
+  }
+
+  const card = event.target.closest('.product-card-wrapper[data-product-url]');
+  const interactiveElement = event.target.closest(productCardInteractiveSelector);
+
+  if (!card || (interactiveElement && card.contains(interactiveElement))) return;
+
+  const productUrl = card.dataset.productUrl;
+
+  if (productUrl) window.location.assign(productUrl);
+});

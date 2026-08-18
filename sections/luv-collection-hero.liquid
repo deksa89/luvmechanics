@@ -18,12 +18,20 @@
   assign overlay_left = overlay_base | plus: 0.25 | at_most: 0.92
   assign overlay_middle = overlay_base | times: 0.75
   assign overlay_edge = overlay_base | times: 0.35
+  assign collection_currency = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop.currency
 -%}
 
 <section
   class="luv-collection-hero{% if hero_image == blank %} luv-collection-hero--no-image{% endif %}"
   style="--luv-hero-overlay-left: {{ overlay_left }}; --luv-hero-overlay-middle: {{ overlay_middle }}; --luv-hero-overlay-edge: {{ overlay_edge }};"
   aria-labelledby="LuvCollectionHeroTitle-{{ section.id }}"
+  data-luv-collection-context
+  data-collection-id="{{ collection.id }}"
+  data-collection-handle="{{ collection.handle | escape }}"
+  data-collection-title="{{ collection.title | escape }}"
+  data-template-suffix="{{ template.suffix | escape }}"
+  data-locale="{{ request.locale.iso_code | escape }}"
+  data-currency="{{ collection_currency | escape }}"
 >
   {%- if hero_image != blank -%}
     <div class="luv-collection-hero__media">
@@ -54,13 +62,19 @@
       {%- endif -%}
 
       {%- if section.settings.cta_label != blank -%}
-        <a class="luv-collection-hero__button" href="#luv-collection-products">
+        <a
+          class="luv-collection-hero__button"
+          href="#luv-collection-products"
+          data-luv-track="hero-cta"
+        >
           {{ section.settings.cta_label | escape }}
         </a>
       {%- endif -%}
     </div>
   </div>
 </section>
+
+<script src="{{ 'luv-collection-tracking.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

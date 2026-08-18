@@ -3,6 +3,7 @@
   assign guide_intro = collection.metafields.custom.luv_guide_intro.value
   assign guide_cards = collection.metafields.custom.luv_guide_cards.value
   assign valid_guide_card_count = 0
+  assign guide_popup_card_count = 0
 -%}
 
 {%- capture guide_cards_markup -%}
@@ -14,14 +15,32 @@
         assign card_link_label = guide_card.link_label.value
         assign card_link = guide_card.link.value
         assign card_icon_key = guide_card.icon_key.value | handleize
+        assign card_popup_content_field = guide_card.popup_content
+        assign card_popup_content = card_popup_content_field.value
+        assign card_has_link = false
+        assign card_has_popup = false
+        assign card_element = 'div'
+        assign modal_id = 'LuvCollectionModal-Guide-' | append: section.id | append: '-' | append: forloop.index
 
         if card_link != blank and card_link_label == blank
           assign card_link_label = 'Read more'
         endif
+
+        if card_link != blank
+          assign card_has_link = true
+          assign card_element = 'a'
+        elsif card_popup_content != blank
+          assign card_has_popup = true
+        endif
       -%}
 
       {%- if card_title != blank or card_text != blank -%}
-        {%- assign valid_guide_card_count = valid_guide_card_count | plus: 1 -%}
+        {%- liquid
+          assign valid_guide_card_count = valid_guide_card_count | plus: 1
+          if card_has_popup
+            assign guide_popup_card_count = guide_popup_card_count | plus: 1
+          endif
+        -%}
 
         {%- capture guide_icon -%}
           {%- case card_icon_key -%}
@@ -44,27 +63,77 @@
           {%- endcase -%}
         {%- endcapture -%}
 
-        <li class="luv-collection-guide__card">
-          {%- if guide_icon != blank -%}
-            <span class="luv-collection-guide__icon" aria-hidden="true">
-              {{- guide_icon -}}
-            </span>
-          {%- endif -%}
-          <div class="luv-collection-guide__body">
-            {%- if card_title != blank -%}
-              <h3 class="luv-collection-guide__title">{{ card_title | strip_html | escape }}</h3>
+        <li class="luv-collection-guide__item">
+          <{{ card_element }}
+            class="luv-collection-guide__card{% if card_has_link or card_has_popup %} luv-collection-card--interactive{% endif %}"
+            {% if card_has_link %}
+              href="{{ card_link | escape }}"
+              data-luv-track="guide-link"
+              data-luv-card-type="guide"
+              data-luv-interaction-type="link"
+              data-luv-card-title="{{ card_title | default: card_text | strip_html | escape }}"
+            {% endif %}
+          >
+            {%- if guide_icon != blank -%}
+              <span class="luv-collection-guide__icon" aria-hidden="true">
+                {{- guide_icon -}}
+              </span>
             {%- endif -%}
-            {%- if card_text != blank -%}
-              <p class="luv-collection-guide__text">{{ card_text | strip_html | escape }}</p>
+            <div class="luv-collection-guide__body">
+              {%- if card_title != blank -%}
+                <h3 class="luv-collection-guide__title">{{ card_title | strip_html | escape }}</h3>
+              {%- endif -%}
+              {%- if card_text != blank -%}
+                <p class="luv-collection-guide__text">{{ card_text | strip_html | escape }}</p>
+              {%- endif -%}
+              {%- if card_has_link -%}
+                <span class="luv-collection-guide__link">
+                  {{- card_link_label | strip_html | escape -}}
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
+              {%- endif -%}
+            </div>
+            {%- if card_has_popup -%}
+              <button
+                class="luv-collection-card-trigger"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="{{ modal_id }}"
+                aria-label="{{ card_title | default: card_text | strip_html | escape }}"
+                data-luv-collection-modal-trigger
+                data-luv-card-type="guide"
+                data-luv-card-title="{{ card_title | default: card_text | strip_html | escape }}"
+              ></button>
             {%- endif -%}
-            {%- if card_link != blank -%}
-              <a class="luv-collection-guide__link" href="{{ card_link | escape }}">
-                {{- card_link_label | strip_html | escape -}}
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-            {%- endif -%}
-          </div>
+          </{{ card_element }}>
         </li>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture guide_modals_markup -%}
+  {%- for guide_card in guide_cards -%}
+    {%- if guide_card != blank -%}
+      {%- liquid
+        assign card_title = guide_card.title.value
+        assign card_text = guide_card.text.value
+        assign card_link = guide_card.link.value
+        assign card_popup_content_field = guide_card.popup_content
+        assign card_popup_content = card_popup_content_field.value
+        assign modal_id = 'LuvCollectionModal-Guide-' | append: section.id | append: '-' | append: forloop.index
+        assign modal_title_id = modal_id | append: '-Title'
+        assign modal_title = card_title | default: guide_title
+      -%}
+      {%- if card_link == blank and card_popup_content != blank -%}
+        {%- if card_title != blank or card_text != blank -%}
+          {% render 'luv-collection-card-modal',
+            modal_id: modal_id,
+            modal_title_id: modal_title_id,
+            modal_title: modal_title,
+            popup_content: card_popup_content_field
+          %}
+        {%- endif -%}
       {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
@@ -88,7 +157,11 @@
         {{ guide_cards_markup }}
       </ul>
     </div>
+    {{ guide_modals_markup }}
   </section>
+  {%- if guide_popup_card_count > 0 -%}
+    <script src="{{ 'luv-collection-card-modal.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 {%- endif -%}
 
 {% schema %}
