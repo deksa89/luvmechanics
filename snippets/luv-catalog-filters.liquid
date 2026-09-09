@@ -1,0 +1,86 @@
+{% doc %}
+  Native Shopify filter inputs shared by desktop and modal.
+  @param {collection} collection - Current collection
+  @param {string} section_id - Unique section identifier
+{% enddoc %}
+{%- for filter in collection.filters -%}
+  {%- liquid
+    assign filter_index = forloop.index
+    assign selected_count = filter.active_values.size | default: 0
+    if filter.type == 'price_range'
+      if filter.min_value.value != nil or filter.max_value.value != nil
+        assign selected_count = 1
+      endif
+    endif
+  -%}
+  <details class="luv-catalog__facet js-filter" data-filter-group open>
+    <summary><span class="facets__summary-label">{{ filter.label | escape }}</span><span aria-hidden="true">⌃</span></summary>
+    <div class="luv-catalog__facet-body">
+      {%- if filter.operator == 'AND' -%}<p class="luv-catalog__price-limit">{{ 'products.facets.filter_and_operator_subtitle' | t }}</p>{%- endif -%}
+      <div class="luv-catalog__facet-meta">
+        <span data-group-count>{{ 'products.facets.filters_selected' | t: count: selected_count }}</span>
+        <a data-group-reset href="{{ filter.url_to_remove }}">{{ 'products.facets.reset' | t }}</a>
+      </div>
+      {%- case filter.type -%}
+        {%- when 'boolean', 'list' -%}
+          {%- if filter.values.size > 8 -%}
+            <label class="visually-hidden" for="FilterSearch-{{ section_id }}-{{ filter_index }}">{{ 'luv_catalog.search_filter' | t: name: filter.label }}</label>
+            <input type="search" id="FilterSearch-{{ section_id }}-{{ filter_index }}" data-filter-search placeholder="{{ 'luv_catalog.search_filter' | t: name: filter.label | escape }}" autocomplete="off">
+          {%- endif -%}
+          <ul class="luv-catalog__values" role="list" data-filter-values>
+            {%- for value in filter.values -%}
+              {%- liquid
+                assign fallback_color = blank
+                if filter.param_name == 'filter.v.option.color' and value.swatch == blank
+                  assign color_name = value.value | downcase
+                  case color_name
+                    when 'black'
+                      assign fallback_color = '#141b2b'
+                    when 'white'
+                      assign fallback_color = '#ffffff'
+                    when 'lilac'
+                      assign fallback_color = '#b6a0e2'
+                    when 'pink'
+                      assign fallback_color = '#ed85bb'
+                    when 'purple'
+                      assign fallback_color = '#8f3cc6'
+                    when 'red'
+                      assign fallback_color = '#b8192d'
+                    when 'blue'
+                      assign fallback_color = '#168cd3'
+                  endcase
+                endif
+              -%}
+              <li data-filter-value data-label="{{ value.label | escape }}"{% if forloop.index > 8 and value.active == false %} data-extra{% endif %}>
+                <label for="Filter-{{ section_id }}-{{ filter_index }}-{{ forloop.index }}">
+                  <input type="checkbox" id="Filter-{{ section_id }}-{{ filter_index }}-{{ forloop.index }}" name="{{ value.param_name }}" value="{{ value.value | escape }}"{% if value.active %} checked{% elsif value.count == 0 %} disabled{% endif %}>
+                  {%- if fallback_color != blank -%}<span class="luv-catalog__swatch" style="background-color: {{ fallback_color }}" aria-hidden="true"></span>{%- endif -%}
+                  {%- if value.swatch.image -%}
+                    {{ value.swatch.image | image_url: width: 48 | image_tag: width: 24, height: 24, class: 'luv-catalog__swatch', loading: 'lazy', alt: '' }}
+                  {%- elsif value.swatch.color -%}
+                    <span class="luv-catalog__swatch" style="background-color: {{ value.swatch.color }}" aria-hidden="true"></span>
+                  {%- elsif value.image -%}
+                    {{ value.image | image_url: width: 48 | image_tag: width: 24, height: 24, class: 'luv-catalog__swatch', loading: 'lazy', alt: '' }}
+                  {%- endif -%}
+                  <span class="luv-catalog__value-label">{{ value.label | escape }}</span><span class="luv-catalog__value-count">{{ value.count }}</span>
+                </label>
+              </li>
+            {%- endfor -%}
+          </ul>
+          {%- if filter.values.size > 8 -%}
+            <button type="button" class="luv-catalog__more" data-filter-more aria-expanded="false" data-more="{{ 'products.facets.show_more' | t | escape }}" data-less="{{ 'products.facets.show_less' | t | escape }}">{{ 'products.facets.show_more' | t }}</button>
+          {%- endif -%}
+        {%- when 'price_range' -%}
+          {%- assign max_price = filter.range_max | money -%}<p class="luv-catalog__price-limit">{{ 'products.facets.max_price' | t: price: max_price }}</p>
+          <div class="luv-catalog__price-inputs">
+            <label for="PriceMin-{{ section_id }}">{{ 'products.facets.from' | t }} ({{ cart.currency.iso_code }})
+              <input type="number" inputmode="decimal" step="0.01" min="0" max="{{ filter.range_max | divided_by: 100.0 }}" id="PriceMin-{{ section_id }}" name="{{ filter.min_value.param_name }}" placeholder="0"{% if filter.min_value.value != nil %} value="{{ filter.min_value.value | divided_by: 100.0 }}"{% endif %}>
+            </label>
+            <label for="PriceMax-{{ section_id }}">{{ 'products.facets.to' | t }} ({{ cart.currency.iso_code }})
+              <input type="number" inputmode="decimal" step="0.01" min="0" max="{{ filter.range_max | divided_by: 100.0 }}" id="PriceMax-{{ section_id }}" name="{{ filter.max_value.param_name }}" placeholder="{{ filter.range_max | divided_by: 100.0 }}"{% if filter.max_value.value != nil %} value="{{ filter.max_value.value | divided_by: 100.0 }}"{% endif %}>
+            </label>
+          </div>
+      {%- endcase -%}
+    </div>
+  </details>
+{%- endfor -%}

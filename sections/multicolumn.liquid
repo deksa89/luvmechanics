@@ -1,11 +1,23 @@
 {%- liquid
   assign suppress_luv_collection_footer_benefits = false
+  assign suppress_luv_homepage_footer_benefits = false
+
   if template.name == 'collection' and template.suffix == 'luv-landing' and section.id contains 'multicolumn_FxM3i8'
     assign suppress_luv_collection_footer_benefits = true
   endif
+
+  if section.settings.hide_on_homepage and request.page_type == 'index'
+    assign suppress_luv_homepage_footer_benefits = true
+  endif
 -%}
 
-{%- unless suppress_luv_collection_footer_benefits -%}
+{%- if suppress_luv_homepage_footer_benefits and request.design_mode -%}
+  <p class="page-width" role="status">
+    {{- 'luv_home.why_us.editor.global_benefits_hidden' | t -}}
+  </p>
+{%- endif -%}
+
+{%- unless suppress_luv_collection_footer_benefits or suppress_luv_homepage_footer_benefits -%}
 {{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
@@ -254,12 +266,29 @@
 {%- liquid
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign show_mobile_slider = false
+  assign is_footer_trust = false
+  assign visible_column_count = 0
+
+  if section.location == 'footer'
+    assign is_footer_trust = true
+  endif
+
+  for block in section.blocks
+    if block.settings.image != blank or block.settings.title != blank or block.settings.text != blank or block.settings.link_label != blank
+      assign visible_column_count = visible_column_count | plus: 1
+    endif
+  endfor
+
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
   endif
 -%}
 
-<div class="multicolumn multicolumn-{{ section.id }} color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">  <div
+<div
+  class="multicolumn multicolumn-{{ section.id }} color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}{% if is_footer_trust %} luv-footer-trust{% endif %}"
+  {% if is_footer_trust %}data-trust-count="{{ visible_column_count }}"{% endif %}
+>
+  <div
     class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
@@ -299,6 +328,9 @@
             and block.settings.link_label == blank
           -%}
             {%- assign empty_column = ' multicolumn-list__item--empty' -%}
+          {%- endif -%}
+          {%- if is_footer_trust and empty_column != blank -%}
+            {%- continue -%}
           {%- endif -%}
 
           <li
@@ -437,6 +469,13 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_on_homepage",
+      "label": "Hide on homepage",
+      "info": "Use when an equivalent homepage section is already present.",
+      "default": false
+    },
     {
       "type": "header",
       "content": "Colors"

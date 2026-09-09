@@ -64,7 +64,8 @@
         "full_width": true,
         "padding_top": 16,
         "padding_bottom": 16
-      }
+      },
+      "disabled": true
     },
     "main-collection-product-grid": {
       "type": "main-collection-product-grid",
@@ -83,7 +84,8 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "padding_top": 32,
-        "padding_bottom": 100
+        "padding_bottom": 100,
+        "catalog_details": "<p>Explore our Couples collection with intimate products designed for shared pleasure, connection, and playful moments together, available with discreet delivery.</p>"
       }
     },
     "newsletter_tPNegD": {
@@ -110,10 +112,10 @@
     }
   },
   "order": [
+    "main-collection-product-grid",
     "main-collection-banner",
     "image_banner_9tELrt",
     "rich_text_hmxFKb",
-    "main-collection-product-grid",
     "newsletter_tPNegD"
   ]
 }

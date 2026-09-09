@@ -1,0 +1,102 @@
+<section class="luv-design-scope luv-home-section luv-home-trust-strip">
+  <div class="luv-container">
+    <ul class="luv-home-trust-strip__list" role="list">
+      {% for block in section.blocks limit: 4 %}
+        {% liquid
+          assign title_key = 'luv_home.trust.' | append: block.settings.content_key | append: '.title'
+          assign body_key = 'luv_home.trust.' | append: block.settings.content_key | append: '.body'
+          assign item_title = block.settings.title
+          if item_title == blank
+            assign item_title = title_key | t
+          endif
+          assign item_body = block.settings.body
+          if item_body == blank
+            assign item_body = body_key | t
+          endif
+        %}
+        <li class="luv-home-trust-strip__item" {{ block.shopify_attributes }}>
+          <span class="luv-home-trust-strip__icon" aria-hidden="true">
+            {% case block.settings.icon %}
+              {% when 'lock' %}
+                {{ 'icon-lock.svg' | inline_asset_content }}
+              {% when 'verified' %}
+                {{ 'icon-check-mark.svg' | inline_asset_content }}
+              {% when 'help' %}
+                {{ 'icon-question-mark.svg' | inline_asset_content }}
+              {% else %}
+                {{ 'icon-truck.svg' | inline_asset_content }}
+            {% endcase %}
+          </span>
+          <div class="luv-home-trust-strip__copy">
+            <h2 class="luv-home-trust-strip__title">{{ item_title | escape }}</h2>
+            <p class="luv-home-trust-strip__body luv-text-muted">{{ item_body | escape }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luv home trust strip",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Trust item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_key",
+          "label": "Translated default",
+          "options": [
+            { "value": "delivery", "label": "Discreet delivery" },
+            { "value": "secure", "label": "Secure shopping" },
+            { "value": "trusted", "label": "Trusted products" },
+            { "value": "help", "label": "Help choosing" }
+          ],
+          "default": "delivery"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "delivery", "label": "Delivery truck" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "verified", "label": "Verified" },
+            { "value": "help", "label": "Help" }
+          ],
+          "default": "delivery"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title override",
+          "info": "Leave blank to use the translated default."
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description override",
+          "info": "Leave blank to use the translated default."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv home trust strip",
+      "blocks": [
+        { "type": "item", "settings": { "content_key": "delivery", "icon": "delivery" } },
+        { "type": "item", "settings": { "content_key": "secure", "icon": "lock" } },
+        { "type": "item", "settings": { "content_key": "trusted", "icon": "verified" } },
+        { "type": "item", "settings": { "content_key": "help", "icon": "help" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

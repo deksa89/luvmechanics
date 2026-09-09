@@ -34,7 +34,8 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
-      }
+      },
+      "disabled": true
     },
     "rich_text_XhmkzU": {
       "type": "rich-text",
@@ -65,7 +66,8 @@
         "full_width": true,
         "padding_top": 12,
         "padding_bottom": 12
-      }
+      },
+      "disabled": true
     },
     "main-collection-product-grid": {
       "type": "main-collection-product-grid",
@@ -84,7 +86,8 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "padding_top": 32,
-        "padding_bottom": 100
+        "padding_bottom": 100,
+        "catalog_details": "<p>Explore remote-controlled toys that's all about connection, curiosity and fun. Luxury quality, discreet delivery and body-safe materials for every experience.</p>"
       }
     },
     "expandable_category_info_dJQ4Yf": {
@@ -122,10 +125,10 @@
     }
   },
   "order": [
+    "main-collection-product-grid",
     "main-collection-banner",
     "image_banner_RxKBqr",
     "rich_text_XhmkzU",
-    "main-collection-product-grid",
     "expandable_category_info_dJQ4Yf",
     "newsletter_tPNegD"
   ]

@@ -1,0 +1,234 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'luv_home.bestsellers.heading' | t
+  endif
+
+  assign cta_label = section.settings.cta_label
+  if cta_label == blank
+    assign cta_label = 'luv_home.bestsellers.cta' | t
+  endif
+
+  assign cta_url = section.settings.cta_url
+  if cta_url == blank and section.settings.collection != blank
+    assign cta_url = section.settings.collection.url
+  endif
+
+  assign product_count = 0
+  for block in section.blocks
+    if block.settings.product != blank or request.design_mode
+      assign product_count = product_count | plus: 1
+    endif
+  endfor
+
+  assign skip_card_product_styles = false
+-%}
+
+<section
+  id="luv-home-bestsellers"
+  class="luv-design-scope luv-home-section luv-home-bestsellers{% if product_count > 4 %} luv-home-bestsellers--desktop-slider{% endif %}"
+  aria-labelledby="LuvHomeBestsellersHeading-{{ section.id }}"
+  style="--luv-home-bestsellers-padding-top: {{ section.settings.padding_top }}px; --luv-home-bestsellers-padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="luv-container">
+    <div class="luv-home-bestsellers__header">
+      <div class="luv-home-bestsellers__heading-group">
+        <h2 id="LuvHomeBestsellersHeading-{{ section.id }}" class="luv-home-bestsellers__heading">
+          {{- heading | escape -}}
+        </h2>
+        {%- if section.settings.support_text != blank -%}
+          <p class="luv-home-bestsellers__support">{{ section.settings.support_text | escape }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if cta_url != blank -%}
+        <a class="luv-home-bestsellers__cta" href="{{ cta_url }}">
+          <span>{{ cta_label | escape }}</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <slider-component class="luv-home-bestsellers__slider">
+      <ul
+        id="Slider-LuvBestsellers-{{ section.id }}"
+        class="luv-home-bestsellers__list contains-card contains-card--product"
+        role="list"
+        aria-labelledby="LuvHomeBestsellersHeading-{{ section.id }}"
+      >
+        {%- for block in section.blocks -%}
+          {%- if block.settings.product != blank or request.design_mode -%}
+            {%- liquid
+              assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1
+              assign placeholder_image = 'product-' | append: placeholder_index
+            -%}
+            <li
+              id="Slide-LuvBestsellers-{{ section.id }}-{{ block.id }}"
+              class="luv-home-bestsellers__item"
+              {{ block.shopify_attributes }}
+            >
+              {% render 'card-product',
+                card_product: block.settings.product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: 'default',
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: false,
+                extend_height: true,
+                lazy_load: true,
+                skip_styles: skip_card_product_styles,
+                quick_add: false,
+                section_id: section.id,
+                placeholder_image: placeholder_image
+              %}
+            </li>
+            {%- assign skip_card_product_styles = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      {%- if product_count > 1 -%}
+        <div class="luv-home-bestsellers__controls slider-buttons">
+          <button
+            type="button"
+            class="luv-home-bestsellers__control slider-button slider-button--prev"
+            name="previous"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+            aria-controls="Slider-LuvBestsellers-{{ section.id }}"
+          >
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </button>
+          <button
+            type="button"
+            class="luv-home-bestsellers__control slider-button slider-button--next"
+            name="next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+            aria-controls="Slider-LuvBestsellers-{{ section.id }}"
+          >
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </button>
+        </div>
+      {%- endif -%}
+    </slider-component>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luv home bestsellers",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override"
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Support text"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Destination collection"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label override"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Custom CTA link"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv home bestsellers",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

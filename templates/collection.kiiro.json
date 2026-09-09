@@ -15,7 +15,8 @@
         "show_collection_description": true,
         "show_collection_image": true,
         "color_scheme": "scheme-1"
-      }
+      },
+      "disabled": true
     },
     "main-collection-product-grid": {
       "type": "main-collection-product-grid",
@@ -61,8 +62,8 @@
     }
   },
   "order": [
-    "main-collection-banner",
     "main-collection-product-grid",
+    "main-collection-banner",
     "newsletter_tPNegD"
   ]
 }

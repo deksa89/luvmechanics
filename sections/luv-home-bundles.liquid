@@ -1,0 +1,616 @@
+{%- liquid
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'luv_home.bundles.heading' | t
+  endif
+
+  assign support_text = section.settings.support_text
+  if support_text == blank
+    assign support_text = 'luv_home.bundles.support' | t
+  endif
+
+  assign ready_offer_count = 0
+
+  for block in section.blocks limit: 2
+    assign offer_model = block.settings.content_model
+    assign bundle_product = block.settings.bundle_product
+    assign component_1 = block.settings.component_product_1
+    assign component_2 = block.settings.component_product_2
+    assign component_3 = block.settings.component_product_3
+
+    assign component_count = 0
+    assign first_component_image = blank
+    assign component_2_unique = false
+    assign component_3_unique = false
+
+    if component_1 != blank
+      assign component_count = component_count | plus: 1
+      if component_1.featured_image != blank
+        assign first_component_image = component_1.featured_image
+      endif
+    endif
+
+    if component_2 != blank
+      assign component_2_unique = true
+      if component_1 != blank and component_2.id == component_1.id
+        assign component_2_unique = false
+      endif
+      if component_2_unique
+        assign component_count = component_count | plus: 1
+        if first_component_image == blank and component_2.featured_image != blank
+          assign first_component_image = component_2.featured_image
+        endif
+      endif
+    endif
+
+    if component_3 != blank
+      assign component_3_unique = true
+      if component_1 != blank and component_3.id == component_1.id
+        assign component_3_unique = false
+      endif
+      if component_2 != blank and component_3.id == component_2.id
+        assign component_3_unique = false
+      endif
+      if component_3_unique
+        assign component_count = component_count | plus: 1
+        if first_component_image == blank and component_3.featured_image != blank
+          assign first_component_image = component_3.featured_image
+        endif
+      endif
+    endif
+
+    assign editorial_image = block.settings.desktop_image
+    if editorial_image == blank
+      assign editorial_image = block.settings.mobile_image
+    endif
+
+    assign offer_image = editorial_image
+    if offer_image == blank
+      if offer_model == 'bundle_product' and bundle_product != blank
+        assign offer_image = bundle_product.featured_image
+      elsif offer_model == 'curated_set'
+        assign offer_image = first_component_image
+      endif
+    endif
+
+    assign destination_url = block.settings.custom_url
+    if offer_model == 'bundle_product' and destination_url == blank and bundle_product != blank
+      assign destination_url = bundle_product.url
+    endif
+
+    assign offer_ready = false
+    if offer_model == 'bundle_product'
+      if bundle_product != blank and offer_image != blank and destination_url != blank
+        assign offer_ready = true
+      endif
+    elsif offer_model == 'curated_set'
+      if component_count >= 2 and offer_image != blank and block.settings.custom_url != blank
+        assign offer_ready = true
+      endif
+    endif
+
+    if offer_ready
+      assign ready_offer_count = ready_offer_count | plus: 1
+    endif
+  endfor
+
+  assign should_render = false
+  if ready_offer_count > 0 or request.design_mode
+    assign should_render = true
+  endif
+-%}
+
+{%- if should_render -%}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+  <section
+    id="luv-home-bundles"
+    class="luv-design-scope luv-home-section luv-home-bundles"
+    aria-labelledby="LuvHomeBundlesHeading-{{ section.id }}"
+    style="--luv-home-bundles-padding-top: {{ section.settings.padding_top }}px; --luv-home-bundles-padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    <div class="luv-container luv-home-bundles__container">
+      <header class="luv-home-bundles__header">
+        <h2 id="LuvHomeBundlesHeading-{{ section.id }}" class="luv-home-bundles__heading">
+          {{- heading | escape -}}
+        </h2>
+        {%- if support_text != blank -%}
+          <p class="luv-home-bundles__support">{{ support_text | escape }}</p>
+        {%- endif -%}
+      </header>
+
+      <div class="luv-home-bundles__offers{% if ready_offer_count == 1 and request.design_mode == false %} luv-home-bundles__offers--single{% endif %}">
+        {%- for block in section.blocks limit: 2 -%}
+          {%- liquid
+            assign offer_model = block.settings.content_model
+            assign bundle_product = block.settings.bundle_product
+            assign component_1 = block.settings.component_product_1
+            assign component_2 = block.settings.component_product_2
+            assign component_3 = block.settings.component_product_3
+
+            assign component_count = 0
+            assign first_component_image = blank
+            assign component_2_unique = false
+            assign component_3_unique = false
+
+            if component_1 != blank
+              assign component_count = component_count | plus: 1
+              if component_1.featured_image != blank
+                assign first_component_image = component_1.featured_image
+              endif
+            endif
+
+            if component_2 != blank
+              assign component_2_unique = true
+              if component_1 != blank and component_2.id == component_1.id
+                assign component_2_unique = false
+              endif
+              if component_2_unique
+                assign component_count = component_count | plus: 1
+                if first_component_image == blank and component_2.featured_image != blank
+                  assign first_component_image = component_2.featured_image
+                endif
+              endif
+            endif
+
+            if component_3 != blank
+              assign component_3_unique = true
+              if component_1 != blank and component_3.id == component_1.id
+                assign component_3_unique = false
+              endif
+              if component_2 != blank and component_3.id == component_2.id
+                assign component_3_unique = false
+              endif
+              if component_3_unique
+                assign component_count = component_count | plus: 1
+                if first_component_image == blank and component_3.featured_image != blank
+                  assign first_component_image = component_3.featured_image
+                endif
+              endif
+            endif
+
+            assign editorial_image = block.settings.desktop_image
+            if editorial_image == blank
+              assign editorial_image = block.settings.mobile_image
+            endif
+
+            assign offer_image = editorial_image
+            assign image_is_editorial = false
+            if offer_image != blank
+              assign image_is_editorial = true
+            endif
+
+            if offer_image == blank
+              if offer_model == 'bundle_product' and bundle_product != blank
+                assign offer_image = bundle_product.featured_image
+              elsif offer_model == 'curated_set'
+                assign offer_image = first_component_image
+              endif
+            endif
+
+            assign destination_url = block.settings.custom_url
+            if offer_model == 'bundle_product' and destination_url == blank and bundle_product != blank
+              assign destination_url = bundle_product.url
+            endif
+
+            assign offer_ready = false
+            if offer_model == 'bundle_product'
+              if bundle_product != blank and offer_image != blank and destination_url != blank
+                assign offer_ready = true
+              endif
+            elsif offer_model == 'curated_set'
+              if component_count >= 2 and offer_image != blank and block.settings.custom_url != blank
+                assign offer_ready = true
+              endif
+            endif
+
+            assign offer_title = block.settings.title
+            if offer_title == blank
+              if offer_model == 'bundle_product' and bundle_product != blank
+                assign offer_title = bundle_product.title
+              else
+                assign offer_title = 'luv_home.bundles.curated_set' | t
+              endif
+            endif
+
+            assign cta_label = block.settings.cta_label
+            if cta_label == blank
+              if offer_model == 'bundle_product'
+                assign cta_label = 'luv_home.bundles.view_bundle' | t
+              else
+                assign cta_label = 'luv_home.bundles.explore_set' | t
+              endif
+            endif
+
+            assign image_alt = block.settings.image_alt
+            if image_alt == blank and offer_image.alt != blank
+              assign image_alt = offer_image.alt
+            endif
+            if image_alt == blank
+              assign image_alt = 'luv_home.bundles.image_alt' | t: title: offer_title
+            endif
+
+            assign mobile_image = block.settings.mobile_image
+            if mobile_image == blank
+              assign mobile_image = offer_image
+            endif
+
+            assign desktop_position = block.settings.desktop_image_position
+            if desktop_position == 'focal'
+              assign desktop_position = offer_image.presentation.focal_point | default: 'center center'
+            endif
+
+            assign mobile_position = block.settings.mobile_image_position
+            if mobile_position == 'focal'
+              assign mobile_position = mobile_image.presentation.focal_point | default: 'center center'
+            endif
+          -%}
+
+          {%- if offer_ready -%}
+            <article
+              class="luv-home-bundles__offer"
+              style="--luv-home-bundles-position-desktop: {{ desktop_position }}; --luv-home-bundles-position-mobile: {{ mobile_position }};"
+              {{ block.shopify_attributes }}
+            >
+              <a
+                class="luv-home-bundles__media{% unless image_is_editorial %} luv-home-bundles__media--product{% endunless %}"
+                href="{{ destination_url }}"
+                aria-label="{{ offer_title | escape }}"
+              >
+                {%- if image_is_editorial -%}
+                  <picture>
+                    {%- if block.settings.desktop_image != blank and block.settings.mobile_image != blank -%}
+                      <source
+                        media="(max-width: 749px)"
+                        srcset="
+                          {{ block.settings.mobile_image | image_url: width: 375 }} 375w,
+                          {{ block.settings.mobile_image | image_url: width: 550 }} 550w,
+                          {{ block.settings.mobile_image | image_url: width: 750 }} 750w,
+                          {{ block.settings.mobile_image | image_url: width: 990 }} 990w
+                        "
+                        sizes="100vw"
+                      >
+                    {%- endif -%}
+                    {{
+                      offer_image
+                      | image_url: width: 1800
+                      | image_tag:
+                        class: 'luv-home-bundles__image luv-home-bundles__image--editorial',
+                        widths: '550, 750, 990, 1200, 1500, 1800',
+                        sizes: '(min-width: 1600px) 760px, (min-width: 990px) calc(50vw - 40px), 100vw',
+                        loading: 'lazy',
+                        alt: image_alt
+                    }}
+                  </picture>
+                {%- else -%}
+                  {{
+                    offer_image
+                    | image_url: width: 1200
+                    | image_tag:
+                      class: 'luv-home-bundles__image luv-home-bundles__image--product',
+                      widths: '375, 550, 750, 990, 1200',
+                      sizes: '(min-width: 1600px) 760px, (min-width: 990px) calc(50vw - 40px), 100vw',
+                      loading: 'lazy',
+                      alt: image_alt
+                  }}
+                {%- endif -%}
+              </a>
+
+              <div class="luv-home-bundles__content">
+                {%- if block.settings.badge != blank -%}
+                  <p class="luv-home-bundles__badge">{{ block.settings.badge | escape }}</p>
+                {%- endif -%}
+
+                {%- if offer_model == 'bundle_product' and bundle_product.vendor != blank -%}
+                  <p class="luv-home-bundles__vendor">{{ bundle_product.vendor | escape }}</p>
+                {%- endif -%}
+
+                <h3 class="luv-home-bundles__offer-title">{{ offer_title | escape }}</h3>
+
+                {%- if block.settings.description != blank -%}
+                  <div class="luv-home-bundles__description rte">{{ block.settings.description }}</div>
+                {%- endif -%}
+
+                {%- if offer_model == 'bundle_product' -%}
+                  <p class="luv-home-bundles__availability{% unless bundle_product.available %} is-sold-out{% endunless %}">
+                    <span aria-hidden="true"></span>
+                    {%- if bundle_product.available -%}
+                      {{ 'luv_home.bundles.available' | t }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </p>
+                  {% render 'price',
+                    product: bundle_product,
+                    show_badges: false,
+                    price_class: 'luv-home-bundles__price',
+                    show_compare_at_price: true
+                  %}
+                {%- else -%}
+                  <div class="luv-home-bundles__included">
+                    <p class="luv-home-bundles__included-heading">{{ 'luv_home.bundles.included_products' | t }}</p>
+                    <ul class="luv-home-bundles__product-list" role="list">
+                      {%- for component_index in (1..3) -%}
+                        {%- liquid
+                          assign component_product = blank
+                          assign include_component = false
+                          case component_index
+                            when 1
+                              assign component_product = component_1
+                              if component_1 != blank
+                                assign include_component = true
+                              endif
+                            when 2
+                              assign component_product = component_2
+                              assign include_component = component_2_unique
+                            when 3
+                              assign component_product = component_3
+                              assign include_component = component_3_unique
+                          endcase
+                          assign component_image_alt = component_product.featured_image.alt | default: component_product.title
+                        -%}
+                        {%- if include_component -%}
+                          <li class="luv-home-bundles__product">
+                            {%- if component_product.featured_image != blank -%}
+                              <a class="luv-home-bundles__product-media" href="{{ component_product.url }}" tabindex="0">
+                                {{
+                                  component_product.featured_image
+                                  | image_url: width: 240
+                                  | image_tag:
+                                    class: 'luv-home-bundles__product-image',
+                                    widths: '96, 144, 192, 240',
+                                    sizes: '72px',
+                                    loading: 'lazy',
+                                    alt: component_image_alt
+                                }}
+                              </a>
+                            {%- endif -%}
+                            <div class="luv-home-bundles__product-content">
+                              <a class="luv-home-bundles__product-title" href="{{ component_product.url }}">
+                                {{- component_product.title | escape -}}
+                              </a>
+                              {% render 'price',
+                                product: component_product,
+                                show_badges: false,
+                                price_class: 'luv-home-bundles__component-price',
+                                show_compare_at_price: true
+                              %}
+                            </div>
+                          </li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+
+                <a class="button button--luv-primary luv-home-bundles__cta" href="{{ destination_url }}">
+                  {{- cta_label | escape -}}
+                </a>
+              </div>
+            </article>
+          {%- elsif request.design_mode -%}
+            <article class="luv-home-bundles__offer luv-home-bundles__offer--editor" {{ block.shopify_attributes }}>
+              <div class="luv-home-bundles__editor-media{% unless image_is_editorial %} luv-home-bundles__editor-media--product{% endunless %}">
+                {%- if offer_image != blank -%}
+                  {{
+                    offer_image
+                    | image_url: width: 990
+                    | image_tag:
+                      class: 'luv-home-bundles__image',
+                      widths: '375, 550, 750, 990',
+                      sizes: '(min-width: 990px) calc(50vw - 40px), 100vw',
+                      loading: 'lazy',
+                      alt: image_alt
+                  }}
+                {%- else -%}
+                  {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+              <div class="luv-home-bundles__editor-content">
+                <h3 class="luv-home-bundles__editor-title">
+                  {{- 'luv_home.bundles.editor.offer_label' | t: index: forloop.index -}}
+                </h3>
+                <p>{{ 'luv_home.bundles.editor.incomplete' | t }}</p>
+                <ul>
+                  {%- if offer_model == 'bundle_product' and bundle_product == blank -%}
+                    <li>{{ 'luv_home.bundles.editor.missing_bundle_product' | t }}</li>
+                  {%- elsif offer_model == 'curated_set' and component_count < 2 -%}
+                    <li>{{ 'luv_home.bundles.editor.missing_components' | t }}</li>
+                  {%- endif -%}
+                  {%- if offer_image == blank -%}
+                    <li>{{ 'luv_home.bundles.editor.missing_image' | t }}</li>
+                  {%- endif -%}
+                  {%- if destination_url == blank -%}
+                    <li>{{ 'luv_home.bundles.editor.missing_destination' | t }}</li>
+                  {%- endif -%}
+                </ul>
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Luv home bundles",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Support text override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "Bundle offer",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_model",
+          "label": "Content model",
+          "options": [
+            { "value": "bundle_product", "label": "Shopify bundle product" },
+            { "value": "curated_set", "label": "Curated product set" }
+          ],
+          "default": "bundle_product"
+        },
+        {
+          "type": "product",
+          "id": "bundle_product",
+          "label": "Bundle product",
+          "info": "Use only when this product represents the complete purchasable bundle."
+        },
+        {
+          "type": "header",
+          "content": "Curated set products"
+        },
+        {
+          "type": "product",
+          "id": "component_product_1",
+          "label": "Component product 1"
+        },
+        {
+          "type": "product",
+          "id": "component_product_2",
+          "label": "Component product 2"
+        },
+        {
+          "type": "product",
+          "id": "component_product_3",
+          "label": "Component product 3"
+        },
+        {
+          "type": "header",
+          "content": "Editorial images"
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text override"
+        },
+        {
+          "type": "select",
+          "id": "desktop_image_position",
+          "label": "Desktop image position",
+          "options": [
+            { "value": "focal", "label": "Use image focal point" },
+            { "value": "center center", "label": "Center" },
+            { "value": "center top", "label": "Top" },
+            { "value": "center bottom", "label": "Bottom" },
+            { "value": "left center", "label": "Left" },
+            { "value": "right center", "label": "Right" }
+          ],
+          "default": "focal"
+        },
+        {
+          "type": "select",
+          "id": "mobile_image_position",
+          "label": "Mobile image position",
+          "options": [
+            { "value": "focal", "label": "Use image focal point" },
+            { "value": "center center", "label": "Center" },
+            { "value": "center top", "label": "Top" },
+            { "value": "center bottom", "label": "Bottom" },
+            { "value": "left center", "label": "Left" },
+            { "value": "right center", "label": "Right" }
+          ],
+          "default": "focal"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Optional badge"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title override"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Supporting description"
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom destination",
+          "info": "Required for curated sets. Optional override for a bundle product."
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label override"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv home bundles",
+      "blocks": [
+        {
+          "type": "offer",
+          "settings": {
+            "content_model": "bundle_product"
+          }
+        },
+        {
+          "type": "offer",
+          "settings": {
+            "content_model": "curated_set"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

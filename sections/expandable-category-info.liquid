@@ -1,235 +1,27 @@
-{% assign section_title = section.settings.heading %}
-{% assign accent_text = section.settings.heading_accent %}
-
-<style>
-.section-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-    background: {{ section.settings.section_bg }};
-}
-
-.section-{{ section.id }} .page-width {
-    max-width: {{ section.settings.page_width }}px;
-    margin: 0 auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-
-.section-{{ section.id }} .expandable-category-info__header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.section-{{ section.id }} .expandable-category-info__heading {
-    margin: 0;
-    font-size: clamp(2.8rem, 4vw, 5.2rem);
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: {{ section.settings.heading_color }};
-}
-
-.section-{{ section.id }} .expandable-category-info__heading-main,
-.section-{{ section.id }} .expandable-category-info__heading-accent {
-    display: inline;
-}
-
-.section-{{ section.id }} .expandable-category-info__heading-accent {
-    color: {{ section.settings.accent_color }};
-    margin-left: 0.3rem;
-}
-
-.section-{{ section.id }} .expandable-category-info__box {
-    border: 1px solid {{ section.settings.border_color }};
-    background: {{ section.settings.box_bg }};
-    transition: all 0.25s ease;
-}
-
-.section-{{ section.id }} .expandable-category-info__toggle {
-    width: 100%;
-    border: 0;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 7rem 4.8rem;
-    cursor: pointer;
-    text-align: left;
-    color: {{ section.settings.text_color }};
-}
-
-.section-{{ section.id }} .expandable-category-info__toggle-label {
-    font-size: clamp(2rem, 2vw, 2.4rem);
-    line-height: 1.35;
-    font-weight: 400;
-}
-
-.section-{{ section.id }} .expandable-category-info__icon {
-    position: relative;
-    width: 2.8rem;
-    height: 2.8rem;
-    flex: 0 0 2.8rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: {{ section.settings.icon_color }};
-    font-size: 3rem;
-    line-height: 1;
-}
-
-.section-{{ section.id }} .icon-plus,
-.section-{{ section.id }} .icon-close {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.section-{{ section.id }} .icon-close {
-    opacity: 0;
-    transform: scale(0.8);
-}
-
-.section-{{ section.id }} .expandable-category-info__box.is-open .icon-plus {
-    opacity: 0;
-    transform: scale(0.8);
-}
-
-.section-{{ section.id }} .expandable-category-info__box.is-open .icon-close {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.section-{{ section.id }} .expandable-category-info__content {
-    overflow: hidden;
-}
-
-.section-{{ section.id }} .expandable-category-info__content-inner {
-    padding: 0 4.8rem 4.8rem;
-    color: {{ section.settings.text_color }};
-}
-
-.section-{{ section.id }} .expandable-category-info__content-inner h3 {
-    margin: 0 0 2.4rem;
-    font-size: clamp(2.2rem, 3vw, 2.9rem);
-    line-height: 1.15;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: {{ section.settings.text_color }};
-}
-
-.section-{{ section.id }} .expandable-category-info__content-inner p,
-.section-{{ section.id }} .expandable-category-info__content-inner li {
-    font-size: 1.8rem;
-    line-height: 1.8;
-    color: {{ section.settings.text_color }};
-}
-
-.section-{{ section.id }} .expandable-category-info__content-inner ul,
-.section-{{ section.id }} .expandable-category-info__content-inner ol {
-    margin: 2.4rem 0;
-    padding-left: 2.2rem;
-}
-
-.section-{{ section.id }} .expandable-category-info__blocks {
-    margin-top: 2rem;
-}
-
-.section-{{ section.id }} .expandable-category-info__block + .expandable-category-info__block {
-    margin-top: 2rem;
-}
-
-.section-{{ section.id }} .expandable-category-info__list-item p {
-    margin: 0;
-}
-
-.expandable-category-info__content-inner.rte {
-  height: auto;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-
-@media screen and (max-width: 749px) {
-    .section-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top_mobile }}px;
-    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
-    }
-
-    .section-{{ section.id }} .page-width {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    }
-
-    .section-{{ section.id }} .expandable-category-info__header {
-    margin-bottom: 2.5rem;
-    }
-
-    .section-{{ section.id }} .expandable-category-info__toggle {
-    padding: 3rem 2rem;
-    align-items: center;
-    }
-
-    .section-{{ section.id }} .expandable-category-info__toggle-label {
-    font-size: 1.9rem;
-    }
-
-    .section-{{ section.id }} .expandable-category-info__content-inner {
-    padding: 0 2rem 3rem;
-    }
-
-    .section-{{ section.id }} .expandable-category-info__content-inner h3 {
-    margin-bottom: 1.8rem;
-    }
-
-    .section-{{ section.id }} .expandable-category-info__content-inner p,
-    .section-{{ section.id }} .expandable-category-info__content-inner li {
-    font-size: 1.6rem;
-    line-height: 1.7;
-    }
-}
-</style>
-
-<section class="expandable-category-info section-{{ section.id }}">
-  <div class="page-width">
-    {% if section_title != blank or accent_text != blank %}
-      <div class="expandable-category-info__header">
-        <h2 class="expandable-category-info__heading">
-          {% if section_title != blank %}
-            <span class="expandable-category-info__heading-main">{{ section_title }}</span>
-          {% endif %}
-          {% if accent_text != blank %}
-            <span class="expandable-category-info__heading-accent">{{ accent_text }}</span>
-          {% endif %}
-        </h2>
-      </div>
+{%- liquid
+  assign has_content = false
+  if section.settings.content_heading != blank or section.settings.content_text != blank
+    assign has_content = true
+  endif
+  for block in section.blocks
+    if block.settings.text != blank or block.settings.title != blank
+      assign has_content = true
+    endif
+  endfor
+-%}
+{%- if has_content -%}
+{{ 'luv-category-info.css' | asset_url | stylesheet_tag }}
+<section class="luv-category-info luv-design-scope" style="--info-top: {{ section.settings.padding_top }}px; --info-bottom: {{ section.settings.padding_bottom }}px; --info-top-mobile: {{ section.settings.padding_top_mobile }}px; --info-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;">
+  <div class="luv-container">
+    {% if section.settings.heading != blank or section.settings.heading_accent != blank %}
+      <h2 class="luv-category-info__heading">{{ section.settings.heading }} {{ section.settings.heading_accent }}</h2>
     {% endif %}
-
-    <div class="expandable-category-info__box" data-expandable-box>
-      <button
-        type="button"
-        class="expandable-category-info__toggle"
-        aria-expanded="false"
-        aria-controls="ExpandableContent-{{ section.id }}"
-      >
-        <span class="expandable-category-info__toggle-label">
-          {{ section.settings.collapsed_label }}
-        </span>
-        <span class="expandable-category-info__icon" aria-hidden="true">
-          <span class="icon-plus">+</span>
-          <span class="icon-close">×</span>
-        </span>
-      </button>
-
-      <div
-        id="ExpandableContent-{{ section.id }}"
-        class="expandable-category-info__content"
-        hidden
-      >
-        <div class="expandable-category-info__content-inner rte">
+    <details class="luv-category-info__details">
+      <summary class="luv-category-info__trigger">
+        <span>{{ section.settings.collapsed_label }}</span>
+        <svg class="luv-category-info__chevron" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7.5 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </summary>
+      <div id="ExpandableContent-{{ section.id }}" class="luv-category-info__content rte">
           {% if section.settings.content_heading != blank %}
             <h3>{{ section.settings.content_heading }}</h3>
           {% endif %}
@@ -273,64 +65,11 @@
               {% endfor %}
             </div>
           {% endif %}
-        </div>
       </div>
-    </div>
+    </details>
   </div>
-
-  <script>
-    (function() {
-      const section = document.querySelector('.section-{{ section.id }}');
-      if (!section) return;
-
-      const box = section.querySelector('[data-expandable-box]');
-      const button = section.querySelector('.expandable-category-info__toggle');
-      const content = section.querySelector('.expandable-category-info__content');
-
-      if (!box || !button || !content) return;
-
-      button.addEventListener('click', function() {
-        const isOpen = box.classList.contains('is-open');
-
-        if (isOpen) {
-          content.style.height = content.scrollHeight + 'px';
-
-          requestAnimationFrame(() => {
-            content.style.height = '0px';
-          });
-
-          button.setAttribute('aria-expanded', 'false');
-          box.classList.remove('is-open');
-
-          content.addEventListener('transitionend', function handler() {
-            content.hidden = true;
-            content.style.height = '';
-            content.removeEventListener('transitionend', handler);
-          });
-        } else {
-          content.hidden = false;
-          const fullHeight = content.scrollHeight;
-
-          content.style.height = '0px';
-
-          requestAnimationFrame(() => {
-            content.style.height = fullHeight + 'px';
-          });
-
-          button.setAttribute('aria-expanded', 'true');
-          box.classList.add('is-open');
-
-          content.addEventListener('transitionend', function handler() {
-            content.style.height = 'auto';
-            content.removeEventListener('transitionend', handler);
-          });
-        }
-      });
-
-      content.style.transition = 'height 0.3s ease';
-    })();
-  </script>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

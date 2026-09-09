@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
 
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -13,58 +14,8 @@
 
 
 <style>
-  .header-wrapper {
-    background: #2D2A26;
-  }
-
-  .header-wrapper .header__menu-item,
-  .header-wrapper .header__icon,
-  .header-wrapper .localization-form button,
-  .header-wrapper .header__active-menu-item,
-  .header-wrapper summary,
-  .header-wrapper a {
-    color: #fff;
-  }
-
-  .header .submenu .menu-drawer__menu-item,
-  .header .submenu .header__menu-item,
-  .header .submenu .list-menu__item,
-  .header .submenu .link,
-  .header .header__submenu .list-menu__item,
-  .header .header__submenu .link,
-  .header details[open] > .header__submenu a {
-    color: #000 !important;
-  }
-
-  /* MOBILE DRAWER / SUBMENU */
-  .menu-drawer,
-  .menu-drawer__submenu {
-    background: #fff !important;
-  }
-
-  .menu-drawer .menu-drawer__menu-item,
-  .menu-drawer .list-menu__item,
-  .menu-drawer .link,
-  .menu-drawer summary,
-  .menu-drawer details summary {
-    color: #000 !important;
-  }
-
-  .menu-drawer .menu-drawer__menu-item:hover,
-  .menu-drawer .menu-drawer__menu-item:focus,
-  .menu-drawer .list-menu__item:hover,
-  .menu-drawer .link:hover {
-    color: #000 !important;
-  }
-
-  .header-wrapper .svg-wrapper svg {
-    color: #fff;
-    fill: currentColor;
-  }
-
   header-drawer {
     justify-self: start;
-    margin-left: -1.2rem;
   }
 
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
@@ -163,7 +114,7 @@
   endif
 %}
 
-<{{ header_tag }} {% if header_tag == 'sticky-header' %}data-sticky-type="{{ section.settings.sticky_header_type }}"{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+<{{ header_tag }} {% if header_tag == 'sticky-header' %}data-sticky-type="{{ section.settings.sticky_header_type }}"{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %} luv-design-scope luv-global-header" style="--luv-header-logo-setting-width: {{ settings.logo_width }}px;">
   {%- liquid
     assign social_links = false
     assign localization_forms = false
@@ -176,7 +127,7 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width luv-global-header__inner{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'

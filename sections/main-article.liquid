@@ -118,6 +118,9 @@
   </div>
 
   {%- for block in section.blocks -%}
+    {%- if block.type == 'featured_image' or block.type == 'title' or block.type == 'share' -%}
+      {%- continue -%}
+    {%- endif -%}
     {%- case block.type -%}
       {%- when '@app' -%}
         <div class="article-template__app page-width page-width--narrow">

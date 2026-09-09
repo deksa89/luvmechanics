@@ -118,10 +118,10 @@
     }
   },
   "order": [
+    "main-collection-product-grid",
     "main-collection-banner",
     "image_banner_9tELrt",
     "rich_text_hmxFKb",
-    "main-collection-product-grid",
     "newsletter_tPNegD"
   ]
 }

@@ -36,6 +36,7 @@
         role="list"
       >
         {% assign skip_card_product_styles = false %}
+        {% assign related_product_image_sizes = '(min-width: 1600px) 372px, (min-width: 1200px) calc((100vw - 112px) / 4), (min-width: 1000px) 468px, (min-width: 750px) calc((100vw - 64px) / 2), (min-width: 415px) 340px, 82vw' %}
         {% for recommendation in recommendations.products %}
           <li class="grid__item">
             {% render 'card-product',
@@ -45,6 +46,7 @@
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
+              image_sizes: related_product_image_sizes,
               skip_styles: skip_card_product_styles
             %}
           </li>
@@ -134,7 +136,7 @@
           "value": "2",
           "label": "t:sections.related-products.settings.columns_mobile.options__2.label"
         }
-      ]    
+      ]
     },
     {
       "type": "color_scheme",

@@ -1,3 +1,196 @@
+{%- if section.settings.presentation_style == 'luv_home_recommendations' -%}
+  {%- liquid
+    assign ready_card_count = 0
+    assign recommendations_heading = section.settings.home_heading | strip
+    assign recommendations_support = section.settings.home_support_text | strip
+
+    if recommendations_heading == blank
+      assign recommendations_heading = 'luv_home.recommendations.heading' | t
+    endif
+
+    if recommendations_support == blank
+      assign recommendations_support = 'luv_home.recommendations.support' | t
+    endif
+
+    for block in section.blocks
+      assign card_product = block.settings.product
+      assign card_image = block.settings.image
+      assign card_title = block.settings.title | strip
+      assign card_destination = block.settings.link
+
+      if card_product != blank
+        if card_image == blank
+          assign card_image = card_product.featured_image
+        endif
+        if card_title == blank
+          assign card_title = card_product.title | strip
+        endif
+        assign card_destination = card_product.url
+      endif
+
+      if card_image != blank and card_title != blank and card_destination != blank
+        assign ready_card_count = ready_card_count | plus: 1
+      endif
+    endfor
+  -%}
+
+  {%- if ready_card_count > 0 or request.design_mode -%}
+    <section
+      class="luv-design-scope luv-home-recommendations"
+      aria-labelledby="LuvHomeRecommendationsHeading-{{ section.id }}"
+      style="
+        --luv-home-recommendations-padding-top: {{ section.settings.padding_top }}px;
+        --luv-home-recommendations-padding-bottom: {{ section.settings.padding_bottom }}px;
+      "
+    >
+      <div class="luv-container">
+        <header class="luv-home-recommendations__header">
+          <h2 id="LuvHomeRecommendationsHeading-{{ section.id }}" class="luv-home-recommendations__heading">
+            {{- recommendations_heading | escape -}}
+          </h2>
+          {%- if recommendations_support != blank -%}
+            <p class="luv-home-recommendations__support">{{ recommendations_support | escape }}</p>
+          {%- endif -%}
+        </header>
+
+        <div class="luv-home-recommendations__grid luv-home-recommendations__grid--count-{{ ready_card_count }}">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign card_product = block.settings.product
+              assign card_image = block.settings.image
+              assign card_title = block.settings.title | strip
+              assign card_destination = block.settings.link
+              assign card_is_product = false
+              assign card_is_ready = false
+              assign card_has_custom_image = false
+
+              if block.settings.image != blank
+                assign card_has_custom_image = true
+              endif
+
+              if card_product != blank
+                assign card_is_product = true
+                if card_image == blank
+                  assign card_image = card_product.featured_image
+                endif
+                if card_title == blank
+                  assign card_title = card_product.title | strip
+                endif
+                assign card_destination = card_product.url
+              endif
+
+              if card_image != blank and card_title != blank and card_destination != blank
+                assign card_is_ready = true
+              endif
+
+              assign card_image_alt = card_image.alt | default: card_title
+              assign card_image_position = card_image.presentation.focal_point | default: 'center center'
+            -%}
+
+            {%- if card_is_ready -%}
+              <article class="luv-home-recommendations__card" {{ block.shopify_attributes }}>
+                <a class="luv-home-recommendations__link" href="{{ card_destination }}">
+                  <div
+                    class="luv-home-recommendations__media{% if card_is_product and card_has_custom_image == false %} luv-home-recommendations__media--product{% endif %}"
+                    style="--luv-home-recommendations-image-position: {{ card_image_position }};"
+                  >
+                    {{
+                      card_image
+                      | image_url: width: 1200
+                      | image_tag:
+                        class: 'luv-home-recommendations__image',
+                        widths: '375, 550, 750, 900, 1100, 1200',
+                        sizes: '(min-width: 1600px) 500px, (min-width: 990px) calc((100vw - 120px) / 3), (min-width: 750px) calc((100vw - 76px) / 2), calc(100vw - 40px)',
+                        loading: 'lazy',
+                        alt: card_image_alt
+                    }}
+                  </div>
+
+                  <div class="luv-home-recommendations__content">
+                    {%- if card_is_product and card_product.vendor != blank -%}
+                      <p class="luv-home-recommendations__vendor">{{ card_product.vendor | escape }}</p>
+                    {%- endif -%}
+
+                    <h3 class="luv-home-recommendations__card-title">{{ card_title | escape }}</h3>
+
+                    {%- if block.settings.description != blank -%}
+                      <div class="luv-home-recommendations__description rte">{{ block.settings.description }}</div>
+                    {%- endif -%}
+
+                    {%- if card_is_product -%}
+                      <p class="luv-home-recommendations__availability{% unless card_product.available %} is-sold-out{% endunless %}">
+                        <span aria-hidden="true"></span>
+                        {%- if card_product.available -%}
+                          {{ 'luv_home.recommendations.available' | t }}
+                        {%- else -%}
+                          {{ 'products.product.sold_out' | t }}
+                        {%- endif -%}
+                      </p>
+                      {% render 'price',
+                        product: card_product,
+                        show_badges: false,
+                        price_class: 'luv-home-recommendations__price',
+                        show_compare_at_price: true
+                      %}
+                    {%- endif -%}
+
+                    <span class="luv-home-recommendations__cta">
+                      {%- if card_is_product -%}
+                        {{ 'luv_home.recommendations.view_product' | t }}
+                      {%- else -%}
+                        {{ 'luv_home.recommendations.explore' | t }}
+                      {%- endif -%}
+                      <span aria-hidden="true">&rarr;</span>
+                    </span>
+                  </div>
+                </a>
+              </article>
+            {%- elsif request.design_mode -%}
+              <article class="luv-home-recommendations__card luv-home-recommendations__card--editor" {{ block.shopify_attributes }}>
+                <div class="luv-home-recommendations__editor-media">
+                  {%- if card_image != blank -%}
+                    {{
+                      card_image
+                      | image_url: width: 900
+                      | image_tag:
+                        class: 'luv-home-recommendations__image',
+                        widths: '375, 550, 750, 900',
+                        sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                        loading: 'lazy',
+                        alt: card_image_alt
+                    }}
+                  {%- else -%}
+                    {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <div class="luv-home-recommendations__editor-content">
+                  <h3 class="luv-home-recommendations__editor-title">
+                    {{- 'luv_home.recommendations.editor.card_label' | t: index: forloop.index -}}
+                  </h3>
+                  <p>{{ 'luv_home.recommendations.editor.incomplete' | t }}</p>
+                  <ul>
+                    {%- if card_image == blank -%}
+                      <li>{{ 'luv_home.recommendations.editor.missing_image' | t }}</li>
+                    {%- endif -%}
+                    {%- if card_title == blank -%}
+                      <li>{{ 'luv_home.recommendations.editor.missing_title' | t }}</li>
+                    {%- endif -%}
+                    {%- if card_product == blank and block.settings.link == blank -%}
+                      <li>{{ 'luv_home.recommendations.editor.missing_product' | t }}</li>
+                      <li>{{ 'luv_home.recommendations.editor.missing_link' | t }}</li>
+                    {%- elsif card_destination == blank -%}
+                      <li>{{ 'luv_home.recommendations.editor.missing_link' | t }}</li>
+                    {%- endif -%}
+                  </ul>
+                </div>
+              </article>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+{%- else -%}
 {% comment %}
   Section: Featured Promo Trio
   File: sections/featured-promo-trio.liquid
@@ -591,12 +784,40 @@
   })();
 </script>
 
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Featured promo trio",
   "tag": "section",
   "class": "section section-featured-promo-trio",
   "settings": [
+    {
+      "type": "select",
+      "id": "presentation_style",
+      "label": "Presentation style",
+      "options": [
+        {
+          "value": "legacy",
+          "label": "Legacy"
+        },
+        {
+          "value": "luv_home_recommendations",
+          "label": "LuvMechanics home recommendations"
+        }
+      ],
+      "default": "legacy"
+    },
+    {
+      "type": "text",
+      "id": "home_heading",
+      "label": "Home heading override"
+    },
+    {
+      "type": "textarea",
+      "id": "home_support_text",
+      "label": "Home support text override"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -696,6 +917,11 @@
       "name": "Promo card",
       "limit": 3,
       "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
         {
           "type": "image_picker",
           "id": "image",

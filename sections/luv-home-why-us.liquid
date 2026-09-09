@@ -1,0 +1,281 @@
+{%- liquid
+  assign why_us_eyebrow = section.settings.eyebrow | strip
+  assign why_us_heading = section.settings.heading | strip
+  assign why_us_support = section.settings.support_text | strip
+  assign why_us_cta_label = section.settings.cta_label | strip
+  assign ready_value_count = 0
+
+  if why_us_eyebrow == blank
+    assign why_us_eyebrow = 'luv_home.why_us.eyebrow' | t
+  endif
+  if why_us_heading == blank
+    assign why_us_heading = 'luv_home.why_us.heading' | t
+  endif
+  if why_us_support == blank
+    assign why_us_support = 'luv_home.why_us.support' | t
+  endif
+  if why_us_cta_label == blank
+    assign why_us_cta_label = 'luv_home.why_us.cta' | t
+  endif
+
+  for block in section.blocks
+    assign value_key = block.settings.value_key | strip
+    assign value_key_is_valid = false
+    case value_key
+      when 'curated', 'discreet', 'guidance', 'informed'
+        assign value_key_is_valid = true
+    endcase
+
+    assign value_title = block.settings.heading | strip
+    assign value_description = block.settings.description | strip
+
+    if value_key_is_valid
+      assign value_title_key = 'luv_home.why_us.values.' | append: value_key | append: '.title'
+      assign value_description_key = 'luv_home.why_us.values.' | append: value_key | append: '.description'
+      if value_title == blank
+        assign value_title = value_title_key | t
+      endif
+      if value_description == blank
+        assign value_description = value_description_key | t
+      endif
+    endif
+
+    if value_title != blank and value_description != blank
+      assign ready_value_count = ready_value_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if ready_value_count > 0 or request.design_mode -%}
+  <section
+    id="luv-home-why-us"
+    class="luv-design-scope luv-home-why-us"
+    aria-labelledby="LuvHomeWhyUsHeading-{{ section.id }}"
+    style="
+      --luv-home-why-us-padding-desktop: {{ section.settings.padding_desktop }}px;
+      --luv-home-why-us-padding-mobile: {{ section.settings.padding_mobile }}px;
+    "
+  >
+    <div class="luv-container">
+      <div class="luv-home-why-us__layout">
+        <header class="luv-home-why-us__intro">
+          {%- if why_us_eyebrow != blank -%}
+            <p class="luv-home-why-us__eyebrow luv-eyebrow">{{ why_us_eyebrow | escape }}</p>
+          {%- endif -%}
+          <h2 id="LuvHomeWhyUsHeading-{{ section.id }}" class="luv-home-why-us__heading luv-section-heading">
+            {{- why_us_heading | escape -}}
+          </h2>
+          {%- if why_us_support != blank -%}
+            <p class="luv-home-why-us__support luv-body-copy luv-text-muted">{{ why_us_support | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.cta_url != blank -%}
+            <a class="luv-home-why-us__cta button button--luv-secondary" href="{{ section.settings.cta_url }}">
+              {{- why_us_cta_label | escape -}}
+            </a>
+          {%- endif -%}
+        </header>
+
+        <ul class="luv-home-why-us__list luv-home-why-us__list--count-{{ ready_value_count }}" role="list">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign value_key = block.settings.value_key | strip
+              assign value_key_is_valid = false
+              case value_key
+                when 'curated', 'discreet', 'guidance', 'informed'
+                  assign value_key_is_valid = true
+              endcase
+
+              assign value_title = block.settings.heading | strip
+              assign value_description = block.settings.description | strip
+
+              if value_key_is_valid
+                assign value_title_key = 'luv_home.why_us.values.' | append: value_key | append: '.title'
+                assign value_description_key = 'luv_home.why_us.values.' | append: value_key | append: '.description'
+                if value_title == blank
+                  assign value_title = value_title_key | t
+                endif
+                if value_description == blank
+                  assign value_description = value_description_key | t
+                endif
+              endif
+
+              assign value_is_ready = false
+              if value_title != blank and value_description != blank
+                assign value_is_ready = true
+              endif
+
+              assign value_icon = block.settings.icon
+              if value_icon == 'default'
+                case value_key
+                  when 'curated'
+                    assign value_icon = 'heart'
+                  when 'discreet'
+                    assign value_icon = 'lock'
+                  when 'guidance'
+                    assign value_icon = 'help'
+                  else
+                    assign value_icon = 'info'
+                endcase
+              endif
+            -%}
+
+            {%- if value_is_ready -%}
+              <li class="luv-home-why-us__item" {{ block.shopify_attributes }}>
+                <article class="luv-home-why-us__card">
+                  <span class="luv-home-why-us__icon" aria-hidden="true">
+                    {%- case value_icon -%}
+                      {%- when 'heart' -%}
+                        {{- 'icon-heart.svg' | inline_asset_content -}}
+                      {%- when 'lock' -%}
+                        {{- 'icon-lock.svg' | inline_asset_content -}}
+                      {%- when 'help' -%}
+                        {{- 'icon-question-mark.svg' | inline_asset_content -}}
+                      {%- when 'check' -%}
+                        {{- 'icon-check-mark.svg' | inline_asset_content -}}
+                      {%- else -%}
+                        {{- 'icon-info.svg' | inline_asset_content -}}
+                    {%- endcase -%}
+                  </span>
+                  <div class="luv-home-why-us__card-copy">
+                    <h3 class="luv-home-why-us__card-heading">{{ value_title | escape }}</h3>
+                    <p class="luv-home-why-us__description">{{ value_description | escape }}</p>
+                  </div>
+                </article>
+              </li>
+            {%- elsif request.design_mode -%}
+              <li class="luv-home-why-us__item luv-home-why-us__item--editor" {{ block.shopify_attributes }}>
+                <article class="luv-home-why-us__card luv-home-why-us__card--editor">
+                  <span class="luv-home-why-us__icon" aria-hidden="true">
+                    {{- 'icon-info.svg' | inline_asset_content -}}
+                  </span>
+                  <div class="luv-home-why-us__card-copy">
+                    <p class="luv-home-why-us__editor-heading">{{ 'luv_home.why_us.editor.incomplete' | t }}</p>
+                    <ul class="luv-home-why-us__editor-messages">
+                      {%- if value_title == blank -%}
+                        <li>{{ 'luv_home.why_us.editor.missing_title' | t }}</li>
+                      {%- endif -%}
+                      {%- if value_description == blank -%}
+                        <li>{{ 'luv_home.why_us.editor.missing_description' | t }}</li>
+                      {%- endif -%}
+                    </ul>
+                  </div>
+                </article>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Luv home why us",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow override"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override"
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Supporting text override"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop vertical padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile vertical padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "select",
+          "id": "value_key",
+          "label": "Translated value",
+          "options": [
+            { "value": "curated", "label": "Thoughtfully selected" },
+            { "value": "discreet", "label": "Discreet at every step" },
+            { "value": "guidance", "label": "Guidance without judgment" },
+            { "value": "informed", "label": "Clear and informed choices" }
+          ],
+          "default": "curated"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon override",
+          "options": [
+            { "value": "default", "label": "Use value default" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "help", "label": "Help" },
+            { "value": "info", "label": "Information" },
+            { "value": "check", "label": "Check" }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading override"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description override"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Luv home why us",
+      "blocks": [
+        { "type": "value", "settings": { "value_key": "curated", "icon": "default" } },
+        { "type": "value", "settings": { "value_key": "discreet", "icon": "default" } },
+        { "type": "value", "settings": { "value_key": "guidance", "icon": "default" } },
+        { "type": "value", "settings": { "value_key": "informed", "icon": "default" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

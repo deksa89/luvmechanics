@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "luv_curated_hero": {
+      "type": "luv-curated-collection-hero",
+      "settings": {
+        "variant": "new_arrivals",
+        "show_badge": true,
+        "show_products_link": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      },
+      "disabled": true
+    },
     "main-collection-banner": {
       "type": "main-collection-banner",
       "disabled": true,
@@ -37,6 +48,7 @@
     },
     "rich_text_hmxFKb": {
       "type": "rich-text",
+      "disabled": true,
       "blocks": {
         "heading_U4Fx9E": {
           "type": "heading",
@@ -110,10 +122,11 @@
     }
   },
   "order": [
+    "main-collection-product-grid",
+    "luv_curated_hero",
     "main-collection-banner",
     "image_banner_9tELrt",
     "rich_text_hmxFKb",
-    "main-collection-product-grid",
     "newsletter_tPNegD"
   ]
 }

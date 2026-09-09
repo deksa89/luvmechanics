@@ -1,0 +1,36 @@
+{% doc %}
+  Collection editorial grid preserving either the existing blog source or featured article.
+  @param {section} section - Hosting section
+  @param {article[]} [article_source] - Existing ordered blog articles
+  @param {article} [featured_article] - Existing collection editorial reference
+  @param {string} [view_all_url] - Existing blog destination, if available
+{% enddoc %}
+{%- capture cards -%}
+  {%- if featured_article != blank and featured_article.url != blank -%}
+    {% render 'luv-collection-article-card', article: featured_article, section: section %}
+  {%- else -%}
+    {%- assign article_limit = section.settings.post_limit | default: 3 -%}
+    {%- for selected_article in article_source limit: article_limit -%}
+      {%- if selected_article.url != blank -%}{% render 'luv-collection-article-card', article: selected_article, section: section %}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+{%- assign cards = cards | strip -%}
+{%- if cards != blank -%}
+  {{ 'luv-design-system.css' | asset_url | stylesheet_tag }}
+  {{ 'luv-collection-articles.css' | asset_url | stylesheet_tag }}
+  {%- assign default_heading = 'luv_collection_articles.heading' | t -%}
+  <div class="luv-articles luv-design-scope" aria-labelledby="LuvArticlesHeading-{{ section.id }}" style="--articles-top: {{ section.settings.padding_top_desktop | default: 32 }}px; --articles-bottom: {{ section.settings.padding_bottom_desktop | default: 32 }}px; --articles-mobile-top: {{ section.settings.padding_top_mobile | default: 24 }}px; --articles-mobile-bottom: {{ section.settings.padding_bottom_mobile | default: 24 }}px;">
+    <div class="luv-container">
+      <header class="luv-articles__header">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}<p class="luv-articles__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+          <h2 id="LuvArticlesHeading-{{ section.id }}" class="luv-articles__heading">{{ section.settings.heading | default: default_heading }}</h2>
+          {%- if section.settings.collection_introduction != blank -%}<div class="luv-articles__intro rte">{{ section.settings.collection_introduction }}</div>{%- endif -%}
+        </div>
+        {%- if section.settings.show_view_all and view_all_url != blank -%}<a class="luv-articles__view-all" href="{{ view_all_url }}">{{ 'luv_collection_articles.view_all' | t }} <span aria-hidden="true">→</span></a>{%- endif -%}
+      </header>
+      <div class="luv-articles__grid">{{ cards }}</div>
+    </div>
+  </div>
+{%- endif -%}

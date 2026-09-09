@@ -75,7 +75,8 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
-      }
+      },
+      "disabled": true
     },
     "rich_text_4nKxkh": {
       "type": "rich-text",
@@ -196,10 +197,10 @@
     }
   },
   "order": [
+    "main-collection-product-grid",
     "main-collection-banner",
     "image_banner_jRkBq3",
     "rich_text_4nKxkh",
-    "main-collection-product-grid",
     "expandable_category_info_rJBpwy",
     "newsletter_tPNegD",
     "featured_blog_ERFiTc"

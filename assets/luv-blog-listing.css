@@ -1,0 +1,18 @@
+.luv-blog .luv-blog__breadcrumbs { display: flex; flex-wrap: wrap; gap: 8px; color: #687080; font-size: 12px; margin-bottom: 18px; }
+.luv-blog__intro { margin-bottom: 24px; }
+.luv-blog .luv-blog__intro h1 { margin: 0; color: var(--articles-text); font: 500 clamp(26px, 2.4vw, 36px)/1.2 var(--luv-font-display, var(--font-heading-family)); letter-spacing: 0; }
+.luv-blog__description { max-width: 760px; margin-top: 12px; color: #687080; }
+.luv-blog__description p { margin: 0; }
+.luv-blog__categories, .luv-blog__topics { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-block: 0 24px; }
+.luv-blog .luv-blog__pill, .luv-blog__topic a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid transparent; border-radius: 24px; background: #f1f3ff; color: var(--articles-text); text-decoration: none; overflow-wrap: anywhere; }
+.luv-blog .luv-blog__pill[aria-current], .luv-blog__topic.is-active a { background: var(--articles-accent); color: #fff; }
+.luv-blog .luv-blog__pill:hover, .luv-blog__topic a:hover { border-color: var(--articles-accent); }
+.luv-blog__topic-label { font-weight: 600; margin-right: 8px; }
+.luv-blog__filtered { color: #687080; font-size: 12px; }
+.luv-blog__empty { padding: 24px; background: #fff; border: 1px solid #e5e7eb; border-radius: var(--luv-radius-md); }
+.luv-blog__empty p { margin: 0 0 12px; }
+.luv-blog__empty a { display: inline-flex; align-items: center; min-height: 44px; color: var(--articles-accent); }
+.luv-blog__pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
+.luv-blog__pagination > :is(a,span) { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 8px; border-radius: var(--luv-radius-sm); text-decoration: none; background: #f1f3ff; }
+.luv-blog__pagination [aria-current] { background: var(--articles-accent); color: #fff; }
+@media (prefers-reduced-motion: reduce) { .luv-blog .luv-articles__card { transition: none; } }

@@ -1,0 +1,389 @@
+{%- liquid
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'luv_home.shoppable_videos.heading' | t
+  endif
+
+  assign support_text = section.settings.support_text
+  if support_text == blank
+    assign support_text = 'luv_home.shoppable_videos.support' | t
+  endif
+
+  assign section_cta_label = section.settings.section_cta_label
+  if section_cta_label == blank
+    assign section_cta_label = 'luv_home.shoppable_videos.section_cta' | t
+  endif
+
+  assign ready_block_count = 0
+
+  for block in section.blocks limit: 6
+    assign block_video = block.settings.video
+    assign block_product = block.settings.product
+    assign block_poster = block.settings.poster
+    if block_poster == blank and block_video != blank
+      assign block_poster = block_video.preview_image
+    endif
+
+    if block_video != blank and block_product != blank and block_poster != blank
+      assign ready_block_count = ready_block_count | plus: 1
+    endif
+  endfor
+
+  assign should_render = false
+  if ready_block_count > 0 or request.design_mode
+    assign should_render = true
+  endif
+
+  assign layout_count = ready_block_count
+  if request.design_mode
+    assign layout_count = section.blocks.size
+  endif
+  if layout_count > 4
+    assign layout_count = 4
+  endif
+-%}
+
+{%- if should_render -%}
+  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+  <section
+    id="luv-home-shoppable-videos"
+    class="luv-design-scope luv-home-section luv-home-shoppable-videos"
+    aria-labelledby="LuvHomeShoppableVideosHeading-{{ section.id }}"
+    style="--luv-home-shoppable-videos-padding-top: {{ section.settings.padding_top }}px; --luv-home-shoppable-videos-padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    <luv-home-shoppable-videos-coordinator>
+      <div class="luv-container luv-home-shoppable-videos__container">
+        <header class="luv-home-shoppable-videos__header">
+          <h2 id="LuvHomeShoppableVideosHeading-{{ section.id }}" class="luv-home-shoppable-videos__heading">
+            {{- heading | escape -}}
+          </h2>
+          {%- if support_text != blank -%}
+            <p class="luv-home-shoppable-videos__support">{{ support_text | escape }}</p>
+          {%- endif -%}
+        </header>
+
+        <div class="luv-home-shoppable-videos__grid luv-home-shoppable-videos__grid--count-{{ layout_count }}{% if ready_block_count == 1 and request.design_mode == false %} is-single{% endif %}">
+          {%- for block in section.blocks limit: 6 -%}
+            {%- liquid
+              assign block_video = block.settings.video
+              assign block_product = block.settings.product
+              assign block_poster = block.settings.poster
+              if block_poster == blank and block_video != blank
+                assign block_poster = block_video.preview_image
+              endif
+
+              assign block_ready = false
+              if block_video != blank and block_product != blank and block_poster != blank
+                assign block_ready = true
+              endif
+
+              assign display_title = block.settings.display_title
+              if display_title == blank and block_product != blank
+                assign display_title = block_product.title
+              endif
+              if display_title == blank
+                assign display_title = 'luv_home.shoppable_videos.editor.untitled' | t
+              endif
+
+              assign play_label = 'luv_home.shoppable_videos.play_video' | t: title: display_title
+              assign video_label = 'luv_home.shoppable_videos.video_label' | t: title: display_title
+
+              assign product_cta_label = block.settings.product_cta_label
+              if product_cta_label == blank
+                assign product_cta_label = 'luv_home.shoppable_videos.view_product' | t
+              endif
+
+              assign poster_position = block.settings.poster_position
+              if poster_position == 'focal'
+                assign poster_position = block_poster.presentation.focal_point | default: 'center center'
+              endif
+
+              assign summary_id = 'LuvHomeVideoSummary-' | append: section.id | append: '-' | append: block.id
+              assign video_id = 'LuvHomeVideo-' | append: section.id | append: '-' | append: block.id
+              assign poster_id = 'Deferred-Poster-LuvHomeVideo-' | append: section.id | append: '-' | append: block.id
+            -%}
+
+            {%- if block_ready -%}
+              <article
+                class="luv-home-shoppable-videos__card"
+                style="--luv-home-shoppable-videos-poster-position: {{ poster_position }};"
+                {{ block.shopify_attributes }}
+              >
+                <deferred-media
+                  class="luv-home-shoppable-videos__media deferred-media"
+                  data-media-id="{{ block_video.id }}"
+                >
+                  <button
+                    id="{{ poster_id }}"
+                    class="luv-home-shoppable-videos__poster deferred-media__poster"
+                    type="button"
+                    aria-label="{{ play_label | escape }}"
+                  >
+                    <img
+                      src="{{ block_poster | image_url: width: 480 }}"
+                      srcset="
+                        {{ block_poster | image_url: width: 240 }} 240w,
+                        {{ block_poster | image_url: width: 360 }} 360w,
+                        {{ block_poster | image_url: width: 480 }} 480w,
+                        {{ block_poster | image_url: width: 600 }} 600w,
+                        {{ block_poster | image_url: width: 720 }} 720w
+                      "
+                      sizes="(min-width: 1280px) 300px, (min-width: 990px) 30vw, (min-width: 750px) 300px, 82vw"
+                      width="{{ block_poster.width }}"
+                      height="{{ block_poster.height }}"
+                      loading="lazy"
+                      alt=""
+                    >
+                    <span class="luv-home-shoppable-videos__play deferred-media__poster-button motion-reduce" aria-hidden="true">
+                      <span class="svg-wrapper">
+                        {{- 'icon-play.svg' | inline_asset_content -}}
+                      </span>
+                    </span>
+                  </button>
+                  <template>
+                    <video
+                      id="{{ video_id }}"
+                      class="luv-home-shoppable-videos__video"
+                      controls
+                      playsinline
+                      preload="none"
+                      autoplay
+                      aria-label="{{ video_label | escape }}"
+                      {% if block.settings.accessible_description != blank %}
+                        aria-describedby="{{ summary_id }}"
+                      {% endif %}
+                    >
+                      {%- for source in block_video.sources -%}
+                        <source src="{{ source.url }}" type="{{ source.mime_type | escape }}">
+                      {%- endfor -%}
+                      {{ 'luv_home.shoppable_videos.video_unavailable' | t }}
+                    </video>
+                  </template>
+                </deferred-media>
+
+                <div class="luv-home-shoppable-videos__content">
+                  {%- if block.settings.eyebrow != blank -%}
+                    <p class="luv-home-shoppable-videos__eyebrow">{{ block.settings.eyebrow | escape }}</p>
+                  {%- endif -%}
+
+                  {%- if block_product.vendor != blank -%}
+                    <p class="luv-home-shoppable-videos__vendor">{{ block_product.vendor | escape }}</p>
+                  {%- endif -%}
+
+                  <h3 class="luv-home-shoppable-videos__card-title">{{ display_title | escape }}</h3>
+
+                  {%- if block.settings.accessible_description != blank -%}
+                    <p id="{{ summary_id }}" class="luv-home-shoppable-videos__summary">
+                      {{- block.settings.accessible_description | escape -}}
+                    </p>
+                  {%- endif -%}
+
+                  <p class="luv-home-shoppable-videos__availability{% unless block_product.available %} is-sold-out{% endunless %}">
+                    <span aria-hidden="true"></span>
+                    {%- if block_product.available -%}
+                      {{ 'luv_home.shoppable_videos.available' | t }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </p>
+
+                  {% render 'price',
+                    product: block_product,
+                    show_badges: false,
+                    price_class: 'luv-home-shoppable-videos__price',
+                    show_compare_at_price: true
+                  %}
+
+                  <a class="button button--luv-primary luv-home-shoppable-videos__product-cta" href="{{ block_product.url }}">
+                    {{- product_cta_label | escape -}}
+                  </a>
+                </div>
+              </article>
+            {%- elsif request.design_mode -%}
+              <article class="luv-home-shoppable-videos__card luv-home-shoppable-videos__card--editor" {{ block.shopify_attributes }}>
+                <div
+                  class="luv-home-shoppable-videos__editor-media"
+                  {% if block_poster != blank %}
+                    style="--luv-home-shoppable-videos-poster-position: {{ poster_position }};"
+                  {% endif %}
+                >
+                  {%- if block_poster != blank -%}
+                    <img
+                      src="{{ block_poster | image_url: width: 480 }}"
+                      srcset="
+                        {{ block_poster | image_url: width: 240 }} 240w,
+                        {{ block_poster | image_url: width: 360 }} 360w,
+                        {{ block_poster | image_url: width: 480 }} 480w,
+                        {{ block_poster | image_url: width: 600 }} 600w
+                      "
+                      sizes="(min-width: 750px) 300px, 82vw"
+                      width="{{ block_poster.width }}"
+                      height="{{ block_poster.height }}"
+                      loading="lazy"
+                      alt=""
+                    >
+                  {%- else -%}
+                    {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <div class="luv-home-shoppable-videos__editor-content">
+                  <h3 class="luv-home-shoppable-videos__editor-title">
+                    {{- 'luv_home.shoppable_videos.editor.card_label' | t: index: forloop.index -}}
+                  </h3>
+                  <p>{{ 'luv_home.shoppable_videos.editor.incomplete' | t }}</p>
+                  <ul>
+                    {%- if block_video == blank -%}
+                      <li>{{ 'luv_home.shoppable_videos.editor.missing_video' | t }}</li>
+                    {%- endif -%}
+                    {%- if block_poster == blank -%}
+                      <li>{{ 'luv_home.shoppable_videos.editor.missing_poster' | t }}</li>
+                    {%- endif -%}
+                    {%- if block_product == blank -%}
+                      <li>{{ 'luv_home.shoppable_videos.editor.missing_product' | t }}</li>
+                    {%- endif -%}
+                  </ul>
+                </div>
+              </article>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.section_cta_url != blank -%}
+          <div class="luv-home-shoppable-videos__footer">
+            <a class="button button--luv-secondary luv-home-shoppable-videos__section-cta" href="{{ section.settings.section_cta_url }}">
+              {{- section_cta_label | escape -}}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </luv-home-shoppable-videos-coordinator>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Luv shoppable videos",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Supporting text override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "text",
+      "id": "section_cta_label",
+      "label": "Section CTA label override",
+      "info": "Used only when a section CTA link is assigned."
+    },
+    {
+      "type": "url",
+      "id": "section_cta_url",
+      "label": "Section CTA link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Product video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify-hosted video"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Custom poster image",
+          "info": "Optional. The video preview image is used when this is blank."
+        },
+        {
+          "type": "select",
+          "id": "poster_position",
+          "label": "Poster position",
+          "options": [
+            { "value": "focal", "label": "Use image focal point" },
+            { "value": "center center", "label": "Center" },
+            { "value": "center top", "label": "Top" },
+            { "value": "center bottom", "label": "Bottom" },
+            { "value": "left center", "label": "Left" },
+            { "value": "right center", "label": "Right" }
+          ],
+          "default": "focal"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Shopify product"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Optional short label"
+        },
+        {
+          "type": "text",
+          "id": "display_title",
+          "label": "Display title override",
+          "info": "Leave blank to use the translated Shopify product title."
+        },
+        {
+          "type": "textarea",
+          "id": "accessible_description",
+          "label": "Video description or text summary",
+          "info": "If the video contains speech or important audio, upload a captioned version and provide an accurate equivalent summary here."
+        },
+        {
+          "type": "text",
+          "id": "product_cta_label",
+          "label": "Product CTA label override",
+          "info": "Leave blank to use the translated default."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv shoppable videos",
+      "blocks": [
+        { "type": "video" },
+        { "type": "video" },
+        { "type": "video" },
+        { "type": "video" }
+      ]
+    }
+  ]
+}
+{% endschema %}

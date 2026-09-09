@@ -4,3 +4,5 @@ node_modules/
 .env
 .shopify/
 .vscode/
+# Local audit and deployment reports
+reports/

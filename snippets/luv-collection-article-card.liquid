@@ -1,0 +1,45 @@
+{% doc %}
+  A shared editorial card using the selected article without changing its content.
+  @param {article} article - Selected article
+  @param {section} section - Existing display settings
+  @param {number} [heading_level] - Use 2 on a blog listing; collection default is 3
+  @param {string} [image_loading] - Image loading mode; defaults to lazy
+{% enddoc %}
+{%- liquid
+  assign card_heading = 'h3'
+  if heading_level == 2
+    assign card_heading = 'h2'
+  endif
+  assign card_loading = image_loading | default: 'lazy'
+  assign excerpt = article.excerpt | strip_html | strip
+  if excerpt == blank
+    assign excerpt = article.content | strip_html | strip
+  endif
+  assign image_alt = article.image.alt | default: article.title
+  assign read_label = 'luv_collection_articles.read_article' | t
+  if section.settings.cta_label != blank
+    assign read_label = section.settings.cta_label
+  endif
+-%}
+<article class="luv-articles__card" data-article-id="{{ article.id }}">
+  {%- unless section.settings.show_image == false -%}
+    <div class="luv-articles__media">
+      {%- if article.image != blank -%}
+        {{ article.image | image_url: width: 1200 | image_tag: widths: '360, 540, 720, 960, 1200', sizes: '(min-width: 1600px) 504px, (min-width: 990px) calc((100vw - 88px) / 3), (min-width: 750px) calc((100vw - 64px) / 2), calc(100vw - 28px)', loading: card_loading, class: 'luv-articles__image', alt: image_alt }}
+      {%- else -%}
+        <svg class="luv-articles__fallback" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M24 12c-6-4-12-4-18-2v27c6-2 12-2 18 2 6-4 12-4 18-2V10c-6-2-12-2-18 2Zm0 0v27"/></svg>
+      {%- endif -%}
+    </div>
+  {%- endunless -%}
+  <div class="luv-articles__body">
+    {%- if section.settings.show_date or section.settings.show_author -%}
+      <div class="luv-articles__meta">
+        {%- if section.settings.show_date -%}{{ article.published_at | time_tag: format: 'date' }}{%- endif -%}
+        {%- if section.settings.show_author -%}<span>{{ article.author | escape }}</span>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <{{ card_heading }} class="luv-articles__title"><a href="{{ article.url }}">{{ article.title | escape }}</a></{{ card_heading }}>
+    {%- unless section.settings.show_excerpt == false -%}{%- if excerpt != blank -%}<p class="luv-articles__excerpt">{{ excerpt | escape }}</p>{%- endif -%}{%- endunless -%}
+    <a class="luv-articles__read" href="{{ article.url }}" aria-label="{{ read_label | escape }}: {{ article.title | escape }}" data-luv-track="editorial" data-article-id="{{ article.id }}" data-article-title="{{ article.title | escape }}" data-article-handle="{{ article.handle | escape }}">{{ read_label | escape }} <span aria-hidden="true">→</span></a>
+  </div>
+</article>

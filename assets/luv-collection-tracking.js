@@ -159,15 +159,15 @@
     }
 
     const facetLink = event.target.closest(
-      '#luv-collection-products facet-remove a, #luv-collection-products .facets__reset, #luv-collection-products .mobile-facets__clear'
+      '#luv-collection-products facet-remove a, #luv-collection-products .facets__reset, #luv-collection-products .mobile-facets__clear, #luv-collection-products [data-catalog-link], #luv-collection-products [data-reset-all], #luv-collection-products [data-group-reset]'
     );
-    if (facetLink) publishLuvCollectionEvent(eventNames.filter, filterRemovalPayload(facetLink));
+    if (facetLink && !facetLink.closest('dialog[open]')) publishLuvCollectionEvent(eventNames.filter, filterRemovalPayload(facetLink));
   });
 
   document.addEventListener('change', (event) => {
     const control = event.target;
     if (!(control instanceof HTMLInputElement || control instanceof HTMLSelectElement)) return;
-    if (!control.closest('#luv-collection-products')) return;
+    if (!control.closest('#luv-collection-products') || control.closest('dialog[open]')) return;
 
     if (control.name === 'sort_by') {
       publishLuvCollectionEvent(eventNames.sort, { sort_value: control.value });

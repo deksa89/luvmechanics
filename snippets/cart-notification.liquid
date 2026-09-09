@@ -21,24 +21,14 @@
   assign popup_panel_width = cart_popup_panel_width | default: 48
   assign popup_footer_note = cart_popup_footer_note | default: 'Taxes and shipping calculated at checkout'
   assign popup_subtotal_label = cart_popup_subtotal_label | default: 'Subtotal'
-  assign shipping_unlocked_text = cart_popup_shipping_unlocked_text | default: 'You have right to free domestic shipping!'
-  assign shipping_remaining_text = cart_popup_shipping_remaining_text | default: 'Spend [amount] more for free domestic shipping'
-  assign shipping_threshold_value = cart_popup_shipping_threshold | default: 80
-  assign free_shipping_threshold = shipping_threshold_value | times: 100
+  assign shipping_unlocked_text = cart_popup_shipping_unlocked_text
+  assign shipping_remaining_text = cart_popup_shipping_remaining_text
   assign show_shipping_progress = true
 
   if cart_popup_show_shipping_progress == false
     assign show_shipping_progress = false
   endif
 
-  assign free_shipping_progress = 0
-  if free_shipping_threshold > 0
-    assign free_shipping_progress = cart.total_price | times: 100 | divided_by: free_shipping_threshold
-  endif
-
-  if free_shipping_progress > 100
-    assign free_shipping_progress = 100
-  endif
 -%}
 
 {% style %}
@@ -95,35 +85,12 @@
         </button>
       </div>
 
-      {%- if show_shipping_progress and free_shipping_threshold > 0 -%}
-        <div
-          class="cart-notification__shipping"
-          data-cart-notification-shipping
-          data-shipping-threshold="{{ free_shipping_threshold }}"
-          data-unlocked-text="{{ shipping_unlocked_text | escape }}"
-          data-remaining-text="{{ shipping_remaining_text | escape }}"
-        >
-          <p class="cart-notification__shipping-message" data-cart-notification-shipping-status>
-            {%- if cart.total_price >= free_shipping_threshold -%}
-              {{ shipping_unlocked_text | escape }}
-            {%- else -%}
-              {%- assign missing_shipping_amount = free_shipping_threshold | minus: cart.total_price | money -%}
-              {{ shipping_remaining_text | replace: '[amount]', missing_shipping_amount | escape }}
-            {%- endif -%}
-          </p>
-          <div class="cart-notification__shipping-scale">
-            <span>{{ 0 | money_without_trailing_zeros }}</span>
-            <div class="cart-notification__shipping-track" aria-hidden="true">
-              <span
-                class="cart-notification__shipping-fill"
-                data-cart-notification-progress
-                style="width: {{ free_shipping_progress }}%;"
-              ></span>
-              <span class="cart-notification__shipping-knob" data-cart-notification-knob style="left: {{ free_shipping_progress }}%;"></span>
-            </div>
-            <span>{{ free_shipping_threshold | money_without_trailing_zeros }}</span>
-          </div>
-        </div>
+      {%- if show_shipping_progress -%}
+        {%- render 'cart-shipping-progress',
+          placement: 'notification',
+          shipping_unlocked_text: shipping_unlocked_text,
+          shipping_remaining_text: shipping_remaining_text
+        -%}
       {%- endif -%}
 
       <div class="cart-notification__body">

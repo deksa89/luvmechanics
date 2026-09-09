@@ -1,0 +1,222 @@
+{%- liquid
+  assign newsletter_eyebrow = section.settings.eyebrow | strip
+  assign newsletter_heading = section.settings.heading | strip
+  assign newsletter_support = section.settings.support_text | strip
+  assign newsletter_email_label = section.settings.email_label | strip
+  assign newsletter_email_placeholder = section.settings.email_placeholder | strip
+  assign newsletter_submit_label = section.settings.submit_label | strip
+  assign newsletter_privacy_note = section.settings.privacy_note | strip
+
+  if newsletter_eyebrow == blank
+    assign newsletter_eyebrow = 'luv_home.newsletter.eyebrow' | t
+  endif
+  if newsletter_heading == blank
+    assign newsletter_heading = 'luv_home.newsletter.heading' | t
+  endif
+  if newsletter_support == blank
+    assign newsletter_support = 'luv_home.newsletter.support' | t
+  endif
+  if newsletter_email_label == blank
+    assign newsletter_email_label = 'luv_home.newsletter.email_label' | t
+  endif
+  if newsletter_email_placeholder == blank
+    assign newsletter_email_placeholder = 'luv_home.newsletter.email_placeholder' | t
+  endif
+  if newsletter_submit_label == blank
+    assign newsletter_submit_label = 'luv_home.newsletter.submit' | t
+  endif
+  if newsletter_privacy_note == blank
+    assign newsletter_privacy_note = 'luv_home.newsletter.privacy_note' | t
+  endif
+
+  assign newsletter_success = 'luv_home.newsletter.success' | t
+  assign newsletter_error = 'luv_home.newsletter.error' | t
+  assign privacy_policy_url = shop.privacy_policy.url
+  assign privacy_policy_label = shop.privacy_policy.title | strip
+  if privacy_policy_label == blank
+    assign privacy_policy_label = 'luv_home.newsletter.privacy_link' | t
+  endif
+
+  assign form_id = 'LuvHomeNewsletterForm-' | append: section.id
+  assign heading_id = 'LuvHomeNewsletterHeading-' | append: section.id
+  assign input_id = 'LuvHomeNewsletterEmail-' | append: section.id
+  assign button_id = 'LuvHomeNewsletterSubmit-' | append: section.id
+  assign error_id = 'LuvHomeNewsletterError-' | append: section.id
+  assign success_id = 'LuvHomeNewsletterSuccess-' | append: section.id
+  assign privacy_id = 'LuvHomeNewsletterPrivacy-' | append: section.id
+-%}
+
+<section
+  id="luv-home-newsletter"
+  class="luv-design-scope luv-home-newsletter"
+  aria-labelledby="{{ heading_id }}"
+  style="
+    --luv-home-newsletter-padding-desktop: {{ section.settings.padding_desktop }}px;
+    --luv-home-newsletter-padding-mobile: {{ section.settings.padding_mobile }}px;
+  "
+>
+  <div class="luv-container">
+    <div class="luv-home-newsletter__layout">
+      <div class="luv-home-newsletter__copy">
+        {%- if newsletter_eyebrow != blank -%}
+          <p class="luv-home-newsletter__eyebrow luv-eyebrow">{{ newsletter_eyebrow | escape_once }}</p>
+        {%- endif -%}
+        <h2 id="{{ heading_id }}" class="luv-home-newsletter__heading luv-section-heading">
+          {{- newsletter_heading | escape_once -}}
+        </h2>
+        {%- if newsletter_support != blank -%}
+          <p class="luv-home-newsletter__support luv-body-copy">{{ newsletter_support | escape_once }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="luv-home-newsletter__panel">
+        {%- form 'customer', id: form_id, class: 'luv-home-newsletter__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+
+          {%- if form.posted_successfully? -%}
+            <p
+              class="luv-home-newsletter__message luv-home-newsletter__message--success"
+              id="{{ success_id }}"
+              role="status"
+              aria-live="polite"
+              tabindex="-1"
+            >
+              {{- newsletter_success | escape_once -}}
+            </p>
+          {%- else -%}
+            <div class="luv-home-newsletter__field">
+              <label class="luv-home-newsletter__label" for="{{ input_id }}">
+                {{- newsletter_email_label | escape_once -}}
+              </label>
+              <div class="luv-home-newsletter__controls">
+                <input
+                  class="luv-home-newsletter__input"
+                  id="{{ input_id }}"
+                  type="email"
+                  name="contact[email]"
+                  value="{{ form.email | escape }}"
+                  placeholder="{{ newsletter_email_placeholder | escape_once }}"
+                  autocomplete="email"
+                  inputmode="email"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  aria-required="true"
+                  {% if form.errors %}
+                    aria-invalid="true"
+                    aria-describedby="{{ error_id }}"
+                  {% endif %}
+                  required
+                >
+                <button
+                  class="luv-home-newsletter__button"
+                  id="{{ button_id }}"
+                  type="submit"
+                  name="commit"
+                >
+                  {{- newsletter_submit_label | escape_once -}}
+                </button>
+              </div>
+            </div>
+
+            {%- if form.errors -%}
+              <p
+                class="luv-home-newsletter__message luv-home-newsletter__message--error"
+                id="{{ error_id }}"
+                role="alert"
+                aria-live="assertive"
+              >
+                {{- newsletter_error | escape_once -}}
+              </p>
+            {%- endif -%}
+
+            {%- if section.settings.show_privacy_note and newsletter_privacy_note != blank -%}
+              <p class="luv-home-newsletter__privacy" id="{{ privacy_id }}">
+                <span>{{ newsletter_privacy_note | escape_once }}</span>
+                {%- if privacy_policy_url != blank -%}
+                  <a href="{{ privacy_policy_url }}">{{ privacy_policy_label | escape_once }}</a>
+                {%- endif -%}
+              </p>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luv home newsletter",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow override"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override"
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Supporting text override"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label override"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder override"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button override"
+    },
+    {
+      "type": "textarea",
+      "id": "privacy_note",
+      "label": "Privacy note override"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_privacy_note",
+      "label": "Show privacy note",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop vertical padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile vertical padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv home newsletter"
+    }
+  ]
+}
+{% endschema %}

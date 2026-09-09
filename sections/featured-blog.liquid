@@ -1,3 +1,6 @@
+{%- if request.page_type == 'collection' -%}
+  {% render 'luv-collection-articles', section: section, article_source: section.settings.blog.articles, view_all_url: section.settings.blog.url %}
+{%- else -%}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
@@ -329,12 +332,16 @@
   </div>
 </div>
 
+{%- endif -%}
 {% schema %}
 {
   "name": "t:sections.featured-blog.name",
   "tag": "section",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
     {
@@ -345,7 +352,7 @@
     {
       "type": "range",
       "id": "post_limit",
-      "min": 2,
+      "min": 1,
       "max": 4,
       "step": 1,
       "default": 3,
@@ -354,7 +361,7 @@
     {
       "type": "header",
       "content": "t:sections.featured-blog.settings.text_header.content"
-    },            
+    },
     {
       "type": "inline_richtext",
       "id": "heading",
@@ -392,7 +399,7 @@
     {
       "type": "header",
       "content": "t:sections.featured-blog.settings.layout_header.content"
-    },        
+    },
     {
       "type": "range",
       "id": "columns_desktop",
@@ -408,7 +415,7 @@
       "default": true,
       "label": "t:sections.featured-blog.settings.show_view_all.label",
       "info": "t:sections.featured-blog.settings.show_view_all.info"
-    },    
+    },
     {
       "type": "checkbox",
       "id": "show_image",
@@ -433,7 +440,7 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
@@ -477,6 +484,17 @@
       "unit": "px",
       "label": "Bottom padding mobile",
       "default": 27
+    },
+    {
+      "type": "richtext",
+      "id": "collection_introduction",
+      "label": "t:luv_collection_articles.introduction"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "t:luv_collection_articles.show_excerpt"
     }
   ],
   "presets": [

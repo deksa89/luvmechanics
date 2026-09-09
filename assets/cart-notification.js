@@ -100,6 +100,7 @@ class CartNotification extends HTMLElement {
       const totalEl = this.querySelector('[data-cart-notification-total]');
       const shippingEl = this.querySelector('[data-cart-notification-shipping]');
       const statusEl = this.querySelector('[data-cart-notification-shipping-status]');
+      const progressbarEl = this.querySelector('[data-cart-notification-progressbar]');
       const progressEl = this.querySelector('[data-cart-notification-progress]');
       const knobEl = this.querySelector('[data-cart-notification-knob]');
       const threshold = Number(shippingEl?.dataset.shippingThreshold || 0);
@@ -113,7 +114,13 @@ class CartNotification extends HTMLElement {
         const remainingText = shippingEl.dataset.remainingText || 'Spend [amount] more for free domestic shipping';
         const remainingAmount = this.formatMoney(Math.max(threshold - cart.total_price, 0), cart.currency);
 
-        statusEl.textContent = cart.total_price >= threshold ? unlockedText : remainingText.replace('[amount]', remainingAmount);
+        const statusText = cart.total_price >= threshold ? unlockedText : remainingText.replace('[amount]', remainingAmount);
+
+        statusEl.textContent = statusText;
+        if (progressbarEl) {
+          progressbarEl.setAttribute('aria-valuenow', String(Math.min(cart.total_price, threshold)));
+          progressbarEl.setAttribute('aria-valuetext', statusText);
+        }
       }
 
       if (progressEl) progressEl.style.width = `${progress}%`;

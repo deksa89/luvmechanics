@@ -1,54 +1,68 @@
-{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
-
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
-{%- paginate blog.articles by 6 -%}
-  <div class="main-blog page-width section-{{ section.id }}-padding">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ blog.title | escape }}
-    </h1>
-
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
-      {%- for article in blog.articles -%}
-        <div
-          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          {%- render 'article-card',
-            article: article,
-            media_height: section.settings.image_height,
-            media_aspect_ratio: article.image.aspect_ratio,
-            show_image: section.settings.show_image,
-            show_date: section.settings.show_date,
-            show_author: section.settings.show_author,
-            show_excerpt: true
-          -%}
-        </div>
-      {%- endfor -%}
-    </div>
-
-    {%- if paginate.pages > 1 -%}
-      {%- render 'pagination', paginate: paginate -%}
+{{ 'luv-design-system.css' | asset_url | stylesheet_tag }}
+{{ 'luv-collection-articles.css' | asset_url | stylesheet_tag }}
+{{ 'luv-blog-listing.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign page_size = section.settings.articles_per_page | default: 9
+  assign public_topics = section.settings.public_topics | split: ','
+-%}
+{%- capture category_links -%}
+  {%- for category in section.settings.blog_menu.links -%}
+    {%- if category.type == 'blog_link' and category.url != blank -%}
+      <a class="luv-blog__pill" href="{{ category.url }}"{% if category.object.id == blog.id %} aria-current="page"{% endif %}>{{ category.title | escape }}</a>
     {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- capture topic_links -%}
+  {%- for configured_topic in public_topics -%}
+    {%- assign topic = configured_topic | strip -%}
+    {%- if topic != blank and blog.all_tags contains topic -%}
+      <span class="luv-blog__topic{% if current_tags contains topic %} is-active{% endif %}">
+        {%- if current_tags contains topic -%}{{ topic | link_to_remove_tag: topic | replace: '<a ', '<a aria-current="true" ' }}{%- else -%}{{ topic | link_to_add_tag: topic }}{%- endif -%}
+      </span>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign category_links = category_links | strip -%}
+{%- assign topic_links = topic_links | strip -%}
+<div class="luv-blog luv-articles luv-design-scope" style="--articles-top: {{ section.settings.padding_top }}px; --articles-bottom: {{ section.settings.padding_bottom }}px; --articles-mobile-top: {{ section.settings.padding_top | times: 0.75 | round }}px; --articles-mobile-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;">
+  <div class="luv-container">
+    <nav class="luv-blog__breadcrumbs" aria-label="{{ 'luv_blog.breadcrumbs' | t }}"><a href="{{ routes.root_url }}">{{ 'luv_blog.home' | t }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ blog.title | escape }}</span></nav>
+    <header class="luv-blog__intro">
+      <h1>{{ blog.title | escape }}</h1>
+      {%- if section.settings.introduction != blank -%}<div class="luv-blog__description rte">{{ section.settings.introduction }}</div>{%- endif -%}
+    </header>
+    {%- if category_links != blank -%}<nav class="luv-blog__categories" aria-label="{{ 'luv_blog.categories' | t }}">{{ category_links }}</nav>{%- endif -%}
+    {%- if topic_links != blank or current_tags != blank -%}
+      <nav class="luv-blog__topics" aria-label="{{ 'luv_blog.topics' | t }}">
+        <span class="luv-blog__topic-label">{{ 'luv_blog.topics' | t }}</span>
+        <a class="luv-blog__pill" href="{{ blog.url }}"{% if current_tags == blank %} aria-current="page"{% endif %}>{{ 'luv_blog.all_articles' | t }}</a>
+        {{ topic_links }}
+        {%- if current_tags != blank and topic_links == blank -%}<span class="luv-blog__filtered">{{ 'luv_blog.filtered' | t }}</span>{%- endif -%}
+      </nav>
+    {%- endif -%}
+    {%- paginate blog.articles by page_size -%}
+      {%- if blog.articles.size > 0 -%}
+        <div class="luv-articles__grid">
+          {%- for article in blog.articles -%}
+            {%- assign image_loading = 'lazy' -%}{%- if forloop.first -%}{%- assign image_loading = 'eager' -%}{%- endif -%}
+            {% render 'luv-collection-article-card', article: article, section: section, heading_level: 2, image_loading: image_loading %}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="luv-blog__empty" role="status"><p>{{ 'luv_blog.empty' | t }}</p>{%- if current_tags != blank -%}<a href="{{ blog.url }}">{{ 'luv_blog.all_articles' | t }} <span aria-hidden="true">→</span></a>{%- endif -%}</div>
+      {%- endif -%}
+      {%- if paginate.pages > 1 -%}
+        <nav class="luv-blog__pagination" aria-label="{{ 'general.pagination.label' | t }}">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">←</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}<a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>{%- elsif part.title == paginate.current_page -%}<span aria-current="page">{{ part.title }}</span>{%- else -%}<span>{{ part.title }}</span>{%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">→</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
   </div>
-{%- endpaginate -%}
+</div>
 
 {% schema %}
 {
@@ -137,6 +151,37 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "richtext",
+      "id": "introduction",
+      "label": "t:luv_blog.introduction"
+    },
+    {
+      "type": "link_list",
+      "id": "blog_menu",
+      "label": "t:luv_blog.blog_menu"
+    },
+    {
+      "type": "textarea",
+      "id": "public_topics",
+      "label": "t:luv_blog.public_topics",
+      "info": "t:luv_blog.public_topics_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "t:luv_collection_articles.show_excerpt"
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 9,
+      "label": "t:luv_blog.articles_per_page"
     }
   ]
 }

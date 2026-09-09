@@ -1,0 +1,248 @@
+{% liquid
+  assign hero_image = section.settings.desktop_image
+  if hero_image == blank
+    assign hero_image = section.settings.mobile_image
+  endif
+
+  assign mobile_image = section.settings.mobile_image
+  if mobile_image == blank
+    assign mobile_image = hero_image
+  endif
+
+  assign eyebrow = section.settings.eyebrow
+  if eyebrow == blank
+    assign eyebrow = 'luv_home.hero.eyebrow' | t
+  endif
+
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'luv_home.hero.heading' | t
+  endif
+
+  assign body_text = section.settings.body_text
+  if body_text == blank
+    assign body_text = 'luv_home.hero.body' | t
+  endif
+
+  assign primary_label = section.settings.primary_label
+  if primary_label == blank
+    assign primary_label = 'luv_home.hero.primary_cta' | t
+  endif
+
+  assign secondary_label = section.settings.secondary_label
+  if secondary_label == blank
+    assign secondary_label = 'luv_home.hero.secondary_cta' | t
+  endif
+
+  assign hero_alt = section.settings.image_alt
+  if hero_alt == blank and hero_image.alt != blank
+    assign hero_alt = hero_image.alt
+  endif
+  if hero_alt == blank
+    assign hero_alt = 'luv_home.accessibility.hero_image_alt' | t
+  endif
+
+  assign desktop_position = section.settings.desktop_image_position
+  if desktop_position == 'focal'
+    assign desktop_position = hero_image.presentation.focal_point | default: 'center center'
+  endif
+
+  assign mobile_position = section.settings.mobile_image_position
+  if mobile_position == 'focal'
+    assign mobile_position = mobile_image.presentation.focal_point | default: 'center center'
+  endif
+%}
+
+<section
+  class="luv-design-scope luv-home-section luv-home-hero{% unless section.settings.show_overlay_content %} luv-home-hero--image-only{% endunless %}"
+  aria-labelledby="LuvHomeHeroHeading-{{ section.id }}"
+>
+  <div class="luv-container luv-home-hero__container">
+    <div
+      class="luv-home-hero__layout"
+      style="--luv-home-hero-position-desktop: {{ desktop_position }}; --luv-home-hero-position-mobile: {{ mobile_position }};"
+    >
+      {% if section.settings.show_overlay_content %}
+        <div class="luv-home-hero__content">
+          {% if section.settings.promo_label != blank %}
+            <p class="luv-home-hero__promo luv-small-text">{{ section.settings.promo_label | escape }}</p>
+          {% endif %}
+
+          <p class="luv-eyebrow">{{ eyebrow | escape }}</p>
+          <h1 class="luv-display-heading" id="LuvHomeHeroHeading-{{ section.id }}">
+            {{ heading | escape }}
+          </h1>
+          <p class="luv-body-copy luv-text-muted luv-home-hero__body">{{ body_text | escape }}</p>
+
+          {% if section.settings.primary_link != blank or section.settings.secondary_link != blank %}
+            <div class="luv-home-hero__actions">
+              {% if section.settings.primary_link != blank %}
+                <a class="button button--luv-primary" href="{{ section.settings.primary_link }}">
+                  {{ primary_label | escape }}
+                </a>
+              {% endif %}
+              {% if section.settings.secondary_link != blank %}
+                <a class="button button--luv-secondary" href="{{ section.settings.secondary_link }}">
+                  {{ secondary_label | escape }}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <h1 class="visually-hidden" id="LuvHomeHeroHeading-{{ section.id }}">{{ shop.name | escape }}</h1>
+      {% endif %}
+
+      <div class="luv-home-hero__media">
+        {% if hero_image != blank %}
+          <picture>
+            {% if section.settings.mobile_image != blank %}
+              <source
+                media="(max-width: 749px)"
+                srcset="
+                  {{ mobile_image | image_url: width: 375 }} 375w,
+                  {{ mobile_image | image_url: width: 550 }} 550w,
+                  {{ mobile_image | image_url: width: 750 }} 750w,
+                  {{ mobile_image | image_url: width: 990 }} 990w
+                "
+                sizes="100vw"
+              >
+            {% endif %}
+            {{
+              hero_image
+              | image_url: width: 2400
+              | image_tag:
+                class: 'luv-home-hero__image',
+                widths: '750, 990, 1200, 1500, 1800, 2200, 2400',
+                sizes: '(max-width: 749px) 100vw, (min-width: 1600px) 1560px, calc(100vw - 40px)',
+                loading: 'eager',
+                fetchpriority: 'high',
+                alt: hero_alt
+            }}
+          </picture>
+        {% else %}
+          <div class="luv-home-hero__placeholder" role="img" aria-label="{{ hero_alt | escape }}">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luv home hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text override"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Desktop image position",
+      "options": [
+        { "value": "focal", "label": "Use image focal point" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "focal"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile image position",
+      "options": [
+        { "value": "focal", "label": "Use image focal point" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "focal"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay_content",
+      "label": "Show overlay content",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "promo_label",
+      "label": "Optional promo label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv home hero"
+    }
+  ]
+}
+{% endschema %}

@@ -40,7 +40,8 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
-      }
+      },
+      "disabled": true
     },
     "rich_text_wNNfwM": {
       "type": "rich-text",
@@ -161,10 +162,10 @@
     }
   },
   "order": [
+    "main-collection-product-grid",
     "main-collection-banner",
     "image_banner_8ABFm9",
     "rich_text_wNNfwM",
-    "main-collection-product-grid",
     "expandable_category_info_tjEyg7",
     "featured_blog_XXGQDb",
     "newsletter_tPNegD"

@@ -1,0 +1,456 @@
+{%- liquid
+  assign desktop_image = section.settings.desktop_image
+  if desktop_image == blank
+    assign desktop_image = section.settings.mobile_image
+  endif
+
+  assign mobile_image = section.settings.mobile_image
+  if mobile_image == blank
+    assign mobile_image = desktop_image
+  endif
+
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'luv_home.ritual.heading' | t
+  endif
+
+  assign support_text = section.settings.support_text
+  if support_text == blank
+    assign support_text = 'luv_home.ritual.support' | t
+  endif
+
+  assign secondary_label = section.settings.secondary_label
+  if secondary_label == blank
+    assign secondary_label = 'luv_home.ritual.secondary_cta' | t
+  endif
+
+  assign image_alt = section.settings.image_alt
+  if image_alt == blank and desktop_image.alt != blank
+    assign image_alt = desktop_image.alt
+  endif
+  if image_alt == blank
+    assign image_alt = 'luv_home.accessibility.ritual_image_alt' | t
+  endif
+
+  assign desktop_position = section.settings.desktop_image_position
+  if desktop_position == 'focal'
+    assign desktop_position = desktop_image.presentation.focal_point | default: 'center center'
+  endif
+
+  assign mobile_position = section.settings.mobile_image_position
+  if mobile_position == 'focal'
+    assign mobile_position = mobile_image.presentation.focal_point | default: 'center center'
+  endif
+
+  assign valid_product_count = 0
+  for block in section.blocks
+    if block.settings.product != blank
+      assign valid_product_count = valid_product_count | plus: 1
+    endif
+  endfor
+
+  assign has_editorial_image = false
+  if section.settings.desktop_image != blank or section.settings.mobile_image != blank
+    assign has_editorial_image = true
+  endif
+
+  assign storefront_ready = false
+  if has_editorial_image and valid_product_count > 0
+    assign storefront_ready = true
+  endif
+
+  assign should_render = storefront_ready
+  if request.design_mode
+    assign should_render = true
+  endif
+-%}
+{%- if should_render -%}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+
+<section
+  id="luv-home-ritual"
+  class="luv-design-scope luv-home-section luv-home-ritual"
+  aria-labelledby="LuvHomeRitualHeading-{{ section.id }}"
+  style="--luv-home-ritual-padding-top: {{ section.settings.padding_top }}px; --luv-home-ritual-padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <luv-home-ritual data-section-id="{{ section.id }}">
+    <div class="luv-container luv-home-ritual__container">
+      <header class="luv-home-ritual__header">
+        <h2 id="LuvHomeRitualHeading-{{ section.id }}" class="luv-home-ritual__heading">
+          {{- heading | escape -}}
+        </h2>
+        {%- if support_text != blank -%}
+          <p class="luv-home-ritual__support">{{ support_text | escape }}</p>
+        {%- endif -%}
+      </header>
+
+      {%- if request.design_mode and storefront_ready == false -%}
+        <div class="luv-home-ritual__editor-notice">
+          <p><strong>Complete the ritual section setup</strong></p>
+          <p>Assign a desktop or mobile still-life image and at least one hotspot product that is visible in that image.</p>
+        </div>
+      {%- endif -%}
+
+      {%- if desktop_image != blank or request.design_mode -%}
+        <div class="luv-home-ritual__stage{% if valid_product_count == 0 %} luv-home-ritual__stage--image-only{% endif %}">
+          <div
+            class="luv-home-ritual__media"
+            style="--luv-home-ritual-position-desktop: {{ desktop_position }}; --luv-home-ritual-position-mobile: {{ mobile_position }};"
+          >
+            {%- if desktop_image != blank -%}
+              <picture>
+                {%- if section.settings.mobile_image != blank -%}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="
+                      {{ mobile_image | image_url: width: 375 }} 375w,
+                      {{ mobile_image | image_url: width: 550 }} 550w,
+                      {{ mobile_image | image_url: width: 750 }} 750w,
+                      {{ mobile_image | image_url: width: 990 }} 990w
+                    "
+                    sizes="100vw"
+                  >
+                {%- endif -%}
+                {{
+                  desktop_image
+                  | image_url: width: 2400
+                  | image_tag:
+                    class: 'luv-home-ritual__image',
+                    widths: '750, 990, 1200, 1500, 1800, 2200, 2400',
+                    sizes: '(min-width: 1600px) 1560px, (min-width: 1100px) calc(100vw - 80px), (min-width: 750px) calc(100vw - 40px), 100vw',
+                    loading: 'lazy',
+                    alt: image_alt
+                }}
+              </picture>
+            {%- else -%}
+              <div class="luv-home-ritual__placeholder" role="img" aria-label="{{ image_alt | escape }}">
+                {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                <p>{{ 'luv_home.ritual.editor_image_prompt' | t }}</p>
+              </div>
+            {%- endif -%}
+
+            {%- if has_editorial_image -%}
+            {%- assign hotspot_index = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.settings.product != blank -%}
+                {%- liquid
+                  assign hotspot_index = hotspot_index | plus: 1
+                  assign hotspot_product = block.settings.product
+                  assign hotspot_label = block.settings.accessible_label
+                  if hotspot_label == blank
+                    assign hotspot_label = 'luv_home.accessibility.ritual_hotspot' | t: title: hotspot_product.title
+                  endif
+                  assign selected_status = 'luv_home.accessibility.ritual_selected' | t: title: hotspot_product.title
+                  assign is_selected = false
+                  if hotspot_index == 1
+                    assign is_selected = true
+                  endif
+                -%}
+                <button
+                  type="button"
+                  class="luv-home-ritual__hotspot{% if is_selected %} is-selected{% endif %}"
+                  style="--luv-ritual-x-desktop: {{ block.settings.desktop_x }}%; --luv-ritual-y-desktop: {{ block.settings.desktop_y }}%; --luv-ritual-x-mobile: {{ block.settings.mobile_x }}%; --luv-ritual-y-mobile: {{ block.settings.mobile_y }}%;"
+                  aria-label="{{ hotspot_label | escape }}"
+                  aria-controls="LuvHomeRitualCard-{{ section.id }}-{{ block.id }}"
+                  aria-pressed="{% if is_selected %}true{% else %}false{% endif %}"
+                  data-luv-ritual-hotspot
+                  data-status-text="{{ selected_status | escape }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <span class="luv-home-ritual__hotspot-marker" aria-hidden="true">{{ hotspot_index }}</span>
+                </button>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          {%- if valid_product_count > 0 and has_editorial_image -%}
+            <div class="luv-home-ritual__cards">
+              {%- assign card_index = 0 -%}
+              {%- for block in section.blocks -%}
+                {%- if block.settings.product != blank -%}
+                  {%- liquid
+                    assign card_index = card_index | plus: 1
+                    assign card_product = block.settings.product
+                    assign is_selected = false
+                    if card_index == 1
+                      assign is_selected = true
+                    endif
+                    assign product_image_alt = card_product.featured_image.alt | default: card_product.title
+                  -%}
+                  <article
+                    id="LuvHomeRitualCard-{{ section.id }}-{{ block.id }}"
+                    class="luv-home-ritual__card{% if is_selected %} is-selected{% endif %}"
+                    data-luv-ritual-card
+                    {% unless is_selected %}hidden{% endunless %}
+                  >
+                    {%- if card_product.featured_image != blank -%}
+                      <a class="luv-home-ritual__card-media" href="{{ card_product.url }}" tabindex="{% if is_selected %}0{% else %}-1{% endif %}">
+                        {{
+                          card_product.featured_image
+                          | image_url: width: 640
+                          | image_tag:
+                            class: 'luv-home-ritual__card-image',
+                            widths: '160, 240, 320, 480, 640',
+                            sizes: '(min-width: 1100px) 150px, (min-width: 750px) 180px, 96px',
+                            loading: 'lazy',
+                            alt: product_image_alt
+                        }}
+                      </a>
+                    {%- endif -%}
+
+                    <div class="luv-home-ritual__card-content">
+                      {%- if card_product.vendor != blank -%}
+                        <p class="luv-home-ritual__vendor">{{ card_product.vendor | escape }}</p>
+                      {%- endif -%}
+                      <h3 class="luv-home-ritual__product-title">
+                        <a href="{{ card_product.url }}" tabindex="{% if is_selected %}0{% else %}-1{% endif %}">
+                          {{- card_product.title | escape -}}
+                        </a>
+                      </h3>
+                      <p class="luv-home-ritual__availability{% unless card_product.available %} is-sold-out{% endunless %}">
+                        <span aria-hidden="true"></span>
+                        {%- if card_product.available -%}
+                          {{ 'luv_home.ritual.available' | t }}
+                        {%- else -%}
+                          {{ 'products.product.sold_out' | t }}
+                        {%- endif -%}
+                      </p>
+                      {% render 'price',
+                        product: card_product,
+                        use_variant: true,
+                        show_badges: false,
+                        price_class: 'luv-home-ritual__price',
+                        show_compare_at_price: true
+                      %}
+                      <a class="button button--luv-primary luv-home-ritual__product-cta" href="{{ card_product.url }}" tabindex="{% if is_selected %}0{% else %}-1{% endif %}">
+                        {{ 'luv_home.ritual.product_cta' | t }}
+                      </a>
+                    </div>
+                  </article>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <p class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-luv-ritual-status>
+              {%- for block in section.blocks -%}
+                {%- if block.settings.product != blank -%}
+                  {{ 'luv_home.accessibility.ritual_selected' | t: title: block.settings.product.title }}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.secondary_url != blank -%}
+        <div class="luv-home-ritual__secondary">
+          <a class="button button--luv-secondary" href="{{ section.settings.secondary_url }}">
+            {{- secondary_label | escape -}}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </luv-home-ritual>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Luv home ritual",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Support text override",
+      "info": "Leave blank to use the translated default."
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary link label",
+      "info": "Leave blank to use the translated default. The link stays hidden until a URL is selected."
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary link"
+    },
+    {
+      "type": "header",
+      "content": "Editorial image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text override"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Desktop image position",
+      "options": [
+        { "value": "focal", "label": "Use image focal point" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "focal"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile image position",
+      "options": [
+        { "value": "focal", "label": "Use image focal point" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "focal"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Product hotspot",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "accessible_label",
+          "label": "Accessible label override",
+          "info": "Leave blank to use the product title."
+        },
+        {
+          "type": "header",
+          "content": "Desktop position"
+        },
+        {
+          "type": "range",
+          "id": "desktop_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "desktop_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical position",
+          "default": 50
+        },
+        {
+          "type": "header",
+          "content": "Mobile position"
+        },
+        {
+          "type": "range",
+          "id": "mobile_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "mobile_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical position",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luv home ritual",
+      "blocks": [
+        {
+          "type": "hotspot",
+          "settings": { "desktop_x": 24, "desktop_y": 68, "mobile_x": 28, "mobile_y": 72 }
+        },
+        {
+          "type": "hotspot",
+          "settings": { "desktop_x": 46, "desktop_y": 42, "mobile_x": 48, "mobile_y": 44 }
+        },
+        {
+          "type": "hotspot",
+          "settings": { "desktop_x": 67, "desktop_y": 62, "mobile_x": 68, "mobile_y": 66 }
+        },
+        {
+          "type": "hotspot",
+          "settings": { "desktop_x": 82, "desktop_y": 32, "mobile_x": 78, "mobile_y": 30 }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -10,7 +10,10 @@ if (!customElements.get('media-gallery')) {
           thumbnails: this.querySelector('[id^="GalleryThumbnails"]'),
         };
         this.mql = window.matchMedia('(min-width: 750px)');
+        this.verticalThumbnailsMql = window.matchMedia('(min-width: 1200px)');
         if (!this.elements.thumbnails) return;
+
+        this.verticalThumbnailList = this.elements.thumbnails.querySelector('[id^="Slider-Thumbnails"]');
 
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
         this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch) => {
@@ -18,7 +21,87 @@ if (!customElements.get('media-gallery')) {
             .querySelector('button')
             .addEventListener('click', this.setActiveMedia.bind(this, mediaToSwitch.dataset.target, false));
         });
+        this.elements.thumbnails.addEventListener('click', this.onVerticalThumbnailControl.bind(this), true);
+        this.verticalThumbnailsMql.addEventListener('change', this.onVerticalThumbnailLayoutChange.bind(this));
+
+        if ('IntersectionObserver' in window && this.verticalThumbnailList) {
+          const boundaryThumbnails = [
+            this.verticalThumbnailList.firstElementChild,
+            this.verticalThumbnailList.lastElementChild,
+          ].filter(Boolean);
+
+          this.verticalThumbnailBoundaryObserver = new IntersectionObserver(
+            () => this.syncVerticalThumbnailControls(),
+            { root: this.verticalThumbnailList, threshold: 0.95 }
+          );
+          boundaryThumbnails.forEach((thumbnail) => this.verticalThumbnailBoundaryObserver.observe(thumbnail));
+        }
+
+        if ('ResizeObserver' in window && this.verticalThumbnailList) {
+          this.verticalThumbnailResizeObserver = new ResizeObserver(() => {
+            window.requestAnimationFrame(() => this.syncVerticalThumbnailControls());
+          });
+          this.verticalThumbnailResizeObserver.observe(this.verticalThumbnailList);
+        }
+
+        window.requestAnimationFrame(() => this.syncVerticalThumbnailControls());
         if (this.dataset.desktopLayout.includes('thumbnail') && this.mql.matches) this.removeListSemantic();
+      }
+
+      isVerticalThumbnailRail() {
+        return this.verticalThumbnailsMql.matches && this.classList.contains('luv-product-gallery--multiple');
+      }
+
+      onVerticalThumbnailControl(event) {
+        if (!this.isVerticalThumbnailRail()) return;
+        if (!(event.target instanceof Element)) return;
+
+        const button = event.target.closest('[data-lm-thumbnail-rail-control]');
+        if (!button || !this.elements.thumbnails.contains(button) || !this.verticalThumbnailList) return;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        const firstThumbnail = this.verticalThumbnailList.querySelector('.thumbnail-list__item');
+        const styles = window.getComputedStyle(this.verticalThumbnailList);
+        const gap = Number.parseFloat(styles.rowGap || styles.gap) || 0;
+        const itemStep = (firstThumbnail?.offsetHeight || 76) + gap;
+        const itemCount = Number(button.dataset.step || 1);
+        const direction = button.dataset.direction === 'next' ? 1 : -1;
+
+        this.verticalThumbnailList.scrollTo({
+          top: this.verticalThumbnailList.scrollTop + direction * itemStep * itemCount,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        });
+      }
+
+      onVerticalThumbnailLayoutChange() {
+        if (!this.isVerticalThumbnailRail()) {
+          this.elements.thumbnails.querySelectorAll('[data-lm-thumbnail-rail-control]').forEach((button) => {
+            button.removeAttribute('disabled');
+          });
+          this.elements.thumbnails.resetPages?.();
+        }
+
+        window.requestAnimationFrame(() => this.syncVerticalThumbnailControls());
+      }
+
+      syncVerticalThumbnailControls() {
+        if (!this.isVerticalThumbnailRail() || !this.verticalThumbnailList) return;
+
+        const previousButton = this.elements.thumbnails.querySelector(
+          '[data-lm-thumbnail-rail-control][data-direction="previous"]'
+        );
+        const nextButton = this.elements.thumbnails.querySelector(
+          '[data-lm-thumbnail-rail-control][data-direction="next"]'
+        );
+        const atStart = this.verticalThumbnailList.scrollTop <= 1;
+        const atEnd =
+          this.verticalThumbnailList.scrollTop + this.verticalThumbnailList.clientHeight >=
+          this.verticalThumbnailList.scrollHeight - 1;
+
+        previousButton?.toggleAttribute('disabled', atStart);
+        nextButton?.toggleAttribute('disabled', atEnd);
       }
 
       onSlideChanged(event) {
@@ -77,6 +160,24 @@ if (!customElements.get('media-gallery')) {
           .querySelectorAll('button')
           .forEach((element) => element.removeAttribute('aria-current'));
         thumbnail.querySelector('button').setAttribute('aria-current', true);
+
+        if (this.isVerticalThumbnailRail() && this.verticalThumbnailList) {
+          const thumbnailTop = thumbnail.offsetTop;
+          const thumbnailBottom = thumbnailTop + thumbnail.offsetHeight;
+          const visibleTop = this.verticalThumbnailList.scrollTop;
+          const visibleBottom = visibleTop + this.verticalThumbnailList.clientHeight;
+
+          if (thumbnailTop < visibleTop || thumbnailBottom > visibleBottom) {
+            this.verticalThumbnailList.scrollTo({
+              top: Math.max(thumbnailTop - (this.verticalThumbnailList.clientHeight - thumbnail.offsetHeight) / 2, 0),
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            });
+          }
+
+          this.syncVerticalThumbnailControls();
+          return;
+        }
+
         if (this.elements.thumbnails.isSlideVisible(thumbnail, 10)) return;
 
         this.elements.thumbnails.slider.scrollTo({ left: thumbnail.offsetLeft });

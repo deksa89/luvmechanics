@@ -15,7 +15,8 @@
         "show_collection_description": true,
         "show_collection_image": true,
         "color_scheme": "scheme-1"
-      }
+      },
+      "disabled": true
     },
     "image_with_text_custom_bDtdpP": {
       "type": "image-with-text-custom",
@@ -113,10 +114,10 @@
     }
   },
   "order": [
+    "main-collection-product-grid",
     "main-collection-banner",
     "image_with_text_custom_bDtdpP",
     "rich_text_4W4W7P",
-    "main-collection-product-grid",
     "newsletter_tPNegD"
   ]
 }

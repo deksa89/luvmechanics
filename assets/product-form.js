@@ -98,11 +98,12 @@ if (!customElements.get('product-form')) {
           })
           .catch((e) => {
             console.error(e);
+            if (this.dataset.catalogError) this.handleErrorMessage(this.dataset.catalogError);
           })
           .finally(() => {
             this.submitButton.classList.remove('loading');
             if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
-            if (!this.error) this.submitButton.removeAttribute('aria-disabled');
+            if (!this.error || this.dataset.catalogError) this.submitButton.removeAttribute('aria-disabled');
             this.querySelector('.loading__spinner').classList.add('hidden');
 
             CartPerformance.measureFromEvent("add:user-action", evt);

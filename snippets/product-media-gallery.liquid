@@ -33,23 +33,37 @@
     assign hide_mobile_slider = true
   endif
 
-  if section.settings.media_size == 'large'
+  if luv_media_width != blank
+    assign media_width = luv_media_width
+  elsif section.settings.media_size == 'large'
     assign media_width = 0.65
   elsif section.settings.media_size == 'medium'
     assign media_width = 0.55
   elsif section.settings.media_size == 'small'
     assign media_width = 0.45
   endif
+
+  assign luv_max_inner_width = settings.page_width | minus: 40
+  assign luv_max_media_width = luv_max_inner_width | minus: 64 | times: 57 | divided_by: 100
+  assign luv_max_multi_stage_width = luv_max_media_width | minus: 92
+
+  capture luv_media_sizes
+    if media_count > 1
+      echo '(min-width: ' | append: settings.page_width | append: 'px) ' | append: luv_max_multi_stage_width | append: 'px, (min-width: 1200px) calc(55vw - 12rem), (min-width: 990px) calc(55vw - 4rem), calc(100vw - 4rem)'
+    else
+      echo '(min-width: ' | append: settings.page_width | append: 'px) ' | append: luv_max_media_width | append: 'px, (min-width: 1200px) calc(55vw - 2rem), (min-width: 990px) calc(55vw - 4rem), calc(100vw - 4rem)'
+    endif
+  endcapture
+  assign luv_media_sizes = luv_media_sizes | strip
 -%}
 
 <media-gallery
   id="MediaGallery-{{ section.id }}"
+  class="luv-product-gallery{% if media_count > 1 %} luv-product-gallery--multiple{% else %} luv-product-gallery--single{% endif %}{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
   role="region"
-  {% if section.settings.enable_sticky_info %}
-    class="product__column-sticky"
-  {% endif %}
   aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
   data-desktop-layout="{{ section.settings.gallery_layout }}"
+  data-media-count="{{ media_count }}"
 >
   <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
   <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
@@ -79,6 +93,7 @@
             modal_id: section.id,
             xr_button: true,
             media_width: media_width,
+            media_sizes: luv_media_sizes,
             media_fit: section.settings.media_fit,
             constrain_to_viewport: section.settings.constrain_to_viewport,
             lazy_load: false
@@ -117,6 +132,7 @@
               modal_id: section.id,
               xr_button: true,
               media_width: media_width,
+              media_sizes: luv_media_sizes,
               media_fit: section.settings.media_fit,
               constrain_to_viewport: section.settings.constrain_to_viewport,
               lazy_load: lazy_load
@@ -185,6 +201,19 @@
       id="GalleryThumbnails-{{ section.id }}"
       class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
     >
+      <button
+        type="button"
+        class="slider-button slider-button--prev luv-product-gallery__rail-button"
+        aria-label="{{ 'general.slider.previous_slide' | t }}"
+        aria-controls="GalleryThumbnails-{{ section.id }}"
+        data-lm-thumbnail-rail-control
+        data-direction="previous"
+        data-step="3"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
       <button
         type="button"
         class="slider-button slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
@@ -321,6 +350,19 @@
         name="next"
         aria-label="{{ 'general.slider.next_slide' | t }}"
         aria-controls="GalleryThumbnails-{{ section.id }}"
+        data-step="3"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
+      <button
+        type="button"
+        class="slider-button slider-button--next luv-product-gallery__rail-button"
+        aria-label="{{ 'general.slider.next_slide' | t }}"
+        aria-controls="GalleryThumbnails-{{ section.id }}"
+        data-lm-thumbnail-rail-control
+        data-direction="next"
         data-step="3"
       >
         <span class="svg-wrapper">

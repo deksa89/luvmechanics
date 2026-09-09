@@ -580,13 +580,50 @@
   }
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<footer class="footer footer--luv color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
   {%- liquid
     assign show_footer_newsletter = section.settings.newsletter_enable
+    if show_footer_newsletter and request.page_type == 'index' and section.settings.hide_newsletter_home
+      assign show_footer_newsletter = false
+    endif
     if template.name == 'collection' and template.suffix == 'luv-landing'
       assign show_footer_newsletter = false
     endif
 
+
+    assign footer_newsletter_heading = section.settings.newsletter_heading
+    if footer_newsletter_heading == blank
+      assign footer_newsletter_heading = 'sections.footer.newsletter_heading' | t
+    endif
+
+    assign footer_newsletter_subtext = section.settings.newsletter_subtext
+    if footer_newsletter_subtext == blank
+      assign footer_newsletter_subtext = 'sections.footer.newsletter_subtext' | t
+    endif
+
+    assign footer_newsletter_disclaimer = section.settings.newsletter_disclaimer
+    assign use_default_newsletter_disclaimer = false
+    if footer_newsletter_disclaimer == blank
+      assign footer_newsletter_disclaimer = 'sections.footer.newsletter_disclaimer' | t
+      assign use_default_newsletter_disclaimer = true
+    endif
+
+    assign footer_brand_description = section.settings.brand_description
+    if footer_brand_description == blank
+      assign footer_brand_description = shop.description
+    endif
+
+    assign footer_legal_heading = section.settings.legal_heading
+    if footer_legal_heading == blank
+      assign footer_legal_heading = 'sections.footer.legal_heading' | t
+    endif
+    assign footer_logo_width = section.settings.footer_logo_width | default: 220
+
+
+    assign email_val = section.settings.contact_email | default: shop.email
+    assign phone_val = section.settings.contact_phone | default: shop.phone
+    assign render_contact_in_help = true
+    assign render_policies_in_footer_grid = true
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
       assign has_social_icons = false
@@ -607,22 +644,46 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
-    <div class="footer__content-top page-width">
+    <div class="footer__content-top page-width{% if show_footer_newsletter %} footer__content-top--has-newsletter{% endif %}">
       <div
         class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
         {% endif %}
       >
+        <div class="luv-footer__brand">
+          {%- if settings.logo != blank -%}
+            {%- assign footer_logo_height = footer_logo_width | divided_by: settings.logo.aspect_ratio -%}
+            <a href="{{ routes.root_url }}" class="luv-footer__logo-link" aria-label="{{ shop.name | escape }}">
+              {{
+                settings.logo
+                | image_url: width: 600
+                | image_tag:
+                  class: 'luv-footer__logo',
+                  loading: 'lazy',
+                  widths: '120, 160, 200, 240, 320, 480, 600',
+                  width: footer_logo_width,
+                  height: footer_logo_height,
+                  alt: shop.name
+              }}
+            </a>
+          {%- else -%}
+            <a href="{{ routes.root_url }}" class="luv-footer__wordmark">{{ shop.name | escape }}</a>
+          {%- endif -%}
+
+          {%- if footer_brand_description != blank -%}
+            <div class="luv-footer__brand-description rte">{{ footer_brand_description }}</div>
+          {%- endif -%}
+        </div>
         {%- if show_footer_newsletter -%}
           <div class="footer-block__newsletter">
-            {%- if section.settings.newsletter_heading != blank -%}
-              <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+            {%- if footer_newsletter_heading != blank -%}
+              <h2 class="footer-block__heading inline-richtext">{{ footer_newsletter_heading }}</h2>
             {%- endif -%}
 
-            {%- if section.settings.newsletter_subtext != blank -%}
+            {%- if footer_newsletter_subtext != blank -%}
               <div class="footer-block__subtext rte">
-                {{ section.settings.newsletter_subtext }}
+                {{ footer_newsletter_subtext }}
               </div>
             {%- endif -%}
             {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
@@ -656,12 +717,9 @@
                     type="submit"
                     class="newsletter-form__button field__button"
                     name="commit"
-                    id="Subscribe"
-                    aria-label="{{ 'newsletter.button_label' | t }}"
+                    id="Subscribe--{{ section.id }}"
                   >
-                    <span class="svg-wrapper">
-                      {{- 'icon-arrow.svg' | inline_asset_content -}}
-                    </span>
+                    {{- 'newsletter.button_label' | t -}}
                   </button>
                 </div>
                 {%- if form.errors -%}
@@ -689,9 +747,21 @@
               {%- endif -%}
             {%- endform -%}
 
-            {%- if section.settings.newsletter_disclaimer != blank -%}
+            {%- if footer_newsletter_disclaimer != blank -%}
               <div class="footer-block__newsletter-note rte">
-                {{ section.settings.newsletter_disclaimer }}
+                {%- if use_default_newsletter_disclaimer -%}
+                  <p>
+                    {{ footer_newsletter_disclaimer }}
+                    {%- if shop.terms_of_service != blank %}
+                      <a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title | escape }}</a>
+                    {%- endif -%}
+                    {%- if shop.privacy_policy != blank %}
+                      <a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title | escape }}</a>
+                    {%- endif -%}
+                  </p>
+                {%- else -%}
+                  {{ footer_newsletter_disclaimer }}
+                {%- endif -%}
               </div>
             {%- endif -%}
           </div>
@@ -721,12 +791,20 @@
           endif
         -%}
         <div
-          class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="footer__blocks-wrapper luv-footer__desktop-navigation grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
           {% endif %}
         >
           {%- for block in section.blocks -%}
+            {%- liquid
+              assign block_heading = block.settings.heading
+              if block.type == 'footer_plain_menu' and block.settings.use_localized_defaults
+                assign block_heading = 'sections.footer.help_heading' | t
+              elsif block.type == 'link_list' and block_heading == blank
+                assign block_heading = 'sections.footer.shopping_heading' | t
+              endif
+            -%}
             <div
               class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
               {{ block.shopify_attributes }}
@@ -735,42 +813,60 @@
                 style="--animation-order: {{ forloop.index }};"
               {% endif %}
             >
-              {%- if block.settings.heading != blank -%}
-                <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+              {%- if block_heading != blank -%}
+                <h2 class="footer-block__heading inline-richtext" id="FooterBlockHeading-{{ block.id }}">{{- block_heading -}}</h2>
               {%- endif -%}
 
               {%- case block.type -%}
                 {%- when '@app' -%}
                   {% render block %}
                 {%- when 'footer_plain_menu' -%}
-                <div class="footer-block__details-content">
-                  <ul class="footer-plain-menu list-unstyled">
-                    {%- if block.settings.item_1 != blank -%}<li>{{ block.settings.item_1 }}</li>{%- endif -%}
-                    {%- if block.settings.item_2 != blank -%}<li>{{ block.settings.item_2 }}</li>{%- endif -%}
-                    {%- if block.settings.item_3 != blank -%}<li>{{ block.settings.item_3 }}</li>{%- endif -%}
-                    {%- if block.settings.item_4 != blank -%}<li>{{ block.settings.item_4 }}</li>{%- endif -%}
-                    {%- if block.settings.item_5 != blank -%}<li>{{ block.settings.item_5 }}</li>{%- endif -%}
-                    {%- if block.settings.item_6 != blank -%}<li>{{ block.settings.item_6 }}</li>{%- endif -%}
-                  </ul>
-                </div>
+                  <div class="footer-block__details-content">
+                    <ul class="footer-plain-menu list-unstyled">
+                      {%- if block.settings.use_localized_defaults -%}
+                        <li>{{ 'sections.footer.discreet_packaging' | t }}</li>
+                        <li>{{ 'sections.footer.product_manuals' | t }}</li>
+                      {%- else -%}
+                        {%- if block.settings.item_1 != blank -%}<li>{{ block.settings.item_1 }}</li>{%- endif -%}
+                        {%- if block.settings.item_2 != blank -%}<li>{{ block.settings.item_2 }}</li>{%- endif -%}
+                        {%- if block.settings.item_3 != blank -%}<li>{{ block.settings.item_3 }}</li>{%- endif -%}
+                        {%- if block.settings.item_4 != blank -%}<li>{{ block.settings.item_4 }}</li>{%- endif -%}
+                        {%- if block.settings.item_5 != blank -%}<li>{{ block.settings.item_5 }}</li>{%- endif -%}
+                        {%- if block.settings.item_6 != blank -%}<li>{{ block.settings.item_6 }}</li>{%- endif -%}
+                      {%- endif -%}
+                    </ul>
+                    {%- if render_contact_in_help and email_val != blank or phone_val != blank -%}
+                      <address class="luv-footer__contact">
+                        {%- if phone_val != blank -%}
+                          {%- assign tel_clean = phone_val | remove: ' ' | remove: '(' | remove: ')' | remove: '-' -%}
+                          <p><a href="tel:{{ tel_clean }}" class="link link--text">{{ phone_val | escape }}</a></p>
+                        {%- endif -%}
+                        {%- if email_val != blank -%}
+                          <p><a href="mailto:{{ email_val | strip }}" class="link link--text">{{ email_val | escape }}</a></p>
+                        {%- endif -%}
+                      </address>
+                    {%- endif -%}
+                  </div>
                 {%- when 'text' -%}
                   <div class="footer-block__details-content rte">
                     {{ block.settings.subtext }}
                   </div>
                 {%- when 'link_list' -%}
                   {%- if block.settings.menu != blank -%}
-                    <ul class="footer-block__details-content list-unstyled">
-                      {%- for link in block.settings.menu.links -%}
-                        <li>
-                          <a
-                            href="{{ link.url }}"
-                            class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
-                          >
-                            {{ link.title | escape }}
-                          </a>
-                        </li>
-                      {%- endfor -%}
-                    </ul>
+                    <nav aria-labelledby="FooterBlockHeading-{{ block.id }}">
+                      <ul class="footer-block__details-content list-unstyled">
+                        {%- for link in block.settings.menu.links -%}
+                          <li>
+                            <a
+                              href="{{ link.url }}"
+                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                            >
+                              {{ link.title | escape }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </nav>
                   {%- endif -%}
                 {%- when 'brand_information' -%}
                   <div class="footer-block__brand-info">
@@ -822,13 +918,197 @@
               {%- endcase -%}
             </div>
           {%- endfor -%}
+          {%- if section.settings.show_policy -%}
+            <div class="footer-block grid__item footer-block--menu luv-footer__legal">
+              <h2 class="footer-block__heading inline-richtext" id="FooterLegalHeading-{{ section.id }}">
+                {{- footer_legal_heading -}}
+              </h2>
+              <nav aria-labelledby="FooterLegalHeading-{{ section.id }}">
+                <ul class="footer-block__details-content list-unstyled">
+                  {%- assign rendered_footer_urls = '|' -%}
+                  {%- for policy in shop.policies -%}
+                    {%- if policy != blank -%}
+                      {%- unless policy.url contains 'contact-information' -%}
+                        {%- assign policy_url_key = policy.url | prepend: '|' | append: '|' -%}
+                        {%- unless rendered_footer_urls contains policy_url_key -%}
+                          <li><a href="{{ policy.url }}" class="link link--text list-menu__item list-menu__item--link">{{ policy.title | escape }}</a></li>
+                          {%- assign rendered_footer_urls = rendered_footer_urls | append: policy.url | append: '|' -%}
+                        {%- endunless -%}
+                      {%- endunless -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- assign footer_legal_page_handles = 'impressum,payment-terms,delivery,return-and-replacement,terms-and-conditions' | split: ',' -%}
+                  {%- for page_handle in footer_legal_page_handles -%}
+                    {%- assign legal_page = pages[page_handle] -%}
+                    {%- if legal_page != blank -%}
+                      {%- assign legal_page_url_key = legal_page.url | prepend: '|' | append: '|' -%}
+                      {%- unless rendered_footer_urls contains legal_page_url_key -%}
+                        <li><a href="{{ legal_page.url }}" class="link link--text list-menu__item list-menu__item--link">{{ legal_page.title | escape }}</a></li>
+                        {%- assign rendered_footer_urls = rendered_footer_urls | append: legal_page.url | append: '|' -%}
+                      {%- endunless -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- assign footer_navigation = linklists.footer -%}
+                  {%- if footer_navigation != blank and footer_navigation.links.size > 0 -%}
+                    {%- for link in footer_navigation.links -%}
+                      {%- assign footer_link_url_key = link.url | prepend: '|' | append: '|' -%}
+                      {%- unless rendered_footer_urls contains footer_link_url_key -%}
+                        {%- assign footer_link_title = link.title | downcase -%}
+                        {%- assign is_contract_link = false -%}
+                        {%- if footer_link_title contains 'contract' or footer_link_title contains 'ugovor' or link.url contains 'cancel-contract' -%}
+                          {%- assign is_contract_link = true -%}
+                        {%- endif -%}
+                        <li{% if is_contract_link %} class="footer-contract-link-item"{% endif %}>
+                          <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if is_contract_link %} footer-contract-link{% endif %}">{{ link.title | escape }}</a>
+                        </li>
+                        {%- assign rendered_footer_urls = rendered_footer_urls | append: link.url | append: '|' -%}
+                      {%- endunless -%}
+                    {%- endfor -%}
+                  {%- endif -%}
+                </ul>
+              </nav>
+            </div>
+          {%- endif -%}
         </div>
+
+        <nav class="luv-footer__mobile-navigation" aria-label="{{ shop.name | escape }}">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign block_heading = block.settings.heading
+              if block.type == 'footer_plain_menu' and block.settings.use_localized_defaults
+                assign block_heading = 'sections.footer.help_heading' | t
+              elsif block.type == 'link_list' and block_heading == blank
+                assign block_heading = 'sections.footer.shopping_heading' | t
+              endif
+            -%}
+
+            {%- case block.type -%}
+              {%- when 'link_list' -%}
+                {%- if block.settings.menu != blank and block_heading != blank -%}
+                  <details class="luv-footer__accordion">
+                    <summary class="luv-footer__accordion-summary">
+                      <span>{{ block_heading }}</span>
+                      <span class="luv-footer__accordion-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="luv-footer__accordion-content">
+                      <ul class="footer-block__details-content list-unstyled">
+                        {%- for link in block.settings.menu.links -%}
+                          <li>
+                            <a
+                              href="{{ link.url }}"
+                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                            >
+                              {{ link.title | escape }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </details>
+                {%- endif -%}
+
+              {%- when 'footer_plain_menu' -%}
+                {%- if block_heading != blank -%}
+                  <details class="luv-footer__accordion">
+                    <summary class="luv-footer__accordion-summary">
+                      <span>{{ block_heading }}</span>
+                      <span class="luv-footer__accordion-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="luv-footer__accordion-content">
+                      <ul class="footer-plain-menu list-unstyled">
+                        {%- if block.settings.use_localized_defaults -%}
+                          <li>{{ 'sections.footer.discreet_packaging' | t }}</li>
+                          <li>{{ 'sections.footer.product_manuals' | t }}</li>
+                        {%- else -%}
+                          {%- if block.settings.item_1 != blank -%}<li>{{ block.settings.item_1 }}</li>{%- endif -%}
+                          {%- if block.settings.item_2 != blank -%}<li>{{ block.settings.item_2 }}</li>{%- endif -%}
+                          {%- if block.settings.item_3 != blank -%}<li>{{ block.settings.item_3 }}</li>{%- endif -%}
+                          {%- if block.settings.item_4 != blank -%}<li>{{ block.settings.item_4 }}</li>{%- endif -%}
+                          {%- if block.settings.item_5 != blank -%}<li>{{ block.settings.item_5 }}</li>{%- endif -%}
+                          {%- if block.settings.item_6 != blank -%}<li>{{ block.settings.item_6 }}</li>{%- endif -%}
+                        {%- endif -%}
+                      </ul>
+
+                      {%- if render_contact_in_help -%}
+                        {%- if email_val != blank or phone_val != blank -%}
+                          <address class="luv-footer__contact">
+                            {%- if phone_val != blank -%}
+                              {%- assign tel_clean = phone_val | remove: ' ' | remove: '(' | remove: ')' | remove: '-' -%}
+                              <p><a href="tel:{{ tel_clean }}" class="link link--text">{{ phone_val | escape }}</a></p>
+                            {%- endif -%}
+                            {%- if email_val != blank -%}
+                              <p><a href="mailto:{{ email_val | strip }}" class="link link--text">{{ email_val | escape }}</a></p>
+                            {%- endif -%}
+                          </address>
+                        {%- endif -%}
+                      {%- endif -%}
+                    </div>
+                  </details>
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
+
+          {%- if section.settings.show_policy -%}
+            <details class="luv-footer__accordion">
+              <summary class="luv-footer__accordion-summary">
+                <span>{{ footer_legal_heading }}</span>
+                <span class="luv-footer__accordion-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="luv-footer__accordion-content">
+                <ul class="footer-block__details-content list-unstyled">
+                  {%- assign rendered_footer_urls = '|' -%}
+                  {%- for policy in shop.policies -%}
+                    {%- if policy != blank -%}
+                      {%- unless policy.url contains 'contact-information' -%}
+                        {%- assign policy_url_key = policy.url | prepend: '|' | append: '|' -%}
+                        {%- unless rendered_footer_urls contains policy_url_key -%}
+                          <li><a href="{{ policy.url }}" class="link link--text list-menu__item list-menu__item--link">{{ policy.title | escape }}</a></li>
+                          {%- assign rendered_footer_urls = rendered_footer_urls | append: policy.url | append: '|' -%}
+                        {%- endunless -%}
+                      {%- endunless -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- assign footer_legal_page_handles = 'impressum,payment-terms,delivery,return-and-replacement,terms-and-conditions' | split: ',' -%}
+                  {%- for page_handle in footer_legal_page_handles -%}
+                    {%- assign legal_page = pages[page_handle] -%}
+                    {%- if legal_page != blank -%}
+                      {%- assign legal_page_url_key = legal_page.url | prepend: '|' | append: '|' -%}
+                      {%- unless rendered_footer_urls contains legal_page_url_key -%}
+                        <li><a href="{{ legal_page.url }}" class="link link--text list-menu__item list-menu__item--link">{{ legal_page.title | escape }}</a></li>
+                        {%- assign rendered_footer_urls = rendered_footer_urls | append: legal_page.url | append: '|' -%}
+                      {%- endunless -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- assign footer_navigation = linklists.footer -%}
+                  {%- if footer_navigation != blank and footer_navigation.links.size > 0 -%}
+                    {%- for link in footer_navigation.links -%}
+                      {%- assign footer_link_url_key = link.url | prepend: '|' | append: '|' -%}
+                      {%- unless rendered_footer_urls contains footer_link_url_key -%}
+                        {%- assign footer_link_title = link.title | downcase -%}
+                        {%- assign is_contract_link = false -%}
+                        {%- if footer_link_title contains 'contract' or footer_link_title contains 'ugovor' or link.url contains 'cancel-contract' -%}
+                          {%- assign is_contract_link = true -%}
+                        {%- endif -%}
+                        <li{% if is_contract_link %} class="footer-contract-link-item"{% endif %}>
+                          <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if is_contract_link %} footer-contract-link{% endif %}">{{ link.title | escape }}</a>
+                        </li>
+                        {%- assign rendered_footer_urls = rendered_footer_urls | append: link.url | append: '|' -%}
+                      {%- endunless -%}
+                    {%- endfor -%}
+                  {%- endif -%}
+                </ul>
+              </div>
+            </details>
+          {%- endif -%}
+        </nav>
       {%- endif -%}
 
-      {%- assign email_val = section.settings.contact_email | default: shop.email -%}
-      {%- assign phone_val = section.settings.contact_phone | default: shop.phone -%}
-
-      {%- if email_val != blank or phone_val != blank -%}
+      {%- if render_contact_in_help == false -%}
+        {%- if email_val != blank or phone_val != blank -%}
         <div class="footer__contact">
           <address class="footer-contact__list">
             {%- if phone_val != blank -%}
@@ -844,6 +1124,7 @@
             {%- endif -%}
           </address>
         </div>
+      {%- endif -%}
       {%- endif -%}
     </div>
     {%- endunless -%}
@@ -902,7 +1183,7 @@
           <small class="copyright__content"
             >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
           </small>
-          {%- if section.settings.show_policy -%}
+          {%- if section.settings.show_policy and render_policies_in_footer_grid == false -%}
             <ul class="policies list-unstyled">
               {%- assign rendered_footer_urls = '|' -%}
 
@@ -1037,6 +1318,12 @@
           "id": "heading",
           "label": "Heading",
           "default": "Help"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_localized_defaults",
+          "label": "Use localized Help defaults",
+          "default": false
         },
         {
           "type": "text",
@@ -1180,6 +1467,30 @@
     },
     {
       "type": "header",
+      "content": "Brand"
+    },
+    {
+      "type": "range",
+      "id": "footer_logo_width",
+      "min": 120,
+      "max": 280,
+      "step": 10,
+      "unit": "px",
+      "label": "Footer logo width",
+      "default": 220
+    },
+    {
+      "type": "richtext",
+      "id": "brand_description",
+      "label": "Brand description"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "legal_heading",
+      "label": "Legal heading"
+    },
+    {
+      "type": "header",
       "content": "t:sections.footer.settings.header__1.content",
       "info": "t:sections.footer.settings.header__1.info"
     },
@@ -1188,6 +1499,13 @@
       "id": "newsletter_enable",
       "default": true,
       "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_newsletter_home",
+      "default": false,
+      "label": "Hide newsletter on homepage",
+      "info": "Use when a dedicated homepage newsletter section is enabled."
     },
     {
       "type": "inline_richtext",

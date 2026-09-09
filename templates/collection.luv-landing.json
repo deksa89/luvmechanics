@@ -14,7 +14,8 @@
       "settings": {
         "cta_label": "SHOP PRODUCTS",
         "overlay_strength": 55
-      }
+      },
+      "disabled": true
     },
     "luv_collection_trust_bar": {
       "type": "luv-collection-trust-bar",
@@ -22,7 +23,8 @@
         "trust_item_1_label": "Discreet delivery",
         "trust_item_2_label": "Secure shopping",
         "trust_item_3_label": "Help choosing"
-      }
+      },
+      "disabled": true
     },
     "luv_collection_featured_products": {
       "type": "luv-collection-featured-products",
@@ -72,7 +74,8 @@
         "benefit_4_icon": "support",
         "benefit_4_title": "Reliable support",
         "benefit_4_text": "We are here for questions about products and orders."
-      }
+      },
+      "disabled": true
     },
     "luv_collection_newsletter": {
       "type": "luv-collection-newsletter",
@@ -85,11 +88,11 @@
     }
   },
   "order": [
+    "luv_collection_product_grid",
     "luv_collection_hero",
     "luv_collection_trust_bar",
     "luv_collection_featured_products",
     "luv_collection_product_finder",
-    "luv_collection_product_grid",
     "luv_collection_buying_guide",
     "luv_collection_editorial",
     "luv_collection_benefits",

@@ -75,6 +75,7 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
+        "hide_on_homepage": true,
         "section_bg_color": "#ffffff",
         "heading_color": "#111111",
         "card_bg_color": "#ffffff",
@@ -108,10 +109,18 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "footer_shopping_menu_phase16": {
+          "type": "link_list",
+          "settings": {
+            "heading": "",
+            "menu": "main-menu"
+          }
+        },
         "footer_plain_menu_JM3d3H": {
           "type": "footer_plain_menu",
           "settings": {
             "heading": "Help",
+            "use_localized_defaults": true,
             "item_1": "",
             "item_2": "",
             "item_3": "",
@@ -122,14 +131,19 @@
         }
       },
       "block_order": [
+        "footer_shopping_menu_phase16",
         "footer_plain_menu_JM3d3H"
       ],
       "settings": {
         "color_scheme": "scheme-9c4b1816-9fac-451e-85c0-6ff2947bcc20",
+        "footer_logo_width": 220,
+        "brand_description": "",
+        "legal_heading": "",
         "newsletter_enable": true,
-        "newsletter_heading": "Sign up today",
-        "newsletter_subtext": "<p>Get personalized weekly content, updates, and special offers.</p>",
-        "newsletter_disclaimer": "<p>By submitting your email you agree to receive marketing messages from LuvMechanics. View <a href=\"/pages/terms-and-conditions\">Terms</a> & <a href=\"/policies/privacy-policy\">Privacy</a>.</p>",
+        "hide_newsletter_home": true,
+        "newsletter_heading": "",
+        "newsletter_subtext": "",
+        "newsletter_disclaimer": "",
         "social_media_heading": "Follow Us",
         "enable_follow_on_shop": true,
         "show_social": true,

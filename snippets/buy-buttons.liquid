@@ -85,13 +85,26 @@
                 </span>
               </label>
               <div class="price-per-item__container">
-                <div class="lm-qty">
+                <quantity-input class="quantity lm-qty">
+                  <button
+                    class="quantity__button lm-qty__button"
+                    name="minus"
+                    type="button"
+                    {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+                  >
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                    </span>
+                    <span class="svg-wrapper">{{ 'icon-minus.svg' | inline_asset_content }}</span>
+                  </button>
                   <input
-                    class="lm-qty__input"
+                    class="quantity__input lm-qty__input"
                     type="number"
                     name="quantity"
                     id="Quantity-{{ section.id }}"
                     data-cart-quantity="{{ cart_qty }}"
+                    data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                    data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
                     min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                     {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
                       max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
@@ -100,8 +113,20 @@
                     value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                     form="{{ product_form_id }}"
                     inputmode="numeric"
+                    {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
                   >
-                </div>
+                  <button
+                    class="quantity__button lm-qty__button"
+                    name="plus"
+                    type="button"
+                    {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+                  >
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                    </span>
+                    <span class="svg-wrapper">{{ 'icon-plus.svg' | inline_asset_content }}</span>
+                  </button>
+                </quantity-input>
                 {%- liquid
                   assign volume_pricing_array = product.selected_or_first_available_variant.quantity_price_breaks | sort: 'quantity' | reverse
                   assign current_qty_for_volume_pricing = cart_qty | plus: product.selected_or_first_available_variant.quantity_rule.min
@@ -272,7 +297,10 @@
                 id="ProductSubmitButton-{{ section_id }}"
                 type="submit"
                 name="add"
-                class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+                class="product-form__submit button button--full-width button--primary"
+                data-add-to-cart-label="{{ 'products.product.add_to_cart' | t | escape }}"
+                data-sold-out-label="{{ 'products.product.sold_out' | t | escape }}"
+                data-unavailable-label="{{ 'products.product.unavailable' | t | escape }}"
                 {% if product.selected_or_first_available_variant.available == false
                   or quantity_rule_soldout
                   or product.selected_or_first_available_variant == null
@@ -291,10 +319,13 @@
                 </span>
                 {%- render 'loading-spinner' -%}
               </button>
-              {%- if show_dynamic_checkout -%}
-                {{ form | payment_button }}
-              {%- endif -%}
             </div>
+
+            {%- if show_dynamic_checkout -%}
+              <div class="lm-dynamic-checkout">
+                {{ form | payment_button }}
+              </div>
+            {%- endif -%}
 
           </div>
         </div>

@@ -261,6 +261,11 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {%- if request.page_type == 'index' -%}
+      {{ 'luv-design-system.css' | asset_url | stylesheet_tag }}
+      {{ 'luv-home.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'luv-home.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}

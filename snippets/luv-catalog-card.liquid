@@ -1,0 +1,48 @@
+{% doc %}
+  Collection-only product card using the theme product form and cart integration.
+  @param {product} product - Product to display
+  @param {string} section_id - Section identifier
+  @param {number} position - Position in the collection
+{% enddoc %}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign form_id = 'CatalogProduct-' | append: section_id | append: '-' | append: product.id
+  assign image_alt = product.featured_image.alt | default: product.title
+  assign image_loading = 'lazy'
+  if position <= 4
+    assign image_loading = 'eager'
+  endif
+-%}
+<article class="luv-catalog__card" data-product-url="{{ product.url | escape }}">
+  <a class="luv-catalog__product-link" href="{{ product.url }}" data-luv-track="product-grid-product" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle | escape }}" data-product-title="{{ product.title | escape }}" data-product-vendor="{{ product.vendor | escape }}" data-variant-id="{{ variant.id }}" data-price="{{ variant.price | divided_by: 100.0 }}" data-position="{{ position }}">
+    <div class="luv-catalog__media">
+      {%- if product.available == false -%}<span class="luv-catalog__badge">{{ 'products.product.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price > product.price -%}<span class="luv-catalog__badge">{{ 'products.product.on_sale' | t }}</span>
+      {%- elsif product.tags contains 'new' -%}<span class="luv-catalog__badge">{{ 'luv_catalog.new' | t }}</span>{%- endif -%}
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 720 | image_tag: widths: '180, 240, 360, 480, 720', sizes: '(min-width: 1440px) 280px, (min-width: 1024px) 24vw, (min-width: 700px) 32vw, 48vw', loading: image_loading, alt: image_alt }}
+      {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+    </div>
+    <div class="luv-catalog__card-copy">
+      {%- if product.vendor != blank -%}<p class="luv-catalog__vendor">{{ product.vendor | escape }}</p>{%- endif -%}
+      <h2 class="luv-catalog__product-title">{{ product.title | escape }}</h2>
+    </div>
+  </a>
+  <div class="luv-catalog__card-bottom">
+    {% render 'price', product: product, show_compare_at_price: true %}
+    {%- if product.available == false -%}
+      <button class="luv-catalog__button luv-catalog__button--secondary" disabled>{{ 'products.product.sold_out' | t }}</button>
+    {%- elsif product.variants.size > 1 or product.requires_selling_plan or variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1 -%}
+      <a class="luv-catalog__button luv-catalog__button--secondary" href="{{ product.url }}">{{ 'products.product.choose_options' | t }}</a>
+    {%- else -%}
+      <product-form data-section-id="{{ section_id }}" data-catalog-error="{{ 'luv_catalog.cart_error' | t | escape }}">
+        <div class="product-form__error-message-wrapper" role="alert" hidden><span class="product-form__error-message"></span></div>
+        {%- form 'product', product, id: form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" value="{{ variant.id }}" class="product-variant-id">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" name="add" class="luv-catalog__button"><span>{{ 'products.product.add_to_cart' | t }}</span>{% render 'loading-spinner' %}</button>
+        {%- endform -%}
+      </product-form>
+    {%- endif -%}
+  </div>
+</article>

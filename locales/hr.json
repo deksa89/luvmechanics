@@ -148,6 +148,7 @@
       "video_exit_message": "{{ title }} otvara videozapis preko cijelog zaslona u istom prozoru.",
       "view_full_details": "Pogledajte sve detalje",
       "xr_button_label": "Prikaz u vašem prostoru, učitavanje stavke u prozoru proširene stvarnosti",
+      "pairs_well_with": "Dobro se slaže s",
       "taxes_included": "Porezi uključeni.",
       "duties_included": "Uključene dužnosti.",
       "duties_and_taxes_included": "Uključeni porezi i carine.",
@@ -183,7 +184,7 @@
       "apply": "Primijeni",
       "clear": "Jasan",
       "clear_all": "Ukloni sve",
-      "from": "Iz"
+      "from": "Od"
     },
     "modal": {
       "label": "Galerija medija"
@@ -243,6 +244,46 @@
       "title": "Stranica nije pronađena"
     }
   },
+  "luv_curated_collections": {
+    "common": {
+      "products_link": "View products",
+      "quick_links_label": "Collection quick links",
+      "learn_more": "Learn more",
+      "image_alt": "Collection image"
+    },
+    "bestsellers": {
+      "eyebrow": "Popular picks",
+      "title": "Bestsellers",
+      "intro": "Explore a curated selection of products ordered by current store sales performance.",
+      "badge": "Ordered by current store sales",
+      "note_title": "A curated selection",
+      "note_body": "Product order and availability may change as the store catalog is updated."
+    },
+    "new_arrivals": {
+      "eyebrow": "Recently added",
+      "title": "New Arrivals",
+      "intro": "Discover products added in the latest catalog update.",
+      "badge": "Latest catalog update",
+      "note_title": "Discover what is new",
+      "note_body": "This collection highlights recently added products. Product order and availability may change."
+    },
+    "specials": {
+      "eyebrow": "Selected extras",
+      "title": "Specials",
+      "intro": "Explore distinctive extras and products with clearly shown savings where available.",
+      "badge": "Savings shown per product",
+      "note_title": "Extras and selected savings",
+      "note_body": "Savings are displayed only for products that have a valid comparison price."
+    },
+    "care": {
+      "eyebrow": "Choose with confidence",
+      "title": "Care",
+      "intro": "Browse lubricants and toy cleaners and compare product details before choosing.",
+      "badge": "Lubricants and toy cleaners",
+      "note_title": "Made for easier care",
+      "note_body": "Review each product description and the manufacturer’s instructions before choosing or combining products."
+    }
+  },
   "sections": {
     "header": {
       "cart_count": {
@@ -280,9 +321,13 @@
         "quantity": "Količina",
         "image": "Slika proizvoda"
       },
+      "shipping_progress": {
+        "remaining": "Dodajte još {{ amount }} za besplatnu dostavu",
+        "reached": "Ostvarili ste besplatnu dostavu!"
+      },
       "login": {
         "title": "Imate li račun?",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> kako biste brže dovršili kupnju"
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Prijavite se</a> kako biste brže dovršili kupnju"
       }
     },
     "featured_blog": {
@@ -316,7 +361,15 @@
       "view_all_label": "Pogledajte sve proizvode u kolekciji {{ collection_name }}"
     },
     "footer": {
-      "payment": "Metode plaćanja"
+      "payment": "Metode plaćanja",
+      "shopping_heading": "Kupovina",
+      "help_heading": "Pomoć",
+      "legal_heading": "Pravno",
+      "newsletter_heading": "Prijavi se danas",
+      "newsletter_subtext": "Primaj personalizirani tjedni sadržaj, novosti i povremene posebne ponude.",
+      "newsletter_disclaimer": "Slanjem adrese e-pošte pristaješ primati marketinške poruke LuvMechanicsa.",
+      "discreet_packaging": "Diskretno pakiranje i naplata",
+      "product_manuals": "Upute za proizvode"
     },
     "collection_list": {
       "view_all": "Pogledaj sve"
@@ -497,5 +550,267 @@
         "refund_policy": "Uvjeti povrata"
       }
     }
+  },
+  "luv_home": {
+    "hero": {
+      "eyebrow": "PREMIUM INTIMNI WELLNESS",
+      "heading": "Intimni wellness, po tvojoj mjeri",
+      "body": "Pažljivo odabrane premium seks igračke, diskretna dostava i pomoć pri odabiru — za trenutke koji pripadaju samo tebi.",
+      "primary_cta": "Pronađi svoj proizvod",
+      "secondary_cta": "Pogledaj najprodavanije"
+    },
+    "trust": {
+      "delivery": {
+        "title": "Diskretna dostava",
+        "body": "Neutralno pakiranje bez oznake sadržaja"
+      },
+      "secure": {
+        "title": "Sigurna kupnja",
+        "body": "Zaštićeno online plaćanje"
+      },
+      "trusted": {
+        "title": "Provjereni proizvodi",
+        "body": "Pažljivo odabrani premium brendovi"
+      },
+      "help": {
+        "title": "Pomoć pri odabiru",
+        "body": "Ovdje smo za tebe"
+      }
+    },
+    "categories": {
+      "heading": "Što tražiš danas?",
+      "support": "Odaberi prema svojim željama, iskustvu ili osobi za koju kupuješ.",
+      "cards": {
+        "women": "Za žene",
+        "men": "Za muškarce",
+        "couples": "Za parove",
+        "first_time": "Prvi put kupujem"
+      }
+    },
+    "bestsellers": {
+      "heading": "Najprodavanije",
+      "cta": "Pogledaj sve najprodavanije"
+    },
+    "product_finder": {
+      "eyebrow": "PERSONALIZIRANI ODABIR",
+      "heading": "Pronađi proizvod koji ti odgovara",
+      "intro": "Ne znaš odakle početi? Odgovori na pet kratkih pitanja i pronađi proizvode prema svojim željama, iskustvu i budžetu.",
+      "start": "Započni kviz",
+      "question": "Pitanje",
+      "of": "od",
+      "view_recommendations": "Prikaži preporuke",
+      "your_recommendations": "Tvoje preporuke",
+      "retake": "Ponovi kviz",
+      "questions": {
+        "shopping_for": {
+          "heading": "Za koga kupuješ?",
+          "myself": "Za sebe",
+          "partner": "Za partnera ili partnericu",
+          "couple": "Za nas kao par",
+          "gift": "Kao poklon"
+        },
+        "experience": {
+          "heading": "Koliko iskustva imaš s proizvodima za intimni wellness?",
+          "beginner": "Tek počinjem ili istražujem",
+          "some": "Imam nešto iskustva",
+          "advanced": "Znam što mi odgovara"
+        },
+        "priority": {
+          "heading": "Što ti je najvažnije?",
+          "ease": "Jednostavnost upotrebe",
+          "stronger": "Snažniji osjeti",
+          "premium": "Premium kvaliteta",
+          "exploring": "Istraživanje nečeg novog"
+        },
+        "category": {
+          "heading": "Koja te kategorija najviše zanima?",
+          "vibrators": "Vibratori",
+          "masturbators": "Masturbatori",
+          "rabbit_vibrators": "Rabbit vibratori",
+          "penis_pumps": "Penis pumpe",
+          "remote_control": "Igračke na daljinsko upravljanje",
+          "clitoris_stimulators": "Stimulatori klitorisa",
+          "extras": "Dodaci"
+        },
+        "price": {
+          "heading": "Koji cjenovni raspon tražiš?",
+          "up_to_70": "Do €70",
+          "from_70_to_150": "€70 do €150",
+          "over_150": "€150+"
+        }
+      },
+      "messages": {
+        "no_match_title": "Nismo pronašli odgovarajuću preporuku",
+        "no_match_description": "Promijeni jedan ili više odgovora kako bi se prikazala druga preporuka.",
+        "empty_products_1": "Trenutno nema proizvoda koji odgovaraju odabranoj kategoriji i cjenovnom rasponu.",
+        "empty_products_2": "Pokušaj odabrati drugi cjenovni raspon.",
+        "fallback_title": "Tvoja preporuka"
+      }
+    },
+    "ritual": {
+      "heading": "Upotpuni svoj ritual",
+      "support": "Proizvodi koji se nadopunjuju za ugodniju uporabu, jednostavniju njegu i potpuno iskustvo.",
+      "product_cta": "Pogledaj proizvod",
+      "secondary_cta": "Pogledaj sve pakete",
+      "available": "Dostupno",
+      "editor_image_prompt": "Odaberi uredničku fotografiju za pozicioniranje oznaka proizvoda."
+    },
+    "bundles": {
+      "heading": "Paketi za potpuno iskustvo",
+      "support": "Pažljivo povezani proizvodi za ugodniju uporabu, jednostavniju njegu i potpunije iskustvo.",
+      "included_products": "Uključeni proizvodi",
+      "view_bundle": "Pogledaj paket",
+      "explore_set": "Istraži set",
+      "curated_set": "Odabrani set",
+      "available": "Dostupno",
+      "image_alt": "Ponuda {{ title }}",
+      "editor": {
+        "offer_label": "Ponuda paketa {{ index }}",
+        "incomplete": "Dovrši ovu ponudu prije prikaza u trgovini:",
+        "missing_bundle_product": "Odaberi Shopify proizvod koji predstavlja cijeli paket dostupan za kupnju.",
+        "missing_components": "Odaberi najmanje dva različita Shopify proizvoda.",
+        "missing_image": "Dodijeli uredničku sliku ili odaberi proizvod s istaknutom slikom.",
+        "missing_destination": "Dodijeli valjanu poveznicu odredišta."
+      }
+    },
+    "shoppable_videos": {
+      "heading": "Pogledaj ih u akciji",
+      "support": "Upoznaj odabrane proizvode kroz kratke videozapise.",
+      "section_cta": "Istraži proizvode",
+      "play_video": "Pokreni video za {{ title }}",
+      "video_label": "Video za {{ title }}",
+      "video_unavailable": "Vaš preglednik ne može reproducirati ovaj videozapis.",
+      "view_product": "Pogledaj proizvod",
+      "available": "Dostupno",
+      "editor": {
+        "untitled": "Nedodijeljeni videozapis",
+        "card_label": "Video kartica {{ index }}",
+        "incomplete": "Dovrši ovu karticu prije prikaza u trgovini:",
+        "missing_video": "Odaberi videozapis pohranjen na Shopifyju.",
+        "missing_poster": "Dodijeli prilagođeni poster ili odaberi videozapis s pretpreglednom slikom.",
+        "missing_product": "Odaberi Shopify proizvod prikazan u videozapisu."
+      }
+    },
+    "brand_strip": {
+      "heading": "Brendovi kojima vjerujemo",
+      "support": "Odabrani brendovi poznati po kvaliteti, dizajnu i intimnoj dobrobiti.",
+      "accessible_label": "Pouzdani brendovi",
+      "cta": "Istraži brendove",
+      "editor": {
+        "missing_logo": "Odaberi sliku logotipa.",
+        "missing_brand_name": "Dodaj naziv brenda ili alternativni tekst."
+      }
+    },
+    "why_us": {
+      "eyebrow": "Naš pristup",
+      "heading": "Zašto odabrati LuvMechanics?",
+      "support": "Promišljen, diskretan i informiran način istraživanja intimne dobrobiti.",
+      "cta": "Saznaj više",
+      "values": {
+        "curated": {
+          "title": "Pažljivo odabrano",
+          "description": "Usmjeren izbor provjerenih brendova, odabran prema kvaliteti, dizajnu i jednostavnosti uporabe."
+        },
+        "discreet": {
+          "title": "Diskretno u svakom koraku",
+          "description": "Neutralno pakiranje i pažljivo postupanje čuvaju tvoju privatnost od narudžbe do dostave."
+        },
+        "guidance": {
+          "title": "Savjetovanje bez osuđivanja",
+          "description": "Jasni vodiči, pronalazač proizvoda i osobna podrška pomažu ti odabrati sa sigurnošću."
+        },
+        "informed": {
+          "title": "Jasan i informiran odabir",
+          "description": "Korisne informacije i provjereni brendovi stavljaju ugodu i informirani odabir na prvo mjesto."
+        }
+      },
+      "editor": {
+        "incomplete": "Dovrši ovu vrijednost prije prikaza u trgovini:",
+        "missing_title": "Odaberi prevedenu vrijednost ili dodaj naslov.",
+        "missing_description": "Dodaj opis ili odaberi prevedenu vrijednost.",
+        "global_benefits_hidden": "Ovaj globalni red pogodnosti skriven je na početnoj stranici jer početna stranica koristi zasebnu sekciju Zašto odabrati LuvMechanics."
+      }
+    },
+    "editorial": {
+      "eyebrow": "Saznaj i istraži",
+      "heading": "Kolumna o intimnosti",
+      "support": "Praktični vodiči i promišljeni savjeti za sigurniji i informiraniji odabir.",
+      "cta": "Pogledaj sve članke",
+      "read_article": "Pročitaj članak",
+      "editor": {
+        "no_blog": "Odaberi blog za pretpregled ove uredničke sekcije.",
+        "no_articles": "Odabrani blog nema objavljenih članaka za prikaz."
+      }
+    },
+    "newsletter": {
+      "eyebrow": "Ostani u kontaktu",
+      "heading": "Još malo intimnosti u tvojem sandučiću",
+      "support": "Promišljeni vodiči, otkrića proizvoda i povremene ponude—poslani s pažnjom.",
+      "email_label": "Adresa e-pošte",
+      "email_placeholder": "Tvoja adresa e-pošte",
+      "submit": "Pretplati se",
+      "success": "Hvala ti na pretplati.",
+      "error": "Unesi valjanu adresu e-pošte.",
+      "privacy_note": "Pretplatom pristaješ primati marketinške poruke e-poštom. Odjaviti se možeš u bilo kojem trenutku.",
+      "privacy_link": "Pravila privatnosti"
+    },
+    "recommendations": {
+      "heading": "Naša preporuka",
+      "support": "Pažljivo odabrani proizvodi za ugodu, sigurnost i istraživanje.",
+      "view_product": "Pogledaj proizvod",
+      "explore": "Istraži",
+      "available": "Dostupno",
+      "editor": {
+        "card_label": "Kartica preporuke {{ index }}",
+        "incomplete": "Dovrši ovu karticu prije prikaza u trgovini:",
+        "missing_image": "Dodijeli uredničku sliku ili odaberi proizvod s istaknutom slikom.",
+        "missing_title": "Dodaj urednički naslov ili odaberi proizvod s naslovom.",
+        "missing_product": "Odaberi Shopify proizvod za karticu povezanu s proizvodom.",
+        "missing_link": "Dodijeli valjanu odredišnu poveznicu za uredničku karticu."
+      }
+    },
+    "accessibility": {
+      "hero_image_alt": "Premium proizvodi za intimni wellness u toplom, privatnom okruženju",
+      "browse_category": "Pregledaj kategoriju {{ title }}",
+      "product_finder_image_alt": "Premium proizvod za intimni wellness u toplom, privatnom okruženju",
+      "ritual_image_alt": "Odabrani proizvodi za intimni wellness složeni kao urednička mrtva priroda",
+      "ritual_hotspot": "Pogledaj pojedinosti za {{ title }}",
+      "ritual_selected": "Odabrano: {{ title }}"
+    }
+  },
+  "luv_catalog": {
+    "home": "Početna",
+    "collections": "Kolekcije",
+    "breadcrumbs": "Putanja stranice",
+    "shortcuts": "Istraži kolekciju",
+    "show_filters": "Prikaži filtre",
+    "hide_filters": "Sakrij filtre",
+    "read_more": "Pročitaj više",
+    "sort": "Poredaj",
+    "apply": "Primijeni filtre",
+    "active_filters": "Aktivni filtri",
+    "remove_filter": "Ukloni {{ name }}",
+    "search_filter": "Pretraži {{ name }}…",
+    "new": "Novo",
+    "range": "Prikazano {{ first }}–{{ last }} od {{ count }} proizvoda",
+    "load_error": "Proizvode nije moguće osvježiti. Pokušaj ponovno.",
+    "retry": "Pokušaj ponovno",
+    "cart_error": "Proizvod nije dodan u košaricu. Pokušaj ponovno.",
+    "price_error": "Najviša cijena mora biti veća ili jednaka najnižoj cijeni.",
+    "filter": "Filtri"
+  },
+  "luv_collection_articles": {
+    "heading": "Vodiči i inspiracija",
+    "view_all": "Svi članci",
+    "read_article": "Pročitaj članak"
+  },
+  "luv_blog": {
+    "breadcrumbs": "Putanja stranice",
+    "home": "Početna",
+    "categories": "Kategorije bloga",
+    "topics": "Teme",
+    "all_articles": "Svi članci",
+    "filtered": "Filtrirani članci",
+    "empty": "Nema članaka za prikaz."
   }
 }

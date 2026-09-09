@@ -1,0 +1,258 @@
+{{ 'luv-curated-collection.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign variant = section.settings.variant | default: 'bestsellers'
+  assign locale_root = 'luv_curated_collections.' | append: variant
+  assign fallback_eyebrow_key = locale_root | append: '.eyebrow'
+  assign fallback_heading_key = locale_root | append: '.title'
+  assign fallback_intro_key = locale_root | append: '.intro'
+  assign fallback_badge_key = locale_root | append: '.badge'
+
+  assign eyebrow = section.settings.eyebrow
+  if eyebrow == blank
+    assign eyebrow = fallback_eyebrow_key | t
+  endif
+
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = fallback_heading_key | t
+  endif
+  if heading == blank
+    assign heading = collection.title
+  endif
+
+  assign intro = section.settings.intro
+  if intro == blank
+    assign intro = fallback_intro_key | t
+  endif
+
+  assign badge_text = section.settings.badge_text
+  if badge_text == blank
+    assign badge_text = fallback_badge_key | t
+  endif
+
+  assign hero_image = section.settings.desktop_image
+  if hero_image == blank
+    assign hero_image = collection.image
+  endif
+  if hero_image == blank
+    assign hero_image = section.settings.mobile_image
+  endif
+
+  assign has_media = false
+  if section.settings.show_collection_image and hero_image != blank
+    assign has_media = true
+  endif
+
+  assign valid_link_count = 0
+  for block in section.blocks
+    if block.settings.label != blank and block.settings.link != blank
+      assign valid_link_count = valid_link_count | plus: 1
+    endif
+  endfor
+
+  assign image_alt = hero_image.alt | default: collection.title
+  if image_alt == blank
+    assign image_alt = 'luv_curated_collections.common.image_alt' | t
+  endif
+-%}
+
+<section
+  class="luv-curated-collection luv-curated-collection--{{ variant | handleize }} color-{{ section.settings.color_scheme }} gradient"
+  aria-labelledby="LuvCuratedCollectionHeading-{{ section.id }}"
+>
+  <div class="page-width">
+    <div class="luv-curated-collection__inner">
+      <div class="luv-curated-collection__layout{% if has_media %} luv-curated-collection__layout--with-media{% endif %}">
+        <div class="luv-curated-collection__content{% unless has_media %} luv-curated-collection__content--text-only{% endunless %}">
+          {%- if eyebrow != blank -%}
+            <p class="luv-curated-collection__eyebrow">{{ eyebrow | escape }}</p>
+          {%- endif -%}
+
+          <h1 id="LuvCuratedCollectionHeading-{{ section.id }}" class="luv-curated-collection__heading">
+            {{ heading | escape }}
+          </h1>
+
+          {%- if intro != blank -%}
+            <div class="luv-curated-collection__intro">{{ intro | escape | newline_to_br }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.show_badge or section.settings.show_products_link -%}
+            <div class="luv-curated-collection__meta">
+              {%- if section.settings.show_badge and badge_text != blank -%}
+                <span class="luv-curated-collection__badge">{{ badge_text | escape }}</span>
+              {%- endif -%}
+              {%- if section.settings.show_products_link -%}
+                <a class="luv-curated-collection__products-link" href="#product-grid">
+                  {{ 'luv_curated_collections.common.products_link' | t | escape }}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if valid_link_count > 0 -%}
+            <nav
+              class="luv-curated-collection__quick-links"
+              aria-label="{{ 'luv_curated_collections.common.quick_links_label' | t | escape }}"
+            >
+              <ul class="luv-curated-collection__quick-list" role="list">
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.label != blank and block.settings.link != blank -%}
+                    <li {{ block.shopify_attributes }}>
+                      <a class="luv-curated-collection__quick-link" href="{{ block.settings.link }}">
+                        {{ block.settings.label | escape }}
+                      </a>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </nav>
+          {%- endif -%}
+        </div>
+
+        {%- if has_media -%}
+          <div class="luv-curated-collection__media">
+            <picture class="luv-curated-collection__picture">
+              {%- if section.settings.mobile_image != blank -%}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="
+                    {{ section.settings.mobile_image | image_url: width: 480 }} 480w,
+                    {{ section.settings.mobile_image | image_url: width: 720 }} 720w,
+                    {{ section.settings.mobile_image | image_url: width: 960 }} 960w
+                  "
+                  sizes="100vw"
+                >
+              {%- endif -%}
+              {{
+                hero_image
+                | image_url: width: 1800
+                | image_tag:
+                  class: 'luv-curated-collection__image',
+                  widths: '480, 720, 960, 1200, 1500, 1800',
+                  sizes: '(min-width: 990px) 40vw, 100vw',
+                  loading: 'lazy',
+                  alt: image_alt
+              }}
+            </picture>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.luv_curated_collection_hero.name",
+  "tag": "div",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "t:sections.luv_curated_collection_hero.variant",
+      "default": "bestsellers",
+      "options": [
+        {
+          "value": "bestsellers",
+          "label": "t:sections.luv_curated_collection_hero.variant_bestsellers"
+        },
+        {
+          "value": "new_arrivals",
+          "label": "t:sections.luv_curated_collection_hero.variant_new_arrivals"
+        },
+        {
+          "value": "specials",
+          "label": "t:sections.luv_curated_collection_hero.variant_specials"
+        },
+        {
+          "value": "care",
+          "label": "t:sections.luv_curated_collection_hero.variant_care"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.luv_curated_collection_hero.eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.luv_curated_collection_hero.heading"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "t:sections.luv_curated_collection_hero.intro"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "t:sections.luv_curated_collection_hero.show_badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "t:sections.luv_curated_collection_hero.badge_text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_products_link",
+      "label": "t:sections.luv_curated_collection_hero.show_products_link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "t:sections.luv_curated_collection_hero.show_collection_image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "t:sections.luv_curated_collection_hero.desktop_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:sections.luv_curated_collection_hero.mobile_image"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.luv_curated_collection_hero.color_scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quick_link",
+      "name": "t:sections.luv_curated_collection_hero.quick_link",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.luv_curated_collection_hero.link_label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.luv_curated_collection_hero.link_url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.luv_curated_collection_hero.preset_name"
+    }
+  ]
+}
+{% endschema %}

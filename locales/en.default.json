@@ -16,7 +16,7 @@
       "login_form_password_placeholder": "Your password",
       "login_form_error": "Wrong password!",
       "login_form_submit": "Enter",
-      "admin_link_html": "Are you the store owner? <a href=\"\/admin\" class=\"link underlined-link\">Log in here<\/a>",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\" class=\"link underlined-link\">Log in here</a>",
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
     "social": {
@@ -149,22 +149,22 @@
         "multiples_of": "Increments of {{ quantity }}",
         "min_of": "Min {{ quantity }}",
         "max_of": "Max {{ quantity }}",
-        "in_cart_html": "<span class=\"quantity-cart\">{{ quantity }}<\/span> in cart",
+        "in_cart_html": "<span class=\"quantity-cart\">{{ quantity }}</span> in cart",
         "note": "View quantity rules"
       },
       "volume_pricing": {
         "title": "Volume Pricing",
         "note": "Volume pricing available",
         "minimum": "{{ quantity }}+",
-        "price_at_each_html": "at {{ price }}\/ea",
+        "price_at_each_html": "at {{ price }}/ea",
         "price_range": "{{ minimum }} - {{ maximum }}"
       },
       "pickup_availability": {
         "view_store_info": "View store information",
         "check_other_stores": "Check availability at other stores",
         "pick_up_available": "Pickup available",
-        "pick_up_available_at_html": "Pickup available at <span class=\"color-foreground\">{{ location_name }}<\/span>",
-        "pick_up_unavailable_at_html": "Pickup currently unavailable at <span class=\"color-foreground\">{{ location_name }}<\/span>",
+        "pick_up_available_at_html": "Pickup available at <span class=\"color-foreground\">{{ location_name }}</span>",
+        "pick_up_unavailable_at_html": "Pickup currently unavailable at <span class=\"color-foreground\">{{ location_name }}</span>",
         "unavailable": "Couldn't load pickup availability",
         "refresh": "Refresh"
       },
@@ -184,10 +184,11 @@
       "view_full_details": "View full details",
       "xr_button": "View in your space",
       "xr_button_label": "View in your space, loads item in augmented reality window",
+      "pairs_well_with": "Pairs well with",
       "taxes_included": "Taxes included.",
       "duties_included": "Duties included.",
       "duties_and_taxes_included": "Duties and taxes included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping<\/a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
     },
     "modal": {
       "label": "Media gallery"
@@ -274,6 +275,46 @@
       "subtext": "404"
     }
   },
+  "luv_curated_collections": {
+    "common": {
+      "products_link": "View products",
+      "quick_links_label": "Collection quick links",
+      "learn_more": "Learn more",
+      "image_alt": "Collection image"
+    },
+    "bestsellers": {
+      "eyebrow": "Popular picks",
+      "title": "Bestsellers",
+      "intro": "Explore a curated selection of products ordered by current store sales performance.",
+      "badge": "Ordered by current store sales",
+      "note_title": "A curated selection",
+      "note_body": "Product order and availability may change as the store catalog is updated."
+    },
+    "new_arrivals": {
+      "eyebrow": "Recently added",
+      "title": "New Arrivals",
+      "intro": "Discover products added in the latest catalog update.",
+      "badge": "Latest catalog update",
+      "note_title": "Discover what is new",
+      "note_body": "This collection highlights recently added products. Product order and availability may change."
+    },
+    "specials": {
+      "eyebrow": "Selected extras",
+      "title": "Specials",
+      "intro": "Explore distinctive extras and products with clearly shown savings where available.",
+      "badge": "Savings shown per product",
+      "note_title": "Extras and selected savings",
+      "note_body": "Savings are displayed only for products that have a valid comparison price."
+    },
+    "care": {
+      "eyebrow": "Choose with confidence",
+      "title": "Care",
+      "intro": "Browse lubricants and toy cleaners and compare product details before choosing.",
+      "badge": "Lubricants and toy cleaners",
+      "note_title": "Made for easier care",
+      "note_body": "Review each product description and the manufacturer’s instructions before choosing or combining products."
+    }
+  },
   "sections": {
     "announcements": {
       "previous_announcement": "Previous announcement",
@@ -301,13 +342,13 @@
       "empty": "Your cart is empty",
       "cart_error": "There was an error while updating your cart. Please try again.",
       "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
-      "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Duties and taxes included. Discounts and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout.",
+      "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Duties and taxes included. Discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
       "duties_and_taxes_included_shipping_at_checkout_without_policy": "Duties and taxes included. Discounts and shipping calculated at checkout.",
-      "taxes_included_shipping_at_checkout_with_policy_html": "Taxes included. Discounts and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout.",
+      "taxes_included_shipping_at_checkout_with_policy_html": "Taxes included. Discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
       "taxes_included_shipping_at_checkout_without_policy": "Taxes included. Discounts and shipping calculated at checkout.",
-      "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Duties included. Taxes, discounts and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout.",
+      "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Duties included. Taxes, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Duties included. Taxes, discounts and shipping calculated at checkout.",
-      "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Taxes, discounts and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout.",
+      "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Taxes, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Taxes, discounts and shipping calculated at checkout.",
       "headings": {
         "product": "Product",
@@ -317,13 +358,25 @@
         "image": "Product image"
       },
       "update": "Update",
+      "shipping_progress": {
+        "remaining": "Spend {{ amount }} more for free shipping",
+        "reached": "You have unlocked free shipping!"
+      },
       "login": {
         "title": "Have an account?",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in<\/a> to check out faster."
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> to check out faster."
       }
     },
     "footer": {
-      "payment": "Payment methods"
+      "payment": "Payment methods",
+      "shopping_heading": "Shopping",
+      "help_heading": "Help",
+      "legal_heading": "Legal",
+      "newsletter_heading": "Sign up today",
+      "newsletter_subtext": "Get personalized weekly content, updates, and special offers.",
+      "newsletter_disclaimer": "By submitting your email, you agree to receive marketing messages from LuvMechanics.",
+      "discreet_packaging": "Discreet packaging and billing",
+      "product_manuals": "Product manuals"
     },
     "featured_blog": {
       "view_all": "View all",
@@ -340,7 +393,7 @@
     "collection_template": {
       "empty": "No products found",
       "title": "Collection",
-      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all<\/a>"
+      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
     },
     "video": {
       "load_video": "Load video: {{ description }}"
@@ -360,7 +413,7 @@
     "quick_order_list": {
       "product_total": "Product subtotal",
       "view_cart": "View cart",
-      "each": "{{ money }}\/ea",
+      "each": "{{ money }}/ea",
       "product": "Product",
       "variant": "Variant",
       "variant_total": "Variant total",
@@ -384,13 +437,13 @@
     }
   },
   "localization": {
-    "country_label": "Country\/region",
+    "country_label": "Country/region",
     "language_label": "Language",
     "update_language": "Update language",
-    "update_country": "Update country\/region",
+    "update_country": "Update country/region",
     "search": "Search",
-    "popular_countries_regions": "Popular countries\/regions",
-    "country_results_count": "{{ count }} countries\/regions found"
+    "popular_countries_regions": "Popular countries/regions",
+    "country_results_count": "{{ count }} countries/regions found"
   },
   "customer": {
     "account": {
@@ -419,9 +472,9 @@
       "address1": "Address 1",
       "address2": "Address 2",
       "city": "City",
-      "country": "Country\/region",
+      "country": "Country/region",
       "province": "Province",
-      "zip": "Postal\/ZIP code",
+      "zip": "Postal/ZIP code",
       "phone": "Phone",
       "set_default": "Set as default address",
       "add": "Add address",
@@ -534,5 +587,267 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "luv_home": {
+    "hero": {
+      "eyebrow": "PREMIUM INTIMATE WELLNESS",
+      "heading": "Intimate wellness, made for you",
+      "body": "Carefully selected premium sex toys, discreet delivery and help choosing — for moments that belong only to you.",
+      "primary_cta": "Find your product",
+      "secondary_cta": "View bestsellers"
+    },
+    "trust": {
+      "delivery": {
+        "title": "Discreet delivery",
+        "body": "Neutral packaging with no indication of contents"
+      },
+      "secure": {
+        "title": "Secure shopping",
+        "body": "Protected online payment"
+      },
+      "trusted": {
+        "title": "Trusted products",
+        "body": "Carefully selected premium brands"
+      },
+      "help": {
+        "title": "Help choosing",
+        "body": "We’re here for you"
+      }
+    },
+    "categories": {
+      "heading": "What are you looking for today?",
+      "support": "Choose based on your desires, experience, or the person you’re shopping for.",
+      "cards": {
+        "women": "For women",
+        "men": "For men",
+        "couples": "For couples",
+        "first_time": "First-time buyer"
+      }
+    },
+    "bestsellers": {
+      "heading": "Bestsellers",
+      "cta": "View all bestsellers"
+    },
+    "product_finder": {
+      "eyebrow": "PERSONALIZED SELECTION",
+      "heading": "Find the product that suits you",
+      "intro": "Not sure where to start? Answer five short questions and find products based on your preferences, experience and budget.",
+      "start": "Start the quiz",
+      "question": "Question",
+      "of": "of",
+      "view_recommendations": "View recommendations",
+      "your_recommendations": "Your recommendations",
+      "retake": "Retake quiz",
+      "questions": {
+        "shopping_for": {
+          "heading": "Who are you shopping for?",
+          "myself": "Myself",
+          "partner": "My partner",
+          "couple": "Us as a couple",
+          "gift": "As a gift"
+        },
+        "experience": {
+          "heading": "How much experience do you have with intimate products?",
+          "beginner": "I’m just starting or exploring",
+          "some": "I have some experience",
+          "advanced": "I know what suits me"
+        },
+        "priority": {
+          "heading": "What matters most to you?",
+          "ease": "Ease of use",
+          "stronger": "Stronger sensations",
+          "premium": "Premium quality",
+          "exploring": "Exploring something new"
+        },
+        "category": {
+          "heading": "Which category interests you most?",
+          "vibrators": "Vibrators",
+          "masturbators": "Masturbators",
+          "rabbit_vibrators": "Rabbit vibrators",
+          "penis_pumps": "Penis pumps",
+          "remote_control": "Remote control toys",
+          "clitoris_stimulators": "Clitoral stimulators",
+          "extras": "Extras"
+        },
+        "price": {
+          "heading": "What price range are you looking for?",
+          "up_to_70": "Up to €70",
+          "from_70_to_150": "€70 to €150",
+          "over_150": "€150+"
+        }
+      },
+      "messages": {
+        "no_match_title": "No matching recommendation found",
+        "no_match_description": "Try changing one or more answers to see another recommendation.",
+        "empty_products_1": "There are currently no products matching the selected category and price range.",
+        "empty_products_2": "Try choosing another price range.",
+        "fallback_title": "Your recommendation"
+      }
+    },
+    "ritual": {
+      "heading": "Complete your ritual",
+      "support": "Products that complement each other for more comfortable use, simpler care and a complete experience.",
+      "product_cta": "View product",
+      "secondary_cta": "View all bundles",
+      "available": "Available",
+      "editor_image_prompt": "Choose an editorial image to position the product hotspots."
+    },
+    "bundles": {
+      "heading": "Bundles for a complete experience",
+      "support": "Thoughtfully paired products for more comfortable use, simpler care and a more complete experience.",
+      "included_products": "Included products",
+      "view_bundle": "View bundle",
+      "explore_set": "Explore the set",
+      "curated_set": "Curated set",
+      "available": "Available",
+      "image_alt": "{{ title }} bundle offer",
+      "editor": {
+        "offer_label": "Bundle offer {{ index }}",
+        "incomplete": "Complete this offer before it can appear on the storefront:",
+        "missing_bundle_product": "Select a Shopify product that represents the complete purchasable bundle.",
+        "missing_components": "Select at least two distinct Shopify products.",
+        "missing_image": "Assign an editorial image or select a product with a featured image.",
+        "missing_destination": "Assign a valid destination link."
+      }
+    },
+    "shoppable_videos": {
+      "heading": "See it in action",
+      "support": "Discover selected products through short, product-led videos.",
+      "section_cta": "Explore products",
+      "play_video": "Play video for {{ title }}",
+      "video_label": "Video for {{ title }}",
+      "video_unavailable": "Your browser cannot play this video.",
+      "view_product": "View product",
+      "available": "Available",
+      "editor": {
+        "untitled": "Unassigned video",
+        "card_label": "Video card {{ index }}",
+        "incomplete": "Complete this card before it can appear on the storefront:",
+        "missing_video": "Select a Shopify-hosted video.",
+        "missing_poster": "Assign a custom poster or select a video with a preview image.",
+        "missing_product": "Select the Shopify product shown in the video."
+      }
+    },
+    "brand_strip": {
+      "heading": "Brands we trust",
+      "support": "Selected names known for quality, design and intimate wellbeing.",
+      "accessible_label": "Trusted brands",
+      "cta": "Explore brands",
+      "editor": {
+        "missing_logo": "Choose a logo image.",
+        "missing_brand_name": "Add a brand name or alt text."
+      }
+    },
+    "why_us": {
+      "eyebrow": "Our approach",
+      "heading": "Why choose LuvMechanics?",
+      "support": "A thoughtful, discreet and informed way to discover intimate wellbeing.",
+      "cta": "Learn more",
+      "values": {
+        "curated": {
+          "title": "Thoughtfully selected",
+          "description": "A focused selection from established brands, chosen for quality, design and ease of use."
+        },
+        "discreet": {
+          "title": "Discreet at every step",
+          "description": "Neutral packaging and careful handling protect your privacy from checkout to delivery."
+        },
+        "guidance": {
+          "title": "Guidance without judgment",
+          "description": "Clear guides, the product finder and personal support help you choose with confidence."
+        },
+        "informed": {
+          "title": "Clear and informed choices",
+          "description": "Useful product information and trusted brands put comfort and informed choice first."
+        }
+      },
+      "editor": {
+        "incomplete": "Complete this value before it can appear on the storefront:",
+        "missing_title": "Choose a translated value or add a heading.",
+        "missing_description": "Add a description or choose a translated value.",
+        "global_benefits_hidden": "This global benefits row is hidden on the homepage because the homepage uses the dedicated Why choose LuvMechanics section."
+      }
+    },
+    "editorial": {
+      "eyebrow": "Learn & explore",
+      "heading": "The intimacy journal",
+      "support": "Practical guides and thoughtful advice for more confident, informed choices.",
+      "cta": "View all articles",
+      "read_article": "Read article",
+      "editor": {
+        "no_blog": "Choose a blog to preview this editorial section.",
+        "no_articles": "The selected blog has no published articles to display."
+      }
+    },
+    "newsletter": {
+      "eyebrow": "Stay connected",
+      "heading": "A little more intimacy, in your inbox",
+      "support": "Thoughtful guides, product discoveries and occasional offers—sent with care.",
+      "email_label": "Email address",
+      "email_placeholder": "Your email address",
+      "submit": "Subscribe",
+      "success": "Thank you for subscribing.",
+      "error": "Please enter a valid email address.",
+      "privacy_note": "By subscribing, you agree to receive marketing emails. You can unsubscribe at any time.",
+      "privacy_link": "Privacy policy"
+    },
+    "recommendations": {
+      "heading": "Editor’s picks",
+      "support": "Thoughtfully selected products for comfort, confidence and discovery.",
+      "view_product": "View product",
+      "explore": "Explore",
+      "available": "Available",
+      "editor": {
+        "card_label": "Recommendation card {{ index }}",
+        "incomplete": "Complete this card before it can appear on the storefront:",
+        "missing_image": "Assign an editorial image or select a product with a featured image.",
+        "missing_title": "Add an editorial title or select a product with a title.",
+        "missing_product": "Select a Shopify product for a product-backed card.",
+        "missing_link": "Assign a valid destination link for an editorial card."
+      }
+    },
+    "accessibility": {
+      "hero_image_alt": "Premium intimate wellness products in a warm, private setting",
+      "browse_category": "Browse {{ title }}",
+      "product_finder_image_alt": "Premium intimate wellness product in a warm, private setting",
+      "ritual_image_alt": "A curated intimate wellness ritual arranged as an editorial still life",
+      "ritual_hotspot": "View {{ title }} details",
+      "ritual_selected": "Selected: {{ title }}"
+    }
+  },
+  "luv_catalog": {
+    "home": "Home",
+    "collections": "Collections",
+    "breadcrumbs": "Breadcrumbs",
+    "shortcuts": "Explore this collection",
+    "show_filters": "Show filters",
+    "hide_filters": "Hide filters",
+    "read_more": "Read more",
+    "sort": "Sort",
+    "apply": "Apply filters",
+    "active_filters": "Active filters",
+    "remove_filter": "Remove {{ name }}",
+    "search_filter": "Search {{ name }}…",
+    "new": "New",
+    "range": "Showing {{ first }}–{{ last }} of {{ count }} products",
+    "load_error": "We could not update the products. Please try again.",
+    "retry": "Try again",
+    "cart_error": "We could not add this item. Please try again.",
+    "price_error": "The maximum price must be at least the minimum price.",
+    "filter": "Filters"
+  },
+  "luv_collection_articles": {
+    "heading": "Guides & inspiration",
+    "view_all": "View all articles",
+    "read_article": "Read article"
+  },
+  "luv_blog": {
+    "breadcrumbs": "Breadcrumbs",
+    "home": "Home",
+    "categories": "Blog categories",
+    "topics": "Topics",
+    "all_articles": "All articles",
+    "filtered": "Filtered articles",
+    "empty": "No articles to display."
   }
 }

@@ -1,0 +1,16 @@
+{% doc %}
+  Applied Shopify filter links.
+  @param {collection} collection - Current collection
+  @param {string} clear_url - Reset URL preserving sort
+{% enddoc %}
+{%- for filter in collection.filters -%}
+  {%- for value in filter.active_values -%}
+    <a class="luv-catalog__chip" data-catalog-link href="{{ value.url_to_remove }}" aria-label="{{ 'luv_catalog.remove_filter' | t: name: value.label | escape }}">{{ value.label | escape }} <span aria-hidden="true">×</span></a>
+  {%- endfor -%}
+  {%- if filter.type == 'price_range' -%}
+    {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+      <a class="luv-catalog__chip" data-catalog-link href="{{ filter.url_to_remove }}" aria-label="{{ 'luv_catalog.remove_filter' | t: name: filter.label | escape }}">{{ filter.min_value.value | default: 0 | money }} – {{ filter.max_value.value | default: filter.range_max | money }} <span aria-hidden="true">×</span></a>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+<a class="luv-catalog__clear" data-catalog-link href="{{ clear_url }}">{{ 'products.facets.clear_all' | t }}</a>

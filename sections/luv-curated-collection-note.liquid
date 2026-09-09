@@ -1,0 +1,144 @@
+{{ 'luv-curated-collection.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign variant = section.settings.variant | default: 'bestsellers'
+  assign locale_root = 'luv_curated_collections.' | append: variant
+  assign fallback_heading_key = locale_root | append: '.note_title'
+  assign fallback_body_key = locale_root | append: '.note_body'
+
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = fallback_heading_key | t
+  endif
+
+  assign body_override = section.settings.body
+  assign fallback_body = fallback_body_key | t
+  assign link_label = section.settings.link_label
+  if section.settings.link_url != blank and link_label == blank
+    assign link_label = 'luv_curated_collections.common.learn_more' | t
+  endif
+
+  assign has_body = false
+  if body_override != blank or fallback_body != blank
+    assign has_body = true
+  endif
+
+  assign has_link = false
+  if section.settings.link_url != blank and link_label != blank
+    assign has_link = true
+  endif
+
+  assign has_content = false
+  if heading != blank or has_body or has_link
+    assign has_content = true
+  endif
+-%}
+
+{%- if section.settings.show_section and has_content -%}
+  <section
+    class="luv-curated-note luv-curated-note--{{ variant | handleize }} color-{{ section.settings.color_scheme }} gradient"
+    {% if heading != blank %}
+      aria-labelledby="LuvCuratedNoteHeading-{{ section.id }}"
+    {% endif %}
+  >
+    <div class="page-width">
+      <div class="luv-curated-note__inner">
+        {%- if heading != blank -%}
+          <h2 id="LuvCuratedNoteHeading-{{ section.id }}" class="luv-curated-note__heading">
+            {{ heading | escape }}
+          </h2>
+        {%- endif -%}
+
+        {%- if has_body -%}
+          <div class="luv-curated-note__body">
+            {%- if body_override != blank -%}
+              {{ body_override }}
+            {%- else -%}
+              <p>{{ fallback_body | escape }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if has_link -%}
+          <a class="luv-curated-note__link" href="{{ section.settings.link_url }}">
+            {{ link_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.luv_curated_collection_note.name",
+  "tag": "div",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "t:sections.luv_curated_collection_note.show_section",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "t:sections.luv_curated_collection_note.variant",
+      "default": "bestsellers",
+      "options": [
+        {
+          "value": "bestsellers",
+          "label": "t:sections.luv_curated_collection_note.variant_bestsellers"
+        },
+        {
+          "value": "new_arrivals",
+          "label": "t:sections.luv_curated_collection_note.variant_new_arrivals"
+        },
+        {
+          "value": "specials",
+          "label": "t:sections.luv_curated_collection_note.variant_specials"
+        },
+        {
+          "value": "care",
+          "label": "t:sections.luv_curated_collection_note.variant_care"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.luv_curated_collection_note.heading"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:sections.luv_curated_collection_note.body"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:sections.luv_curated_collection_note.link_label"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:sections.luv_curated_collection_note.link_url"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.luv_curated_collection_note.color_scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.luv_curated_collection_note.preset_name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,174 +1,400 @@
-<section id="lm-product-quiz-{{ section.id }}" class="lm-product-quiz-section color-{{ section.settings.color_scheme }}">
-  <div class="page-width">
-    <div class="lm-product-quiz">
-      {% if section.settings.title != blank %}
-        <p class="lm-product-quiz__eyebrow">{{ section.settings.title }}</p>
-      {% endif %}
+{%- liquid
+  assign product_finder_eyebrow = section.settings.title
+  if product_finder_eyebrow == blank
+    assign product_finder_eyebrow = 'luv_home.product_finder.eyebrow' | t
+  endif
+  assign product_finder_heading = section.settings.heading
+  if product_finder_heading == blank
+    assign product_finder_heading = 'luv_home.product_finder.heading' | t
+  endif
+  assign product_finder_intro = section.settings.intro_text
+  if product_finder_intro == blank
+    assign product_finder_intro = 'luv_home.product_finder.intro' | t
+  endif
+  assign start_button_label = section.settings.start_button_label
+  if start_button_label == blank
+    assign start_button_label = 'luv_home.product_finder.start' | t
+  endif
+  assign submit_button_label = section.settings.submit_button_label
+  if submit_button_label == blank
+    assign submit_button_label = 'luv_home.product_finder.view_recommendations' | t
+  endif
+  assign result_label = section.settings.result_label
+  if result_label == blank
+    assign result_label = 'luv_home.product_finder.your_recommendations' | t
+  endif
+  assign restart_button_label = section.settings.restart_button_label
+  if restart_button_label == blank
+    assign restart_button_label = 'luv_home.product_finder.retake' | t
+  endif
+  assign no_matching_result_title = section.settings.no_matching_result_title
+  if no_matching_result_title == blank
+    assign no_matching_result_title = 'luv_home.product_finder.messages.no_match_title' | t
+  endif
+  assign no_matching_result_description = section.settings.no_matching_result_description
+  if no_matching_result_description == blank
+    assign no_matching_result_description = 'luv_home.product_finder.messages.no_match_description' | t
+  endif
+  assign empty_products_line_1 = section.settings.empty_products_line_1
+  if empty_products_line_1 == blank
+    assign empty_products_line_1 = 'luv_home.product_finder.messages.empty_products_1' | t
+  endif
+  assign empty_products_line_2 = section.settings.empty_products_line_2
+  if empty_products_line_2 == blank
+    assign empty_products_line_2 = 'luv_home.product_finder.messages.empty_products_2' | t
+  endif
+  assign fallback_result_title = section.settings.fallback_result_title
+  if fallback_result_title == blank
+    assign fallback_result_title = 'luv_home.product_finder.messages.fallback_title' | t
+  endif
 
-      {% if section.settings.heading != blank %}
-        <h2 class="lm-product-quiz__heading">{{ section.settings.heading }}</h2>
-      {% endif %}
+  assign q1_title = section.settings.q1_title
+  if q1_title == blank
+    assign q1_title = 'luv_home.product_finder.questions.shopping_for.heading' | t
+  endif
+  assign q1_myself_label = section.settings.q1_myself_label
+  if q1_myself_label == blank
+    assign q1_myself_label = 'luv_home.product_finder.questions.shopping_for.myself' | t
+  endif
+  assign q1_partner_label = section.settings.q1_partner_label
+  if q1_partner_label == blank
+    assign q1_partner_label = 'luv_home.product_finder.questions.shopping_for.partner' | t
+  endif
+  assign q1_couple_label = section.settings.q1_couple_label
+  if q1_couple_label == blank
+    assign q1_couple_label = 'luv_home.product_finder.questions.shopping_for.couple' | t
+  endif
+  assign q1_gift_label = section.settings.q1_gift_label
+  if q1_gift_label == blank
+    assign q1_gift_label = 'luv_home.product_finder.questions.shopping_for.gift' | t
+  endif
 
-      {% if section.settings.intro_text != blank %}
-        <div class="lm-product-quiz__intro" data-quiz-intro>
-          <p>{{ section.settings.intro_text }}</p>
-          <button type="button" class="button" data-quiz-start>
-            {{ section.settings.start_button_label }}
-          </button>
-        </div>
-      {% endif %}
+  assign q2_title = section.settings.q2_title
+  if q2_title == blank
+    assign q2_title = 'luv_home.product_finder.questions.experience.heading' | t
+  endif
+  assign q2_beginner_label = section.settings.q2_beginner_label
+  if q2_beginner_label == blank
+    assign q2_beginner_label = 'luv_home.product_finder.questions.experience.beginner' | t
+  endif
+  assign q2_some_label = section.settings.q2_some_label
+  if q2_some_label == blank
+    assign q2_some_label = 'luv_home.product_finder.questions.experience.some' | t
+  endif
+  assign q2_advanced_label = section.settings.q2_advanced_label
+  if q2_advanced_label == blank
+    assign q2_advanced_label = 'luv_home.product_finder.questions.experience.advanced' | t
+  endif
+
+  assign q3_title = section.settings.q3_title
+  if q3_title == blank
+    assign q3_title = 'luv_home.product_finder.questions.priority.heading' | t
+  endif
+  assign q3_ease_label = section.settings.q3_ease_label
+  if q3_ease_label == blank
+    assign q3_ease_label = 'luv_home.product_finder.questions.priority.ease' | t
+  endif
+  assign q3_stronger_label = section.settings.q3_stronger_label
+  if q3_stronger_label == blank
+    assign q3_stronger_label = 'luv_home.product_finder.questions.priority.stronger' | t
+  endif
+  assign q3_premium_label = section.settings.q3_premium_label
+  if q3_premium_label == blank
+    assign q3_premium_label = 'luv_home.product_finder.questions.priority.premium' | t
+  endif
+  assign q3_exploring_label = section.settings.q3_exploring_label
+  if q3_exploring_label == blank
+    assign q3_exploring_label = 'luv_home.product_finder.questions.priority.exploring' | t
+  endif
+
+  assign q4_title = section.settings.q4_title
+  if q4_title == blank
+    assign q4_title = 'luv_home.product_finder.questions.category.heading' | t
+  endif
+  assign q4_vibrators_label = section.settings.q4_vibrators_label
+  if q4_vibrators_label == blank
+    assign q4_vibrators_label = 'luv_home.product_finder.questions.category.vibrators' | t
+  endif
+  assign q4_masturbators_label = section.settings.q4_masturbators_label
+  if q4_masturbators_label == blank
+    assign q4_masturbators_label = 'luv_home.product_finder.questions.category.masturbators' | t
+  endif
+  assign q4_rabbit_vibrators_label = section.settings.q4_rabbit_vibrators_label
+  if q4_rabbit_vibrators_label == blank
+    assign q4_rabbit_vibrators_label = 'luv_home.product_finder.questions.category.rabbit_vibrators' | t
+  endif
+  assign q4_penis_pumps_label = section.settings.q4_penis_pumps_label
+  if q4_penis_pumps_label == blank
+    assign q4_penis_pumps_label = 'luv_home.product_finder.questions.category.penis_pumps' | t
+  endif
+  assign q4_remote_control_label = section.settings.q4_remote_control_label
+  if q4_remote_control_label == blank
+    assign q4_remote_control_label = 'luv_home.product_finder.questions.category.remote_control' | t
+  endif
+  assign q4_clitoris_stimulators_label = section.settings.q4_clitoris_stimulators_label
+  if q4_clitoris_stimulators_label == blank
+    assign q4_clitoris_stimulators_label = 'luv_home.product_finder.questions.category.clitoris_stimulators' | t
+  endif
+  assign q4_extras_label = section.settings.q4_extras_label
+  if q4_extras_label == blank
+    assign q4_extras_label = 'luv_home.product_finder.questions.category.extras' | t
+  endif
+
+  assign q5_title = section.settings.q5_title
+  if q5_title == blank
+    assign q5_title = 'luv_home.product_finder.questions.price.heading' | t
+  endif
+  assign q5_price_1_label = section.settings.q5_price_1_label
+  if q5_price_1_label == blank
+    assign q5_price_1_label = 'luv_home.product_finder.questions.price.up_to_70' | t
+  endif
+  assign q5_price_2_label = section.settings.q5_price_2_label
+  if q5_price_2_label == blank
+    assign q5_price_2_label = 'luv_home.product_finder.questions.price.from_70_to_150' | t
+  endif
+  assign q5_price_3_label = section.settings.q5_price_3_label
+  if q5_price_3_label == blank
+    assign q5_price_3_label = 'luv_home.product_finder.questions.price.over_150' | t
+  endif
+  assign product_finder_image = section.settings.desktop_image
+  assign product_finder_mobile_image = section.settings.mobile_image
+  assign product_finder_image_alt = section.settings.image_alt
+  if product_finder_image_alt == blank and product_finder_image != blank
+    assign product_finder_image_alt = product_finder_image.alt
+  endif
+  if product_finder_image_alt == blank
+    assign product_finder_image_alt = 'luv_home.accessibility.product_finder_image_alt' | t
+  endif
+-%}
+
+<section
+  id="luv-home-product-finder"
+  class="luv-design-scope luv-home-section luv-home-product-finder"
+  aria-labelledby="LuvHomeProductFinderHeading-{{ section.id }}"
+>
+  <div
+    id="lm-product-quiz-{{ section.id }}"
+    class="lm-product-quiz-section color-{{ section.settings.color_scheme }}"
+    style="--luv-home-product-finder-padding-top: {{ section.settings.padding_top }}px; --luv-home-product-finder-padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    <div class="page-width luv-container">
+      <div class="lm-product-quiz{% if product_finder_image == blank %} lm-product-quiz--no-media{% endif %}">
+        {%- if product_finder_image != blank -%}
+          <div class="lm-product-quiz__media">
+            <picture>
+              {%- if product_finder_mobile_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ product_finder_mobile_image | image_url: width: 750 }}">
+              {%- endif -%}
+              {{
+                product_finder_image
+                | image_url: width: 1600
+                | image_tag:
+                  widths: '550, 750, 990, 1200, 1440, 1600',
+                  sizes: '(min-width: 990px) 50vw, 100vw',
+                  loading: 'lazy',
+                  class: 'lm-product-quiz__media-image',
+                  alt: product_finder_image_alt
+              }}
+            </picture>
+          </div>
+        {%- endif -%}
+
+        <div class="lm-product-quiz__content">
+          <header class="lm-product-quiz__header">
+            <p class="lm-product-quiz__eyebrow">{{ product_finder_eyebrow | escape }}</p>
+            <h2 id="LuvHomeProductFinderHeading-{{ section.id }}" class="lm-product-quiz__heading">
+              {{- product_finder_heading | escape -}}
+            </h2>
+          </header>
+
+          <div class="lm-product-quiz__intro" data-quiz-intro>
+            <p class="lm-product-quiz__intro-text">{{ product_finder_intro | escape }}</p>
+            <button type="button" class="button button--luv-primary lm-product-quiz__start-button" data-quiz-start>
+              {{ start_button_label | escape }}
+            </button>
+
+            <div class="lm-product-quiz__preview" aria-hidden="true">
+              <p class="lm-product-quiz__preview-question">
+                {%- if section.settings.q1_title == blank -%}
+                  {{- 'luv_home.product_finder.questions.shopping_for.heading' | t -}}
+                {%- else -%}
+                  {{- section.settings.q1_title | escape -}}
+                {%- endif -%}
+              </p>
+              <div class="lm-product-quiz__preview-options">
+                <span class="lm-product-quiz__preview-option">{% if section.settings.q1_myself_label == blank %}{{ 'luv_home.product_finder.questions.shopping_for.myself' | t }}{% else %}{{ section.settings.q1_myself_label | escape }}{% endif %}</span>
+                <span class="lm-product-quiz__preview-option">{% if section.settings.q1_partner_label == blank %}{{ 'luv_home.product_finder.questions.shopping_for.partner' | t }}{% else %}{{ section.settings.q1_partner_label | escape }}{% endif %}</span>
+                <span class="lm-product-quiz__preview-option">{% if section.settings.q1_couple_label == blank %}{{ 'luv_home.product_finder.questions.shopping_for.couple' | t }}{% else %}{{ section.settings.q1_couple_label | escape }}{% endif %}</span>
+                <span class="lm-product-quiz__preview-option">{% if section.settings.q1_gift_label == blank %}{{ 'luv_home.product_finder.questions.shopping_for.gift' | t }}{% else %}{{ section.settings.q1_gift_label | escape }}{% endif %}</span>
+              </div>
+            </div>
+          </div>
 
       <div class="lm-product-quiz__body hidden" data-quiz-body>
         <form class="lm-product-quiz__form" data-quiz-form>
-          <div class="lm-product-quiz__progress" data-quiz-progress>
-            <span data-current-step>1</span> / <span data-total-steps>5</span>
+          <div
+            class="lm-product-quiz__progress"
+            data-quiz-progress
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <span class="lm-product-quiz__progress-copy">
+              {{- 'luv_home.product_finder.question' | t }}
+              <span data-current-step>1</span>
+              {{ 'luv_home.product_finder.of' | t }}
+              <span data-total-steps>5</span>
+            </span>
+            <span class="lm-product-quiz__progress-track" aria-hidden="true">
+              <span class="lm-product-quiz__progress-bar" data-progress-bar></span>
+            </span>
           </div>
 
           <div class="lm-product-quiz__question" data-quiz-step="1">
-            <h3>{{ section.settings.q1_title }}</h3>
+            <h3 tabindex="-1">{{ q1_title | escape }}</h3>
 
             <div class="lm-product-quiz__options">
               <label class="lm-product-quiz__option">
                 <input type="radio" name="shopping_for" value="myself" data-points="{{ section.settings.q1_myself_points }}" required>
-                <span>{{ section.settings.q1_myself_label }}</span>
+                <span>{{ q1_myself_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="shopping_for" value="partner" data-points="{{ section.settings.q1_partner_points }}">
-                <span>{{ section.settings.q1_partner_label }}</span>
+                <span>{{ q1_partner_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="shopping_for" value="couple" data-points="{{ section.settings.q1_couple_points }}">
-                <span>{{ section.settings.q1_couple_label }}</span>
+                <span>{{ q1_couple_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="shopping_for" value="gift" data-points="{{ section.settings.q1_gift_points }}">
-                <span>{{ section.settings.q1_gift_label }}</span>
+                <span>{{ q1_gift_label | escape }}</span>
               </label>
             </div>
           </div>
 
           <div class="lm-product-quiz__question hidden" data-quiz-step="2">
-            <h3>{{ section.settings.q2_title }}</h3>
+            <h3 tabindex="-1">{{ q2_title | escape }}</h3>
 
             <div class="lm-product-quiz__options">
               <label class="lm-product-quiz__option">
                 <input type="radio" name="experience" value="beginner" data-points="{{ section.settings.q2_beginner_points }}" required>
-                <span>{{ section.settings.q2_beginner_label }}</span>
+                <span>{{ q2_beginner_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="experience" value="some_experience" data-points="{{ section.settings.q2_some_points }}">
-                <span>{{ section.settings.q2_some_label }}</span>
+                <span>{{ q2_some_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="experience" value="advanced" data-points="{{ section.settings.q2_advanced_points }}">
-                <span>{{ section.settings.q2_advanced_label }}</span>
+                <span>{{ q2_advanced_label | escape }}</span>
               </label>
             </div>
           </div>
 
           <div class="lm-product-quiz__question hidden" data-quiz-step="3">
-            <h3>{{ section.settings.q3_title }}</h3>
+            <h3 tabindex="-1">{{ q3_title | escape }}</h3>
 
             <div class="lm-product-quiz__options">
               <label class="lm-product-quiz__option">
                 <input type="radio" name="priority" value="ease_of_use" data-points="{{ section.settings.q3_ease_points }}" required>
-                <span>{{ section.settings.q3_ease_label }}</span>
+                <span>{{ q3_ease_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="priority" value="stronger_sensations" data-points="{{ section.settings.q3_stronger_points }}">
-                <span>{{ section.settings.q3_stronger_label }}</span>
+                <span>{{ q3_stronger_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="priority" value="premium_quality" data-points="{{ section.settings.q3_premium_points }}">
-                <span>{{ section.settings.q3_premium_label }}</span>
+                <span>{{ q3_premium_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="priority" value="exploring_new" data-points="{{ section.settings.q3_exploring_points }}">
-                <span>{{ section.settings.q3_exploring_label }}</span>
+                <span>{{ q3_exploring_label | escape }}</span>
               </label>
             </div>
           </div>
 
           <div class="lm-product-quiz__question hidden" data-quiz-step="4">
-            <h3>{{ section.settings.q4_title }}</h3>
+            <h3 tabindex="-1">{{ q4_title | escape }}</h3>
 
             <div class="lm-product-quiz__options">
               <label class="lm-product-quiz__option">
                 <input type="radio" name="category_interest" value="vibrators" required>
-                <span>{{ section.settings.q4_vibrators_label }}</span>
+                <span>{{ q4_vibrators_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="category_interest" value="masturbators">
-                <span>{{ section.settings.q4_masturbators_label }}</span>
+                <span>{{ q4_masturbators_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="category_interest" value="rabbit_vibrators">
-                <span>{{ section.settings.q4_rabbit_vibrators_label }}</span>
+                <span>{{ q4_rabbit_vibrators_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="category_interest" value="penis_pumps">
-                <span>{{ section.settings.q4_penis_pumps_label }}</span>
+                <span>{{ q4_penis_pumps_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="category_interest" value="remote_control_toys">
-                <span>{{ section.settings.q4_remote_control_label }}</span>
+                <span>{{ q4_remote_control_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="category_interest" value="clitoris_stimulators">
-                <span>{{ section.settings.q4_clitoris_stimulators_label }}</span>
+                <span>{{ q4_clitoris_stimulators_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="category_interest" value="extras">
-                <span>{{ section.settings.q4_extras_label }}</span>
+                <span>{{ q4_extras_label | escape }}</span>
               </label>
             </div>
           </div>
 
           <div class="lm-product-quiz__question hidden" data-quiz-step="5">
-            <h3>{{ section.settings.q5_title }}</h3>
+            <h3 tabindex="-1">{{ q5_title | escape }}</h3>
 
             <div class="lm-product-quiz__options">
               <label class="lm-product-quiz__option">
                 <input type="radio" name="price_range" value="up_to_70" required>
-                <span>{{ section.settings.q5_price_1_label }}</span>
+                <span>{{ q5_price_1_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="price_range" value="70_to_150">
-                <span>{{ section.settings.q5_price_2_label }}</span>
+                <span>{{ q5_price_2_label | escape }}</span>
               </label>
 
               <label class="lm-product-quiz__option">
                 <input type="radio" name="price_range" value="150_plus">
-                <span>{{ section.settings.q5_price_3_label }}</span>
+                <span>{{ q5_price_3_label | escape }}</span>
               </label>
             </div>
           </div>
 
           <div class="lm-product-quiz__actions hidden" data-quiz-actions>
             <button type="submit" class="button button--primary">
-              {{ section.settings.submit_button_label }}
+              {{ submit_button_label | escape }}
             </button>
           </div>
         </form>
 
         <div class="lm-product-quiz__result hidden" data-quiz-result>
-          <p class="lm-product-quiz__result-label">{{ section.settings.result_label }}</p>
-          <h3 data-result-title></h3>
+          <p class="lm-product-quiz__result-label">{{ result_label | escape }}</p>
+          <h3 data-result-title tabindex="-1"></h3>
           <p data-result-description></p>
           <p class="lm-product-quiz__score" data-result-score></p>
 
@@ -176,12 +402,13 @@
 
           <div class="lm-product-quiz__result-actions">
             <button type="button" class="lm-product-quiz__restart-button" data-quiz-restart>
-              {{ section.settings.restart_button_label }}
+              {{ restart_button_label | escape }}
             </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <script type="application/json" data-quiz-results>
@@ -219,381 +446,6 @@
     ]
   </script>
 
-  <style>
-    #lm-product-quiz-{{ section.id }} {
-      background: #ffffff;
-      border-top: 1px solid rgba(43, 37, 33, 0.12);
-      color: #2f2b30;
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .page-width {
-      /* padding-left: clamp(16px, 2.4vw, 40px);
-      padding-right: clamp(16px, 2.4vw, 40px); */
-    }
-
-    #lm-product-quiz-{{ section.id }} .hidden {
-      display: none !important;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz {
-      background: linear-gradient(135deg, #fffaf0 0%, #eef9f7 46%, #f8f1fb 100%);
-      border: 1px solid rgba(43, 37, 33, 0.06);
-      box-shadow: none;
-      display: grid;
-      margin: 0 auto;
-      /* max-width: 1520px; */
-      min-height: 190px;
-      overflow: hidden;
-      padding: clamp(28px, 4vw, 58px) clamp(22px, 5vw, 74px);
-      text-align: center;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__eyebrow {
-      color: #d2174f;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      line-height: 1.2;
-      margin: 0 0 10px;
-      opacity: 1;
-      text-transform: uppercase;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__heading {
-      color: #2f2b30;
-      font-size: clamp(24px, 2.6vw, 42px);
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      line-height: 1.12;
-      margin: 0 0 14px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro {
-      margin: 0 auto;
-      max-width: 760px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro p,
-    #lm-product-quiz-{{ section.id }} [data-result-description] {
-      color: #5f5652;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      line-height: 1.55;
-      margin: 0 auto 18px;
-      max-width: 720px;
-    }
-
-    #lm-product-quiz-{{ section.id }} [data-quiz-start],
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button {
-      align-items: center;
-      appearance: none;
-      -webkit-appearance: none;
-      background: #ffffff !important;
-      border: 1px solid #2b2521;
-      border-radius: 0;
-      box-shadow: none !important;
-      color: #2b2521 !important;
-      cursor: pointer;
-      display: inline-flex;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      justify-content: center;
-      letter-spacing: 0.06em;
-      line-height: 1;
-      min-height: 44px;
-      min-width: 165px;
-      outline: none !important;
-      padding: 13px 28px;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
-    }
-
-    #lm-product-quiz-{{ section.id }} [data-quiz-start]:hover,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button:hover,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:hover {
-      background: #2b2521 !important;
-      border-color: #2b2521 !important;
-      color: #ffffff !important;
-      transform: translateY(-1px);
-    }
-
-    #lm-product-quiz-{{ section.id }} [data-quiz-start]:focus-visible,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button:focus-visible,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button:focus-visible {
-      outline: 2px solid #d2174f !important;
-      outline-offset: 3px;
-    }
-
-    #lm-product-quiz-{{ section.id }} [data-quiz-start]::before,
-    #lm-product-quiz-{{ section.id }} [data-quiz-start]::after,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button::before,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions .button::after,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button::before,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__restart-button::after {
-      box-shadow: none !important;
-      content: none !important;
-      display: none !important;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__body,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__form {
-      display: grid;
-      gap: 22px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__progress {
-      align-items: center;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(43, 37, 33, 0.08);
-      color: #5f5652;
-      display: inline-flex;
-      font-size: 12px;
-      font-weight: 700;
-      justify-self: center;
-      letter-spacing: 0.08em;
-      line-height: 1;
-      margin: 0;
-      opacity: 1;
-      padding: 9px 14px;
-      text-transform: uppercase;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question {
-      animation: lmQuizFadeIn-{{ section.id }} 0.25s ease;
-      margin: 0 auto;
-      max-width: 900px;
-      width: 100%;
-    }
-
-    @keyframes lmQuizFadeIn-{{ section.id }} {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__question h3,
-    #lm-product-quiz-{{ section.id }} [data-result-title] {
-      color: #2f2b30;
-      font-size: clamp(20px, 2vw, 30px);
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-      margin: 0 0 20px;
-      text-align: center;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__options {
-      display: grid;
-      gap: 10px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option {
-      align-items: center;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(43, 37, 33, 0.08);
-      color: #3a3431;
-      cursor: pointer;
-      display: flex;
-      gap: 12px;
-      min-height: 56px;
-      padding: 15px 16px;
-      text-align: left;
-      transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option:hover {
-      background: #ffffff;
-      border-color: rgba(248, 39, 92, 0.2);
-      box-shadow: 0 14px 28px rgba(43, 37, 33, 0.06);
-      transform: translateY(-1px);
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option:has(input:checked) {
-      background: #fff3f8;
-      border-color: rgba(248, 39, 92, 0.45);
-      box-shadow: inset 0 0 0 1px rgba(248, 39, 92, 0.18);
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__option input {
-      accent-color: #f8275c;
-      flex-shrink: 0;
-      height: 16px;
-      margin: 0;
-      width: 16px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__actions,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result-actions {
-      margin-top: 8px;
-      padding-left: 0;
-      text-align: center;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result {
-      margin: 0 auto;
-      max-width: 1180px;
-      width: 100%;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__result-label {
-      color: #d2174f;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      line-height: 1.2;
-      margin: 0 0 10px;
-      opacity: 1;
-      text-transform: uppercase;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__score {
-      color: #5f5652;
-      font-size: 13px;
-      margin: 4px 0 24px;
-      opacity: 0.82;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      text-align: left;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message,
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product {
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(43, 37, 33, 0.08);
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message {
-      grid-column: 1 / -1;
-      padding: 18px;
-      text-align: center;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message p {
-      margin: 0 0 8px;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__empty-message p:last-child {
-      margin-bottom: 0;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product {
-      padding: 16px;
-      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product:hover {
-      border-color: rgba(248, 39, 92, 0.16);
-      box-shadow: 0 18px 36px rgba(43, 37, 33, 0.08);
-      transform: translateY(-2px);
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-link {
-      color: inherit;
-      display: block;
-      text-decoration: none;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image {
-      align-items: center;
-      background: #ffffff;
-      display: flex;
-      height: 250px;
-      justify-content: center;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image img {
-      display: block;
-      height: 100%;
-      object-fit: contain;
-      width: 100%;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-title {
-      color: #2f2b30;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      line-height: 1.35;
-      margin: 0 0 8px;
-      text-transform: uppercase;
-    }
-
-    #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-price {
-      color: #d2174f;
-      font-size: 15px;
-      font-weight: 700;
-      margin: 0;
-    }
-
-    @media screen and (max-width: 989px) {
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media screen and (max-width: 749px) {
-      #lm-product-quiz-{{ section.id }} {
-        padding-top: {{ section.settings.padding_top | times: 0.7 | round }}px;
-        padding-bottom: {{ section.settings.padding_bottom | times: 0.7 | round }}px;
-      }
-
-      #lm-product-quiz-{{ section.id }} .page-width {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz {
-        min-height: 165px;
-        padding: 26px 18px;
-      }
-
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__options,
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__products {
-        grid-template-columns: 1fr;
-      }
-
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__intro p,
-      #lm-product-quiz-{{ section.id }} [data-result-description] {
-        font-size: 13px;
-      }
-
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__option {
-        min-height: 52px;
-      }
-
-      #lm-product-quiz-{{ section.id }} .lm-product-quiz__product-image {
-        height: 220px;
-      }
-    }
-  </style>
 
   <script>
     (() => {
@@ -616,17 +468,20 @@
       const actions = root.querySelector('[data-quiz-actions]');
       const currentStepText = root.querySelector('[data-current-step]');
       const totalStepsText = root.querySelector('[data-total-steps]');
+      const progressBar = root.querySelector('[data-progress-bar]');
 
       let resultGroups = [];
       let currentStep = 1;
 
       const quizTexts = {
-        noMatchingTitle: {{ section.settings.no_matching_result_title | json }},
-        noMatchingDescription: {{ section.settings.no_matching_result_description | json }},
-        emptyProductsLine1: {{ section.settings.empty_products_line_1 | json }},
-        emptyProductsLine2: {{ section.settings.empty_products_line_2 | json }},
-        fallbackResultTitle: {{ section.settings.fallback_result_title | json }}
-      };if (totalStepsText) {
+        noMatchingTitle: {{ no_matching_result_title | json }},
+        noMatchingDescription: {{ no_matching_result_description | json }},
+        emptyProductsLine1: {{ empty_products_line_1 | json }},
+        emptyProductsLine2: {{ empty_products_line_2 | json }},
+        fallbackResultTitle: {{ fallback_result_title | json }}
+      };
+
+      if (totalStepsText) {
         totalStepsText.textContent = steps.length;
       }
 
@@ -655,34 +510,55 @@
 
         const headerOffset = getHeaderOffset();
         const questionTop = questionElement.getBoundingClientRect().top + window.pageYOffset;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         window.scrollTo({
           top: questionTop - headerOffset,
-          behavior: 'smooth'
+          behavior: reduceMotion ? 'auto' : 'smooth'
         });
       }
 
-      function showStep(stepNumber) {
+      function focusState(target) {
+        if (!target) return;
+
+        window.requestAnimationFrame(() => target.focus({ preventScroll: true }));
+      }
+
+      function showStep(stepNumber, shouldFocus = false) {
         currentStep = stepNumber;
+        let activeStep = null;
 
         steps.forEach((step) => {
           const isActive = Number(step.dataset.quizStep) === stepNumber;
           step.classList.toggle('hidden', !isActive);
+
+          if (isActive) {
+            activeStep = step;
+          }
         });
 
         if (currentStepText) {
           currentStepText.textContent = stepNumber;
         }
 
+        if (progressBar) {
+          progressBar.style.width = `${(stepNumber / steps.length) * 100}%`;
+        }
+
         if (actions) {
           const isLastStep = stepNumber === steps.length;
           actions.classList.toggle('hidden', !isLastStep);
+        }
+
+        if (shouldFocus && activeStep) {
+          scrollToQuestion(activeStep);
+          focusState(activeStep.querySelector('h3'));
         }
       }
 
       function goToNextStep() {
         if (currentStep < steps.length) {
-          showStep(currentStep + 1);
+          showStep(currentStep + 1, true);
         }
       }
 
@@ -811,6 +687,7 @@
           form.classList.add('hidden');
           resultBox.classList.remove('hidden');
           scrollToQuestion(resultBox);
+          focusState(resultTitle);
 
           return;
         }
@@ -829,15 +706,17 @@
         form.classList.add('hidden');
         resultBox.classList.remove('hidden');
         scrollToQuestion(resultBox);
+        focusState(resultTitle);
       }
 
       function restartQuiz() {
+        root.classList.remove('is-active');
         form.reset();
         resultProducts.innerHTML = '';
         resultBox.classList.add('hidden');
         form.classList.remove('hidden');
 
-        showStep(1);
+        showStep(1, false);
 
         if (intro) {
           intro.classList.remove('hidden');
@@ -847,6 +726,10 @@
 
         if (intro) {
           scrollToQuestion(intro);
+
+          if (startButton) {
+            focusState(startButton);
+          }
         }
       }
 
@@ -864,6 +747,7 @@
 
       if (startButton) {
         startButton.addEventListener('click', () => {
+          root.classList.add('is-active');
           if (intro) {
             intro.classList.add('hidden');
           }
@@ -871,11 +755,12 @@
           body.classList.remove('hidden');
           form.classList.remove('hidden');
           resultBox.classList.add('hidden');
-          showStep(1);
+          showStep(1, true);
         });
       } else {
+        root.classList.add('is-active');
         body.classList.remove('hidden');
-        showStep(1);
+        showStep(1, true);
       }
 
       if (form) {
@@ -888,6 +773,7 @@
       }
     })();
   </script>
+  </div>
 </section>
 
 {% schema %}
@@ -936,7 +822,7 @@
       "label": "Restart button label",
       "default": "Retake quiz"
     },
-        {
+    {
       "type": "header",
       "content": "Quiz messages"
     },
@@ -975,6 +861,26 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Product finder media"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text override",
+      "info": "Leave blank to use the image alt text or localized fallback."
     },
     {
       "type": "header",

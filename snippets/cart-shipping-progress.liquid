@@ -1,0 +1,121 @@
+{% doc %}
+  Shared free-shipping progress for cart surfaces.
+
+  @param {string} placement - Drawer or notification
+  @param {string} [shipping_unlocked_text] - Existing English notification setting
+  @param {string} [shipping_remaining_text] - Existing English notification setting with [amount]
+{% enddoc %}
+
+{%- liquid
+  assign country_code = localization.country.iso_code | upcase
+  assign currency_code = cart.currency.iso_code | upcase
+  assign language_code = request.locale.iso_code | split: '-' | first | downcase
+  assign free_shipping_threshold = 0
+
+  case currency_code
+    when 'EUR'
+      if country_code == 'HR'
+        assign free_shipping_threshold = 8000
+      else
+        assign free_shipping_threshold = 10000
+      endif
+    when 'CZK'
+      assign free_shipping_threshold = 242000
+    when 'DKK'
+      assign free_shipping_threshold = 75000
+    when 'HUF'
+      assign free_shipping_threshold = 3690000
+    when 'PLN'
+      assign free_shipping_threshold = 43300
+    when 'RON'
+      assign free_shipping_threshold = 52600
+    when 'SEK'
+      assign free_shipping_threshold = 112000
+  endcase
+
+  assign unlocked_text = 'sections.cart.shipping_progress.reached' | t
+  assign remaining_template = 'sections.cart.shipping_progress.remaining' | t: amount: '[amount]'
+
+  if language_code == 'en'
+    if shipping_unlocked_text != blank
+      assign unlocked_text = shipping_unlocked_text
+    endif
+    if shipping_remaining_text != blank
+      assign remaining_template = shipping_remaining_text
+    endif
+  endif
+
+  assign progress_percent = 0
+  assign progress_value = cart.total_price
+  if free_shipping_threshold > 0
+    assign progress_percent = cart.total_price | times: 100 | divided_by: free_shipping_threshold
+  endif
+  if progress_percent > 100
+    assign progress_percent = 100
+  endif
+  if progress_value > free_shipping_threshold
+    assign progress_value = free_shipping_threshold
+  endif
+
+  assign missing_shipping_amount = free_shipping_threshold | minus: cart.total_price
+  if missing_shipping_amount < 0
+    assign missing_shipping_amount = 0
+  endif
+  assign missing_shipping_money = missing_shipping_amount | money
+
+  if cart.total_price >= free_shipping_threshold
+    assign shipping_status = unlocked_text
+  else
+    assign shipping_status = remaining_template | replace: '[amount]', missing_shipping_money
+  endif
+
+  assign status_id = 'CartShippingProgressStatus-' | append: placement
+-%}
+
+{%- if free_shipping_threshold > 0 -%}
+{%- if cart != empty or placement == 'notification' -%}
+  <div
+    class="luv-shipping-progress luv-shipping-progress--{{ placement }}{% if placement == 'notification' %} cart-notification__shipping{% endif %}"
+    data-cart-notification-shipping
+    data-shipping-threshold="{{ free_shipping_threshold }}"
+    data-unlocked-text="{{ unlocked_text | escape }}"
+    data-remaining-text="{{ remaining_template | escape }}"
+  >
+    <p
+      id="{{ status_id }}"
+      class="luv-shipping-progress__message{% if placement == 'notification' %} cart-notification__shipping-message{% endif %}"
+      data-cart-notification-shipping-status
+      aria-live="polite"
+    >
+      {{- shipping_status | escape -}}
+    </p>
+    <div class="luv-shipping-progress__scale{% if placement == 'notification' %} cart-notification__shipping-scale{% endif %}">
+      <span>{{ 0 | money_without_trailing_zeros }}</span>
+      <div
+        class="luv-shipping-progress__track{% if placement == 'notification' %} cart-notification__shipping-track{% endif %}"
+        data-cart-notification-progressbar
+        role="progressbar"
+        aria-labelledby="{{ status_id }}"
+        aria-valuemin="0"
+        aria-valuemax="{{ free_shipping_threshold }}"
+        aria-valuenow="{{ progress_value }}"
+        aria-valuetext="{{ shipping_status | escape }}"
+      >
+        <span
+          class="luv-shipping-progress__fill{% if placement == 'notification' %} cart-notification__shipping-fill{% endif %}"
+          data-cart-notification-progress
+          style="width: {{ progress_percent }}%;"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="luv-shipping-progress__knob{% if placement == 'notification' %} cart-notification__shipping-knob{% endif %}"
+          data-cart-notification-knob
+          style="left: {{ progress_percent }}%;"
+          aria-hidden="true"
+        ></span>
+      </div>
+      <span>{{ free_shipping_threshold | money_without_trailing_zeros }}</span>
+    </div>
+  </div>
+{%- endif -%}
+{%- endif -%}
