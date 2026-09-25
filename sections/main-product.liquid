@@ -1114,9 +1114,16 @@
                   {%- assign discount_amount = current_variant.compare_at_price | minus: current_variant.price -%}
                 {%- endif -%}
                 {%- assign save_label = 'Save' -%}
+                {%- assign anchor_label = 'Price on' -%}
+                {%- assign anchor_date_format = '%-d %b %Y' -%}
+                {%- assign anchor_price = current_variant.metafields.custom.anchor_price -%}
+                {%- assign anchor_date = current_variant.metafields.custom.anchor_date.value -%}
                 {%- if request.locale.iso_code contains 'hr' -%}
                   {%- assign save_label = 'Uštedi' -%}
+                  {%- assign anchor_label = 'Cijena na dan' -%}
+                  {%- assign anchor_date_format = '%-d. %-m. %Y.' -%}
                 {%- endif -%}
+                {%- assign anchor_date_text = anchor_date | date: anchor_date_format -%}
 
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   <div class="lm-product-price">
@@ -1153,6 +1160,15 @@
                       {{ save_label }} {{ discount_amount | money }}
                     </span>
                   </div>
+
+                  {%- if anchor_price != blank -%}
+                    <div class="lm-anchor-price" data-lm-anchor-price>
+                      <span class="lm-anchor-price__label">{{ anchor_label }}{% if anchor_date != blank %} {{ anchor_date_text }}{% endif %}:</span>
+                      <span class="lm-anchor-price__value">
+                        {{ anchor_price.value | money }}
+                      </span>
+                    </div>
+                  {%- endif -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">

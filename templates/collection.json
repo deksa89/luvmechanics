@@ -91,7 +91,8 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "padding_top": 32,
-        "padding_bottom": 100
+        "padding_bottom": 100,
+        "catalog_details": "<p>Explore our bestselling intimate wellness products, featuring customer-favorite toys and pleasure essentials chosen for their quality, performance and discreet delivery.</p>"
       }
     },
     "newsletter_tPNegD": {

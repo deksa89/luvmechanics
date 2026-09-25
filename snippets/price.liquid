@@ -21,6 +21,28 @@
     assign target = product
   endif
 
+  assign anchor_label = 'Price on'
+  assign anchor_date_format = '%-d %b %Y'
+  if request.locale.iso_code contains 'hr'
+    assign anchor_label = 'Cijena na dan'
+    assign anchor_date_format = '%-d. %-m. %Y.'
+  endif
+
+  assign anchor_variant = product.selected_or_first_available_variant
+  if use_variant
+    assign anchor_variant = target
+  elsif product != blank and product.price_varies
+    for variant in product.variants
+      if variant.price == product.price_min
+        assign anchor_variant = variant
+        break
+      endif
+    endfor
+  endif
+  assign anchor_price = anchor_variant.metafields.custom.anchor_price
+  assign anchor_date = anchor_variant.metafields.custom.anchor_date.value
+  assign anchor_date_text = anchor_date | date: anchor_date_format
+
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
   assign price_min = product.price_min
@@ -128,6 +150,14 @@
         </span>
       </small>
     </div>
+
+    {%- if anchor_price != blank -%}
+      <div class="lm-anchor-price lm-anchor-price--compact">
+        <span class="lm-anchor-price__label">{{ anchor_label }}{% if anchor_date != blank %} {{ anchor_date_text }}{% endif %}:</span>
+        <span class="lm-anchor-price__value">{{ anchor_price.value | money }}</span>
+      </div>
+    {%- endif -%}
+
     {%- if show_badges -%}
       <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
         {{ 'products.product.on_sale' | t }}

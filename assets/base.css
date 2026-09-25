@@ -4019,3 +4019,20 @@ details-disclosure > details {
 .wb-btn-trigger {
   display: none;
 }
+
+/* LuvMechanics legal pages: consistent mobile gutters */
+@media screen and (max-width: 749px) {
+  .shopify-policy__container {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.6rem !important;
+    padding-right: 1.6rem !important;
+  }
+
+  .lm-legal-page {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.6rem !important;
+    padding-right: 1.6rem !important;
+  }
+}

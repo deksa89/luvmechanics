@@ -1,12 +1,16 @@
 {% liquid
-  assign hero_image = section.settings.desktop_image
-  if hero_image == blank
-    assign hero_image = section.settings.mobile_image
+  assign language = localization.language.iso_code
+  assign requested_desktop = section.settings.en_desktop_image
+  assign requested_mobile = section.settings.en_mobile_image
+  if language == 'hr'
+    assign requested_desktop = section.settings.hr_desktop_image
+    assign requested_mobile = section.settings.hr_mobile_image
   endif
-
-  assign mobile_image = section.settings.mobile_image
-  if mobile_image == blank
-    assign mobile_image = hero_image
+  assign hero_image = requested_desktop | default: requested_mobile | default: section.settings.desktop_image | default: section.settings.mobile_image
+  assign mobile_image = requested_mobile | default: requested_desktop | default: section.settings.mobile_image | default: section.settings.desktop_image
+  if language == 'hr'
+    assign hero_image = hero_image | default: section.settings.en_desktop_image | default: section.settings.en_mobile_image
+    assign mobile_image = mobile_image | default: section.settings.en_mobile_image | default: section.settings.en_desktop_image
   endif
 
   assign eyebrow = section.settings.eyebrow
@@ -34,13 +38,13 @@
     assign secondary_label = 'luv_home.hero.secondary_cta' | t
   endif
 
-  assign hero_alt = section.settings.image_alt
-  if hero_alt == blank and hero_image.alt != blank
-    assign hero_alt = hero_image.alt
+  assign language_alt = section.settings.en_image_alt
+  if language == 'hr'
+    assign language_alt = section.settings.hr_image_alt
   endif
-  if hero_alt == blank
-    assign hero_alt = 'luv_home.accessibility.hero_image_alt' | t
-  endif
+  assign default_alt = 'luv_home.accessibility.hero_image_alt' | t
+  assign hero_alt = language_alt | default: hero_image.alt | default: section.settings.image_alt | default: default_alt
+  assign mobile_alt = language_alt | default: mobile_image.alt | default: section.settings.image_alt | default: default_alt
 
   assign desktop_position = section.settings.desktop_image_position
   if desktop_position == 'focal'
@@ -60,6 +64,8 @@
   <div class="luv-container luv-home-hero__container">
     <div
       class="luv-home-hero__layout"
+      data-desktop-mode="{% if hero_image != blank %}{{ section.settings.desktop_display_mode | default: 'fill' }}{% else %}fill{% endif %}"
+      data-mobile-mode="{% if hero_image != blank %}{{ section.settings.mobile_display_mode | default: 'fill' }}{% else %}fill{% endif %}"
       style="--luv-home-hero-position-desktop: {{ desktop_position }}; --luv-home-hero-position-mobile: {{ mobile_position }};"
     >
       {% if section.settings.show_overlay_content %}
@@ -93,17 +99,20 @@
         <h1 class="visually-hidden" id="LuvHomeHeroHeading-{{ section.id }}">{{ shop.name | escape }}</h1>
       {% endif %}
 
-      <div class="luv-home-hero__media">
+      <luv-hero-media class="luv-home-hero__media" data-desktop-alt="{{ hero_alt | escape }}" data-mobile-alt="{{ mobile_alt | escape }}">
         {% if hero_image != blank %}
           <picture>
-            {% if section.settings.mobile_image != blank %}
+            {% if mobile_image != blank %}
               <source
                 media="(max-width: 749px)"
+                width="{{ mobile_image.width }}"
+                height="{{ mobile_image.height }}"
                 srcset="
                   {{ mobile_image | image_url: width: 375 }} 375w,
                   {{ mobile_image | image_url: width: 550 }} 550w,
                   {{ mobile_image | image_url: width: 750 }} 750w,
-                  {{ mobile_image | image_url: width: 990 }} 990w
+                  {{ mobile_image | image_url: width: 990 }} 990w,
+                  {{ mobile_image | image_url: width: 1500 }} 1500w
                 "
                 sizes="100vw"
               >
@@ -113,6 +122,7 @@
               | image_url: width: 2400
               | image_tag:
                 class: 'luv-home-hero__image',
+                style: 'object-position: var(--luv-home-hero-selected-position);',
                 widths: '750, 990, 1200, 1500, 1800, 2200, 2400',
                 sizes: '(max-width: 749px) 100vw, (min-width: 1600px) 1560px, calc(100vw - 40px)',
                 loading: 'eager',
@@ -125,10 +135,27 @@
             {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
           </div>
         {% endif %}
-      </div>
+      </luv-hero-media>
     </div>
   </div>
 </section>
+
+{% javascript %}
+  if (!customElements.get('luv-hero-media')) {
+    customElements.define('luv-hero-media', class extends HTMLElement {
+      connectedCallback() {
+        this.query = window.matchMedia('(max-width: 749px)');
+        this.updateAlt = () => {
+          const image = this.querySelector('img');
+          if (image) image.alt = this.query.matches ? this.dataset.mobileAlt : this.dataset.desktopAlt;
+        };
+        this.query.addEventListener('change', this.updateAlt);
+        this.updateAlt();
+      }
+      disconnectedCallback() { this.query.removeEventListener('change', this.updateAlt); }
+    });
+  }
+{% endjavascript %}
 
 {% schema %}
 {
@@ -138,7 +165,51 @@
   "settings": [
     {
       "type": "header",
-      "content": "Images"
+      "content": "English artwork"
+    },
+    {
+      "type": "image_picker",
+      "id": "en_desktop_image",
+      "label": "English — Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "en_mobile_image",
+      "label": "English — Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "en_image_alt",
+      "label": "English alt text override",
+      "info": "Optional. Otherwise uses the selected image alt text, then the legacy override."
+    },
+    {
+      "type": "header",
+      "content": "Croatian artwork"
+    },
+    {
+      "type": "image_picker",
+      "id": "hr_desktop_image",
+      "label": "Croatian — Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hr_mobile_image",
+      "label": "Croatian — Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "hr_image_alt",
+      "label": "Croatian alt text override",
+      "info": "Optional. Otherwise uses the selected image alt text, then the legacy override."
+    },
+    {
+      "type": "paragraph",
+      "content": "Empty fields fall back to the other device for that language, then the legacy device images, then English artwork."
+    },
+    {
+      "type": "header",
+      "content": "Legacy/default image fallbacks"
     },
     {
       "type": "image_picker",
@@ -160,12 +231,30 @@
       "id": "desktop_image_position",
       "label": "Desktop image position",
       "options": [
-        { "value": "focal", "label": "Use image focal point" },
-        { "value": "center center", "label": "Center" },
-        { "value": "center top", "label": "Top" },
-        { "value": "center bottom", "label": "Bottom" },
-        { "value": "left center", "label": "Left" },
-        { "value": "right center", "label": "Right" }
+        {
+          "value": "focal",
+          "label": "Use image focal point"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
       ],
       "default": "focal"
     },
@@ -174,14 +263,66 @@
       "id": "mobile_image_position",
       "label": "Mobile image position",
       "options": [
-        { "value": "focal", "label": "Use image focal point" },
-        { "value": "center center", "label": "Center" },
-        { "value": "center top", "label": "Top" },
-        { "value": "center bottom", "label": "Bottom" },
-        { "value": "left center", "label": "Left" },
-        { "value": "right center", "label": "Right" }
+        {
+          "value": "focal",
+          "label": "Use image focal point"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
       ],
       "default": "focal"
+    },
+    {
+      "type": "select",
+      "id": "desktop_display_mode",
+      "label": "Desktop display mode",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full image — adapt height"
+        },
+        {
+          "value": "fill",
+          "label": "Fill hero — crop"
+        }
+      ],
+      "default": "fill",
+      "info": "Full image keeps all lettering visible. Fill uses the existing hero height and focal point and may crop embedded text."
+    },
+    {
+      "type": "select",
+      "id": "mobile_display_mode",
+      "label": "Mobile display mode",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full image — adapt height"
+        },
+        {
+          "value": "fill",
+          "label": "Fill hero — crop"
+        }
+      ],
+      "default": "fill",
+      "info": "Full image keeps all lettering visible. Fill uses the existing hero height and focal point and may crop embedded text."
     },
     {
       "type": "header",

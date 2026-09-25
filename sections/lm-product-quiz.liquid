@@ -48,6 +48,13 @@
     assign fallback_result_title = 'luv_home.product_finder.messages.fallback_title' | t
   endif
 
+  assign anchor_price_label = 'Price on'
+  assign anchor_date_format = '%-d %b %Y'
+  if request.locale.iso_code contains 'hr'
+    assign anchor_price_label = 'Cijena na dan'
+    assign anchor_date_format = '%-d. %-m. %Y.'
+  endif
+
   assign q1_title = section.settings.q1_title
   if q1_title == blank
     assign q1_title = 'luv_home.product_finder.questions.shopping_for.heading' | t
@@ -431,11 +438,24 @@
               {% if selected_product != blank %}
                 {% if first_product_added %},{% endif %}
                 {% assign first_product_added = true %}
+                {% assign quiz_price_variant = selected_product.selected_or_first_available_variant %}
+                {% if selected_product.price_varies %}
+                  {% for variant in selected_product.variants %}
+                    {% if variant.price == selected_product.price %}
+                      {% assign quiz_price_variant = variant %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {% assign quiz_anchor_price = quiz_price_variant.metafields.custom.anchor_price %}
+                {% assign quiz_anchor_date = quiz_price_variant.metafields.custom.anchor_date.value %}
                 {
                   "title": {{ selected_product.title | json }},
                   "url": {{ selected_product.url | json }},
                   "price": {{ selected_product.price | money | json }},
                   "priceCents": {{ selected_product.price | json }},
+                  "anchorPrice": {% if quiz_anchor_price != blank %}{{ quiz_anchor_price.value | money | json }}{% else %}null{% endif %},
+                  "anchorDate": {% if quiz_anchor_date != blank %}{{ quiz_anchor_date | date: anchor_date_format | json }}{% else %}null{% endif %},
                   "image": {% if selected_product.featured_image %}{{ selected_product.featured_image | image_url: width: 600 | json }}{% else %}null{% endif %}
                 }
               {% endif %}
@@ -478,7 +498,8 @@
         noMatchingDescription: {{ no_matching_result_description | json }},
         emptyProductsLine1: {{ empty_products_line_1 | json }},
         emptyProductsLine2: {{ empty_products_line_2 | json }},
-        fallbackResultTitle: {{ fallback_result_title | json }}
+        fallbackResultTitle: {{ fallback_result_title | json }},
+        anchorPriceLabel: {{ anchor_price_label | json }}
       };
 
       if (totalStepsText) {
@@ -658,6 +679,25 @@
           link.appendChild(imageWrapper);
           link.appendChild(title);
           link.appendChild(price);
+
+          if (product.anchorPrice) {
+            const anchorPrice = document.createElement('p');
+            anchorPrice.className = 'lm-product-quiz__product-anchor-price';
+
+            const anchorLabel = document.createElement('span');
+            anchorLabel.className = 'lm-product-quiz__product-anchor-label';
+            anchorLabel.textContent = product.anchorDate
+              ? `${quizTexts.anchorPriceLabel} ${product.anchorDate}: `
+              : `${quizTexts.anchorPriceLabel}: `;
+
+            const anchorValue = document.createElement('span');
+            anchorValue.className = 'lm-product-quiz__product-anchor-value';
+            anchorValue.textContent = product.anchorPrice;
+
+            anchorPrice.appendChild(anchorLabel);
+            anchorPrice.appendChild(anchorValue);
+            link.appendChild(anchorPrice);
+          }
 
           card.appendChild(link);
           resultProducts.appendChild(card);

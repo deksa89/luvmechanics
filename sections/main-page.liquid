@@ -1,3 +1,16 @@
+{% if page.handle == 'cjenici' or page.handle == 'impressum' or page.handle == 'widerruf-formular' %}
+  <style>
+    /* LM legal page inline mobile gutters */
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .lm-legal-page {
+        box-sizing: border-box;
+        width: 100%;
+        padding-left: 1.6rem !important;
+        padding-right: 1.6rem !important;
+      }
+    }
+  </style>
+{% endif %}
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -14,7 +27,7 @@
   }
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+<div class="page-width page-width--narrow section-{{ section.id }}-padding{% if page.handle == 'cjenici' or page.handle == 'impressum' or page.handle == 'widerruf-formular' %} lm-legal-page{% endif %}">
   <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ page.title | escape }}
   </h1>

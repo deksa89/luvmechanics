@@ -3,7 +3,6 @@ body.cart-notification-open {
 }
 
 cart-notification {
-  display: none;
   inset: 0;
   pointer-events: none;
   position: fixed;
@@ -11,7 +10,6 @@ cart-notification {
 }
 
 cart-notification.is-open {
-  display: block;
   pointer-events: auto;
 }
 
@@ -46,7 +44,7 @@ cart-notification.is-open .cart-notification__scrim {
   visibility: visible;
 }
 
-.cart-notification-wrapper .cart-notification.active {
+.cart-notification-wrapper .cart-notification {
   display: flex;
 }
 

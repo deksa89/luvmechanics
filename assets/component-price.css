@@ -109,3 +109,25 @@
   text-transform: uppercase;
   color: rgba(var(--color-foreground), 0.7);
 }
+
+
+/* Additional / anchor price shown with storefront product prices. */
+.price > .lm-anchor-price {
+  display: block;
+  width: 100%;
+  margin-top: 0.4rem;
+  color: rgba(var(--color-foreground), 0.68);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.price > .lm-anchor-price .lm-anchor-price__label {
+  font-weight: 400;
+}
+
+.price > .lm-anchor-price .lm-anchor-price__value {
+  color: rgb(var(--color-foreground));
+  font-weight: 600;
+}

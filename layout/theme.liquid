@@ -261,6 +261,19 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {%- if request.page_type == 'policy' -%}
+      <style>
+        /* LM policy inline mobile gutters */
+        @media screen and (max-width: 749px) {
+          .shopify-policy__container {
+            box-sizing: border-box;
+            width: 100%;
+            padding-left: 1.6rem !important;
+            padding-right: 1.6rem !important;
+          }
+        }
+      </style>
+    {%- endif -%}
     {%- if request.page_type == 'index' -%}
       {{ 'luv-design-system.css' | asset_url | stylesheet_tag }}
       {{ 'luv-home.css' | asset_url | stylesheet_tag }}

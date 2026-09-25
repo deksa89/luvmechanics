@@ -12,11 +12,19 @@
     "luv_home_hero": {
       "type": "luv-home-hero",
       "settings": {
+        "en_desktop_image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_3.png",
+        "en_mobile_image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_2.png",
+        "en_image_alt": "",
+        "hr_desktop_image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_4.png",
+        "hr_mobile_image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products.png",
+        "hr_image_alt": "",
         "desktop_image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_4.png",
         "mobile_image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_1.png",
         "image_alt": "",
         "desktop_image_position": "focal",
         "mobile_image_position": "focal",
+        "desktop_display_mode": "full",
+        "mobile_display_mode": "full",
         "show_overlay_content": false,
         "eyebrow": "",
         "heading": "",
@@ -86,7 +94,7 @@
             "title": "",
             "collection": "for-women",
             "custom_link": "",
-            "image": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_xki9vjxki9vjxki9.jpg",
             "image_source_product": "lelo-elise-2-lilac-luxury-vibrator",
             "allow_collection_image": false,
             "image_alt": ""
@@ -99,7 +107,7 @@
             "title": "",
             "collection": "for-men",
             "custom_link": "",
-            "image": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_5ub2xs5ub2xs5ub2.jpg",
             "image_source_product": "",
             "allow_collection_image": true,
             "image_alt": ""
@@ -112,7 +120,7 @@
             "title": "",
             "collection": "for-couples",
             "custom_link": "",
-            "image": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_9i4obd9i4obd9i4o.jpg",
             "image_source_product": "lelo-ida-wave-coral-couples-massager",
             "allow_collection_image": false,
             "image_alt": ""
@@ -125,7 +133,7 @@
             "title": "",
             "collection": "",
             "custom_link": "#luv-home-product-finder",
-            "image": "",
+            "image": "shopify://shop_images/Gemini_Generated_Image_j7kj5pj7kj5pj7kj.jpg",
             "image_source_product": "satisfyer-pro-2-kiss-wave-clitoris-stimulator-garnet-black",
             "allow_collection_image": false,
             "image_alt": ""
@@ -167,7 +175,7 @@
         "bestseller_f2s": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "lelo-f1s-v3-male-masturbator-red"
           }
         }
       },
@@ -192,7 +200,6 @@
     },
     "image-with-text": {
       "type": "image-with-text",
-      "disabled": true,
       "blocks": {
         "carousel_image_desktop_b7w97g": {
           "type": "carousel_image_desktop",
@@ -278,6 +285,7 @@
         "carousel_image_mobile_yg6cxz",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "height_desktop": "medium",
         "height_mobile": "large",
@@ -299,7 +307,6 @@
     },
     "product_carousel_tabs_9QhRbc": {
       "type": "product-carousel-tabs",
-      "disabled": true,
       "blocks": {
         "tab_pLwQLV": {
           "type": "tab",
@@ -349,6 +356,7 @@
         "tab_cnaYPG",
         "tab_FTLi7U"
       ],
+      "disabled": true,
       "name": "Product carousel tabs",
       "settings": {
         "heading": "",
@@ -839,8 +847,8 @@
         "empty_products_line_2": "",
         "fallback_result_title": "",
         "color_scheme": "scheme-4",
-        "desktop_image": "shopify://shop_images/wmremove-transformed_b4d6819b-7869-4899-b5ed-3b690bf4b6fa.png",
-        "mobile_image": "shopify://shop_images/wmremove-transformed_b4d6819b-7869-4899-b5ed-3b690bf4b6fa.png",
+        "desktop_image": "shopify://shop_images/Gemini_Generated_Image_7we79j7we79j7we7_e60886bb-fcd1-4c12-b0fe-d0fd8afcf411.jpg",
+        "mobile_image": "shopify://shop_images/Gemini_Generated_Image_7we79j7we79j7we7_b38f6fdf-0c44-4986-9f09-8fbcdb9800fa.jpg",
         "image_alt": "",
         "q1_title": "",
         "q1_myself_label": "",
@@ -885,7 +893,6 @@
     },
     "luv_home_ritual": {
       "type": "luv-home-ritual",
-      "disabled": true,
       "blocks": {
         "ritual_product_1": {
           "type": "hotspot",
@@ -938,13 +945,12 @@
         "ritual_product_3",
         "ritual_product_4"
       ],
+      "disabled": true,
       "settings": {
         "heading": "",
         "support_text": "",
         "secondary_label": "",
         "secondary_url": "",
-        "desktop_image": "",
-        "mobile_image": "",
         "image_alt": "",
         "desktop_image_position": "focal",
         "mobile_image_position": "focal",
@@ -954,7 +960,6 @@
     },
     "luv_home_bundles": {
       "type": "luv-home-bundles",
-      "disabled": true,
       "blocks": {
         "bundle_offer_1": {
           "type": "offer",
@@ -964,8 +969,6 @@
             "component_product_1": "",
             "component_product_2": "",
             "component_product_3": "",
-            "desktop_image": "",
-            "mobile_image": "",
             "image_alt": "",
             "desktop_image_position": "focal",
             "mobile_image_position": "focal",
@@ -984,8 +987,6 @@
             "component_product_1": "",
             "component_product_2": "",
             "component_product_3": "",
-            "desktop_image": "",
-            "mobile_image": "",
             "image_alt": "",
             "desktop_image_position": "focal",
             "mobile_image_position": "focal",
@@ -1001,6 +1002,7 @@
         "bundle_offer_1",
         "bundle_offer_2"
       ],
+      "disabled": true,
       "settings": {
         "heading": "",
         "support_text": "",
@@ -1010,13 +1012,10 @@
     },
     "luv_home_shoppable_videos": {
       "type": "luv-home-shoppable-videos",
-      "disabled": true,
       "blocks": {
         "shoppable_video_1": {
           "type": "video",
           "settings": {
-            "video": "",
-            "poster": "",
             "poster_position": "focal",
             "product": "",
             "eyebrow": "",
@@ -1028,8 +1027,6 @@
         "shoppable_video_2": {
           "type": "video",
           "settings": {
-            "video": "",
-            "poster": "",
             "poster_position": "focal",
             "product": "",
             "eyebrow": "",
@@ -1041,8 +1038,6 @@
         "shoppable_video_3": {
           "type": "video",
           "settings": {
-            "video": "",
-            "poster": "",
             "poster_position": "focal",
             "product": "",
             "eyebrow": "",
@@ -1054,8 +1049,6 @@
         "shoppable_video_4": {
           "type": "video",
           "settings": {
-            "video": "",
-            "poster": "",
             "poster_position": "focal",
             "product": "",
             "eyebrow": "",
@@ -1071,6 +1064,7 @@
         "shoppable_video_3",
         "shoppable_video_4"
       ],
+      "disabled": true,
       "settings": {
         "heading": "",
         "support_text": "",
@@ -1086,8 +1080,8 @@
         "promo_card_DE43UH": {
           "type": "promo_card",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_u2mxi9u2mxi9u2mx.jpg",
             "product": "lelo-elise-2-lilac-luxury-vibrator",
+            "image": "shopify://shop_images/Gemini_Generated_Image_ygk7wgygk7wgygk7.jpg",
             "title": "LELO Elise 2",
             "description": "<p>Smooth, refined, and quietly powerful, Elise 2 pairs sensual curves with sophisticated precision. Its silky finish, graceful silhouette, and deep, resonant energy create an experience that feels both intimate and indulgent.<br/><br/></p>",
             "link": "shopify://products/lelo-elise-2-lilac-luxury-vibrator",
@@ -1097,8 +1091,8 @@
         "promo_card_qe7fCE": {
           "type": "promo_card",
           "settings": {
-            "image": "shopify://shop_images/wmremove-transformed_b4d6819b-7869-4899-b5ed-3b690bf4b6fa.png",
             "product": "lelo-ida-wave-coral-couples-massager",
+            "image": "shopify://shop_images/Gemini_Generated_Image_syb6lrsyb6lrsyb6.jpg",
             "title": "LELO IDA WAVE MASSAGER ",
             "description": "<p>Sculpted for connection and designed with refined precision, IDA Wave blends graceful form with deeply sensual performance. Its fluid silhouette, soft finish, and signature WaveMotion™ create an experience that feels both intuitive and indulgent. <br/><br/></p>",
             "link": "shopify://products/lelo-ida-wave-coral-couples-massager",
@@ -1108,11 +1102,11 @@
         "promo_card_UgyiqR": {
           "type": "promo_card",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_gkjsuugkjsuugkjs.jpg",
-            "product": "bathmate-hydromax-9-transparent-penis-increase-pump",
-            "title": "HYDROMAX 9 TRANSPARENT PENIS PUMP",
-            "description": "<p>Clear design, advanced performance, and confident control come together in Hydromax 9. Powerful, refined, and built for a more elevated experience, it is a modern essential for those who expect more.<br/><br/></p>",
-            "link": "shopify://products/bathmate-hydromax-9-transparent-penis-increase-pump",
+            "product": "lelo-tor-3-black-vibrator-ring",
+            "image": "shopify://shop_images/Gemini_Generated_Image_mrse0wmrse0wmrse.jpg",
+            "title": "TOR 3 VIBRATOR RING",
+            "description": "<p>Sleek design, powerful vibration, and a secure flexible fit come together in TOR 3. Built for elevated solo or shared pleasure, it delivers refined stimulation, lasting comfort, and a modern luxury feel.<br/><br/><br/><br/></p>",
+            "link": "shopify://products/lelo-tor-3-black-vibrator-ring",
             "button_label": "Check it out"
           }
         }
@@ -1343,7 +1337,6 @@
     },
     "featured_bundles_promo_tPwEjE": {
       "type": "featured-bundles-promo",
-      "disabled": true,
       "blocks": {
         "bundle_49AgRk": {
           "type": "bundle",
@@ -1374,6 +1367,7 @@
         "bundle_49AgRk",
         "bundle_iGzBz3"
       ],
+      "disabled": true,
       "name": "Featured bundles promo",
       "settings": {
         "eyebrow": "",
@@ -1451,7 +1445,6 @@
     },
     "177092359671149746": {
       "type": "_blocks",
-      "disabled": true,
       "blocks": {
         "ai_gen_block_d95a1fb_EXRdEF": {
           "type": "ai_gen_block_d95a1fb",
@@ -1531,6 +1524,7 @@
       "block_order": [
         "ai_gen_block_d95a1fb_EXRdEF"
       ],
+      "disabled": true,
       "name": "Categories",
       "settings": {}
     },
@@ -1552,7 +1546,9 @@
         "padding_top_desktop": 40,
         "padding_bottom_desktop": 40,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 20
+        "padding_bottom_mobile": 20,
+        "collection_introduction": "",
+        "show_excerpt": true
       }
     },
     "multicolumn_WHDRmn": {
@@ -1620,6 +1616,7 @@
       "disabled": true,
       "name": "Stari Multicolumn",
       "settings": {
+        "hide_on_homepage": false,
         "section_bg_color": "#ffffff",
         "heading_color": "#111111",
         "card_bg_color": "#ffffff",

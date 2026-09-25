@@ -21,10 +21,8 @@
         "title": {
           "type": "title",
           "settings": {
-            "blog_show_date": false,
-            "blog_show_author": false,
-            "blog_show_category": false,
-            "blog_show_reading_time": true
+            "blog_show_date": true,
+            "blog_show_author": false
           }
         },
         "share": {
@@ -44,14 +42,7 @@
         "share",
         "content"
       ],
-      "settings": {
-        "article_content_width": 1080,
-        "product_image_ratio": "adapt",
-        "product_card_width": 260,
-        "product_show_vendor": true,
-        "product_show_rating": true,
-        "product_show_secondary_image": false
-      }
+      "settings": {}
     }
   },
   "order": [
