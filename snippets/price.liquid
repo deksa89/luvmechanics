@@ -117,6 +117,7 @@
           </span>
         {%- endif -%}
       </div>
+      {%- if compare_at_price > price -%}
       <div class="price__sale">
         {%- unless product.price_varies == false and product.compare_at_price_varies %}
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
@@ -135,6 +136,7 @@
           {{ money_price }}
         </span>
       </div>
+      {%- endif -%}
       <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
         <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
         <span class="price-item price-item--last">

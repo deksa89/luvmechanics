@@ -319,6 +319,20 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    <script>
+      var smdWrapper = document.createElement("script"), smdScript;
+      smdWrapper.async = true;
+      smdWrapper.type = "text/javascript";
+      smdWrapper.src = "https://cpx.smind.hr/Log/LogData?data=" + JSON.stringify({
+          Key: "Cro_4821",
+          Type: "badge",
+          Version: 2,
+          BadgeClassName: "smdWrapperTag"
+      });
+      smdScript = document.getElementsByTagName("script")[0];
+      smdScript.parentNode.insertBefore(smdWrapper, smdScript);
+    </script>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

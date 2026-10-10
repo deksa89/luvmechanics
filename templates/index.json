@@ -12,11 +12,11 @@
     "luv_home_hero": {
       "type": "luv-home-hero",
       "settings": {
-        "en_desktop_image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_3.png",
-        "en_mobile_image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_2.png",
+        "en_desktop_image": "shopify://shop_images/desktop-eng-2.png",
+        "en_mobile_image": "shopify://shop_images/Fall_sale_10_on_all_products__Discount_codes_can_combine_2.png",
         "en_image_alt": "",
-        "hr_desktop_image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_4.png",
-        "hr_mobile_image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products.png",
+        "hr_desktop_image": "shopify://shop_images/desktop-hrv.png",
+        "hr_mobile_image": "shopify://shop_images/mobile-hrv.png",
         "hr_image_alt": "",
         "desktop_image": "shopify://shop_images/LuvMechanics_summer_10_on_all_products_4.png",
         "mobile_image": "shopify://shop_images/LuvMechanics_summer_10_OFF_on_ALL_products_1.png",

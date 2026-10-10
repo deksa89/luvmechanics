@@ -1,0 +1,1013 @@
+{{ 'luv-male-toys-landing.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'luv-male-toys-landing.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign product_blocks = section.blocks | where: 'type', 'product'
+  assign experience_blocks = section.blocks | where: 'type', 'experience'
+  assign guide_blocks = section.blocks | where: 'type', 'guidance'
+  assign feature_blocks = section.blocks | where: 'type', 'spotlight_feature'
+  assign care_blocks = section.blocks | where: 'type', 'care'
+  assign faq_blocks = section.blocks | where: 'type', 'faq'
+  assign first_product = blank
+  for product_block in product_blocks
+    if product_block.settings.product != blank
+      assign first_product = product_block.settings.product
+      break
+    endif
+  endfor
+  assign hero_image = section.settings.hero_image | default: first_product.featured_image
+  assign hero_alt = hero_image.alt | default: first_product.title | default: page.title
+  assign spotlight_product = section.settings.spotlight_product
+  assign spotlight_image = section.settings.spotlight_image | default: spotlight_product.featured_image
+  assign spotlight_alt = spotlight_image.alt | default: spotlight_product.title | default: page.title
+  assign products_anchor = '#lm-male-toys-products-' | append: section.id
+  assign comparison_anchor = '#lm-male-toys-comparison-' | append: section.id
+  unless section.settings.show_comparison
+    assign comparison_anchor = products_anchor
+  endunless
+  assign primary_url = section.settings.primary_url | default: products_anchor
+  assign secondary_url = section.settings.secondary_url | default: comparison_anchor
+  assign spotlight_url = section.settings.spotlight_url | default: spotlight_product.url | default: products_anchor
+  assign final_primary_url = section.settings.final_primary_url | default: products_anchor
+  assign final_secondary_url = section.settings.final_secondary_url | default: comparison_anchor
+  assign currency = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop.currency
+-%}
+<lm-male-toys-landing class="lm-male-toys" data-section-id="{{ section.id }}" data-locale="{{ request.locale.iso_code | escape }}" data-currency="{{ currency | escape }}" {% if request.design_mode %}data-design-mode{% endif %}>
+<div class="lm-male-toys-container">
+<div class="lm-male-toys-hero">
+<div class="lm-male-toys-hero-copy">
+<p class="lm-male-toys-eyebrow">{%- assign fallback = 'lm_male_toys.hero_eyebrow' | t -%}{{ section.settings.hero_eyebrow | default: fallback | escape }}</p><h1 class="lm-male-toys-title">{%- assign fallback = 'lm_male_toys.hero_heading' | t -%}{{ section.settings.hero_heading | default: fallback | escape }}</h1><p class="lm-male-toys-lead">{%- assign fallback = 'lm_male_toys.hero_body' | t -%}{{ section.settings.hero_body | default: fallback | escape }}</p><div class="lm-male-toys-actions"><a class="lm-male-toys-button" href="{{ primary_url | escape }}">{%- assign fallback = 'lm_male_toys.primary_label' | t -%}{{ section.settings.primary_label | default: fallback | escape }}</a><a class="lm-male-toys-button lm-male-toys-button--outline" href="{{ secondary_url | escape }}" data-lm-event="compare_click" data-lm-section="hero">{%- assign fallback = 'lm_male_toys.secondary_label' | t -%}{{ section.settings.secondary_label | default: fallback | escape }}</a></div><ul class="lm-male-toys-trust-row" role="list"><li>{% render 'luv-male-toys-icon', icon: 'box' %}{{ 'lm_male_toys.packaging' | t | escape }}</li><li>{% render 'luv-male-toys-icon', icon: 'lock' %}{{ 'lm_male_toys.payment' | t | escape }}</li><li>{% render 'luv-male-toys-icon', icon: 'delivery' %}{{ 'lm_male_toys.delivery' | t | escape }}</li></ul></div><div class="lm-male-toys-hero-media">
+{% if hero_image != blank %}
+{{ hero_image | image_url: width: 1600 | image_tag: widths: '320, 480, 640, 960, 1200, 1600', sizes: '(min-width: 1440px) 720px, (min-width: 900px) 54vw, 92vw', loading: 'eager', fetchpriority: 'high', alt: hero_alt }}
+{% else %}<div class="lm-male-toys-image-empty">{% render 'luv-male-toys-icon', icon: 'device' %}{{ 'lm_male_toys.hero_empty' | t | escape }}{% if request.design_mode %}<p>{{ 'lm_male_toys.editor_image' | t | escape }}</p>{% endif %}</div>{% endif %}
+</div></div>
+{% if section.settings.show_experience %}
+<section class="lm-male-toys-band">
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.experience_eyebrow' | t | escape }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.experience_heading' | t -%}{{ section.settings.experience_heading | default: fallback | escape }}</h2><p class="lm-male-toys-intro">{{ 'lm_male_toys.experience_body' | t | escape }}</p><div class="lm-male-toys-four-grid">{% for block in experience_blocks %}
+{% liquid
+ assign title_key = 'lm_male_toys.' | append: block.settings.topic | append: '_title'
+ assign body_key = 'lm_male_toys.' | append: block.settings.topic | append: '_body'
+ assign title_default = title_key | t
+ assign body_default = body_key | t
+%}
+<article class="lm-male-toys-info-card" {{ block.shopify_attributes }}>
+{% render 'luv-male-toys-icon', icon: block.settings.icon %}
+<h3>{{ block.settings.title | default: title_default | escape }}</h3><p>{{ block.settings.body | default: body_default | escape }}</p>
+{% if block.settings.url != blank %}<a class="lm-male-toys-text-link" href="{{ block.settings.url | escape }}" data-lm-event="experience_click" data-lm-section="experience" data-experience="{{ block.settings.topic | escape }}">{{ 'lm_male_toys.explore' | t | escape }}<span aria-hidden="true"> →</span><span class="lm-male-toys-visually-hidden"> — {{ block.settings.title | default: title_default | escape }}</span></a>{% endif %}
+</article>{% endfor %}</div></section>{% endif %}
+<section class="lm-male-toys-band" id="lm-male-toys-products-{{ section.id }}">
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.products_eyebrow' | t | escape }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.products_heading' | t -%}{{ section.settings.products_heading | default: fallback | escape }}</h2><p class="lm-male-toys-intro">{%- assign fallback = 'lm_male_toys.products_body' | t -%}{{ section.settings.products_body | default: fallback | escape }}</p><div class="lm-male-toys-products" role="region" aria-label="{{ 'lm_male_toys.products_heading' | t | escape }}" tabindex="0">{% for block in product_blocks %}{% render 'luv-male-toys-product', block: block, mode: 'card', position: forloop.index %}{% endfor %}</div>
+{% if first_product != blank %}<p class="lm-male-toys-swipe-hint">{{ 'lm_male_toys.swipe_hint' | t | escape }} <span aria-hidden="true">→</span></p>{% endif %}</section>
+{% if section.settings.show_spotlight %}
+<section class="lm-male-toys-band lm-male-toys-spotlight lm-male-toys-panel">
+<div class="lm-male-toys-spotlight-media">{% if spotlight_image != blank %}{{ spotlight_image | image_url: width: 1000 | image_tag: widths: '320, 480, 640, 800, 1000', sizes: '(min-width: 1440px) 560px, (min-width: 900px) 44vw, 88vw', loading: 'lazy', alt: spotlight_alt }}{% else %}<div class="lm-male-toys-image-empty">{% render 'luv-male-toys-icon', icon: 'device' %}{{ 'lm_male_toys.image_unavailable' | t | escape }}</div>{% endif %}</div><div>
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.spotlight_eyebrow' | t | escape }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.spotlight_heading' | t -%}{{ section.settings.spotlight_heading | default: fallback | escape }}</h2><p class="lm-male-toys-intro">{%- assign fallback = 'lm_male_toys.spotlight_body' | t -%}{{ section.settings.spotlight_body | default: fallback | escape }}</p><div class="lm-male-toys-feature-list">{% for block in feature_blocks %}{% liquid
+ assign title_key = 'lm_male_toys.' | append: block.settings.topic | append: '_title'
+ assign body_key = 'lm_male_toys.' | append: block.settings.topic | append: '_body'
+ assign title_default = title_key | t
+ assign body_default = body_key | t
+%}<div class="lm-male-toys-feature" {{ block.shopify_attributes }}>{% render 'luv-male-toys-icon', icon: block.settings.icon %}<div><h3>{{ block.settings.title | default: title_default | escape }}</h3><p>{{ block.settings.body | default: body_default | escape }}</p></div></div>{% endfor %}</div>
+<a class="lm-male-toys-button" href="{{ spotlight_url | escape }}" data-lm-event="spotlight_click" data-lm-section="spotlight">{%- assign fallback = 'lm_male_toys.spotlight_cta' | t -%}{{ section.settings.spotlight_cta | default: fallback | escape }}</a></div></section>{% endif %}
+{% if section.settings.show_comparison %}<section class="lm-male-toys-band" id="lm-male-toys-comparison-{{ section.id }}">
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.comparison_eyebrow' | t | escape }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.comparison_heading' | t -%}{{ section.settings.comparison_heading | default: fallback | escape }}</h2><p class="lm-male-toys-intro">{{ 'lm_male_toys.comparison_body' | t | escape }}</p><table class="lm-male-toys-table"><caption class="lm-male-toys-visually-hidden">{{ 'lm_male_toys.comparison_heading' | t | escape }}</caption><thead><tr><th scope="col">{{ 'lm_male_toys.model' | t | escape }}</th><th scope="col">{{ 'lm_male_toys.movement' | t | escape }}</th><th scope="col">{{ 'lm_male_toys.heating' | t | escape }}</th><th scope="col">{{ 'lm_male_toys.interactive' | t | escape }}</th><th scope="col">{{ 'lm_male_toys.experience' | t | escape }}</th><th scope="col">{{ 'lm_male_toys.price' | t | escape }}</th><th scope="col">{{ 'lm_male_toys.action' | t | escape }}</th></tr></thead><tbody>{% for block in product_blocks %}{% render 'luv-male-toys-product', block: block, mode: 'comparison', position: forloop.index %}{% endfor %}</tbody></table></section>{% endif %}
+{% if section.settings.show_guide %}<section class="lm-male-toys-band lm-male-toys-panel">
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.guide_eyebrow' | t | escape }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.guide_heading' | t -%}{{ section.settings.guide_heading | default: fallback | escape }}</h2><div class="lm-male-toys-four-grid">
+{% for block in guide_blocks %}{% liquid
+ assign title_key = 'lm_male_toys.' | append: block.settings.topic | append: '_title'
+ assign body_key = 'lm_male_toys.' | append: block.settings.topic | append: '_body'
+ assign title_default = title_key | t
+ assign body_default = body_key | t
+%}<article class="lm-male-toys-info-card lm-male-toys-step" {{ block.shopify_attributes }}><span class="lm-male-toys-number" aria-hidden="true">0{{ forloop.index }}</span><div><h3>{{ block.settings.title | default: title_default | escape }}</h3><p>{{ block.settings.body | default: body_default | escape }}</p></div></article>{% endfor %}</div><div class="lm-male-toys-centered-action">
+<a class="lm-male-toys-button lm-male-toys-button--outline" href="{{ comparison_anchor | escape }}" data-lm-event="compare_click" data-lm-section="guide">{{ 'lm_male_toys.guide_cta' | t | escape }}</a></div></section>{% endif %}
+{% if section.settings.show_care %}<section class="lm-male-toys-band">
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.care_eyebrow' | t | escape_once }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.care_heading' | t -%}{{ section.settings.care_heading | default: fallback | escape }}</h2><div class="lm-male-toys-two-grid">
+{% for block in care_blocks %}{% liquid
+ assign title_key = 'lm_male_toys.' | append: block.settings.topic | append: '_title'
+ assign body_key = 'lm_male_toys.' | append: block.settings.topic | append: '_body'
+ assign cta_key = 'lm_male_toys.' | append: block.settings.topic | append: '_cta'
+ assign title_default = title_key | t
+ assign body_default = body_key | t
+ assign cta_default = cta_key | t
+%}<article class="lm-male-toys-info-card" {{ block.shopify_attributes }}>{% render 'luv-male-toys-icon', icon: block.settings.icon %}<h3>{{ block.settings.title | default: title_default | escape }}</h3><p>{{ block.settings.body | default: body_default | escape }}</p>{% if block.settings.url != blank %}<a class="lm-male-toys-button lm-male-toys-button--outline" href="{{ block.settings.url | escape }}">{{ block.settings.cta | default: cta_default | escape }}</a>{% endif %}</article>{% endfor %}</div></section>{% endif %}
+{%- assign related_bathmate_url = section.settings.related_bathmate_cta_url | default: pages['bathmate'].url -%}
+{% if section.settings.show_related_bathmate and related_bathmate_url != blank %}
+<section class="lm-male-toys-band lm-male-toys-panel lm-male-toys-related" aria-labelledby="lm-male-toys-related-{{ section.id }}">
+  <div>
+    <p class="lm-male-toys-eyebrow">{%- assign fallback = 'lm_male_toys.related_bathmate_eyebrow' | t -%}{{ section.settings.related_bathmate_eyebrow | default: fallback | escape_once }}</p>
+    <h2 class="lm-male-toys-heading" id="lm-male-toys-related-{{ section.id }}">{%- assign fallback = 'lm_male_toys.related_bathmate_heading' | t -%}{{ section.settings.related_bathmate_heading | default: fallback | escape_once }}</h2>
+    <p>{%- assign fallback = 'lm_male_toys.related_bathmate_body' | t -%}{{ section.settings.related_bathmate_body | default: fallback | escape_once }}</p>
+  </div>
+  <a class="lm-male-toys-button lm-male-toys-button--outline" href="{{ related_bathmate_url | escape }}" data-lm-event="related_bathmate_click" data-lm-section="related_bathmate">{%- assign fallback = 'lm_male_toys.related_bathmate_cta_label' | t -%}{{ section.settings.related_bathmate_cta_label | default: fallback | escape_once }}</a>
+</section>{% endif %}
+{% if section.settings.show_trust %}<section class="lm-male-toys-band lm-male-toys-panel">
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.trust_eyebrow' | t | escape }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.trust_heading' | t -%}{{ section.settings.trust_heading | default: fallback | escape }}</h2><div class="lm-male-toys-four-grid"><article class="lm-male-toys-info-card">{% render 'luv-male-toys-icon', icon: 'price' %}<h3>{{ 'lm_male_toys.trust_price_title' | t | escape }}</h3><p>{{ 'lm_male_toys.trust_price_body' | t | escape }}</p></article><article class="lm-male-toys-info-card">{% render 'luv-male-toys-icon', icon: 'box' %}<h3>{{ 'lm_male_toys.packaging' | t | escape }}</h3><p>{{ 'lm_male_toys.trust_packaging_body' | t | escape }}</p></article><article class="lm-male-toys-info-card">{% render 'luv-male-toys-icon', icon: 'lock' %}<h3>{{ 'lm_male_toys.payment' | t | escape }}</h3><p>{{ 'lm_male_toys.trust_payment_body' | t | escape }}</p></article><article class="lm-male-toys-info-card">{% render 'luv-male-toys-icon', icon: 'delivery' %}<h3>{{ 'lm_male_toys.delivery' | t | escape }}</h3><p>{{ 'lm_male_toys.trust_delivery_body' | t | escape }}</p></article></div></section>{% endif %}
+{% if section.settings.show_faq and faq_blocks.size > 0 %}<section class="lm-male-toys-band lm-male-toys-faq">
+<p class="lm-male-toys-eyebrow">{{ 'lm_male_toys.faq_eyebrow' | t | escape_once }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.faq_heading' | t -%}{{ section.settings.faq_heading | default: fallback | escape }}</h2>{% for block in faq_blocks %}{% liquid
+ assign question_key = 'lm_male_toys.faq_' | append: block.settings.topic | append: '_question'
+ assign answer_key = 'lm_male_toys.faq_' | append: block.settings.topic | append: '_answer'
+ assign default_question = question_key | t
+%}<details class="lm-male-toys-details" {{ block.shopify_attributes }}><summary>{{ block.settings.question | default: default_question | escape }}<span class="lm-male-toys-plus" aria-hidden="true">+</span></summary><div class="lm-male-toys-answer">{% if block.settings.answer != blank %}{{ block.settings.answer }}{% else %}<p>{{ answer_key | t | escape }}</p>{% endif %}</div></details>{% endfor %}</section>{% endif %}
+{% if section.settings.show_final %}<section class="lm-male-toys-band lm-male-toys-final lm-male-toys-panel">
+<p class="lm-male-toys-eyebrow">{%- assign fallback = 'lm_male_toys.final_eyebrow' | t -%}{{ section.settings.final_eyebrow | default: fallback | escape }}</p><h2 class="lm-male-toys-heading">{%- assign fallback = 'lm_male_toys.final_heading' | t -%}{{ section.settings.final_heading | default: fallback | escape }}</h2><p class="lm-male-toys-intro">{%- assign fallback = 'lm_male_toys.final_body' | t -%}{{ section.settings.final_body | default: fallback | escape }}</p><div class="lm-male-toys-actions"><a class="lm-male-toys-button" href="{{ final_primary_url | escape }}" data-lm-event="final_cta_click" data-lm-section="final">{%- assign fallback = 'lm_male_toys.final_primary_label' | t -%}{{ section.settings.final_primary_label | default: fallback | escape }}</a><a class="lm-male-toys-button lm-male-toys-button--outline" href="{{ final_secondary_url | escape }}" data-lm-event="compare_click" data-lm-section="final">{%- assign fallback = 'lm_male_toys.secondary_label' | t -%}{{ section.settings.final_secondary_label | default: fallback | escape }}</a></div><ul class="lm-male-toys-trust-row" role="list"><li>{% render 'luv-male-toys-icon', icon: 'box' %}{{ 'lm_male_toys.packaging' | t | escape }}</li><li>{% render 'luv-male-toys-icon', icon: 'lock' %}{{ 'lm_male_toys.payment' | t | escape }}</li><li>{% render 'luv-male-toys-icon', icon: 'delivery' %}{{ 'lm_male_toys.delivery' | t | escape }}</li></ul></section>{% endif %}
+</div></lm-male-toys-landing>
+{% schema %}
+{
+  "name": "Male toys landing",
+  "tag": "section",
+  "class": "lm-male-toys-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Blank copy uses EN/HR defaults. Select actual products and approved imagery. Enter only verified feature claims."
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_body",
+      "label": "Hero body",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary label",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary label",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Falls back to the first selected product image."
+    },
+    {
+      "type": "url",
+      "id": "primary_url",
+      "label": "Primary url",
+      "info": "Blank links to featured products."
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary url",
+      "info": "Blank links to comparison, or products if comparison is hidden."
+    },
+    {
+      "type": "header",
+      "content": "Section headings"
+    },
+    {
+      "type": "text",
+      "id": "experience_heading",
+      "label": "Experience heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "products_heading",
+      "label": "Products heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "textarea",
+      "id": "products_body",
+      "label": "Products body",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "comparison_heading",
+      "label": "Comparison heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "guide_heading",
+      "label": "Guide heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "care_heading",
+      "label": "Care heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "trust_heading",
+      "label": "Trust heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "Faq heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "header",
+      "content": "Spotlight"
+    },
+    {
+      "type": "text",
+      "id": "spotlight_heading",
+      "label": "Spotlight heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "textarea",
+      "id": "spotlight_body",
+      "label": "Spotlight body",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "spotlight_cta",
+      "label": "Spotlight cta",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "product",
+      "id": "spotlight_product",
+      "label": "Spotlight product"
+    },
+    {
+      "type": "image_picker",
+      "id": "spotlight_image",
+      "label": "Spotlight image"
+    },
+    {
+      "type": "url",
+      "id": "spotlight_url",
+      "label": "Spotlight url",
+      "info": "Blank links to the selected spotlight product, or featured products."
+    },
+    {
+      "type": "header",
+      "content": "Final call to action"
+    },
+    {
+      "type": "text",
+      "id": "final_eyebrow",
+      "label": "Final eyebrow",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "final_heading",
+      "label": "Final heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "textarea",
+      "id": "final_body",
+      "label": "Final body",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "final_primary_label",
+      "label": "Final primary label",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "final_secondary_label",
+      "label": "Final secondary label",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "url",
+      "id": "final_primary_url",
+      "label": "Final primary url"
+    },
+    {
+      "type": "url",
+      "id": "final_secondary_url",
+      "label": "Final secondary url"
+    },
+    {
+      "type": "header",
+      "content": "Visibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_experience",
+      "label": "Show experience",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_spotlight",
+      "label": "Show spotlight",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comparison",
+      "label": "Show comparison",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_guide",
+      "label": "Show guide",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_care",
+      "label": "Show care",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related_bathmate",
+      "label": "Show related Bathmate link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_bathmate_eyebrow",
+      "label": "Related Bathmate eyebrow",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "related_bathmate_heading",
+      "label": "Related Bathmate heading",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "textarea",
+      "id": "related_bathmate_body",
+      "label": "Related Bathmate body",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "related_bathmate_cta_label",
+      "label": "Related Bathmate CTA label",
+      "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "url",
+      "id": "related_bathmate_cta_url",
+      "label": "Related Bathmate CTA URL",
+      "info": "Leave blank to use the existing Bathmate page in the current language."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust",
+      "label": "Show trust",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq",
+      "label": "Show faq",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_final",
+      "label": "Show final",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "short_title",
+          "label": "Short display title",
+          "info": "Optional display title; real Shopify title is used in analytics."
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "info": "Use only verified claims. Leave blank if unsure."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature chip 1"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature chip 2"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature chip 3"
+        },
+        {
+          "type": "text",
+          "id": "movement",
+          "label": "Movement label",
+          "info": "Blank shows translated “See product details”."
+        },
+        {
+          "type": "text",
+          "id": "heating",
+          "label": "Heating label",
+          "info": "Blank shows translated “See product details”."
+        },
+        {
+          "type": "text",
+          "id": "interactive",
+          "label": "Interactive label",
+          "info": "Blank shows translated “See product details”."
+        },
+        {
+          "type": "text",
+          "id": "experience",
+          "label": "Experience label",
+          "info": "Blank shows translated “See product details”."
+        },
+        {
+          "type": "text",
+          "id": "cta",
+          "label": "CTA label",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        }
+      ]
+    },
+    {
+      "type": "experience",
+      "name": "Experience category",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "topic",
+          "label": "Topic",
+          "options": [
+            {
+              "value": "automatic",
+              "label": "Automatic"
+            },
+            {
+              "value": "thrusting",
+              "label": "Thrusting"
+            },
+            {
+              "value": "heating",
+              "label": "Heating"
+            },
+            {
+              "value": "interactive",
+              "label": "Interactive"
+            }
+          ],
+          "default": "automatic"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "device",
+              "label": "Device"
+            },
+            {
+              "value": "movement",
+              "label": "Movement"
+            },
+            {
+              "value": "heat",
+              "label": "Heat"
+            },
+            {
+              "value": "connect",
+              "label": "Connect"
+            },
+            {
+              "value": "box",
+              "label": "Box"
+            },
+            {
+              "value": "lock",
+              "label": "Lock"
+            },
+            {
+              "value": "delivery",
+              "label": "Delivery"
+            },
+            {
+              "value": "price",
+              "label": "Price"
+            },
+            {
+              "value": "drop",
+              "label": "Drop"
+            },
+            {
+              "value": "clean",
+              "label": "Clean"
+            }
+          ],
+          "default": "device"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Destination URL",
+          "info": "Optional; blank hides the link. Select a verified destination."
+        }
+      ]
+    },
+    {
+      "type": "guidance",
+      "name": "Buyer guidance",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "topic",
+          "label": "Topic",
+          "options": [
+            {
+              "value": "movement",
+              "label": "Movement"
+            },
+            {
+              "value": "control",
+              "label": "Control"
+            },
+            {
+              "value": "sensation",
+              "label": "Sensation"
+            },
+            {
+              "value": "budget",
+              "label": "Budget"
+            }
+          ],
+          "default": "movement"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        }
+      ]
+    },
+    {
+      "type": "spotlight_feature",
+      "name": "Spotlight feature",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "topic",
+          "label": "Topic",
+          "options": [
+            {
+              "value": "automated",
+              "label": "Automated"
+            },
+            {
+              "value": "connected",
+              "label": "Connected"
+            },
+            {
+              "value": "premium",
+              "label": "Premium"
+            }
+          ],
+          "default": "automated"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "device",
+              "label": "Device"
+            },
+            {
+              "value": "movement",
+              "label": "Movement"
+            },
+            {
+              "value": "heat",
+              "label": "Heat"
+            },
+            {
+              "value": "connect",
+              "label": "Connect"
+            },
+            {
+              "value": "box",
+              "label": "Box"
+            },
+            {
+              "value": "lock",
+              "label": "Lock"
+            },
+            {
+              "value": "delivery",
+              "label": "Delivery"
+            },
+            {
+              "value": "price",
+              "label": "Price"
+            },
+            {
+              "value": "drop",
+              "label": "Drop"
+            },
+            {
+              "value": "clean",
+              "label": "Clean"
+            }
+          ],
+          "default": "device"
+        }
+      ]
+    },
+    {
+      "type": "care",
+      "name": "Care & lubricant",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "select",
+          "id": "topic",
+          "label": "Topic",
+          "options": [
+            {
+              "value": "lubricant",
+              "label": "Lubricant"
+            },
+            {
+              "value": "cleaning",
+              "label": "Cleaning"
+            }
+          ],
+          "default": "lubricant"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "device",
+              "label": "Device"
+            },
+            {
+              "value": "movement",
+              "label": "Movement"
+            },
+            {
+              "value": "heat",
+              "label": "Heat"
+            },
+            {
+              "value": "connect",
+              "label": "Connect"
+            },
+            {
+              "value": "box",
+              "label": "Box"
+            },
+            {
+              "value": "lock",
+              "label": "Lock"
+            },
+            {
+              "value": "delivery",
+              "label": "Delivery"
+            },
+            {
+              "value": "price",
+              "label": "Price"
+            },
+            {
+              "value": "drop",
+              "label": "Drop"
+            },
+            {
+              "value": "clean",
+              "label": "Clean"
+            }
+          ],
+          "default": "device"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Destination URL",
+          "info": "Optional; blank hides the link. Select a verified destination."
+        },
+        {
+          "type": "text",
+          "id": "cta",
+          "label": "CTA label",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "limit": 7,
+      "settings": [
+        {
+          "type": "select",
+          "id": "topic",
+          "label": "Topic",
+          "options": [
+            {
+              "value": "choose",
+              "label": "Choose"
+            },
+            {
+              "value": "difference",
+              "label": "Difference"
+            },
+            {
+              "value": "lubricant",
+              "label": "Lubricant"
+            },
+            {
+              "value": "cleaning",
+              "label": "Cleaning"
+            },
+            {
+              "value": "interactive",
+              "label": "Interactive"
+            },
+            {
+              "value": "packaging",
+              "label": "Packaging"
+            },
+            {
+              "value": "delivery",
+              "label": "Delivery"
+            }
+          ],
+          "default": "choose"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "info": "Leave blank for translated defaults. Translate custom text with Translate & Adapt."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Male toys landing",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {}
+        },
+        {
+          "type": "product",
+          "settings": {}
+        },
+        {
+          "type": "product",
+          "settings": {}
+        },
+        {
+          "type": "product",
+          "settings": {}
+        },
+        {
+          "type": "product",
+          "settings": {}
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "topic": "automatic",
+            "icon": "movement"
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "topic": "thrusting",
+            "icon": "movement"
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "topic": "heating",
+            "icon": "heat"
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "topic": "interactive",
+            "icon": "connect"
+          }
+        },
+        {
+          "type": "spotlight_feature",
+          "settings": {
+            "topic": "automated",
+            "icon": "movement"
+          }
+        },
+        {
+          "type": "spotlight_feature",
+          "settings": {
+            "topic": "connected",
+            "icon": "connect"
+          }
+        },
+        {
+          "type": "spotlight_feature",
+          "settings": {
+            "topic": "premium",
+            "icon": "device"
+          }
+        },
+        {
+          "type": "guidance",
+          "settings": {
+            "topic": "movement"
+          }
+        },
+        {
+          "type": "guidance",
+          "settings": {
+            "topic": "control"
+          }
+        },
+        {
+          "type": "guidance",
+          "settings": {
+            "topic": "sensation"
+          }
+        },
+        {
+          "type": "guidance",
+          "settings": {
+            "topic": "budget"
+          }
+        },
+        {
+          "type": "care",
+          "settings": {
+            "topic": "lubricant",
+            "icon": "drop"
+          }
+        },
+        {
+          "type": "care",
+          "settings": {
+            "topic": "cleaning",
+            "icon": "clean"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "choose"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "difference"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "lubricant"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "cleaning"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "interactive"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "packaging"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "delivery"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

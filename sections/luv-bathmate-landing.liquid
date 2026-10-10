@@ -1,0 +1,615 @@
+{{ 'luv-bathmate-landing.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'luv-bathmate-landing.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign product_blocks = section.blocks | where: 'type', 'product'
+  assign faq_blocks = section.blocks | where: 'type', 'faq'
+  assign first_product = product_blocks.first.settings.product
+  assign hero_image = section.settings.hero_image | default: first_product.featured_image
+  assign hero_alt = hero_image.alt | default: first_product.title | default: page.title
+  assign products_anchor = '#lm-bathmate-products-' | append: section.id
+  assign comparison_anchor = '#lm-bathmate-comparison-' | append: section.id
+  unless section.settings.show_comparison
+    assign comparison_anchor = products_anchor
+  endunless
+  assign primary_url = section.settings.primary_url | default: products_anchor
+  assign secondary_url = section.settings.secondary_url | default: comparison_anchor
+  assign currency = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop.currency
+-%}
+<lm-bathmate-landing class="lm-bathmate-landing" data-section-id="{{ section.id }}" data-locale="{{ request.locale.iso_code | escape }}" data-currency="{{ currency | escape }}" {% if request.design_mode %}data-design-mode{% endif %}>
+  <div class="lm-bathmate-container">
+    <div class="lm-bathmate-hero">
+      <div class="lm-bathmate-hero-copy">
+        <p class="lm-bathmate-eyebrow">{%- assign fallback = 'lm_bathmate.hero_eyebrow' | t -%}{{ section.settings.hero_eyebrow | default: fallback | escape }}</p>
+        <h1 class="lm-bathmate-title">{%- assign fallback = 'lm_bathmate.hero_heading' | t -%}{{ section.settings.hero_heading | default: fallback | escape }}</h1>
+        <p class="lm-bathmate-lead">{%- assign fallback = 'lm_bathmate.hero_body' | t -%}{{ section.settings.hero_body | default: fallback | escape }}</p>
+      </div>
+      <div class="lm-bathmate-hero-media">
+        <div class="lm-bathmate-hero-frame-heading"><span>{{ 'lm_bathmate.hero_eyebrow' | t | escape }}</span><span class="lm-bathmate-hero-chip">{{ 'lm_bathmate.hero_tag' | t | escape }}</span></div>
+        <div class="lm-bathmate-hero-image">
+        {% if hero_image != blank %}
+          {{ hero_image | image_url: width: 1400 | image_tag: widths: '320, 480, 640, 960, 1200, 1400', sizes: '(min-width: 1280px) 470px, (min-width: 750px) 40vw, 90vw', loading: 'eager', fetchpriority: 'high', alt: hero_alt }}
+        {% elsif request.design_mode %}<p class="lm-bathmate-editor-note">Select a hero image or the first Bathmate product.</p>{% endif %}
+        </div>
+        <div class="lm-bathmate-hero-caption"><span>Hydromax · HydroXtreme</span><span>{{ 'lm_bathmate.hero_caption' | t | escape }}</span></div>
+      </div>
+      <div class="lm-bathmate-hero-actions">
+        <div class="lm-bathmate-actions"><a class="lm-bathmate-button" href="{{ primary_url | escape }}">{%- assign fallback = 'lm_bathmate.primary_label' | t -%}{{ section.settings.primary_label | default: fallback | escape }}</a><a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ secondary_url | escape }}" data-lm-event="compare_click" data-lm-section="hero">{%- assign fallback = 'lm_bathmate.secondary_label' | t -%}{{ section.settings.secondary_label | default: fallback | escape }}</a></div>
+        <ul class="lm-bathmate-trust-row" role="list"><li><span aria-hidden="true">✓</span> {{ 'lm_bathmate.packaging' | t | escape }}</li><li><span aria-hidden="true">✓</span> {{ 'lm_bathmate.payment' | t | escape }}</li><li><span aria-hidden="true">✓</span> {{ 'lm_bathmate.delivery' | t | escape }}</li></ul>
+      </div>
+    </div>
+    <section class="lm-bathmate-size lm-bathmate-panel lm-bathmate-band--tinted" aria-labelledby="lm-bathmate-size-{{ section.id }}">
+      <div><h2 class="lm-bathmate-heading" id="lm-bathmate-size-{{ section.id }}">{%- assign fallback = 'lm_bathmate.size_heading' | t -%}{{ section.settings.size_heading | default: fallback | escape }}</h2><p>{%- assign fallback = 'lm_bathmate.size_body' | t -%}{{ section.settings.size_body | default: fallback | escape }}</p></div>
+      <ol class="lm-bathmate-steps" role="list"><li><span class="lm-bathmate-number" aria-hidden="true">01</span><div><h3>{{ 'lm_bathmate.step_check' | t | escape }}</h3><p>{{ 'lm_bathmate.step_1_body' | t | escape }}</p></div></li><li><span class="lm-bathmate-number" aria-hidden="true">02</span><div><h3>{{ 'lm_bathmate.step_compare' | t | escape }}</h3><p>{{ 'lm_bathmate.step_2_body' | t | escape }}</p></div></li><li><span class="lm-bathmate-number" aria-hidden="true">03</span><div><h3>{{ 'lm_bathmate.step_choose' | t | escape }}</h3><p>{{ 'lm_bathmate.step_3_body' | t | escape }}</p></div></li></ol>
+      {% if section.settings.size_guide_url != blank %}<a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ section.settings.size_guide_url | escape }}" data-lm-event="size_guide_click" data-lm-section="size">{{ 'lm_bathmate.guide_label' | t | escape }}</a>{% elsif request.design_mode %}<p class="lm-bathmate-editor-note">Select the existing Bathmate Size Guide URL in this section’s settings.</p>{% endif %}
+    </section>
+    <section class="lm-bathmate-band" id="lm-bathmate-products-{{ section.id }}" aria-labelledby="lm-bathmate-products-heading-{{ section.id }}">
+      <p class="lm-bathmate-eyebrow">{{ 'lm_bathmate.products_eyebrow' | t | escape }}</p><h2 class="lm-bathmate-heading" id="lm-bathmate-products-heading-{{ section.id }}">{%- assign fallback = 'lm_bathmate.products_heading' | t -%}{{ section.settings.products_heading | default: fallback | escape }}</h2>
+      <div class="lm-bathmate-products">{% for block in product_blocks %}{% render 'luv-bathmate-product', block: block, mode: 'card', position: forloop.index %}{% endfor %}</div>
+    </section>
+    {% if section.settings.show_series %}
+    <section class="lm-bathmate-band lm-bathmate-band--center lm-bathmate-band--tinted" aria-labelledby="lm-bathmate-series-{{ section.id }}">
+      <p class="lm-bathmate-eyebrow">{{ 'lm_bathmate.series_eyebrow' | t | escape }}</p><h2 class="lm-bathmate-heading" id="lm-bathmate-series-{{ section.id }}">{%- assign fallback = 'lm_bathmate.series_heading' | t -%}{{ section.settings.series_heading | default: fallback | escape }}</h2>
+      <div class="lm-bathmate-series-grid"><article class="lm-bathmate-series-card"><span class="lm-bathmate-series-index" aria-hidden="true">01</span><h3>Hydromax</h3><p>{%- assign fallback = 'lm_bathmate.hydromax_body' | t -%}{{ section.settings.hydromax_body | default: fallback | escape }}</p>{% if section.settings.hydromax_url != blank %}<a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ section.settings.hydromax_url | escape }}">{%- assign fallback = 'lm_bathmate.hydromax_cta' | t -%}{{ section.settings.hydromax_cta | default: fallback | escape }}</a>{% else %}<a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ comparison_anchor }}" data-lm-event="compare_click" data-lm-section="series">{%- assign fallback = 'lm_bathmate.hydromax_cta' | t -%}{{ section.settings.hydromax_cta | default: fallback | escape }}</a>{% endif %}</article><article class="lm-bathmate-series-card lm-bathmate-dark"><span class="lm-bathmate-series-index" aria-hidden="true">02</span><h3>HydroXtreme</h3><p>{%- assign fallback = 'lm_bathmate.hydroxtreme_body' | t -%}{{ section.settings.hydroxtreme_body | default: fallback | escape }}</p>{% if section.settings.hydroxtreme_url != blank %}<a class="lm-bathmate-button" href="{{ section.settings.hydroxtreme_url | escape }}">{%- assign fallback = 'lm_bathmate.hydroxtreme_cta' | t -%}{{ section.settings.hydroxtreme_cta | default: fallback | escape }}</a>{% else %}<a class="lm-bathmate-button" href="{{ comparison_anchor }}" data-lm-event="compare_click" data-lm-section="series">{%- assign fallback = 'lm_bathmate.hydroxtreme_cta' | t -%}{{ section.settings.hydroxtreme_cta | default: fallback | escape }}</a>{% endif %}</article></div>
+    </section>{% endif %}
+    {% if section.settings.show_comparison %}
+    <section class="lm-bathmate-band" id="lm-bathmate-comparison-{{ section.id }}" aria-labelledby="lm-bathmate-comparison-heading-{{ section.id }}">
+      <h2 class="lm-bathmate-heading" id="lm-bathmate-comparison-heading-{{ section.id }}">{%- assign fallback = 'lm_bathmate.comparison_heading' | t -%}{{ section.settings.comparison_heading | default: fallback | escape }}</h2>
+      <table class="lm-bathmate-table"><caption class="lm-bathmate-visually-hidden">{{ 'lm_bathmate.comparison_heading' | t | escape }}</caption><thead><tr><th scope="col">{{ 'lm_bathmate.model' | t | escape }}</th><th scope="col">{{ 'lm_bathmate.series' | t | escape }}</th><th scope="col">{{ 'lm_bathmate.positioning' | t | escape }}</th><th scope="col">{{ 'lm_bathmate.experience' | t | escape }}</th><th scope="col">{{ 'lm_bathmate.price' | t | escape }}</th><th scope="col">{{ 'lm_bathmate.action' | t | escape }}</th></tr></thead><tbody>{% for block in product_blocks %}{% render 'luv-bathmate-product', block: block, mode: 'comparison', position: forloop.index %}{% endfor %}</tbody></table>
+    </section>{% endif %}
+    {% if section.settings.show_works %}
+    <section class="lm-bathmate-band lm-bathmate-works lm-bathmate-band--center lm-bathmate-band--tinted" aria-labelledby="lm-bathmate-works-{{ section.id }}">
+      <h2 class="lm-bathmate-heading" id="lm-bathmate-works-{{ section.id }}">{%- assign fallback = 'lm_bathmate.works_heading' | t -%}{{ section.settings.works_heading | default: fallback | escape }}</h2><p class="lm-bathmate-intro">{%- assign fallback = 'lm_bathmate.works_body' | t -%}{{ section.settings.works_body | default: fallback | escape }}</p>
+      <div class="lm-bathmate-three-grid"><article class="lm-bathmate-info-card"><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'water' %}</span><h3>{{ 'lm_bathmate.works_1_title' | t | escape }}</h3><p>{{ 'lm_bathmate.works_1_body' | t | escape }}</p></article><article class="lm-bathmate-info-card"><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'pressure' %}</span><h3>{{ 'lm_bathmate.works_2_title' | t | escape }}</h3><p>{{ 'lm_bathmate.works_2_body' | t | escape }}</p></article><article class="lm-bathmate-info-card"><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'release' %}</span><h3>{{ 'lm_bathmate.works_3_title' | t | escape }}</h3><p>{{ 'lm_bathmate.works_3_body' | t | escape }}</p></article></div>
+    </section>{% endif %}
+    {% if section.settings.show_fit %}
+    <section class="lm-bathmate-fit lm-bathmate-panel" aria-labelledby="lm-bathmate-fit-{{ section.id }}"><div><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'size' %}</span><p class="lm-bathmate-eyebrow">{{ 'lm_bathmate.fit_eyebrow' | t | escape }}</p><h2 class="lm-bathmate-heading" id="lm-bathmate-fit-{{ section.id }}">{%- assign fallback = 'lm_bathmate.fit_heading' | t -%}{{ section.settings.fit_heading | default: fallback | escape }}</h2><p>{%- assign fallback = 'lm_bathmate.fit_body' | t -%}{{ section.settings.fit_body | default: fallback | escape }}</p><div class="lm-bathmate-fit-art" aria-hidden="true"></div>{% if section.settings.size_guide_url != blank %}<a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ section.settings.size_guide_url | escape }}" data-lm-event="size_guide_click" data-lm-section="fit">{{ 'lm_bathmate.guide_label' | t | escape }}</a>{% elsif request.design_mode %}<p class="lm-bathmate-editor-note">Select the existing Bathmate Size Guide URL in this section’s settings.</p>{% endif %}</div></section>{% endif %}
+    {%- assign related_url = section.settings.related_cta_url | default: pages['male-toys'].url -%}
+    {% if section.settings.show_related_male_toys and related_url != blank %}
+    <section class="lm-bathmate-related lm-bathmate-panel" aria-labelledby="lm-bathmate-related-{{ section.id }}">
+      <div>
+        <p class="lm-bathmate-eyebrow">{%- assign fallback = 'lm_bathmate.related_eyebrow' | t -%}{{ section.settings.related_eyebrow | default: fallback | escape_once }}</p>
+        <h2 class="lm-bathmate-heading" id="lm-bathmate-related-{{ section.id }}">{%- assign fallback = 'lm_bathmate.related_heading' | t -%}{{ section.settings.related_heading | default: fallback | escape_once }}</h2>
+        <p class="lm-bathmate-related-body">{%- assign fallback = 'lm_bathmate.related_body' | t -%}{{ section.settings.related_body | default: fallback | escape_once }}</p>
+      </div>
+      <a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ related_url | escape }}" data-lm-event="related_male_toys_click" data-lm-section="related">{%- assign fallback = 'lm_bathmate.related_cta_label' | t -%}{{ section.settings.related_cta_label | default: fallback | escape_once }}</a>
+    </section>{% endif %}
+    {% if section.settings.show_trust %}
+    <section class="lm-bathmate-band lm-bathmate-band--center lm-bathmate-band--tinted" aria-labelledby="lm-bathmate-trust-{{ section.id }}"><h2 class="lm-bathmate-heading" id="lm-bathmate-trust-{{ section.id }}">{%- assign fallback = 'lm_bathmate.trust_heading' | t -%}{{ section.settings.trust_heading | default: fallback | escape }}</h2><div class="lm-bathmate-trust-grid"><article class="lm-bathmate-info-card"><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'price' %}</span><h3>{{ 'lm_bathmate.trust_1_title' | t | escape }}</h3><p>{{ 'lm_bathmate.trust_1_body' | t | escape }}</p></article><article class="lm-bathmate-info-card"><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'box' %}</span><h3>{{ 'lm_bathmate.trust_2_title' | t | escape }}</h3><p>{{ 'lm_bathmate.trust_2_body' | t | escape }}</p></article><article class="lm-bathmate-info-card"><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'lock' %}</span><h3>{{ 'lm_bathmate.trust_3_title' | t | escape }}</h3><p>{{ 'lm_bathmate.trust_3_body' | t | escape }}</p></article><article class="lm-bathmate-info-card"><span class="lm-bathmate-icon" aria-hidden="true">{% render 'luv-bathmate-icon', icon: 'delivery' %}</span><h3>{{ 'lm_bathmate.trust_4_title' | t | escape }}</h3><p>{{ 'lm_bathmate.trust_4_body' | t | escape }}</p></article></div></section>{% endif %}
+    {% if section.settings.show_faq and faq_blocks.size > 0 %}
+    <section class="lm-bathmate-band lm-bathmate-faq lm-bathmate-band--center" aria-labelledby="lm-bathmate-faq-{{ section.id }}"><h2 class="lm-bathmate-heading" id="lm-bathmate-faq-{{ section.id }}">{%- assign fallback = 'lm_bathmate.faq_heading' | t -%}{{ section.settings.faq_heading | default: fallback | escape }}</h2>
+    {% for block in faq_blocks %}
+      {%- liquid
+        assign question_key = 'lm_bathmate.faq_' | append: block.settings.topic | append: '_question'
+        assign answer_key = 'lm_bathmate.faq_' | append: block.settings.topic | append: '_answer'
+        assign default_question = question_key | t
+      -%}
+      <details class="lm-bathmate-details" {{ block.shopify_attributes }}><summary>{{ block.settings.question | default: default_question | escape }}<span aria-hidden="true">+</span></summary><div class="lm-bathmate-answer">{% if block.settings.answer != blank %}{{ block.settings.answer }}{% else %}<p>{{ answer_key | t | escape }}</p>{% endif %}{% if block.settings.topic == 'size' %}{% if section.settings.size_guide_url != blank %}<a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ section.settings.size_guide_url | escape }}" data-lm-event="size_guide_click" data-lm-section="faq">{{ 'lm_bathmate.guide_label' | t | escape }}</a>{% elsif request.design_mode %}<p class="lm-bathmate-editor-note">Select the existing Bathmate Size Guide URL in this section’s settings.</p>{% endif %}{% endif %}</div></details>
+    {% endfor %}</section>{% endif %}
+    {% if section.settings.show_final %}
+    <section class="lm-bathmate-final lm-bathmate-dark" aria-labelledby="lm-bathmate-final-{{ section.id }}"><h2 class="lm-bathmate-heading" id="lm-bathmate-final-{{ section.id }}">{%- assign fallback = 'lm_bathmate.final_heading' | t -%}{{ section.settings.final_heading | default: fallback | escape }}</h2><p>{%- assign fallback = 'lm_bathmate.final_body' | t -%}{{ section.settings.final_body | default: fallback | escape }}</p><div class="lm-bathmate-actions"><a class="lm-bathmate-button" href="{{ primary_url | escape }}" data-lm-event="final_cta_click" data-lm-section="final">{%- assign fallback = 'lm_bathmate.primary_label' | t -%}{{ section.settings.primary_label | default: fallback | escape }}</a>{% if section.settings.size_guide_url != blank %}<a class="lm-bathmate-button lm-bathmate-button--outline" href="{{ section.settings.size_guide_url | escape }}" data-lm-event="size_guide_click" data-lm-section="final">{{ 'lm_bathmate.view_guide' | t | escape }}</a>{% elsif request.design_mode %}<p class="lm-bathmate-editor-note">Select the existing Bathmate Size Guide URL in this section’s settings.</p>{% endif %}</div><ul class="lm-bathmate-trust-row" role="list"><li><span aria-hidden="true">✓</span> {{ 'lm_bathmate.packaging' | t | escape }}</li><li><span aria-hidden="true">✓</span> {{ 'lm_bathmate.payment' | t | escape }}</li><li><span aria-hidden="true">✓</span> {{ 'lm_bathmate.delivery' | t | escape }}</li></ul></section>{% endif %}
+  </div>
+</lm-bathmate-landing>
+{% schema %}
+{
+  "name": "Bathmate landing",
+  "tag": "section",
+  "class": "lm-bathmate-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Eyebrow",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_body",
+      "label": "Body",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary CTA label",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary CTA label",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Falls back to the first selected product image. Use a clean product visual."
+    },
+    {
+      "type": "url",
+      "id": "primary_url",
+      "label": "Primary CTA URL",
+      "info": "Leave blank to link to featured products."
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary CTA URL",
+      "info": "Leave blank to link to model comparison."
+    },
+    {
+      "type": "header",
+      "content": "Size guide"
+    },
+    {
+      "type": "url",
+      "id": "size_guide_url",
+      "label": "Existing Bathmate Size Guide URL",
+      "info": "Required before launch. All size-guide links use this destination."
+    },
+    {
+      "type": "text",
+      "id": "size_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "textarea",
+      "id": "size_body",
+      "label": "Body",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "text",
+      "id": "products_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "header",
+      "content": "Series"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_series",
+      "label": "Show series cards",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "series_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "textarea",
+      "id": "hydromax_body",
+      "label": "hydromax description",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "text",
+      "id": "hydromax_cta",
+      "label": "hydromax CTA",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "url",
+      "id": "hydromax_url",
+      "label": "hydromax URL"
+    },
+    {
+      "type": "textarea",
+      "id": "hydroxtreme_body",
+      "label": "hydroxtreme description",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "text",
+      "id": "hydroxtreme_cta",
+      "label": "hydroxtreme CTA",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "url",
+      "id": "hydroxtreme_url",
+      "label": "hydroxtreme URL"
+    },
+    {
+      "type": "header",
+      "content": "Comparison"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comparison",
+      "label": "Show comparison",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "comparison_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "header",
+      "content": "How it works"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_works",
+      "label": "Show how it works",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "works_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "textarea",
+      "id": "works_body",
+      "label": "Introduction",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "header",
+      "content": "Size reminder"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_fit",
+      "label": "Show size reminder",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "fit_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "textarea",
+      "id": "fit_body",
+      "label": "Body",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "header",
+      "content": "Trust"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related_male_toys",
+      "label": "Show related Male Toys link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_eyebrow",
+      "label": "Related eyebrow",
+      "info": "Leave blank for the translated default. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "related_heading",
+      "label": "Related heading",
+      "info": "Leave blank for the translated default. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "textarea",
+      "id": "related_body",
+      "label": "Related body",
+      "info": "Leave blank for the translated default. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "text",
+      "id": "related_cta_label",
+      "label": "Related CTA label",
+      "info": "Leave blank for the translated default. Translate custom text with Translate & Adapt."
+    },
+    {
+      "type": "url",
+      "id": "related_cta_url",
+      "label": "Related CTA URL",
+      "info": "Leave blank to use the existing Male Toys page in the current language."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust",
+      "label": "Show trust cards",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "trust_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "header",
+      "content": "FAQ"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq",
+      "label": "Show FAQ",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "header",
+      "content": "Final CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_final",
+      "label": "Show final CTA",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "final_heading",
+      "label": "Heading",
+      "info": "Leave blank to use the translated English / Croatian default."
+    },
+    {
+      "type": "textarea",
+      "id": "final_body",
+      "label": "Body",
+      "info": "Leave blank to use the translated English / Croatian default."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Bathmate product",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "short_title",
+          "label": "Short display title",
+          "info": "Optional comparison title. Translate with Translate & Adapt; blank uses the product title."
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge text",
+          "info": "Optional custom badge; translate custom text in Translate & Adapt."
+        },
+        {
+          "type": "select",
+          "id": "default_badge",
+          "label": "Default translated badge",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "popular",
+              "label": "Popular choice"
+            },
+            {
+              "value": "advanced",
+              "label": "Advanced"
+            },
+            {
+              "value": "premium",
+              "label": "Premium"
+            }
+          ]
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Short description"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature chip 1"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature chip 2"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature chip 3"
+        },
+        {
+          "type": "text",
+          "id": "cta",
+          "label": "CTA text",
+          "info": "Leave blank for translated “View product”."
+        },
+        {
+          "type": "select",
+          "id": "series",
+          "label": "Series",
+          "options": [
+            {
+              "value": "Hydromax",
+              "label": "Hydromax"
+            },
+            {
+              "value": "HydroXtreme",
+              "label": "HydroXtreme"
+            }
+          ],
+          "default": "Hydromax"
+        },
+        {
+          "type": "text",
+          "id": "positioning",
+          "label": "Size / positioning",
+          "info": "Use verified descriptive copy; do not invent measurements."
+        },
+        {
+          "type": "text",
+          "id": "experience",
+          "label": "Experience label"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "topic",
+          "label": "FAQ topic",
+          "options": [
+            {
+              "value": "size",
+              "label": "Choosing a size"
+            },
+            {
+              "value": "series",
+              "label": "Hydromax vs HydroXtreme"
+            },
+            {
+              "value": "water",
+              "label": "Water or air"
+            },
+            {
+              "value": "clean",
+              "label": "Cleaning and care"
+            },
+            {
+              "value": "packaging",
+              "label": "Discreet packaging"
+            },
+            {
+              "value": "delivery",
+              "label": "Delivery destinations"
+            }
+          ],
+          "default": "size"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Custom question",
+          "info": "Leave blank for the translated default."
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Custom answer",
+          "info": "Leave blank for the conservative translated default. Translate custom answers in Translate & Adapt."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bathmate landing",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "series": "Hydromax",
+            "default_badge": "popular"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "series": "Hydromax",
+            "default_badge": "none"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "series": "HydroXtreme",
+            "default_badge": "advanced"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "series": "HydroXtreme",
+            "default_badge": "premium"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "size"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "series"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "water"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "clean"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "packaging"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "topic": "delivery"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

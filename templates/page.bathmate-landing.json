@@ -1,0 +1,186 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "luv-bathmate-landing",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": "bathmate-hydromax-7-transparent-penis-increase-pump",
+            "badge": "",
+            "default_badge": "popular",
+            "description": "",
+            "feature_1": "Water-powered",
+            "feature_2": "Popular size",
+            "feature_3": "",
+            "cta": "",
+            "series": "Hydromax",
+            "positioning": "",
+            "experience": "",
+            "short_title": "Bathmate Hydromax 7"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": "bathmate-hydromax-9-transparent-penis-increase-pump",
+            "badge": "",
+            "default_badge": "none",
+            "description": "",
+            "feature_1": "Water-powered",
+            "feature_2": "Larger model",
+            "feature_3": "",
+            "cta": "",
+            "series": "Hydromax",
+            "positioning": "",
+            "experience": "",
+            "short_title": "Bathmate Hydromax 9"
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "product": "bathmate-hydroxtreme-5-penis-pump-x20",
+            "badge": "",
+            "default_badge": "advanced",
+            "description": "",
+            "feature_1": "Advanced system",
+            "feature_2": "",
+            "feature_3": "",
+            "cta": "",
+            "series": "HydroXtreme",
+            "positioning": "",
+            "experience": "",
+            "short_title": "Bathmate HydroXtreme 5"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "product": "bathmate-hydroxtreme-8",
+            "badge": "",
+            "default_badge": "premium",
+            "description": "",
+            "feature_1": "Premium",
+            "feature_2": "Larger model",
+            "feature_3": "",
+            "cta": "",
+            "series": "HydroXtreme",
+            "positioning": "",
+            "experience": "",
+            "short_title": "Bathmate HydroXtreme 8"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "topic": "size",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "topic": "series",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "topic": "water",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_8": {
+          "type": "faq",
+          "settings": {
+            "topic": "clean",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_9": {
+          "type": "faq",
+          "settings": {
+            "topic": "packaging",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_10": {
+          "type": "faq",
+          "settings": {
+            "topic": "delivery",
+            "question": "",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9",
+        "faq_10"
+      ],
+      "settings": {
+        "hero_eyebrow": "",
+        "hero_heading": "",
+        "hero_body": "",
+        "primary_label": "",
+        "secondary_label": "",
+        "hero_image": "shopify://shop_images/Gemini_Generated_Image_xmt05yxmt05yxmt0.jpg",
+        "primary_url": "shopify://collections/penis-pumps",
+        "secondary_url": "",
+        "size_guide_url": "shopify://blogs/penis-pumps/bathmate-size-guide",
+        "size_heading": "",
+        "size_body": "",
+        "products_heading": "",
+        "show_series": true,
+        "series_heading": "",
+        "hydromax_body": "",
+        "hydromax_cta": "",
+        "hydromax_url": "",
+        "hydroxtreme_body": "",
+        "hydroxtreme_cta": "",
+        "hydroxtreme_url": "",
+        "show_comparison": true,
+        "comparison_heading": "",
+        "show_works": true,
+        "works_heading": "",
+        "works_body": "",
+        "show_fit": true,
+        "fit_heading": "",
+        "fit_body": "",
+        "show_trust": true,
+        "trust_heading": "",
+        "show_faq": true,
+        "faq_heading": "",
+        "show_final": true,
+        "final_heading": "",
+        "final_body": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

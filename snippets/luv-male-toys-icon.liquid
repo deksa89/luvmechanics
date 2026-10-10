@@ -1,0 +1,18 @@
+{% doc %}
+  Renders a decorative line icon.
+  @param {string} icon - device, movement, heat, connect, box, lock, delivery, price, drop or clean
+{% enddoc %}
+<svg class="lm-male-toys-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{% case icon %}
+{% when 'movement' %}<path d="M8 3v18m-4-4 4 4 4-4M16 21V3m-4 4 4-4 4 4"/>
+{% when 'heat' %}<path d="M7 21c-5-6 5-8 0-15m5 15c-5-6 5-8 0-18m5 18c-5-6 5-8 0-15"/>
+{% when 'connect' %}<rect x="9" y="8" width="6" height="12" rx="2"/><path d="M12 17h.01M5 10a8 8 0 0 1 14 0M2 7a12 12 0 0 1 20 0"/>
+{% when 'box' %}<path d="m3 7 9-4 9 4v11l-9 4-9-4V7Zm0 0 9 4 9-4M12 11v11M7 5l10 5"/>
+{% when 'lock' %}<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v2"/>
+{% when 'delivery' %}<path d="M2 5h12v12H2V5Zm12 5h4l4 4v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>
+{% when 'price' %}<path d="M18 5a7 7 0 1 0 0 14M3 10h11M3 14h10"/>
+{% when 'drop' %}<path d="M12 2S5 11 5 15a7 7 0 0 0 14 0C19 11 12 2 12 2Z"/>
+{% when 'clean' %}<path d="M7 8h10l2 13H5L7 8Zm3 0V4h4v4m-4-6h7M20 4h2m-1-1v2"/>
+{% else %}<rect x="7" y="2" width="10" height="20" rx="4"/><path d="M7 7h10M10 18h4"/>
+{% endcase %}
+</svg>

@@ -1,0 +1,348 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "luv-male-toys-landing",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": "kiiroo-keon-wifi-combo-automatic-masturbator-feel-stroker",
+            "short_title": "Kiiroo Keon WiFi + Feel Stroker",
+            "badge": "",
+            "description": "",
+            "feature_1": "",
+            "feature_2": "",
+            "feature_3": "",
+            "movement": "",
+            "heating": "",
+            "interactive": "",
+            "experience": "",
+            "cta": ""
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": "kiiroo-onyx-teledildonic-masturbator-with-skin-texture",
+            "short_title": "Kiiroo Onyx+",
+            "badge": "",
+            "description": "",
+            "feature_1": "",
+            "feature_2": "",
+            "feature_3": "",
+            "movement": "",
+            "heating": "",
+            "interactive": "",
+            "experience": "",
+            "cta": ""
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "product": "snail-vibe-ikon-jet-heating-thrusting-masturbator",
+            "short_title": "Snail Vibe IKON Jet",
+            "badge": "",
+            "description": "",
+            "feature_1": "",
+            "feature_2": "",
+            "feature_3": "",
+            "movement": "",
+            "heating": "",
+            "interactive": "",
+            "experience": "",
+            "cta": ""
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "product": "snail-vibe-ikon-spark-thrusting-rotation-masturbator",
+            "short_title": "Snail Vibe IKON Spark",
+            "badge": "",
+            "description": "",
+            "feature_1": "",
+            "feature_2": "",
+            "feature_3": "",
+            "movement": "",
+            "heating": "",
+            "interactive": "",
+            "experience": "",
+            "cta": ""
+          }
+        },
+        "product_5": {
+          "type": "product",
+          "settings": {
+            "product": "kiiroo-titan-technological-masturbator",
+            "short_title": "Kiiroo Titan",
+            "badge": "",
+            "description": "",
+            "feature_1": "",
+            "feature_2": "",
+            "feature_3": "",
+            "movement": "",
+            "heating": "",
+            "interactive": "",
+            "experience": "",
+            "cta": ""
+          }
+        },
+        "experience_1": {
+          "type": "experience",
+          "settings": {
+            "topic": "automatic",
+            "title": "",
+            "body": "",
+            "icon": "movement",
+            "url": ""
+          }
+        },
+        "experience_2": {
+          "type": "experience",
+          "settings": {
+            "topic": "thrusting",
+            "title": "",
+            "body": "",
+            "icon": "movement",
+            "url": ""
+          }
+        },
+        "experience_3": {
+          "type": "experience",
+          "settings": {
+            "topic": "heating",
+            "title": "",
+            "body": "",
+            "icon": "heat",
+            "url": ""
+          }
+        },
+        "experience_4": {
+          "type": "experience",
+          "settings": {
+            "topic": "interactive",
+            "title": "",
+            "body": "",
+            "icon": "connect",
+            "url": ""
+          }
+        },
+        "spotlight_feature_1": {
+          "type": "spotlight_feature",
+          "settings": {
+            "topic": "automated",
+            "title": "",
+            "body": "",
+            "icon": "movement"
+          }
+        },
+        "spotlight_feature_2": {
+          "type": "spotlight_feature",
+          "settings": {
+            "topic": "connected",
+            "title": "",
+            "body": "",
+            "icon": "connect"
+          }
+        },
+        "spotlight_feature_3": {
+          "type": "spotlight_feature",
+          "settings": {
+            "topic": "premium",
+            "title": "",
+            "body": "",
+            "icon": "device"
+          }
+        },
+        "guidance_1": {
+          "type": "guidance",
+          "settings": {
+            "topic": "movement",
+            "title": "",
+            "body": ""
+          }
+        },
+        "guidance_2": {
+          "type": "guidance",
+          "settings": {
+            "topic": "control",
+            "title": "",
+            "body": ""
+          }
+        },
+        "guidance_3": {
+          "type": "guidance",
+          "settings": {
+            "topic": "sensation",
+            "title": "",
+            "body": ""
+          }
+        },
+        "guidance_4": {
+          "type": "guidance",
+          "settings": {
+            "topic": "budget",
+            "title": "",
+            "body": ""
+          }
+        },
+        "care_1": {
+          "type": "care",
+          "settings": {
+            "topic": "lubricant",
+            "title": "",
+            "body": "",
+            "icon": "drop",
+            "url": "",
+            "cta": ""
+          }
+        },
+        "care_2": {
+          "type": "care",
+          "settings": {
+            "topic": "cleaning",
+            "title": "",
+            "body": "",
+            "icon": "clean",
+            "url": "",
+            "cta": ""
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "topic": "choose",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "topic": "difference",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "topic": "lubricant",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "topic": "cleaning",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "topic": "interactive",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "topic": "packaging",
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "topic": "delivery",
+            "question": "",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4",
+        "product_5",
+        "experience_1",
+        "experience_2",
+        "experience_3",
+        "experience_4",
+        "spotlight_feature_1",
+        "spotlight_feature_2",
+        "spotlight_feature_3",
+        "guidance_1",
+        "guidance_2",
+        "guidance_3",
+        "guidance_4",
+        "care_1",
+        "care_2",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ],
+      "settings": {
+        "hero_eyebrow": "",
+        "hero_heading": "",
+        "hero_body": "",
+        "primary_label": "",
+        "secondary_label": "",
+        "hero_image": "shopify://shop_images/masturbators.jpg",
+        "primary_url": "shopify://collections/masturbators",
+        "secondary_url": "",
+        "experience_heading": "",
+        "products_heading": "",
+        "products_body": "",
+        "comparison_heading": "",
+        "guide_heading": "",
+        "care_heading": "",
+        "trust_heading": "",
+        "faq_heading": "",
+        "spotlight_heading": "",
+        "spotlight_body": "",
+        "spotlight_cta": "",
+        "spotlight_product": "kiiroo-onyx-teledildonic-masturbator-with-skin-texture",
+        "spotlight_url": "",
+        "final_eyebrow": "",
+        "final_heading": "",
+        "final_body": "",
+        "final_primary_label": "",
+        "final_secondary_label": "",
+        "final_primary_url": "",
+        "final_secondary_url": "",
+        "show_experience": true,
+        "show_spotlight": true,
+        "show_comparison": true,
+        "show_guide": true,
+        "show_care": true,
+        "show_trust": true,
+        "show_faq": true,
+        "show_final": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
